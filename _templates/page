@@ -5,5 +5,8 @@ date: {{ date }}
 modified:
 excerpt:
 image:
-  feature: 
+  feature:
+  teaser:
+  thumb:
+ads: false  
 ---
