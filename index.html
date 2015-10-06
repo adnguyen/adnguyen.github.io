@@ -1,8 +1,28 @@
----
-layout: default
-title: Home
----
-
-{% assign page = site.posts.first %}
-{% assign content = page.content %}
-{% include post.html %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hank Quinlan, Horrible Cop</title>
+	</head>
+	<body>
+		<nav>
+    		<ul>
+        		<li><a href="/">Home</a></li>
+	        	<li><a href="/about">About</a></li>
+        		<li><a href="/cv">CV</a></li>
+        		<li><a href="/blog">Blog</a></li>
+    		</ul>
+		</nav>
+		<div class="container">
+    		<div class="blurb">
+        		<h1>Hi there, I'm ANTdrew Nguyen!</h1>
+				<p>I'm best known as the horrible cop from <em>A Touch of Evil</em> Don't trust me. <a href="/about">Read more about my life...</a></p>
+    		</div><!-- /.blurb -->
+		</div><!-- /.container -->
+		<footer>
+    		<ul>
+        		<li><a href="mailto:anbe642@gmail.com">email</a></li>
+        		<li><a href="https://adnguyen.github.io/">https://adnguyen.github.io/</a></li>
+			</ul>
+		</footer>
+	</body>
+</html>
