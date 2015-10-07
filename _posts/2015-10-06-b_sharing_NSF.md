@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Provding my NSF pre-doc proposal"
+title: "Providing my NSF pre-doc proposal"
 date: 2015-10-06
 ---
 
