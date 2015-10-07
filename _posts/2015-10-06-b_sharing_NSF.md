@@ -4,7 +4,7 @@ title: "Provding my NSF pre-doc proposal"
 date: 2015-10-06
 ---
 
-I'm sharing my NSF pre doc research proposal(http://adnguyen.github.io/assets/2012_NSF_GFRP_ANBE_research)
+I'm sharing my NSF pre doc research proposal[proposal](http://adnguyen.github.io/assets/2012_NSF_GFRP_ANBE_research)
 (https://www.nsfgrfp.org/) for when I applied back in 2012 for future reference. This is what a losing proposal looks like.
 
 <p><a href="http://adnguyen.github.io/assets/2012_NSF_GFRP_ANBE_research">Please follow this link </a></p>
