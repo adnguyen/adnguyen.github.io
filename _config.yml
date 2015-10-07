@@ -1,2 +1,3 @@
 name: Andrew D. Nguyen, Evolutionary Physiologist
 markdown: kramdown
+permalink: /blog/:year/:month/:day/:title
