@@ -6,10 +6,10 @@ date: 2015-10-08
 
 A professor once pressed me to label my field of research. This allows for other biologists to get a feel for what you do. I had a few thoughts initially:   
 
-* molecular ecologist-This is a bottom-up label and I like thinking top-down.    
-* evolutionary biologist-Too broad.
-* comparative physiologist-The word comparative doesn't quite sit well with me.
-* Evolutionary ecologist-Not really..
+* Molecular ecologist-This is a bottom-up label and I like thinking top-down.    
+* Evolutionary biologist-Too broad.
+* Comparative physiologist-I'm unsure of the word comparative.
+* Evolutionary ecologist-I don't know if I'd brand myself an ecologist. 
 * Physiological ecologist-I don't think I do enough field research...
 
 
