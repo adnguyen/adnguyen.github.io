@@ -7,7 +7,7 @@ date: 2015-10-09
 The all things data club will meet every Friday at 3PM. Here is our schedule. 
 
 * 2015-10-16: Maps in R and GIS(if we have time) + troubleshooting maps in R (Emily); led by Andrew and Lucia
-* 2015-10-23: ggplot + R basics + R markdown; led by Federico
+* 2015-10-23: Making publication quality figures: ggplot + R basics + R markdown; led by Federico
 * 2015-10-30: Multivariate statistics in R; led by Mike H. 
 * 2015-11-06: maps revisited, particularly in ArcGIS; led by Lucia
 * 2015-11-13: Transcriptome assembly and analysis; led by Federico
