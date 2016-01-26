@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "What is the evolutionary history of critical stress proteins in ants?"
-date: 2015-10-09
+date: 2016-01-26
 ---
 
 Even though ants have colonized almost every continent on Earth except antarctica, 
