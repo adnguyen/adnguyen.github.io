@@ -14,10 +14,10 @@ nav ul li, footer ul li {
 }
 a {
     text-decoration: none;
-    color: #666;
+    color: #ccc;
 }
 a:hover {
-	color: #666;
+	color: #ececec;
     text-decoration: underline;
 }
 h1 {
