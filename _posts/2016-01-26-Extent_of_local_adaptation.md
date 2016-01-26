@@ -6,6 +6,6 @@ date: 2016-01-26
 
 
 
-
+<i>This section is a work in progress </i>
 
 And how does the stress response follow these patterns of adaptive variation?
