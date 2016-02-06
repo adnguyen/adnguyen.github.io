@@ -1,4 +1,8 @@
-name: DopeTrope
-description: DopeTrope template for Jekyll
+name: Alpha
+description: Alphs template for Jekyll
+baseurl: '/Alpha-Jekyll-Theme'
+
+url: "http://localhost:4000"
+
 paginate: 10
-baseurl: '/DopeTrope-Jekyll-Theme'
+
