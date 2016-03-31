@@ -5,7 +5,7 @@ date: 2016-03-30
 ---
 
 
-# Lab protocols:    
+## Lab protocols:    
 
 
 1. <a href="https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md">Temperature treating ants, isolating RNA to cDNA synthesis to qPCR</a>       
@@ -14,7 +14,7 @@ date: 2016-03-30
 
 
 
-# Data visualization and statistics in R     
+## Data visualization and statistics in R     
 
 * <a href="https://github.com/adnguyen/atd">All things data club</a>   
-
+* <a href="http://adnguyen.github.io/blog/2015/10/07/makingmaps">Making a map</a>
