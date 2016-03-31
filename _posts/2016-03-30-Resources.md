@@ -3,6 +3,8 @@ layout: post
 title: "Resources"
 date: 2016-03-30
 ---
+
+
 #Lab protocols:
 1. <a href="https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md">Temperature treating ants, isolating RNA to cDNA synthesis to qPCR</a>
 
