@@ -19,7 +19,7 @@ date: 2016-03-30
 
 ## Data management practices      
 
-* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">Strategy for organizing files</a>.     
+* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">Strategy for organizing directories and files</a>.     
 * <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">Data management guidelines</a>      
 		* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example: descriptions are in the header of the actual dataset</a>    
 		* <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">Organize data into wide or long format</a>     
