@@ -27,3 +27,8 @@ date: 2016-03-30
 * <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">converting between wide and long data formats</a>      
 
 ## <a href="http://harvardforest.fas.harvard.edu/harvard-forest-data-archive">Harvard forest data archive</a>
+
+## Building a webpage with Jekyll and Github pages      
+* <a href="https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/">How to</a>     
+* <a href="http://jekyllthemes.org/">Jekyll themes</a>  
+* <a href="http://brooksandrew.github.io/simpleblog/articles/blogging-with-r-markdown-and-jekyll-using-knitr/">Blogging with Jekyll and R markdown using knitr</a>   
