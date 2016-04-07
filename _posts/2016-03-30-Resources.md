@@ -3,7 +3,7 @@ layout: post
 title: "Resources"
 date: 2016-03-30
 ---
-
+### Updated: 20160407
 
 ## Lab protocols:    
 
@@ -32,3 +32,7 @@ date: 2016-03-30
 * <a href="https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/">How to</a>     
 * <a href="http://jekyllthemes.org/">Jekyll themes</a>  
 * <a href="http://brooksandrew.github.io/simpleblog/articles/blogging-with-r-markdown-and-jekyll-using-knitr/">Blogging with Jekyll and R markdown using knitr</a>   
+
+## Things for me to learn
+* <a href="http://shiny.rstudio.com/tutorial/lesson7/">Sharing your science through shiny apps</a>
+* <a href="http://www.latextemplates.com/">Prepare documents with Latex</a>
