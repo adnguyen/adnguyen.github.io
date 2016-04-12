@@ -4,9 +4,9 @@ title: "Primer design"
 date: 2016-04-12
 ---
 
-#General protocol for designing primers
+# General protocol for designing primers
 
-###I use [Geneious](http://www.geneious.com/) and [Oligo-analyzer](http://www.idtdna.com/analyzer/Applications/OligoAnalyzer/).  
+### I use [Geneious](http://www.geneious.com/) and [Oligo-analyzer](http://www.idtdna.com/analyzer/Applications/OligoAnalyzer/).  
 
 Date written: 20130809
 
