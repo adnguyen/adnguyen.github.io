@@ -5,11 +5,11 @@ date: 2016-03-30
 ---
 ### Updated: 20160407
 
-## Lab protocols:    
+## Lab practices and protocols:    
 
 * <a href="https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md">Temperature treating ants, isolating RNA to cDNA synthesis to qPCR</a>       
 * <a href="https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Protocols/Protocols.md">Protein related from making buffers to isolations to unfolding experiments</a>.      
- 
+* Template for online [notebook:](/_posts/20160421_online_notebook.md)  
 
 ## Data management practices:      
 
