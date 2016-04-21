@@ -20,8 +20,8 @@
 * More resilient species **will** have elevated shifts in their thermal performance. 
 
 # Table of contents
-- [2016-04-21 heat shock experiments](#id-section1)
-- [2016-04-25 showcasing github](#id-section2)
+- [2016-04-21 heat shock experiments](#id-section1), page1: Took ants and put them in tubes
+- [2016-04-25 showcasing github](#id-section2), page 2: #github4life
 
 
 <div id='id-section1'/>   
