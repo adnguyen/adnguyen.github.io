@@ -3,7 +3,7 @@ layout: post
 title: "Resources"
 date: 2016-03-30
 ---
-### Updated: 20160407
+### Updated: 20160422
 
 ## Lab practices and protocols:    
 
