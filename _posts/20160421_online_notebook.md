@@ -5,7 +5,8 @@
 
 ## Question:
 
-* What allows some species to persist in a warmer climate better than others? What are the factors that determine resiliency or susceptibility?
+* What allows some species to persist in a warmer climate better than others? What are the factors that determine resiliency or susceptibility?    
+* Kattia has another question    
 
 ## Hypothesis:
 
