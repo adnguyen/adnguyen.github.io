@@ -10,6 +10,7 @@ date: 2016-03-30
 * <a href="https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md">Temperature treating ants, isolating RNA to cDNA synthesis to qPCR</a>       
 * <a href="https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Protocols/Protocols.md">Protein related from making buffers to isolations to unfolding experiments</a>.      
 * Template for online [notebook:](https://github.com/adnguyen/adnguyen.github.io/blob/master/_posts/20160421_online_notebook.md)  
+	* embedding images into [github pages](http://solutionoptimist.com/2013/12/28/awesome-github-tricks/)
 
 ## Data management practices:      
 
