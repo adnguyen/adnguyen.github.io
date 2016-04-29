@@ -9,7 +9,7 @@ title: Sharing things I've done such as past writing, data, data analysis
 	<h2{{ page.title }}</h2>
 	<ul class="posts">
 
-	  {% for post in site.posts limit: 10 %}
+	  {% for post in site.posts limit: 25 %}
 	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 	  {% endfor %}
 	</ul>
