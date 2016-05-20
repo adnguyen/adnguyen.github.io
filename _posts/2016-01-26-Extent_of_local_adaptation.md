@@ -6,7 +6,8 @@ date: 2016-01-26
 
 
 ### Sampling: Collected ants from FL to Maine
-<img src="/assets/20160126_Sampling_map.jpg" />
+<img src="/assets/20160126_Sampling_map.jpg" />       
+
 In total, we sampled ~100 ant colonies (Aphaenogaster) and reared them in lab acclimated conditions (25C). 
 Then we assessed high temperature tolerance (CTmax) by slowing heating these ants up at 0.1C/min in a circulating water bath.     
 
