@@ -3,9 +3,9 @@ layout: post
 title: "To which extent are common woodland ants locally adapted to their environment?"
 date: 2016-01-26
 ---
+updated: 2016-05-20
 
-
-### Sampling: Collected ants from FL to Maine
+### Sampling: Collected ants from FL to Maine    
 <img src="/assets/20160126_Sampling_map.jpg" />       
 
 In total, we sampled ~100 ant colonies (Aphaenogaster) and reared them in lab acclimated conditions (25C). 
