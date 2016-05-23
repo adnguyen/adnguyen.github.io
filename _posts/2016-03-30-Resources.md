@@ -38,3 +38,4 @@ date: 2016-03-30
 ## Things for me to learn
 * <a href="http://shiny.rstudio.com/tutorial/lesson7/">Sharing your science through shiny apps</a>
 * <a href="http://www.latextemplates.com/">Prepare documents with Latex</a>
+* <a href="https://github.com/ujjwalkarn/DataSciencePython">Stats in Python :-)!</a>
