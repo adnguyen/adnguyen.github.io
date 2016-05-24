@@ -9,20 +9,21 @@ date: 2016-03-30
 
 ### 1. I've shared most of my dissertation projects on [Github](http://adnguyen.github.io/Dissertation_temperature_adaptation_ants/)
 
-### 2. Lab practices and protocols:    
+### 2. Lab practices and protocols:     
 
-	* [Temperature treating ants, isolating RNA to cDNA synthesis to qPCR](https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md)
-	* <a href="https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Protocols/Protocols.md">Protein related from making buffers to isolations to unfolding experiments</a>.      
-	* Template for online [notebook:](https://github.com/adnguyen/adnguyen.github.io/blob/master/_posts/20160421_online_notebook.md)  
-		* embedding images into [github pages](http://solutionoptimist.com/2013/12/28/awesome-github-tricks/)    
-		* Rmarkdown [reference](http://rmarkdown.rstudio.com/index.html) 
+* [Temperature treating ants, isolating RNA to cDNA synthesis to qPCR](https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md)    
+* <a href="https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Protocols/Protocols.md">Protein related from making buffers to isolations to unfolding experiments</a>.      
+* Template for online [notebook:](https://github.com/adnguyen/adnguyen.github.io/blob/master/_posts/20160421_online_notebook.md)  
+	* embedding images into [github pages](http://solutionoptimist.com/2013/12/28/awesome-github-tricks/)    
+	* Rmarkdown [reference](http://rmarkdown.rstudio.com/index.html) 
 
 ### 3. Data management practices:      
+  
 
-	* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">Strategy for organizing directories and files</a>     
-	* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">Data management guidelines</a>      
-		* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example: descriptions are in the header of the actual dataset</a>    
-		* <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">Organize data into wide or long format</a>     
+* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">Strategy for organizing directories and files</a>     
+* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">Data management guidelines</a>      
+	* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example: descriptions are in the header of the actual dataset</a>    
+	* <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">Organize data into wide or long format</a>     
 		
 ## Data visualization and statistics in R:     
 
