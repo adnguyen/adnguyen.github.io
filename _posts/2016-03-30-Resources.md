@@ -7,7 +7,7 @@ date: 2016-03-30
 
 ## Interested in how I do science? I'm attempting to make my work as transparent as possible. 
 
-### 1. I've shared most of my dissertation projects on [Github](http://adnguyen.github.io/Dissertation_temperature_adaptation_ants/)
+### 1. I've shared most of my dissertation projects on [Github.](http://adnguyen.github.io/Dissertation_temperature_adaptation_ants/)
 
 ### 2. Lab practices and protocols:     
 
