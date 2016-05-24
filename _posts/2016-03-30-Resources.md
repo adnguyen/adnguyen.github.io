@@ -25,7 +25,7 @@ date: 2016-03-30
 	* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example: descriptions are in the header of the actual dataset</a>    
 	* <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">Organize data into wide or long format</a>     
 		
-## Data visualization and statistics in R:     
+### 4. Data visualization and statistics in R:     
 
 * <a href="https://github.com/adnguyen/atd">All things data club</a>      
 * <a href="http://adnguyen.github.io/blog/2015/10/07/makingmaps">Making a map</a>    
