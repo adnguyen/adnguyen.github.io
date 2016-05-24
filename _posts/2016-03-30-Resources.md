@@ -3,25 +3,26 @@ layout: post
 title: "Resources"
 date: 2016-03-30
 ---
-### Updated: 20160422
+### Updated: 2016-05-24
 
-## Lab practices and protocols:    
+## Interested in how I do science? 
 
-* <a href="https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md">Temperature treating ants, isolating RNA to cDNA synthesis to qPCR</a>       
-* <a href="https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Protocols/Protocols.md">Protein related from making buffers to isolations to unfolding experiments</a>.      
-* Template for online [notebook:](https://github.com/adnguyen/adnguyen.github.io/blob/master/_posts/20160421_online_notebook.md)  
-	* embedding images into [github pages](http://solutionoptimist.com/2013/12/28/awesome-github-tricks/)    
-	* Rmarkdown [reference](http://rmarkdown.rstudio.com/index.html) 
+1. I've shared most of my dissertation projects on [Github](http://adnguyen.github.io/Dissertation_temperature_adaptation_ants/)
 
-## Data management practices:      
+2. Lab practices and protocols:    
+	* <a href="https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md">Temperature treating ants, isolating RNA to cDNA synthesis to qPCR</a>       
+	* <a href="https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Protocols/Protocols.md">Protein related from making buffers to isolations to unfolding experiments</a>.      
+	* Template for online [notebook:](https://github.com/adnguyen/adnguyen.github.io/blob/master/_posts/20160421_online_notebook.md)  
+		* embedding images into [github pages](http://solutionoptimist.com/2013/12/28/awesome-github-tricks/)    
+		* Rmarkdown [reference](http://rmarkdown.rstudio.com/index.html) 
 
-* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">Strategy for organizing directories and files</a>     
-* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">Data management guidelines</a>      
+3. Data management practices:      
+
+	* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">Strategy for organizing directories and files</a>     
+	* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">Data management guidelines</a>      
 		* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example: descriptions are in the header of the actual dataset</a>    
 		* <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">Organize data into wide or long format</a>     
 		
-
-
 ## Data visualization and statistics in R:     
 
 * <a href="https://github.com/adnguyen/atd">All things data club</a>      
