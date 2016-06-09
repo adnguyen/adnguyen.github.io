@@ -17,8 +17,12 @@ Then we assessed high temperature tolerance (CTmax) by slowing heating these ant
 
 
 ### We uncovered evolutionary innovations in coping with high temperature stress: More thermally tolerant species live in open habitats(red bars) compared to ones that live in more closed habitats (blue bars).  
-![](https://cloud.githubusercontent.com/assets/4654474/15440169/f892a2b6-1ea1-11e6-9894-0c8109cc6cdd.png)     
+![](https://cloud.githubusercontent.com/assets/4654474/15934110/47c5d3ec-2e30-11e6-8fef-f537c5c8d3dc.png)     
 CTmax is mapped back onto a phylogeny. The phylogenetic reconstruction was performed on a ~174,000 single nucleotide polymorphism (SNP) character matrix using RAxML. 
+
+###Evidence for evolutionary(phylogenetic) niche conservatism: Partition variance in CTmax into Phylogeny, Ecology, and their shared components.       
+
+![](https://cloud.githubusercontent.com/assets/4654474/15934436/8d7fac9a-2e31-11e6-9f09-a4ff7afce082.png)
 
 ## Next we asked: How does the stress response follow these patterns of adaptive variation?    
 
