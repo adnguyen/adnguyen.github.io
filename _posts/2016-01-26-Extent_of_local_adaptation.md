@@ -4,7 +4,9 @@ title: "To which extent are common woodland ants locally adapted to their enviro
 date: 2016-01-26
 ---
 
-updated: 2016-05-20
+updated: 2016-06-09
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
 
 ### Sampling: Collected ants from FL to Maine    
