@@ -3,8 +3,9 @@ layout: post
 title: "What is the functional diversity of the proteome that is important for thermal tolerance?"
 date: 2016-01-26
 ---
-Updated: 2016-05-20
+Updated: 2016-06-09
 
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
 Many studies have characterized how genes turn on in order to meet environmental challenges. However, little is known about the functional diversity of proteins within and among species, even though they carry out important biological activities for organisms! To approach this problem, I'll use new techniques in LC-MS/MS to figure out the stability (which is related to biological activity) across proteins I can identify.
 
