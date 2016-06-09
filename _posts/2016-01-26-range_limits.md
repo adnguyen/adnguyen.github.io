@@ -19,8 +19,9 @@ Cold performance curves
 #**"G"-matrix**   
 
 ##MANOVA method
-Code for model construction
-```R
+**Code for model construction**    
+
+```{r}
 gmod2<-manova(cbind(minusfive,zero,five,twentyfive)~Colony,data=mew)
 summary(gmod2)
 
@@ -45,7 +46,7 @@ Gmatrix2
 
 ##Lmer method following [Paccard et al. 2016](http://datadryad.org/bitstream/handle/10255/dryad.104718/Tables_A2-A4_Paccard_et_al_2016_AmNat.pdf?sequence=1)        
 
-
+______
 ```{r}
 o.dat$pretreat_Temp<-as.factor(as.character(o.dat$pretreat_Temp)) # make sure trait is a factor
 #model construction
@@ -57,7 +58,7 @@ summary(pcg)
 
 knitr::kable(Gmat[1:4,1:4])
 ``` 
-
+______
 
 ### Here is the Gmatrix    
 
