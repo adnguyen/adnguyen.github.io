@@ -3,7 +3,10 @@ layout: post
 title: "Do common woodland ants at the northern range limits face thermal constraints?"
 date: 2016-01-26
 ---
-Updated: 2016-06-08
+Updated: 2016-06-09
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.  
+
 
 Please see my <a href="/assets/2016_range_limits_evolution_meeting_v2.pdf">poster</a> for this project! I'm hoping to submit this paper to <a href="http://www.journals.uchicago.edu/loi/an">American Naturalist!</a>
 
