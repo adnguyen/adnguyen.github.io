@@ -43,8 +43,10 @@ Gmatrix2
 |5|-14305.846|-1706.721|12971.837|1789.241|
 |25|-5586.214|-3857.530|1789.241| 18900.603|
 
-##Lmer method following [Paccard et al. 2016](http://datadryad.org/bitstream/handle/10255/dryad.104718/Tables_A2-A4_Paccard_et_al_2016_AmNat.pdf?sequence=1)     
-```R
+##Lmer method following [Paccard et al. 2016](http://datadryad.org/bitstream/handle/10255/dryad.104718/Tables_A2-A4_Paccard_et_al_2016_AmNat.pdf?sequence=1)        
+
+
+```{r}
 o.dat$pretreat_Temp<-as.factor(as.character(o.dat$pretreat_Temp)) # make sure trait is a factor
 #model construction
 G<-lmer(treatment_recovery_s~1+(0+pretreat_Temp|Colony),data=o.dat,REML=TRUE)
@@ -54,7 +56,9 @@ pcg<-princomp(Gmat[1:4,1:4])
 summary(pcg)
 
 knitr::kable(Gmat[1:4,1:4])
-```
+``` 
+
+
 ### Here is the Gmatrix    
 
 |         Traits       | -5|0|25|5|
