@@ -10,12 +10,14 @@ Updated: 2016-06-09
 
 Please see my <a href="/assets/2016_range_limits_evolution_meeting_v3.pdf">poster</a> for this project! I'm hoping to submit this paper to <a href="http://www.journals.uchicago.edu/loi/an">American Naturalist!</a>
 
+
+## Putting in some supplemental figures here in prep for evolution poster session (Session1, Saturday June 18th; 5:45-7:45 PM, Exhibit Hall 1, #3):    
+
 # Full map comparing model predictions vs empirical results of presence and absence of forest ants:  
 
 ![](https://cloud.githubusercontent.com/assets/4654474/15943423/f7b4e952-2e56-11e6-9b3c-ccedb695607a.png)    
 
 
-## Putting in some supplemental figures here in prep for evolution poster session (Session1, Saturday June 18th; 5:45-7:45 PM, Exhibit Hall 1, #3): 
 
 # Cold performance curves     
 
