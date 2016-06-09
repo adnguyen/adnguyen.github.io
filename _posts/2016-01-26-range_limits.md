@@ -18,9 +18,10 @@ Cold performance curves
 
 # **"G"-matrix**    
 
-## MANOVA method   
+## MANOVA method    
 **Code for model construction**    
 ______
+
 ```{r}
 gmod2<-manova(cbind(minusfive,zero,five,twentyfive)~Colony,data=mew)
 summary(gmod2)
@@ -35,9 +36,10 @@ error<-as.data.frame((summary(gmod2)$SS[2]))/42
 #n = # of reps
 Gmatrix2<-(colony-error)/3.20401
 Gmatrix2
-
 ```
 ______
+
+
 |     Traits      | -5| 0| 5| 25|
 |:----------|----------------:|-----------:|-----------:|-----------------:|
 |-5|6262.982|-1834.395|-14305.846|-5586.214|
@@ -46,6 +48,8 @@ ______
 |25|-5586.214|-3857.530|1789.241| 18900.603|
 
 ______
+
+
 ## Lmer method following [Paccard et al. 2016](http://datadryad.org/bitstream/handle/10255/dryad.104718/Tables_A2-A4_Paccard_et_al_2016_AmNat.pdf?sequence=1)        
 
 ______
