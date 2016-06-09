@@ -7,7 +7,7 @@ Updated: 2016-06-08
 
 Please see my <a href="/assets/2016_range_limits_evolution_meeting_v2.pdf">poster</a> for this project! I'm hoping to submit this paper to <a href="http://www.journals.uchicago.edu/loi/an">American Naturalist!</a>
 
-## Putting in some supplemental figures here in prep for evolution poster session: 
+## Putting in some supplemental figures here in prep for evolution poster session (Session1, Saturday June 18th; 5:45-7:45 PM, Exhibit Hall 1, #3): 
 
 # Cold performance curves     
 
