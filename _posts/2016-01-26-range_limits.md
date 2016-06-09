@@ -37,7 +37,6 @@ error<-as.data.frame((summary(gmod2)$SS[2]))/42
 Gmatrix2<-(colony-error)/3.20401
 Gmatrix2
 ```
-______   
 
 
 |     Traits      | -5| 0| 5| 25|
@@ -52,7 +51,7 @@ ______
 
 ## Lmer method following [Paccard et al. 2016](http://datadryad.org/bitstream/handle/10255/dryad.104718/Tables_A2-A4_Paccard_et_al_2016_AmNat.pdf?sequence=1)        
 
-______
+
 ```{r}
 o.dat$pretreat_Temp<-as.factor(as.character(o.dat$pretreat_Temp)) # make sure trait is a factor
 #model construction
@@ -64,7 +63,7 @@ summary(pcg)
 
 knitr::kable(Gmat[1:4,1:4])
 ``` 
-______  
+
  
 ### Here is the Gmatrix    
 
