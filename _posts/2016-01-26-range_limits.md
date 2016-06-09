@@ -88,7 +88,7 @@ knitr::kable(pcg$loadings[,1:3])
 |25 |  0.7834554| -0.5018020|  0.1432382|
 |5  |  0.4512398|  0.7637716|  0.4499483|
 
-
+______   
 
 **Relationship between MDR, seasonality, and TAR**
 
