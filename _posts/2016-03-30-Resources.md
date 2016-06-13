@@ -18,7 +18,7 @@ date: 2016-03-30
 ### 3. Lab practices and protocols:     
 
 * [Temperature treating ants, isolating RNA to cDNA synthesis to qPCR](https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md)    
-* <a href="https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Protocols/Protocols.md">Protein related from making buffers to isolations to unfolding experiments</a>.      
+* <a href="https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Documents/Protocols/Protocols.md">Protein related from making buffers to isolations to unfolding experiments</a>.      
 
 
 ### 4. Data management practices:      
