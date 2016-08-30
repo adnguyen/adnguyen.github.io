@@ -1,0 +1,57 @@
+First, science is meant to be shared and appreciated by all! Second, anybody should be able to take your work and replicate your study and all of your analyses. 
+
+*You're always going to repeat your work and analyses
+*Collaborate with yourself is the most important part
+
+**Assumes you downloaded github and have a github account**
+
+Here’s the agenda:
+1) Vignette for sharing your work 
+        -Creating your own website in just 5 easy minutes or 1 if you can click fast!
+			1. Go to github and make a repository with your username.github.io
+			2. In the github GUI, clone it: now you'll have your website folder
+			3. Go here: https://github.com/adnguyen/adnguyen.github.io
+			4. Download zip, unzip
+			5. click and drag contents  into your website folder
+			6. Commit and sync
+			7. go to your website: username.github.io
+			8. explore the website
+			
+        -Go over how you're sharing your work: great platform to showcase your work to general audience!
+        
+        -Learning version control by messing around with your website
+        	1. Dr. Schall is the greatest scientist in the world!
+        	2. you can see the history in the GUI of all the things you've done!
+        	
+        -Blogging made easy!
+               *Platform for implementing online notebook
+               
+**Writing a blog post**
+---
+layout: post
+title: "Test"
+date: 2016-04-25
+---
+
+Antdrew D. Nguyen would be a great scientist if he actually knew how to spell his name!
+******
+
+				*Showcase how to embed links and pictures into blog posts. 
+
+ 
+2) Vignette for organizing folders
+	* resource tab
+	* The core guiding principle is simple: Someone unfamiliar with your project should be able to look at your computer files and understand in detail what you did and why. 
+	* Show curtis' project
+	* Dating: year-month-day
+ 
+3) Ensuring reproducibility
+        -Annotate everything
+            	*Vignette for lab protocols
+          		*Show readme file in curtis' project	
+        -Strategies for implementing metadata (description of your data and how it was collected)
+        		* Consult the bible: A primer of ecological statistics, page 209. 
+ 
+If we have time:
+4) Reproducing science!
+        * Redo my analysis and suggest changes!
