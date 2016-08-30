@@ -3,9 +3,9 @@ layout: post
 title: "Resources"
 date: 2016-03-30
 ---
-### Updated: 2016-05-24
+### Updated: 2016-08-30
 
-## Interested in how I do science? I'm attempting to make my work as transparent as possible. 
+## Interested in how I do science? I'm attempting to make my work as transparent as possible. [Here](http://simplystatistics.org/2015/12/11/instead-of-research-on-reproducibility-just-do-reproducible-research/) is a good blog post about overall approach and thoughts.
 
 ### 1. I've shared most of my dissertation projects on [Github.](http://adnguyen.github.io/Dissertation_temperature_adaptation_ants/)
 
