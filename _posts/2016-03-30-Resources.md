@@ -9,7 +9,7 @@ date: 2016-03-30
 
 ### 1. I've shared most of my dissertation projects on [Github.](http://adnguyen.github.io/Dissertation_temperature_adaptation_ants/)
 
-### 2. Please feel free to peruse my online [notebook.](https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/General_Notebook.md)
+### 2. Please feel free to peruse my online [notebook.](https://github.com/adnguyen/Notebooks_and_Protocols/blob/master/2016_notebook.md)
 
 * Template for online [notebook:](https://github.com/adnguyen/adnguyen.github.io/blob/master/_posts/20160421_online_notebook.md)  
 	* embedding images into [github pages](http://solutionoptimist.com/2013/12/28/awesome-github-tricks/)    
@@ -17,7 +17,7 @@ date: 2016-03-30
 	
 ### 3. Lab practices and protocols:     
 
-* [Temperature treating ants, isolating RNA to cDNA synthesis to qPCR](https://github.com/adnguyen/Dissertation_temperature_adaptation_ants/blob/master/ANBE_protocols.md)    
+* [Temperature treating ants, isolating RNA to cDNA synthesis to qPCR](https://github.com/adnguyen/Notebooks_and_Protocols/blob/master/2016_ANBE_protocols.md)    
 * [Protein related from making buffers to isolations to unfolding experiments](https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Documents/Protocols/Protocols.md)     
 
 
