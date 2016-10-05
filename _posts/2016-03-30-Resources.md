@@ -9,7 +9,7 @@ date: 2016-03-30
 
 ### 1. I've shared most of my dissertation projects on [Github.](http://adnguyen.github.io/Dissertation_temperature_adaptation_ants/)
 
-### 2. Please feel free to peruse my online [notebook.](https://github.com/adnguyen/Notebooks_and_Protocols/blob/master/2016_notebook.md)
+### 2. Please feel free to peruse my online [notebook.](https://adnguyen.github.io/Notebooks_and_Protocols/)
 
 * Template for online [notebook:](https://github.com/adnguyen/adnguyen.github.io/blob/master/_posts/20160421_online_notebook.md)  
 	* embedding images into [github pages](http://solutionoptimist.com/2013/12/28/awesome-github-tricks/)    
