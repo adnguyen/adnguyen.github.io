@@ -7,19 +7,14 @@ date: 2016-03-30
 
 ## Interested in how I do science? I'm attempting to make my work as transparent as possible.
 
-### 1. Please feel free to peruse my online [notebook.](https://adnguyen.github.io/Notebooks_and_Protocols/)
+### 1. Please feel free to peruse my online [notebook and protocols.](https://adnguyen.github.io/Notebooks_and_Protocols/)
 
 * Template for online [notebook:](https://github.com/adnguyen/adnguyen.github.io/blob/master/_posts/20160421_online_notebook.md)  
 	* embedding images into [github pages](http://solutionoptimist.com/2013/12/28/awesome-github-tricks/)    
 	* Rmarkdown [reference](http://rmarkdown.rstudio.com/index.html)    
-	
-### 2. Lab practices and protocols:     
-
-* [Temperature treating ants, isolating RNA to cDNA synthesis to qPCR](https://github.com/adnguyen/Notebooks_and_Protocols/blob/master/2016_ANBE_protocols.md)    
-* [Protein related from making buffers to isolations to unfolding experiments](https://github.com/adnguyen/2016_Protein_stability_evolution/blob/master/Documents/Protocols/Protocols.md)     
 
 
-### 3. Data management practices:      
+### 2. Data management practices:      
   
 
 * <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">Strategy for organizing directories and files</a> 
@@ -28,7 +23,7 @@ date: 2016-03-30
 	* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example: descriptions are in the header of the actual dataset</a>    
 	* <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">Organize data into wide or long format</a>     
 		
-### 4. Data visualization and statistics in R:     
+### 3. Data visualization and statistics in R:     
 
 * <a href="https://github.com/adnguyen/atd">All things data club</a>      
 * <a href="http://adnguyen.github.io/blog/2015/10/07/makingmaps">Making a map</a>    
