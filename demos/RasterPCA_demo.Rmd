@@ -1,0 +1,32 @@
+---
+title: "PCA of rasters"
+author: "Antdrew D. Nguyen"
+date: "12/7/2016"
+output: 
+  
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_depth: 2
+---
+<style type="text/css">
+
+body{ /* Normal  */
+   font-size: 24px;
+}
+
+code.r{ /* Code block */
+  font-size: 18px;
+}
+pre { /* Code block */
+  font-size: 18px
+}
+</style>
+
+This is a data demo for performing a PCA on multiple climate raster layers.
+
+# Load libraries
+```{r load libraries}
+
+```
+
