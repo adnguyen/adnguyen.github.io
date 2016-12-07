@@ -25,7 +25,10 @@ pre { /* Code block */
 
 This is a data demo for performing a PCA on multiple climate raster layers.
 
-# Load libraries
+Workflow:  
+1. 
+
+# Load libraries and grabbing dataset
 ```{r load libraries}
 
 ```

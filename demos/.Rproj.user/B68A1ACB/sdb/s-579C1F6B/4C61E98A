@@ -1,14 +1,14 @@
 {
     "collab_server" : "",
-    "contents" : "---\ntitle: \"PCA of rasters\"\nauthor: \"Antdrew D. Nguyen\"\ndate: \"12/7/2016\"\noutput: \n  \n  html_document:\n    theme: spacelab\n    toc: yes\n    toc_depth: 2\n---\n<style type=\"text/css\">\n\nbody{ /* Normal  */\n   font-size: 24px;\n}\n\ncode.r{ /* Code block */\n  font-size: 18px;\n}\npre { /* Code block */\n  font-size: 18px\n}\n</style>\n\nThis is a data demo for performing a PCA on multiple climate raster layers.\n\n# Load libraries\n```{r load libraries}\n\n```\n\n",
+    "contents" : "---\ntitle: \"PCA of rasters\"\nauthor: \"Antdrew D. Nguyen\"\ndate: \"12/7/2016\"\noutput: \n  \n  html_document:\n    theme: spacelab\n    toc: yes\n    toc_depth: 2\n---\n<style type=\"text/css\">\n\nbody{ /* Normal  */\n   font-size: 24px;\n}\n\ncode.r{ /* Code block */\n  font-size: 18px;\n}\npre { /* Code block */\n  font-size: 18px\n}\n</style>\n\nThis is a data demo for performing a PCA on multiple climate raster layers.\n\nWorkflow:  \n1. \n\n# Load libraries and grabbing dataset\n```{r load libraries}\n\n```\n\n",
     "created" : 1481125908118.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1886107939",
+    "hash" : "3721701493",
     "id" : "4C61E98A",
-    "lastKnownWriteTime" : 1481126335,
-    "last_content_update" : 1481126335017,
+    "lastKnownWriteTime" : 1481126441,
+    "last_content_update" : 1481126441631,
     "path" : "~/zScience/Professional_development/adnguyen.github.io/demos/RasterPCA_demo.Rmd",
     "project_path" : "RasterPCA_demo.Rmd",
     "properties" : {
