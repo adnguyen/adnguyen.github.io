@@ -1,30 +1,25 @@
 ---
-title: "Resources"
+title: "Data Related and Demos"
 author: "Antdrew D. Nguyen"
 date: "12/7/2016"
-output: html_document
+output: 
+  
+  html_document:
+    theme: journal
+    toc: yes
+    toc_depth: 2
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Data management practices:      
 
-## R Markdown
+* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">Strategy for organizing directories and files</a> 
+	* [Setting a DIO for a github repo with layout from above](https://guides.github.com/activities/citable-code/)        
+* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">Data management guidelines</a>      
+	* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example: descriptions are in the header of the actual dataset</a>    
+	* <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">Organize data into wide or long format</a>     
+		
+# Data visualization and statistics in R:     
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+* <a href="https://github.com/adnguyen/atd">All things data club</a>      
+* <a href="http://adnguyen.github.io/blog/2015/10/07/makingmaps">Making a map</a>    
+* <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">converting between wide and long data formats</a>      
