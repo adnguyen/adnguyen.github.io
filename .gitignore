@@ -1,2 +1,15 @@
 _site/
 /demos/wc2-5/*
+.DS_Store
+/demos/.RData
+/demos/.Rhistory
+/demos/.Rproj.*
+demos/.Rhistory
+
+demos/.RData
+
+*.pper
+
+*.pper
+
+demos/.Rproj.user/B68A1ACB/sdb/s-80B7D377/4C61E98A
