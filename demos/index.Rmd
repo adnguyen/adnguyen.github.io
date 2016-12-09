@@ -23,32 +23,39 @@ pre { /* Code block */
 }
 </style>
 
-# Data management practices:      
+### Data management practices:      
 
-* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">Strategy for organizing directories and files</a> 
-	* [Setting a DIO for a github repo with layout from above](https://guides.github.com/activities/citable-code/)        
-* <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">Data management guidelines</a>      
-	* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example: descriptions are in the header of the actual dataset</a>    
-	* <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data">Organize data into wide or long format</a>     
+* Strategies for <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">organizing directories and files</a> 
+	* [Setting a DIO](https://guides.github.com/activities/citable-code/) for a github repo with layout from above             
+	
+* Cool paper with <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">data management guidelines</a>      
+	* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example</a>: descriptions are in the header of the actual dataset          
+	* Organize data into <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data"> wide or long format</a>     
 		
-# Data visualization and statistics in R:     
+### Data visualization and statistics in R:     
 
-* <a href="https://github.com/adnguyen/atd">All things data club</a>    
+* All things <a href="https://github.com/adnguyen/atd"> data club</a>         
+
 * <a href="http://adnguyen.github.io/blog/2015/10/07/makingmaps">Making a map</a>      
-  * Demo for performing PCA on climate rasters with [rasterPCA](RasterPCA_demo.html)   
-* <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">converting between wide and long data formats</a>      
+    * Demo for performing PCA on climate rasters with [rasterPCA](RasterPCA_demo.html)      
+
+* Converting data between <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">wide and long data formats</a>      
 
 ---------
 
-# <a href="http://harvardforest.fas.harvard.edu/harvard-forest-data-archive">Harvard forest data archive</a>
+### <a href="http://harvardforest.fas.harvard.edu/harvard-forest-data-archive">Harvard forest data archive</a> : Datasets from Climate Cascade NSF grant. 
 
-# Building a webpage with Jekyll and Github pages      
-* <a href="https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/">How to</a>     
+### Building a webpage with Jekyll and Github pages      
+* <a href="https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/">How to</a> build a webpage       
+
 * <a href="http://jekyllthemes.org/">Jekyll themes</a>  
+
 * <a href="http://brooksandrew.github.io/simpleblog/articles/blogging-with-r-markdown-and-jekyll-using-knitr/">Blogging with Jekyll and R markdown using knitr</a>   
 
-# Things for me to learn
+### Things for me to learn
 * <a href="http://shiny.rstudio.com/tutorial/lesson7/">Sharing your science through shiny apps</a>
+
 * <a href="http://www.latextemplates.com/">Prepare documents with Latex</a>
+
 * <a href="https://github.com/ujjwalkarn/DataSciencePython">Stats in Python :-)!</a>
 
