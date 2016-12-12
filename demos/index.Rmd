@@ -29,7 +29,7 @@ pre { /* Code block */
 	* [Setting a DIO](https://guides.github.com/activities/citable-code/) for a github repo with layout from above             
 	
 * Cool paper with <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004525">data management guidelines</a>      
-	* <a href="https://github.com/adnguyen/adnguyen.github.io/blob/master/assets/Metadata_example.csv">Metadata example</a>: descriptions are in the header of the actual dataset          
+	* <a href="https://adnguyen.github.io/assets/Metadata_example.csv">Metadata example</a>: descriptions are in the header of the actual dataset          
 	* Organize data into <a href="https://en.wikipedia.org/wiki/Wide_and_narrow_data"> wide or long format</a>     
 		
 ### Data visualization and statistics in R:     
