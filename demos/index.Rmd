@@ -36,8 +36,7 @@ pre { /* Code block */
 
 * All things <a href="https://github.com/adnguyen/atd"> data club</a>         
 
-* <a href="http://adnguyen.github.io/blog/2015/10/07/makingmaps">Making a map</a>      
-    * Demo for performing PCA on climate rasters with [rasterPCA](RasterPCA_demo.html)      
+* [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*      
 
 * Converting data between <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">wide and long data formats</a>      
 
