@@ -3237,7 +3237,7 @@
 		-ms-transition: background-color 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease, padding 0.2s ease;
 		transition: background-color 0.2s ease, border-top-left-radius 0.2s ease, border-top-right-radius 0.2s ease, padding 0.2s ease;
 		background-color: #ffffff;
-		color: #636363;
+		color: #070707;
 		position: absolute;
 		width: 64em;
 		max-width: calc(100% - 4em);
@@ -3367,7 +3367,10 @@
 		#main a:hover {
 			color: #205bc1;
 		}
-
+		
+		#main a:link {
+			color: #205bc1;
+		}
 		#main strong, #main b {
 			color: #636363;
 		}
