@@ -3399,8 +3399,8 @@
 		#main button,
 		#main .button {
 			background-color: transparent;
-			box-shadow: inset 0 0 0 1px #dddddd;
-			color: #636363 !important;
+			box-shadow: inset 0 0 0 1px #bcb5b5;
+			color: #3a3838 !important;
 		}
 
 			#main input[type="submit"]:hover,
@@ -3462,7 +3462,7 @@
 				}
 
 		#main label {
-			color: #636363;
+			color: #3a3838;
 		}
 
 		#main input[type="text"],
