@@ -3364,7 +3364,7 @@
 			color: #636363;
 		}
 
-		#main a:hover {
+		#main a:link {
 			color: #205bc1;
 		}
 
