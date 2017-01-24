@@ -33,8 +33,8 @@ Education
 
     *Thesis title: Evolutionary innovations of ants to thermally stressful environments*  
     
-    Advisors: Sara Helms Cahan, Nicholas J. Gotelli    
-    Committee: Brent L. Lockwood, Jill Preston    
+    Advisors: [Sara Helms Cahan](http://shelmscahan.github.io/), [Nicholas J. Gotelli](https://www.uvm.edu/~ngotelli/homepage.html)    
+    Committee: [Brent L. Lockwood](http://lockwoodlab.weebly.com/), [Jill Preston](https://www.uvm.edu/~plantbio/preston/Site/Home.html)    
 
 
 2004-2009
@@ -46,18 +46,21 @@ Funding, Awards, and Grants
 :   Suiter Prize Travel Award - $1,000   
 
 2015-2016
-: Research Assistantship    
+: Research Assistantship  - $28,000/year  
 
 Publications
 ------------
 
-1. Helms Cahan S, **Nguyen AD**, Stanton-Geddes J, Penick CA, HernáizHernández Y, DeMarco BB, Gotelli NJ. 2017. Modulation of the heat shock response is associated with acclimation to novel temperatures but not adaptation to climatic variation in the ants Aphaenogaster picea and A. rudis. *Comparative Biochemistry and Physiology Part A: Molecular & Integrative Physiology* 204:113–120.      
+1. Helms Cahan S, **Nguyen AD**, Stanton-Geddes J, Penick CA, HernáizHernández Y, DeMarco BB, Gotelli NJ. 2017. Modulation of the heat shock response is associated with acclimation to novel temperatures but not adaptation to climatic variation in the ants Aphaenogaster picea and A. rudis. *Comparative Biochemistry and Physiology Part A: Molecular & Integrative Physiology* 204:113–120. 
+    * [Paper](http://www.sciencedirect.com/science/article/pii/S109564331630277X) and [Data](https://zenodo.org/record/164924#.WIeZtbYrJTY)    
 
 
 2. **Nguyen AD**, Gotelli NJ, Cahan SH. 2016. The evolution of heat shock protein sequences, cis-regulatory elements, and expression profiles in the eusocial Hymenoptera. *BMC Evolutionary Biology* 16:15.        
-
+    * [Paper and Data](http://bmcevolbiol.biomedcentral.com/articles/10.1186/s12862-015-0573-0) (Open Access)   
+  
 
 3. Stanton-Geddes J, **Nguyen A**, Chick L, Vincent J, Vangala M, Dunn RR, Ellison AM, Sanders NJ, Gotelli NJ, Cahan SH. 2016. Thermal reactionomes reveal divergent responses to thermal extremes in warm and cool-climate ant species. *BMC Genomics* 17:171.    
+    * [Paper and Data](http://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2466-z) (Open Access)
 
 **Forthcoming**   
 
@@ -80,27 +83,27 @@ Research Experience
     
 
 2014
-:   **Research Associate**; University of Vermont   
+:   **Research Associate**, [Dr. Lori Stevens lab](https://www.uvm.edu/~biology/?Page=faculty/stevens.php&SM=facultysubmenu.html); University of Vermont   
 
     Determined infection frequency of Trypanosome parasites in Kissing bugs that cause Chagas disease.  
     
 2010-2011
-:   **Technician**; Reaction Biology Corp 
+:   **Technician**; [Reaction Biology Corp](http://www.reactionbiology.com/webapps/site/)  
 
     High through put screening of potentially therapeutic small compounds.     
     
 2009-2010
-:   **Technician**; Morphotek Inc.         
+:   **Technician**, Antibody Core Department; [Morphotek Inc.](http://www.morphotek.com/)         
 
     Developed therapeutic antibodies against Acute Myeloid Leukemia (AML).   
 
 2007-2008
-:   **Co-op intern**; GlaxoSmithKline        
+:   **Co-op intern**, Reproductive Toxicology; [GlaxoSmithKline](http://www.gsk.com/en-gb/research/randd-locations/usa-and-canada/upper-merion/)        
 
     Studied red blood cell differentiation from mouse embryonic stem cells.  
 
 2006-2007
-:   **Co-op intern**; Morphotek Inc.
+:   **Co-op intern**, Antibody Core Department; [Morphotek Inc.](http://www.morphotek.com/)    
 
     Developed neutralizing antibodies against Staphylococcal enterotoxin B (SEB).     
 
@@ -137,34 +140,35 @@ Research Presentations
 
 2017
 : __*Northern range limits of common forest ants is reflected in trade-offs between basal and induced cold tolerances*__, Society of Integrative and Comparative
-Biology Conference, New Orleans, LA (talk)   
-
+Biology Conference, New Orleans, LA (talk)      
 
 2016
 : __*Implementing strategies to achieve reproducible research*__, BioLunch, University
-of Vermont, Department of Biology, Burlington Vt (talk)    
+of Vermont, Department of Biology, Burlington Vt (talk)     
+
+: __**Northern range limits of common forest ants is reflected in trade-offs between basal and induced cold tolerances**__, Evolution meeting, Austin, TX (poster)    
 
 2015
 : __*Temperature adaptations in common woodland ants*__, BioLunch, University of
-Vermont, Department of Biology, Burlington VT (talk)    
+Vermont, Department of Biology, Burlington VT (talk)          
 
 2014
 : __*Surviving in a warming world: thermal adaptation in ants*__, BioLunch, University
-of Vermont, Department of Biology, Burlington, VT (talk)    
+of Vermont, Department of Biology, Burlington, VT (talk)          
 
 2013
 : __*Impact of environmental stress on thermal tolerance in Aphaenogaster picea*__
-EcoLunch, University of Vermont Department of Biology, Burlington, VT (talk)      
+EcoLunch, University of Vermont Department of Biology, Burlington, VT (talk)            
 
 : __*Physiological response to climate change in Aphaenogaster picea*__ , Northeast
-Natural History- Ant Ecology session, Springfield, MA (talk)     
+Natural History- Ant Ecology session, Springfield, MA (talk)           
 
 2012
 : __*Heat shock proteins and thermal tolerance in Aphaenogaster picea*__, EcoLunch,
-University of Vermont Department of Biology, Burlington, Vt (Talk)      
+University of Vermont Department of Biology, Burlington, Vt (talk)            
 
 : __*Sequence and Cis-regulatory Evolution of Heat Shock Protein hsp83, in Social Hymenoptera*__, International Union for the Study of Social Insects- North
-American Section Meeting (IUSSI-NAS), Greensboro, NC (Poster)      
+American Section Meeting (IUSSI-NAS), Greensboro, NC (poster)      
 
 : __*Heat shock proteins and thermal tolerance in Aphaenogaster rudis*__, Aphaenophest, Petersham, MA (talk)
 
@@ -248,11 +252,11 @@ northern expansion.
 Outreach
 --------
 2015
-: Helper, Software Carpentry, University of Vermont    
+: **Helper**, Software Carpentry, University of Vermont    
 
     Helped participants troubleshoot code (Unix command line, R, Github)    
     
 2012
-: Graduate Mentor, Ant Camp, University of Vermont     
+: **Graduate Mentor**, Ant Camp, University of Vermont     
 
     Collected ants and described their natural history with high school students
