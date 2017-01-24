@@ -52,21 +52,13 @@ Awards and Grants
 Publications
 ------------
 
-1. Helms Cahan S, **Nguyen AD**, Stanton-Geddes J, Penick CA, HernáizHernández
-Y, DeMarco BB, Gotelli NJ. 2017. Modulation of the heat shock
-response is associated with acclimation to novel temperatures but not
-adaptation to climatic variation in the ants Aphaenogaster picea and A.
-rudis. Comparative Biochemistry and Physiology Part A: Molecular &
-Integrative Physiology 204:113–120.   
+1. Helms Cahan S, **Nguyen AD**, Stanton-Geddes J, Penick CA, HernáizHernández Y, DeMarco BB, Gotelli NJ. 2017. Modulation of the heat shock response is associated with acclimation to novel temperatures but not adaptation to climatic variation in the ants Aphaenogaster picea and A. rudis. *Comparative Biochemistry and Physiology Part A: Molecular & Integrative Physiology* 204:113–120.      
 
-2. **Nguyen AD**, Gotelli NJ, Cahan SH. 2016. The evolution of heat shock protein
-sequences, cis-regulatory elements, and expression profiles in the eusocial
-Hymenoptera. BMC Evolutionary Biology 16:15.    
 
-3. Stanton-Geddes J, **Nguyen A**, Chick L, Vincent J, Vangala M, Dunn RR,
-Ellison AM, Sanders NJ, Gotelli NJ, Cahan SH. 2016. Thermal
-reactionomes reveal divergent responses to thermal extremes in warm and
-cool-climate ant species. BMC Genomics 17:171.    
+2. **Nguyen AD**, Gotelli NJ, Cahan SH. 2016. The evolution of heat shock protein sequences, cis-regulatory elements, and expression profiles in the eusocial Hymenoptera. *BMC Evolutionary Biology* 16:15.        
+
+
+3. Stanton-Geddes J, **Nguyen A**, Chick L, Vincent J, Vangala M, Dunn RR, Ellison AM, Sanders NJ, Gotelli NJ, Cahan SH. 2016. Thermal reactionomes reveal divergent responses to thermal extremes in warm and cool-climate ant species. *BMC Genomics* 17:171.    
 
 **Forthcoming**   
 
