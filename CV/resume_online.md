@@ -7,17 +7,17 @@ output:
 Andrew D. Nguyen   
 ============
 
-![](about_big.jpg)
+> 109 Carrigan Drive Burlington, VT 05405
 
----------------------------------			
+----
 
-109 Carrigan Drive Burlington, VT 05405      
-Email: anbe642@gmail.com     									
-Github: [adnguyen](https://github.com/adnguyen)  
-Website: [adnguyen.github.io](https://adnguyen.github.io/)    
+<img style="float: right;" src="about.jpg">   
 
----------------------------------			
+### Email: anbe642@gmail.com     
+### Github: [adnguyen](https://github.com/adnguyen)  
+### Website: [adnguyen.github.io](https://adnguyen.github.io/)    
 
+----
 
 Research Interests
 ---------
