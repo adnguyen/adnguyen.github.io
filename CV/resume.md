@@ -153,19 +153,19 @@ of Vermont, Department of Biology, Burlington, Vt (talk)
 
 2013
 : __*Impact of environmental stress on thermal tolerance in Aphaenogaster picea*__
-EcoLunch, University of Vermont Department of Biology, Burlington, Vt (Talk)   
+EcoLunch, University of Vermont Department of Biology, Burlington, Vt (Talk)      
 
-__*Physiological response to climate change in Aphaenogaster picea*__ , Northeast
+: __*Physiological response to climate change in Aphaenogaster picea*__ , Northeast
 Natural History- Ant Ecology session, Springfield, MA (Talk)     
 
 2012
 : __*Heat shock proteins and thermal tolerance in Aphaenogaster picea*__, EcoLunch,
 University of Vermont Department of Biology, Burlington, Vt (Talk)      
 
-__*Sequence and Cis-regulatory Evolution of Heat Shock Protein hsp83, in Social Hymenoptera*__, International Union for the Study of Social Insects- North
-American Section Meeting (IUSSI-NAS), Greensboro, NC (Poster)
+: __*Sequence and Cis-regulatory Evolution of Heat Shock Protein hsp83, in Social Hymenoptera*__, International Union for the Study of Social Insects- North
+American Section Meeting (IUSSI-NAS), Greensboro, NC (Poster)      
 
-__*Heat shock proteins and thermal tolerance in Aphaenogaster rudis*__, Aphaenophest, Petersham, MA (talk)
+: __*Heat shock proteins and thermal tolerance in Aphaenogaster rudis*__, Aphaenophest, Petersham, MA (talk)
 
 
 Conferences Attended
