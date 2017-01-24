@@ -1,8 +1,8 @@
 ---
 output:
-  html_document: 
+  html_document:
     css: style_chmduquesne.css
-
+  pdf_document: default
 ---   
 
 Andrew D. Nguyen   
