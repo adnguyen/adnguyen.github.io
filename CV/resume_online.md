@@ -40,13 +40,13 @@ Education
 2004-2009
 :   **BSc, Biology**; Drexel University (Philadelphia)
 
-
-
-
-Awards and Grants
+Funding, Awards, and Grants
 --------------------
-2016
+2017
 :   Suiter Prize Travel Award - $1,000   
+
+2015-2016
+: Research Assistantship    
 
 Publications
 ------------
@@ -69,10 +69,20 @@ Comparative Physiology B.
 Research Experience
 ----------
 
+2012-2017
+: **Dissertation research**; University of Vermont    
+
+    Worked independently and in  collaboration to complete Dimensions grant objectives.        
+    
+    Took projects from ideas to experimentation, data analysis, visualization, and manuscript preparation.    
+    
+
+    
+
 2014
 :   **Research Associate**; University of Vermont   
 
-    Determined infection frequency of Trypanosome parasites in Kissing bugs that cause Chagas disease  
+    Determined infection frequency of Trypanosome parasites in Kissing bugs that cause Chagas disease.  
     
 2010-2011
 :   **Technician**; Reaction Biology Corp 
@@ -136,18 +146,18 @@ of Vermont, Department of Biology, Burlington Vt (talk)
 
 2015
 : __*Temperature adaptations in common woodland ants*__, BioLunch, University of
-Vermont, Department of Biology, Burlington Vt (talk)    
+Vermont, Department of Biology, Burlington VT (talk)    
 
 2014
 : __*Surviving in a warming world: thermal adaptation in ants*__, BioLunch, University
-of Vermont, Department of Biology, Burlington, Vt (talk)    
+of Vermont, Department of Biology, Burlington, VT (talk)    
 
 2013
 : __*Impact of environmental stress on thermal tolerance in Aphaenogaster picea*__
-EcoLunch, University of Vermont Department of Biology, Burlington, Vt (Talk)      
+EcoLunch, University of Vermont Department of Biology, Burlington, VT (talk)      
 
 : __*Physiological response to climate change in Aphaenogaster picea*__ , Northeast
-Natural History- Ant Ecology session, Springfield, MA (Talk)     
+Natural History- Ant Ecology session, Springfield, MA (talk)     
 
 2012
 : __*Heat shock proteins and thermal tolerance in Aphaenogaster picea*__, EcoLunch,
@@ -218,20 +228,20 @@ Mentoring
 
 **Undergraduate Researchers:**    
 
-**Ariana Maleki** and **John Matthew Fisher** worked on developing microsatellites for population
+* **Ariana Maleki** and **John Matthew Fisher** worked on developing microsatellites for population
 genetic work on common woodland ants.     
 
-**Kerri Pinder**, **Skyler Resendez**, and **Jeremy Pustilnik** worked on how previous exposures to
+* **Kerri Pinder**, **Skyler Resendez**, and **Jeremy Pustilnik** worked on how previous exposures to
 starvation and desiccation impact thermal tolerance and underlying stress responses (using heat
 shock proteins as a proxy).      
  
-**Teddy Herriman** and **Austin Sherburne** worked on identifying potential morphological
+* **Teddy Herriman** and **Austin Sherburne** worked on identifying potential morphological
 innovations that may temper and/or mitigate the effects of heat stress.     
 
-**Curtis A. Provencher** worked on how experimental warming affects the stress levels of common
+* **Curtis A. Provencher** worked on how experimental warming affects the stress levels of common
 woodland ants.     
 
-**Megan Brown** and **Jordan Zitnay** identified trade-offs between constitutive and induced cold
+* **Megan Brown** and **Jordan Zitnay** identified trade-offs between constitutive and induced cold
 tolerances at the northern range boundary in common forest ants, likely constraining their
 northern expansion.      
 
@@ -245,4 +255,4 @@ Outreach
 2012
 : Graduate Mentor, Ant Camp, University of Vermont     
 
-    Aided in communicating and demonstrating ant collecting to high school students
+    Collected ants and described their natural history with high school students
