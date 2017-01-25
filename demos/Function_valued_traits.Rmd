@@ -2,7 +2,11 @@
 title: "Function-valued traits"
 author: "Antdrew D. Nguyen"
 date: "2016-12-12"
-output: html_document
+output:
+   prettydoc::html_pretty:
+    theme: leonids
+    toc: yes
+    toc_depth: 2
 ---
 
 #libraries
