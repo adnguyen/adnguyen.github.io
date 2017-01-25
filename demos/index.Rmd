@@ -23,6 +23,8 @@ pre { /* Code block */
 }
 </style>
 
+[Back to main page](https://adnguyen.github.io/)
+
 ### Data management practices:      
 
 * Strategies for <a href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1000424">organizing directories and files</a> 
