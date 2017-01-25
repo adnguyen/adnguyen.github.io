@@ -4,8 +4,8 @@ author: "Antdrew D. Nguyen"
 date: "2016-12-07"
 output: 
   
-  html_document:
-    theme: spacelab
+  prettydoc::html_pretty:
+    theme: cayman
     toc: yes
     toc_depth: 2
 ---

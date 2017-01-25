@@ -1,11 +1,11 @@
 ---
 title: "Data Related and Demos"
 author: "Antdrew D. Nguyen"
-date: "2016-12-07"
 output: 
   
-  html_document:
-    theme: spacelab
+  prettydoc::html_pretty:
+    theme: tactile
+    highlight: github
     toc: yes
     toc_depth: 2
 ---
