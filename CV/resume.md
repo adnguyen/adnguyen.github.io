@@ -206,6 +206,7 @@ Teaching Experience
 ------------
 2017
 : **Ecological Genomics** - Teaching Assistant, University of Vermont    
+
 2016
 : Invited Lecture, **Evolution**, University of Vermont,     
 
