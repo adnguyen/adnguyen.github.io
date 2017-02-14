@@ -62,11 +62,11 @@ Publications
 3. Stanton-Geddes J, **Nguyen A**, Chick L, Vincent J, Vangala M, Dunn RR, Ellison AM, Sanders NJ, Gotelli NJ, Cahan SH. 2016. Thermal reactionomes reveal divergent responses to thermal extremes in warm and cool-climate ant species. *BMC Genomics* 17:171.    
     * [Paper and Data](http://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2466-z) (Open Access)
 
-**Forthcoming**   
+**In preparation**   
 
 * **Nguyen AD**, DeNovellis K, Resendez S, Pustilnik J, Gotelli NJ, Parker JD, Helms
 Cahan S. (2016). Effects of desiccation and starvation on thermal tolerance
-and the cellular stress response in forest ants. In review at the Journal of
+and the heat shock response in forest ants. In review at the Journal of
 Comparative Physiology B.    
 
 Research Experience
