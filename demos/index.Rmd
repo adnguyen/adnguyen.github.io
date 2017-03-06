@@ -40,7 +40,8 @@ pre { /* Code block */
 
 * Demos for maps:     
   * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*      
-  * [Grabbing land cover data](20160219_grabbing_land_cover_data.html). Poorly annotated, but its still a reference.    
+  * [Grabbing land cover data](20160219_grabbing_land_cover_data.html). Poorly annotated, but its still a reference.  
+  * [Grabbing tree canopy cover]()
 
 * Function-valued trait demo: [Fitting boltzmann curve to a dataset](Function_valued_traits.html)       
 
