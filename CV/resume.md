@@ -24,14 +24,21 @@ Research Interests
 I am broadly interested in understanding the ecological, evolutionary, and genomic
 determinants of resiliency or susceptibility to climate change.
 
+Professional Appointments
+---------
+
+Starting July 2017
+:   **Postdoctoral Researcher**, University of Florida     
+    
+    Supervisor: [Dr. Daniel Hahn](http://entnemdept.ufl.edu/hahn/lab/danhahn.htm)
 
 Education
 ---------
 
-2012-2017 (expected)
+2012-2017
 :   **PhD, Biology**; University of Vermont (Burlington), Department of Biology
 
-    *Thesis title: Evolutionary innovations of ants to thermally stressful environments*  
+    *Thesis title: Evolutionary innovations in ants to thermally stressful environments*  
     
     Advisors: [Sara Helms Cahan](http://shelmscahan.github.io/), [Nicholas J. Gotelli](https://www.uvm.edu/~ngotelli/homepage.html)    
     Committee: [Brent L. Lockwood](http://lockwoodlab.weebly.com/), [Jill Preston](https://www.uvm.edu/~plantbio/preston/Site/Home.html)    
