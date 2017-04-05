@@ -57,7 +57,7 @@ dat<-as.data.frame(cbind(temperature,gxp))#;dat
 ########################################
 ########################################
 #### Unfolding curves
-unfolding<-function(data=data){
+UFfun<-function(data=data){
   y<-nls(unfolding ~ min+ (1-min)/(1+exp((-slope*(Tm-temperature)))),data=data, 
            start=list(slope=.5,Tm=45,min=.3),
            trace=TRUE,control=nls.control(warnOnly = TRUE, tol = 1e-05, maxiter=1000))
