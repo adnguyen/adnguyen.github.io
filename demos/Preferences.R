@@ -52,7 +52,7 @@ gxp<-c(1.139380725,
        6.266289656,
        8.939597512,
        11.99697887)
-dat<-as.data.frame(cbind(temperature,gxp));dat
+dat<-as.data.frame(cbind(temperature,gxp))#;dat
 
 ########################################
 ########################################
