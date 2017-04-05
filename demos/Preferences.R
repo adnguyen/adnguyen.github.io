@@ -50,7 +50,7 @@ gxp<-c(1.139380725,
        3.341707929,
        6.387151393,
        6.266289656,
-       8.939597512,
+       11.39597512,
        11.99697887)
 dat<-as.data.frame(cbind(temperature,gxp))#;dat
 
@@ -58,7 +58,7 @@ dat<-as.data.frame(cbind(temperature,gxp))#;dat
 ########################################
 #### Unfolding curves
 unfolding<-function(data=data){
-  y<-nls(unfolding ~ min+ (1-min)/(1+exp((-slope*(Tm-T)))),data=data, 
+  y<-nls(unfolding ~ min+ (1-min)/(1+exp((-slope*(Tm-temperature)))),data=data, 
            start=list(slope=.5,Tm=45,min=.3),
            trace=TRUE,control=nls.control(warnOnly = TRUE, tol = 1e-05, maxiter=1000))
   #return(y)
@@ -66,7 +66,7 @@ unfolding<-function(data=data){
 }
 
 ###Plotting unfolding
-ufold<-function(T=seq(25,70,1),Tm=40,slope=.5,max=1,min=0){
+ufold<-function(temperature=seq(25,70,1),Tm=40,slope=.5,max=1,min=0){
   y<-min+ (max-min)/(1+exp((-slope*(Tm-T))))
   return(y)
 }
