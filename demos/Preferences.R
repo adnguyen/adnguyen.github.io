@@ -29,7 +29,7 @@ gaus<-function(a=2,b=5,c=30,x=seq(-5,25,.05)){
 
 #####fitting data with boltzmann function
 Boltz<-function(data=x){
-  B<-nls(gxp ~ (1+(max-1)/(1+exp((Tm-T)/a))),data=data, start=list(max=80,Tm=35,a=1.05), trace=TRUE,control=nls.control(warnOnly = TRUE, tol = 1e-05, maxiter=1000))
+  B<-nls(gxp ~ (1+(max-1)/(1+exp((Tm-temperature)/a))),data=data, start=list(max=80,Tm=35,a=1.05), trace=TRUE,control=nls.control(warnOnly = TRUE, tol = 1e-05, maxiter=1000))
   #summary(B)
   return(summary(B)$parameters)
 }
