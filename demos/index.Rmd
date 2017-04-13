@@ -38,18 +38,21 @@ pre { /* Code block */
 
 * All things <a href="https://github.com/adnguyen/atd"> data club</a>         
 
-* Demos for maps:     
-  * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*      
-  * [Grabbing land cover data](20160219_grabbing_land_cover_data.html). Poorly annotated, but its still a reference.  
-  * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
+* Demos for maps:      
+    * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*       
+    * [Grabbing land cover data](20160219_grabbing_land_cover_data.html). Poorly annotated, but its still a reference.  
+    * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
 
 * Function-valued trait demo: [Fitting boltzmann curve to a dataset](Function_valued_traits.html)    
 
 * Preliminary analysis for proteomic stability project: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)    
 
-* Converting data between <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">wide and long data formats</a>      
+* Rcookbook demos:    
 
-* Summarizing data resource: [Rcookbook](http://www.cookbook-r.com/Manipulating_data/Summarizing_data/)
+    * Converting data between <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">wide and long data formats</a>      
+
+    * Summarizing [data](http://www.cookbook-r.com/Manipulating_data/Summarizing_data/) to get means, standard deviations    
+    
 
 ---------
 
