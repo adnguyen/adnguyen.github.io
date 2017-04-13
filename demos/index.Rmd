@@ -4,7 +4,7 @@ author: "Antdrew D. Nguyen"
 output: 
   
   prettydoc::html_pretty:
-    theme: tactile
+    theme: hpstr
     highlight: github
     toc: yes
     toc_depth: 2
@@ -43,25 +43,24 @@ pre { /* Code block */
   * [Grabbing land cover data](20160219_grabbing_land_cover_data.html). Poorly annotated, but its still a reference.  
   * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
 
-* Function-valued trait demo: [Fitting boltzmann curve to a dataset](Function_valued_traits.html)       
+* Function-valued trait demo: [Fitting boltzmann curve to a dataset](Function_valued_traits.html)    
+
+* Preliminary analysis for proteomic stability project: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)    
 
 * Converting data between <a href="http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/">wide and long data formats</a>      
 
+* Summarizing data resource: [Rcookbook](http://www.cookbook-r.com/Manipulating_data/Summarizing_data/)
+
 ---------
 
-### <a href="http://harvardforest.fas.harvard.edu/harvard-forest-data-archive">Harvard forest data archive</a> : Datasets from Climate Cascade NSF grant. 
 
 ### Building a webpage with Jekyll and Github pages      
 * <a href="https://www.smashingmagazine.com/2014/08/build-blog-jekyll-github-pages/">How to</a> build a webpage       
 
 * <a href="http://jekyllthemes.org/">Jekyll themes</a>  
 
-* <a href="http://brooksandrew.github.io/simpleblog/articles/blogging-with-r-markdown-and-jekyll-using-knitr/">Blogging with Jekyll and R markdown using knitr</a>   
-
 ### Things for me to learn
 * <a href="http://shiny.rstudio.com/tutorial/lesson7/">Sharing your science through shiny apps</a>
-
-* <a href="http://www.latextemplates.com/">Prepare documents with Latex</a>
 
 * <a href="https://github.com/ujjwalkarn/DataSciencePython">Stats in Python :-)!</a>
 
