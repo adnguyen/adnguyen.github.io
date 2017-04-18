@@ -67,7 +67,7 @@ UFfun<-function(data=data){
 
 ###Plotting unfolding
 ufold<-function(temperature=seq(25,70,1),Tm=40,slope=.5,max=1,min=0){
-  y<-min+ (max-min)/(1+exp((-slope*(Tm-T))))
+  y<-min+ (max-min)/(1+exp((-slope*(Tm-temperature))))
   return(y)
 }
 
