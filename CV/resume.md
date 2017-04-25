@@ -213,7 +213,7 @@ Ecological Society of America (ESA)
 Teaching Experience
 ------------
 2017
-: **Ecological Genomics** - Teaching Assistant, University of Vermont    
+: [**Ecological Genomics**](https://adnguyen.github.io/2017_Ecological_Genomics/) - Teaching Assistant, University of Vermont    
 
 2016
 : Invited Lecture, **Evolution**, University of Vermont,     
