@@ -36,7 +36,8 @@ pre { /* Code block */
 		
 ### Data visualization and statistics in R:     
 
-* All things <a href="https://github.com/adnguyen/atd"> data club</a>         
+* All things <a href="https://github.com/adnguyen/atd"> data club</a>      
+    * My review of [1-way ANOVA](20170601_ANOVA_vignette.html): calculating sums of squares.
 
 * Demos for maps:      
     * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*       
