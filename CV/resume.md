@@ -21,14 +21,13 @@ Andrew D. Nguyen
 
 Research Interests
 ---------
-I am broadly interested in understanding the ecological, evolutionary, and genomic
-determinants of resiliency or susceptibility to climate change.
+I am broadly interested in understanding how organisms meet and respond to the challenges associated with variable environments.
 
 Professional Appointments
 ---------
 
-Starting July 2017
-:   **Postdoctoral Researcher**, University of Florida     
+2017 - Present
+:   **Postdoctoral Associate**, University of Florida     
     
     Supervisor: [Dr. Daniel Hahn](http://entnemdept.ufl.edu/hahn/lab/danhahn.htm)
 
@@ -141,9 +140,11 @@ Skills
 External Reviewer
 -------------   
 
-Molecular Ecology   
-Insectes Sociaux    
-Insect Science   
+Molecular Ecology (1)   
+Journal of Insect Physiology (1)
+Insect Science  (1) 
+Insectes Sociaux (2)    
+
 
 Research Presentations 
 -------------
@@ -187,6 +188,7 @@ Conferences Attended
 -------------
 2017
 : Society of Integrative and Comparative Biology, New Orleans, LA     
+: Entomological Society of America, Denver, CO   
 
 2016
 : Evolution, Austin, Texas
@@ -206,7 +208,8 @@ Meeting (IUSSI-NAS), Greensboro, North Carolina
 Organizational Membership
 ----------
 
-> Society for Integrative & Comparative Biology (SICB)    
+> Entomological Society of America (ESA)  
+Society for Integrative & Comparative Biology (SICB)    
 American	Society	of	Naturalists	(ASN)    
 Society of Molecular Biology and Evolution (sMBE)    
 International Union for the Study of Social Insects (IUSSI)     
@@ -215,7 +218,7 @@ Ecological Society of America (ESA)
 Teaching Experience
 ------------
 2017
-: [**Ecological Genomics**](https://adnguyen.github.io/2017_Ecological_Genomics/) - Teaching Assistant, University of Vermont    
+: [**Ecological Genomics**](https://adnguyen.github.io/2017_Ecological_Genomics/) - Teaching Assistant, University of Vermont
 
 2016
 : Invited Lecture, **Evolution**, University of Vermont,     
