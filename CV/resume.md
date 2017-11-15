@@ -1,8 +1,8 @@
 ---
 output:
-  pdf_document: default
   html_document:
     css: style_chmduquesne.css
+  pdf_document: default
 ---   
 
 Andrew D. Nguyen   
@@ -142,9 +142,9 @@ External Reviewer
 -------------   
 
 Molecular Ecology (1)   
-Journal of Insect Physiology (1)
-Insect Science  (1) 
-Insectes Sociaux (2)    
+Journal of Insect Physiology (1)     
+Insect Science  (1)     
+Insectes Sociaux (2)       
 
 
 Research Presentations 
