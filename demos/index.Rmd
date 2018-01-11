@@ -45,6 +45,7 @@ output:
 * Diapause exit as a function valued trait: [Plotting parameters of diapause termination](2018-01-10_phases_of_diapause_exit.html)
 * Gene expression as function-valued trait demo: [Fitting boltzmann curve to transcript abundance dataset](Function_valued_traits.html)    
 * Proteins unfolding as a function valued trait: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)    
+* Evaluating evolutionary responses to selection of performance curves, the Kingsolver way. [Simulating Data for clones and their performance curves, estimating G, and decomposing the variation in G](2018-01-10_simulate_perf_curves.html)
 
 ---------
 
