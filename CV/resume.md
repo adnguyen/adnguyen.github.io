@@ -141,11 +141,13 @@ Skills
 External Reviewer
 -------------   
 
-Scientific Reports (1)     
-Molecular Ecology (1)   
-Journal of Insect Physiology (1)     
+Genome Biology and Evolution (1)   
+Molecular Ecology (1)    
+Scientific Reports (1)       
+Conservation Physiology (1)    
+Journal of Insect Physiology (1)       
 Insect Science  (1)     
-Insectes Sociaux (2)       
+Insectes Sociaux (2)        
 
 
 Research Presentations 
