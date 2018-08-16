@@ -8,7 +8,7 @@ output:
 Andrew D. Nguyen   
 ============
 
-> 109 Carrigan Drive Burlington, VT 05405
+> 1881 Natural Area Drive Gainesville, Florida 36208
 
 ----
 
@@ -143,15 +143,19 @@ External Reviewer
 
 Genome Biology and Evolution (1)   
 Molecular Ecology (1)    
+Journal of Animal Ecology (1)      
+Journal of Experimental Biology (1)    
 Scientific Reports (1)       
-Conservation Physiology (1)    
+Conservation Physiology (1)     
 Journal of Insect Physiology (1)       
-Insect Science  (1)     
-Insectes Sociaux (2)        
+Insectes Sociaux (2)      
+Insect Science  (1)      
 
 
 Research Presentations 
 -------------
+2018
+: __*Adaptive shifts in heat shock protein gene expression profiles predict upper thermal limits in eastern forest ants*__, Evolution, France (talk)         
 
 2017
 : __*Northern range limits of common forest ants is reflected in trade-offs between basal and induced cold tolerances*__, Society of Integrative and Comparative
@@ -190,16 +194,18 @@ American Section Meeting (IUSSI-NAS), Greensboro, NC (poster)
 
 Conferences Attended
 -------------
+2018
+: Evolution, Montepllier, France     
+
 2017
 : Society of Integrative and Comparative Biology, New Orleans, LA     
 : Entomological Society of America, Denver, CO   
 
 2016
 : Evolution, Austin, Texas
-2014 Evolution, Raleigh, North Carolina     
-
 
 2014
+: Evolution, Raleigh, North Carolina     
 : Molecular Biology and Evolution, Old San Juan, Puerto Rico     
 
 2013
@@ -212,10 +218,11 @@ Meeting (IUSSI-NAS), Greensboro, North Carolina
 Organizational Membership
 ----------
 
-> Entomological Society of America (ESA)  
-Society for Integrative & Comparative Biology (SICB)    
-American	Society	of	Naturalists	(ASN)    
-Society of Molecular Biology and Evolution (sMBE)    
+> American	Society	of	Naturalists	(ASN)    
+Society for Integrative & Comparative Biology (SICB)  
+Soceity for Reserach on Biological Rhythms (SRBR)      
+Entomological Society of America (ESA)   
+Society of Molecular Biology and Evolution (sMBE)     
 International Union for the Study of Social Insects (IUSSI)     
 Ecological Society of America (ESA)     
 
@@ -267,6 +274,21 @@ woodland ants.
 tolerances at the northern range boundary in common forest ants, likely constraining their
 northern expansion.      
 
+
+University Service
+--------
+
+2018-Present
+: University Minority Mentor Program (UMMP)     
+
+      * Help first year undergraduate students transition into university life.      
+  
+2018-Present
+: Editor, University of Florida Postdoctoral Editors Association (UF-PEA)   
+
+      * Edit written documents for language usage, puctuation, and organization. 
+
+  
 Outreach
 --------
 2015
