@@ -52,9 +52,6 @@ Funding, Awards, and Grants
 2017
 :   Suiter Prize Travel Award - $1,000   
 
-2015-2016
-: Research Assistantship  - $28,000/year  
-
 Publications
 ------------
 
@@ -161,19 +158,23 @@ Research Presentations
 : __*Northern range limits of common forest ants is reflected in trade-offs between basal and induced cold tolerances*__, Society of Integrative and Comparative
 Biology Conference, New Orleans, LA (talk)      
 
+
 2016
 : __*Implementing strategies to achieve reproducible research*__, BioLunch, University
 of Vermont, Department of Biology, Burlington Vt (talk)     
 
 : __**Northern range limits of common forest ants is reflected in trade-offs between basal and induced cold tolerances**__, Evolution meeting, Austin, TX (poster)    
 
+
 2015
 : __*Temperature adaptations in common woodland ants*__, BioLunch, University of
 Vermont, Department of Biology, Burlington VT (talk)          
 
+
 2014
 : __*Surviving in a warming world: thermal adaptation in ants*__, BioLunch, University
 of Vermont, Department of Biology, Burlington, VT (talk)          
+
 
 2013
 : __*Impact of environmental stress on thermal tolerance in Aphaenogaster picea*__
@@ -184,7 +185,7 @@ Natural History- Ant Ecology session, Springfield, MA (talk)
 
 2012
 : __*Heat shock proteins and thermal tolerance in Aphaenogaster picea*__, EcoLunch,
-University of Vermont Department of Biology, Burlington, Vt (talk)            
+University of Vermont Department of Biology, Burlington, Vt (talk)      
 
 : __*Sequence and Cis-regulatory Evolution of Heat Shock Protein hsp83, in Social Hymenoptera*__, International Union for the Study of Social Insects- North
 American Section Meeting (IUSSI-NAS), Greensboro, NC (poster)      
