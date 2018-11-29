@@ -8,45 +8,22 @@ output:
 Andrew D. Nguyen   
 ============
 
-> 1881 Natural Area Drive Gainesville, Florida 36208
+> 1881 Natural Area Drive Gainesville, Florida 36208     
+> Email: anbe642@gmail.com     |  Github: [adnguyen](https://github.com/adnguyen)  | Website: [adnguyen.github.io](https://adnguyen.github.io/)   
 
 ----
 
-
-> Email: anbe642@gmail.com     
-> Github: [adnguyen](https://github.com/adnguyen)  
-> Website: [adnguyen.github.io](https://adnguyen.github.io/)    
-
-----
-
-Professional Appointments
+Experience
 ---------
 
 2017 - Present
 :   **Postdoctoral Associate**, University of Florida     
     
-    Supervisor: [Dr. Daniel Hahn](http://entnemdept.ufl.edu/hahn/lab/danhahn.htm)
-
-Education
----------
-
-2012-2017
-:   **PhD, Biology**; University of Vermont (Burlington), Department of Biology
-
-    *Thesis title: Evolutionary innovations in ants to thermally stressful environments*  
+    Manage and lead National Science Foundation funded project on agricultural insect pests.   
     
-    Advisors: [Sara Helms Cahan](http://shelmscahan.github.io/), [Nicholas J. Gotelli](https://www.uvm.edu/~ngotelli/homepage.html)    
-    Committee: [Brent L. Lockwood](http://lockwoodlab.weebly.com/), [Jill Preston](https://www.uvm.edu/~plantbio/preston/Site/Home.html)    
+    
+    Investigated behavioral rhythms with time series analyses and wavelet analyses.
 
-
-2004-2009
-:   **BSc, Biology**; Drexel University (Philadelphia)
-
-
-
-
-Research Experience
-----------
 
 2012-2017
 : **Dissertation research**; University of Vermont    
@@ -54,8 +31,6 @@ Research Experience
     Worked independently and in  collaboration to complete Dimensions grant objectives.        
     
     Took projects from ideas to experimentation, data analysis, visualization, and manuscript preparation.    
-    
-
     
 
 2014
@@ -82,6 +57,23 @@ Research Experience
 :   **Co-op intern**, Antibody Core Department; [Morphotek Inc.](http://www.morphotek.com/)    
 
     Developed neutralizing antibodies against Staphylococcal enterotoxin B (SEB).     
+
+
+Education
+---------
+
+2012-2017
+:   **PhD, Biology**; University of Vermont (Burlington), Department of Biology
+
+    *Thesis title: Evolutionary innovations in ants to thermally stressful environments*  
+    
+    Advisors: [Sara Helms Cahan](http://shelmscahan.github.io/), [Nicholas J. Gotelli](https://www.uvm.edu/~ngotelli/homepage.html)    
+    Committee: [Brent L. Lockwood](http://lockwoodlab.weebly.com/), [Jill Preston](https://www.uvm.edu/~plantbio/preston/Site/Home.html)    
+
+
+2004-2009
+:   **BSc, Biology**; Drexel University (Philadelphia)
+
 
 
 Publications
