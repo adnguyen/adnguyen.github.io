@@ -21,7 +21,7 @@ Andrew D. Nguyen
 Research Interests
 ---------
 
-I am broadly interested in uncovering new knowledge without infringing on any sentient being's right to a free life or personhood.
+I am broadly interested in uncovering new knowledge without infringing upon any sentient being's right to a free life or personhood.
 
 Experience
 ---------
