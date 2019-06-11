@@ -23,7 +23,7 @@ Andrew D. Nguyen
 Research Interests
 ---------
 
-I am broadly interested in ethical avenues that gain knowledge without infringing on any sentient being's personhood
+I am broadly interested in ethical avenues of research that uncovers knowledge without infringing on any sentient being's right to a free life or personhood.
 
 Experience
 ---------
