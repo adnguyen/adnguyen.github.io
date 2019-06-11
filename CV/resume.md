@@ -35,20 +35,22 @@ Experience
 2017 - 2019
 :   **Postdoctoral Associate**, University of Florida     
     
-    Supervisor: [Dr. Daniel Hahn](http://entnemdept.ufl.edu/hahn/lab/danhahn.htm)
+    Supervisor: [Dr. Daniel Hahn](http://entnemdept.ufl.edu/hahn/lab/danhahn.htm)   
     
     Manage and lead National Science Foundation funded project on agricultural insect pests   
-    Investigated behavioral rhythms with time series analyses and fitting statistical models   
-    Communicated findings in technical journals and at scientific conferences   
     
-    Hosted workshops for conducting reproducible science
+    Investigated behavioral rhythms with time series analyses and fitting statistical models   
+    
+    Communicated findings in technical journals and at scientific conferences     
+    
+    Hosted workshops for conducting reproducible science   
 
 2012-2017
 : **Dissertation research**; University of Vermont    
 
-    Worked independently and in  collaboration to complete Dimensions of Biodiversity, National Science Foundation grant objectives.        
+    Worked independently and in  collaboration to complete Dimensions of Biodiversity, National Science Foundation grant objectives        
     
-    Completed projects starting from ideas to experimentation, data analysis, visualization, and manuscript preparation.    
+    Completed projects starting from ideas to experimentation, data analysis, visualization, and manuscript preparation    
     
     Disseminated research through seminars and workshops within the Biology Department
     
@@ -57,7 +59,7 @@ Experience
 2014
 :   **Research Associate**, [Dr. Lori Stevens lab](https://www.uvm.edu/~biology/?Page=faculty/stevens.php&SM=facultysubmenu.html); University of Vermont   
 
-    Determined infection frequency of Trypanosome parasites in Kissing bugs that cause Chagas disease.  
+    Determined infection frequency of Trypanosome parasites in Kissing bugs that cause Chagas disease  
     
     Fitted statistical models for infection rates
     
