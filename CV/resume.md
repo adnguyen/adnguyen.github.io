@@ -22,15 +22,71 @@ Andrew D. Nguyen
 
 Research Interests
 ---------
-I am broadly interested in understanding how organisms meet and respond to the challenges associated with variable environments.
 
-Professional Appointments
+I am broadly interested in ethical avenues that gain knowledge without infringing on any sentient being's personhood
+
+Experience
 ---------
 
-2017 - Present
+2019-Present
+:   **Research Associate**, [PETA International Science Consortium LTD.](https://www.piscltd.org.uk/) (PISCLTD)
+
+    Assist in developing, validating, and promoting non-animal tests with *in silico* and *in vitro* assays
+
+
+2017 - 2019
 :   **Postdoctoral Associate**, University of Florida     
     
     Supervisor: [Dr. Daniel Hahn](http://entnemdept.ufl.edu/hahn/lab/danhahn.htm)
+    
+    Manage and lead National Science Foundation funded project on agricultural insect pests   
+    Investigated behavioral rhythms with time series analyses and fitting statistical models   
+    Communicated findings in technical journals and at scientific conferences   
+    
+    Hosted workshops for conducting reproducible science
+
+2012-2017
+: **Dissertation research**; University of Vermont    
+
+    Worked independently and in  collaboration to complete Dimensions of Biodiversity, National Science Foundation grant objectives.        
+    
+    Completed projects starting from ideas to experimentation, data analysis, visualization, and manuscript preparation.    
+    
+    Disseminated research through seminars and workshops within the Biology Department
+    
+    Organized weekly meetings for project progress and reported updates
+    
+2014
+:   **Research Associate**, [Dr. Lori Stevens lab](https://www.uvm.edu/~biology/?Page=faculty/stevens.php&SM=facultysubmenu.html); University of Vermont   
+
+    Determined infection frequency of Trypanosome parasites in Kissing bugs that cause Chagas disease.  
+    
+    Fitted statistical models for infection rates
+    
+2010-2011
+:   **Technician**; [Reaction Biology Corp](http://www.reactionbiology.com/webapps/site/)  
+
+    High through put screening of potentially therapeutic small compounds     
+    
+2009-2010
+:   **Technician**, Antibody Core Department; [Morphotek Inc.](http://www.morphotek.com/)         
+
+    Developed therapeutic antibodies against Acute Myeloid Leukemia (AML) 
+    
+    Experimentally carried out bulk antibody and antigen production
+
+2007-2008
+:   **Co-op intern**, Reproductive Toxicology; [GlaxoSmithKline](http://www.gsk.com/en-gb/research/randd-locations/usa-and-canada/upper-merion/)        
+
+    Studied red blood cell differentiation from mouse embryonic stem cells
+    
+    Experimentally analyzed rabbit blood hormone markers
+
+2006-2007
+:   **Co-op intern**, Antibody Core Department; [Morphotek Inc.](http://www.morphotek.com/)    
+
+    Developed neutralizing antibodies against Staphylococcal Enterotoxin B (SEB)   
+
 
 Education
 ---------
@@ -74,43 +130,7 @@ Undergraduate researchers in *italics*
 
 
 
-Research Experience
-----------
-
-2012-2017
-: **Dissertation research**; University of Vermont    
-
-    Worked independently and in  collaboration to complete Dimensions grant objectives.        
-    
-    Took projects from ideas to experimentation, data analysis, visualization, and manuscript preparation.    
-    
-
-    
-
-2014
-:   **Research Associate**, [Dr. Lori Stevens lab](https://www.uvm.edu/~biology/?Page=faculty/stevens.php&SM=facultysubmenu.html); University of Vermont   
-
-    Determined infection frequency of Trypanosome parasites in Kissing bugs that cause Chagas disease.  
-    
-2010-2011
-:   **Technician**; [Reaction Biology Corp](http://www.reactionbiology.com/webapps/site/)  
-
-    High through put screening of potentially therapeutic small compounds.     
-    
-2009-2010
-:   **Technician**, Antibody Core Department; [Morphotek Inc.](http://www.morphotek.com/)         
-
-    Developed therapeutic antibodies against Acute Myeloid Leukemia (AML).   
-
-2007-2008
-:   **Co-op intern**, Reproductive Toxicology; [GlaxoSmithKline](http://www.gsk.com/en-gb/research/randd-locations/usa-and-canada/upper-merion/)        
-
-    Studied red blood cell differentiation from mouse embryonic stem cells.  
-
-2006-2007
-:   **Co-op intern**, Antibody Core Department; [Morphotek Inc.](http://www.morphotek.com/)    
-
-    Developed neutralizing antibodies against Staphylococcal enterotoxin B (SEB).     
+  
 
 Skills
 ----------
@@ -279,12 +299,12 @@ northern expansion.
 University Service
 --------
 
-2018-Present
+2018-2019
 : University Minority Mentor Program (UMMP)     
 
       * Help first year undergraduate students transition into university life.      
   
-2018-Present
+2018-2019
 : Editor, University of Florida Postdoctoral Editors Association (UF-PEA)   
 
       * Edit written documents for language usage, puctuation, and organization. 
