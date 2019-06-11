@@ -8,8 +8,6 @@ output:
 Andrew D. Nguyen   
 ============
 
-> 1881 Natural Area Drive Gainesville, Florida 36208
-
 ----
 
 <img style="float: right;" src="about.jpg">   
@@ -23,7 +21,7 @@ Andrew D. Nguyen
 Research Interests
 ---------
 
-I am broadly interested in ethical avenues of research that uncovers knowledge without infringing on any sentient being's right to a free life or personhood.
+I am broadly interested in uncovering new knowledge without infringing on any sentient being's right to a free life or personhood.
 
 Experience
 ---------
