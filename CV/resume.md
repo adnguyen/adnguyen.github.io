@@ -27,9 +27,9 @@ Experience
 ---------
 
 2019-Present
-:   **Research Associate**, [PETA International Science Consortium LTD.](https://www.piscltd.org.uk/) (PISCLTD)
+:   **Advisor**, [PETA International Science Consortium LTD.](https://www.piscltd.org.uk/) (PISCLTD)
 
-    Assist in developing, validating, and promoting non-animal tests with *in silico* and *in vitro* assays
+    Promote non-animal testing methods 
 
 
 2017 - 2019
