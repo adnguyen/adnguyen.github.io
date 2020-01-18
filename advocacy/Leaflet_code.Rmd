@@ -1,0 +1,185 @@
+---
+title: "Street Activism"
+author: "Andrew D. Nguyen"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+    toc: TRUE
+editor_options:
+  
+  chunk_output_type: console
+---
+
+```{r, warning=FALSE, message=FALSE,echo=FALSE}
+library(ggplot2) # makes pretty figures
+library(dplyr) # manipulate data
+library(tidyr) # manipulate data
+library(leaflet) # mapping package
+library(data.table)
+library(htmltools)
+library(lubridate)
+library(imager)
+```
+
+```{r, echo=FALSE}
+
+
+dat<-fread("AV_Andrew.csv",skip=1)
+
+
+ct<-dat%>%
+  select(contains("Cube"))%>%
+  select(-contains("Cady"))%>%
+  sum(.,na.rm=TRUE)%>%
+  round(.,2)%>%
+  as.character()
+ll<-as.character(length(dat$N))#number of events
+#total cube time
+ttim<-as.character(sum(dat$Total.Time,na.rm=TRUE))
+```
+
+
+```{r,echo=FALSE, fig.align="center",warning=FALSE,message=FALSE}
+# mess with data set
+# group by city and then calculate total tally, take average lat and lon too 
+dat.map<-dat%>%
+  group_by(City)%>%
+  summarise(lat=mean(Lat),lon=mean(Lon),tally.size=sum(Total.Tally,na.rm=TRUE)/20+1,anbe=sum(Andrew.Tally,na.rm=TRUE)/3+1,true_tally=sum(Total.Tally,na.rm=TRUE),andrew.true=sum(Andrew.Tally,na.rm=TRUE))
+
+###total tallies 
+x<-as.character(sum(dat.map$true_tally))
+y<-as.character(sum(dat.map$andrew.true))
+## making the map
+#m <- leaflet() %>%
+  #addTiles() %>%  # Add default OpenStreetMap map tiles
+  #addProviderTiles('Hydda.Full')%>%
+  #setView(lng = -81.991014, lat = 28.669030, zoom = 7)%>%
+  #addCircleMarkers(lng=dat.map$lon, lat=dat.map$lat,radius=dat.map$tally.size,color="black")
+
+
+events<-dat%>%
+  group_by(City)%>%
+  summarise(events=length(City)*3+10,lat=mean(Lat),lon=mean(Lon),true_events=length(City))
+
+##figuring out how long I've been an activist 
+tot.time<-lubridate::interval(dat$Date[1],format(Sys.time(), "%Y-%m-%d "))
+
+years<-as.character(round((tot.time %/% months(1))/12,2))
+
+```
+
+# Progress and Impact:
+
+Hi all, it's your boi, [Vegan Drewski](https://adnguyen.github.io/ara/) and I've been an activist for **`r years` years** (since `r dat$Date[1]`). For me, I like to log all of my efforts, so I have made a few cool inforgraphics to show where I have been and the type of impact I have made (alongside other activists of course!). It is nice to reflect on my progress while still realizing there is much more to be done. 
+
+
+## Cube of Truth Demonstrations
+
+The effectiveness of these demonstrations are mainly in the form of "tallies". Tallies are the people that seriously consider veganism. However, please keep in mind that tallies do not include the impact on bystanders that drive/walk by. In fact, these demonstrations would not be possible without volunteers standing in the cube of truth and displaying footage. Here is the overall break down as of **`r format(Sys.time(), "%Y-%m-%d ")`**: 
+
+I have been to **`r ll`** demonstrations for a total time of **`r ttim`** cube hours and a total tally of **`r x`** bystanders!
+
+For my personal numbers, I have stood in the cube for **`r ct`** cube hours with **`r y`** tallies.
+
+
+### Infographic of the cube of truth demos I have been to:
+
+* Circles are proportional to the total number of tallies.
+* Scroll over the circles to find out more details!
+
+
+```{r,echo=FALSE, fig.align="center"}  
+
+tot.tally<-paste("Total Tally:",htmlEscape(dat.map$true_tally))
+ftal<-paste("Vegan Drewsky's tally:",htmlEscape(dat.map$andrew.true))
+event.num<-paste("Number of Events:",htmlEscape(events$true_events))
+
+#la<-paste(tot.tally,event.num,sep="<br/>")
+la<-paste(tot.tally,'<br/>',ftal,'<br/>',event.num, '<br/>')
+#sla<-HTML(paste0(tot.tally,"<p></p>",event.num))
+
+#m  # Print the map  
+#m<-leaflet()%>%
+ # addProviderTiles('Hydda.Full')%>%
+  #setView(lng = -81.991014, lat = 28.669030, zoom = 6)%>%
+  #addCircleMarkers(lng=dat.map$lon, lat=dat.map$lat,radius=dat.map$tally.size,color="black",label=tot.tally,labelOptions=labelOptions(noHide=FALSE,textsize="15px",direction="left")) 
+
+m<-leaflet()%>%
+  addProviderTiles('Hydda.Full')%>%
+  setView(lng = -81.991014, lat = 28.669030, zoom = 5)%>%
+  addCircleMarkers(lng=dat.map$lon, lat=dat.map$lat,radius=dat.map$tally.size,color="black",label=lapply(la,HTML),labelOptions=labelOptions(noHide=FALSE,textsize="15px",direction="left")) 
+
+m
+#paste("Total Tally",htmlEscape(dat.map$true_tally),"Number of Events",htmlEscape(events$true_events))
+#
+#cat("Total Tally",htmlEscape(dat.map$true_tally),"\n","Number of Events",htmlEscape(events$true_events))
+# addCircleMarkers(lng=dat.map$lon, lat=dat.map$lat,radius=dat.map$tally.size,color="black",label=event.num,labelOptions=labelOptions(noHide=FALSE,textsize="15px",direction="top")
+#test
+#leaflet(dat.map)%>%addTiles()%>%
+  #addMarkers(lng=dat.map$lon, lat=dat.map$lat,label=paste("Total Tally",htmlEscape(dat.map$tally.size)))
+
+
+
+```
+
+
+
+
+```{r, echo=FALSE}
+### Total tallies from your FACT activists
+#m2<-leaflet()%>%
+ # addProviderTiles('Hydda.Full')%>%
+  #setView(lng = -81.991014, lat = 28.669030, zoom = 6)%>%
+  #addCircleMarkers(lng=dat.map$lon, lat=dat.map$lat,radius=dat.map$fact,color="black",label=paste("Total Tally",htmlEscape(dat.map$true_fact)))
+#m2
+```
+
+
+
+```{r, echo=FALSE}
+### Number of events per city
+#eve<-leaflet() %>%
+ # addProviderTiles('Hydda.Full')%>%
+  #setView(lng = -81.991014, lat = 28.669030, zoom = 6)%>%
+  #addCircleMarkers(lng=events$lon, lat=events$lat,radius=events$events,color="green", label=paste("Number of Events:",htmlEscape(events$true_events)))
+#eve  
+#plot by number of events by each city 
+
+```
+
+## Vigils, protests, workshops, and other independent campaigns
+
+
+
+```{r, echo=FALSE}
+x<-fread("Andrew_Activism.csv",skip=1)
+###statistics to report
+le<-as.character(length(x$N))
+```
+
+Outside of cube of truth demos, I've participated in **`r le`** events.  Check out where I've been, be sure to zoom in!
+
+```{r,echo=FALSE}
+venue<-paste("Venue:",htmlEscape(x$Venue))
+evv<-paste("Event:",htmlEscape(x$Event))
+aff<-paste("Affiliation:",htmlEscape(x$Affiliation))
+
+labb<-paste(aff,'<br/>',evv,'<br/>',venue, '<br/>')
+
+###the color palette
+#pal <- colorNumeric(c("red", "green", "blue"), 1:100)
+pal <- colorNumeric(c("darkgreen", "red", "black"), 1:100)
+cc<-pal(as.integer(seq(from=1,to=100,length.out=length(x$N))))
+
+
+###the map
+m3<-leaflet()%>%
+  addProviderTiles('Hydda.Full')%>%
+  setView(lng = -81.991014, lat = 28.669030, zoom = 7)%>%
+  addCircleMarkers(lng=jitter(x$lon,amount=0.005), lat=x$lat,radius=10,fillColor=cc,labelOptions=labelOptions(noHide=FALSE,textsize="15px",direction="left"),lab=lapply(labb,HTML),opacity=0,fillOpacity = .75) 
+
+m3
+
+```
+
