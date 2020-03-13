@@ -31,7 +31,8 @@ Hi All, I'll be sharing some R code on this page and will serve as a reference.
 
 * Diapause exit as a function valued trait: [Plotting parameters of diapause termination](2018-01-10_phases_of_diapause_exit.html)
 * Gene expression as function-valued trait demo: [Fitting boltzmann curve to transcript abundance dataset](Function_valued_traits.html)    
-* Proteins unfolding as a function valued trait: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)    
+* Proteins unfolding as a function valued trait: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)      
+    * Messing around with unfolding parameters and interpretting their biological significance: [Unfolding curve parameter tweaks](2020-03-12_unfolding_curves.html)    
 * Evaluating evolutionary responses to selection of performance curves, the Kingsolver way. [Simulating Data for clones and their performance curves, estimating G, and decomposing the variation in G](2018-01-10_simulate_perf_curves.html)
 
 ### Reasoning with Uncertainty   

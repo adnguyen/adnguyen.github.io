@@ -1,0 +1,121 @@
+---
+title: "Playing with parameters of a two-state unfolding function"
+author: "Andrew D. Nguyen, Quantitative Biologist"
+date: "2020-03-12"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+  pdf_document:
+    highlight: monochrome
+    toc: yes
+editor_options:
+  chunk_output_type: console
+---
+
+# Load Libraries
+
+```{r load libraries}
+library(data.table)
+library(ggplot2)
+library(tidyr)
+
+
+#create function to play around with parameters-- 
+#I can plug in any parameters and get the shape of the unfolding curve
+ufold<-function(Tm=40,slope=1,min=0,x=seq(30,70,.1)){
+  y=min+(1-min)/(1+exp((-slope*(Tm-x))))
+  return(y)
+}
+
+
+```
+
+
+# The unfolding function 
+
+$$Fraction\ non-denatured = min + \frac{(1-min)}{(1+exp^{(-slope * (Tm-Temperature)})}$$
+There are three parameters:    
+
+* Tm = inflection point of unfolding in units of temperature, celcius in this case; also known as the melting temperature   
+* Slope = parameter that changes the rate change at Tm   
+* min = the lowest amount of unfolding   
+
+## Messing with Tm parameter
+
+I varied Tm values from 30-60 and held min and slope as the same.
+
+```{r}
+
+#create a data set, wide format, varying different Tm values
+a4<-data.frame(x=seq(30,70,.1),Tm30=ufold(Tm=30),Tm40=ufold(),Tm50=ufold(Tm=50),Tm60=ufold(Tm=60))
+
+a5<-gather(a4,param,y,Tm30:Tm60) # make it long format 
+
+ggplot(a5,aes(x=x,y=y,colour=param))+
+  geom_line()+#facet_wrap(~param)+
+  xlab("Temperature in Celcius")+ylab("Fraction non-denatured")
+
+
+
+```
+
+Thoughts: Changes in the melting temperature or Tm towards higher values means that the protein unfolds at a higher temperature. It is more thermally stable.
+
+
+## Messing with slope parameter
+
+I varied slope values from 0.05- 10 and held Tm and min as the same. 
+
+```{r}
+
+#create a data set, wide format, varying different slopes 
+a<-data.frame(x=seq(30,70,.1),slope0.05=ufold(slope=.05),slope0.1=ufold(slope=.1),
+              slope0.5=ufold(slope=.5),slope10=ufold(slope=10))
+
+a1<-gather(a,param,y,slope0.05:slope10) # make it long format 
+
+#all in 1 plot
+ggplot(a1,aes(x=x,y=y,colour=param))+
+  geom_line()+#facet_wrap(~param)+
+  xlab("Temperature in Celcius")+ylab("Fraction non-denatured")
+
+# plot, with slope parameter as a facet 
+#ggplot(a1,aes(x=x,y=y,colour=param))+
+#  geom_line()+facet_wrap(~param)+
+#  xlab("Temperature in Celcius")+ylab("Fraction non-denatured")
+
+```
+
+Thoughts: Changes in the slope isn't given much thought in the unfolding literature (that I've read at least). However, I'd interpret this as the rate of unfolding and it is possible for a protein to be similar in their melting temperature, but the rate change could lead to differences in stability at the lower and higher end of the temperature gradient. For example, if a protein has the same Tm, a lower slope value leads to higher stability above Tm, but lower stability below the Tm. 
+
+
+## Messing with min parameter
+
+I varied min parameter values from 0-0.3 and held Tm and min as the same. 
+
+```{r}
+
+#create a data set, wide format, varying different min values
+a2<-data.frame(x=seq(30,70,.1),min0=ufold(min=0),min.1=ufold(min=.1),min.2=ufold(min=.2),min.3=ufold(min=.3))
+
+a3<-gather(a2,param,y,min0:min.3) # make it long format 
+
+ggplot(a3,aes(x=x,y=y,colour=param))+
+  geom_line()+#facet_wrap(~param)+
+  xlab("Temperature in Celcius")+ylab("Fraction non-denatured")
+
+
+
+```
+
+Thoughts: Overall stability of the protein. It is the minimum value of unfolding over the temperature gradient that is surveyed. Not all proteins can completely unfold. What is the reason for this? Not sure. 
+
+
+# Session info
+
+```{r}
+
+sessionInfo()
+```
+
