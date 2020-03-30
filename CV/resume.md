@@ -29,11 +29,15 @@ Experience
 2019-Present
 :   **Advisor**, [PETA International Science Consortium LTD.](https://www.piscltd.org.uk/) (PISCLTD)
 
-    Promote non-animal testing methods such as *in silico* and *in vitro* models
+    Work collaboratively with government agencies and industry stakeholders on the adoption and usage of non-animal test methods in the areas of pyrogen testing and personal lubricants
     
-    Review *in silico* models to improve predictability of toxicological endpoints
+    Aggregate and analyze diverse datasets of systemic toxicological apical endpoints to inform regulatory testing needs
     
-    Perform retrospective analyses of *in vivo* studies to determine potential redundant testing 
+    Review *in silico* models of systemic toxicity and provide model developers with feedback    
+    
+    Research and draft safety testing strategies for food ingredients
+    
+    Create educational materials for the dissemination of non-animal test approaches for food testing and weight of evidence
     
     
 
@@ -134,7 +138,9 @@ Undergraduate researchers in *italics*
 5. Stanton-Geddes J, **Nguyen A**, Chick L, Vincent J, Vangala M, Dunn RR, Ellison AM, Sanders NJ, Gotelli NJ, Cahan SH. 2016. Thermal reactionomes reveal divergent responses to thermal extremes in warm and cool-climate ant species. BMC Genomics 17:171.    
     * [Paper and Data](http://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2466-z)
 
+6. Cicconardi F,..,**Nguyen AD**,..,Steiner FM,Schlick-Steiner, BC. 2020. Genomic signature of shifts in selection in a sub-alpine ant and its physiological adaptations. Molecular Biology and Evolution. https://doi.org/10.1093/molbev/msaa076 [Paper](https://doi.org/10.1093/molbev/msaa076)
 
+7. Lau MK, Ellison AM, **Nguyen A**, Penick C, DeMarco B, Gotelli NJ, Sanders NJ, Dunn RR, Helms Cahan S. 2019. Draft Aphaenogaster genomes expand our view of ant genome size variation across climate gradients. PeerJ 7:e6447 https://doi.org/10.7717/peerj.6447
 
   
 
@@ -142,7 +148,7 @@ Skills
 ----------
 **Computing:**    
 
-* *R* – Data analysis and visualization, shinyapps
+* *R* – Data wrangling, visualization, and analysis
 * *Unix* – General command line, shell bash scripting, and remote computing
 * *Github* – Reproducible science through version control and online notebooks/documentation
 * *Phylogenetics* - Maximum likelihood (RAxML) and Bayesian (MrBayes) methods
@@ -155,7 +161,7 @@ Skills
 * RNA,DNA, and protein isolation    
 * PCR and qPCR     
 * Gel electrophoresis: polyacrylamide and agarose   
-* Immunohistochemistry - western blots, 
+* Immunochemistry - western blots, ELISAs, IHC 
 * Cell culture (primary and established lines)    
 * Flow Cytometry   
 
