@@ -27,7 +27,7 @@ Experience
 ---------
 
 2019-Present
-:   **Advisor**, [PETA International Science Consortium LTD.](https://www.piscltd.org.uk/) (PISCLTD)
+:   **Research Associate**, People for the Ethical Treatment of Animals ([PETA](https://support.peta.org/page/27010/donate/1?utm_source=PETA::Google&utm_medium=Ad&utm_campaign=1220::gen::PETA::Google::S-P::eg::searchad&gclid=Cj0KCQiAvvKBBhCXARIsACTePW-gAE7NzY2QJe157VPDkUvaPpC6lyCT6aErfpv0k8UenI277WsF5ScaAksZEALw_wcB))
 
     Work collaboratively with government agencies and industry stakeholders on the adoption and usage of non-animal test methods in the areas of pyrogen testing and personal lubricants
     
@@ -46,7 +46,7 @@ Experience
     
     Supervisor: [Dr. Daniel Hahn](http://entnemdept.ufl.edu/hahn/lab/danhahn.htm)   
     
-    Managed and led National Science Foundation funded project on agricultural insect pests   
+    Managed and led an National Science Foundation funded project on the seasonal adaptation of agricultural insect pests   
     
     Investigated behavioral rhythms with time series analyses and fitting statistical models   
     
@@ -120,29 +120,32 @@ Publications
 Undergraduate researchers in *italics*      
 
 
-1. **Nguyen AD** et al. 2019. Trade-Offs in Cold Resistance at the Northern Range Edge of the Common Woodland Ant Aphaenogaster picea (Formicidae). The American Naturalist. 194:6
-    * [Paper](https://www.journals.uchicago.edu/doi/abs/10.1086/705939) and [Data](http://harvardforest.fas.harvard.edu:8080/exist/apps/datasets/showData.html?id=hf323)
+9\. Petersen, E. J., **Nguyen, AD**, et al. (2021) Characteristics to consider when selecting a positive control material for an in vitro assay, ALTEX - Alternatives to animal experimentation. doi: 10.14573/altex.2102111. **Both authors contributed equally**; [Paper link](https://www.altex.org/index.php/altex/article/view/2255)
+<br/>
+<br/>
+8\. **Nguyen AD** et al. 2019. Trade-Offs in Cold Resistance at the Northern Range Edge of the Common Woodland Ant Aphaenogaster picea (Formicidae). The American Naturalist. 194:6 [Paper](https://www.journals.uchicago.edu/doi/abs/10.1086/705939) and [Data](http://harvardforest.fas.harvard.edu:8080/exist/apps/datasets/showData.html?id=hf323)
+<br/>
+<br/>
+7\. Powell THQ, **Nguyen AD**, et al. 2020. A rapidly evolved shift in life‐history timing during ecological speciation is driven by the transition between developmental phases. Journal of Evolutionary Biology 33:10. [Paper link](https://onlinelibrary.wiley.com/doi/abs/10.1111/jeb.13676)
+<br/>
+<br/>
+6\. **Nguyen AD**, *DeNovellis K*, *Resendez S*, *Pustilnik JD*, Gotelli NJ, Parker JD, Cahan SH. 2017. Effects of desiccation and starvation on thermal tolerance and the heat-shock response in forest ants. J Comp Physiol B:1–10. [Paper](https://link.springer.com/article/10.1007/s00360-017-1101-x)
+<br/>
+<br/>
+5\. Helms Cahan S, **Nguyen AD**, Stanton-Geddes J, Penick CA, Hernáiz-Hernández Y, DeMarco BB, Gotelli NJ. 2017. Modulation of the heat shock response is associated with acclimation to novel temperatures but not adaptation to climatic variation in the ants Aphaenogaster picea and A. rudis. Comparative Biochemistry and Physiology Part A: Molecular & Integrative Physiology 204:113–120. [Paper](http://www.sciencedirect.com/science/article/pii/S109564331630277X) and [Data](https://zenodo.org/record/164924#.WIeZtbYrJTY)
+<br/>
+<br/>
+4\. **Nguyen AD**, Gotelli NJ, Cahan SH. 2016. The evolution of heat shock protein sequences, cis-regulatory elements, and expression profiles in the eusocial Hymenoptera. BMC Evolutionary Biology 16:15. [Paper and Data](http://bmcevolbiol.biomedcentral.com/articles/10.1186/s12862-015-0573-0)
+<br/>
+<br/>
+3\. Stanton-Geddes J, **Nguyen A**, Chick L, Vincent J, Vangala M, Dunn RR, Ellison AM, Sanders NJ, Gotelli NJ, Cahan SH. 2016. Thermal reactionomes reveal divergent responses to thermal extremes in warm and cool-climate ant species. BMC Genomics 17:171. [Paper and Data](http://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2466-z)
+<br/>
+<br/>
+2\. Cicconardi F,..,**Nguyen AD**,..,Steiner FM,Schlick-Steiner, BC. 2020. Genomic signature of shifts in selection in a sub-alpine ant and its physiological adaptations. Molecular Biology and Evolution. https://doi.org/10.1093/molbev/msaa076 [Paper](https://doi.org/10.1093/molbev/msaa076)
+<br/>
+<br/>
+1\. Lau MK, Ellison AM, **Nguyen A**, Penick C, DeMarco B, Gotelli NJ, Sanders NJ, Dunn RR, Helms Cahan S. 2019. Draft Aphaenogaster genomes expand our view of ant genome size variation across climate gradients. PeerJ 7:e6447 https://doi.org/10.7717/peerj.6447
 
-
-2. **Nguyen AD**, *DeNovellis K*, *Resendez S*, *Pustilnik JD*, Gotelli NJ, Parker JD, Cahan SH. 2017. Effects of desiccation and starvation on thermal tolerance and the heat-shock response in forest ants. J Comp Physiol B:1–10.      
-    * [Paper](https://link.springer.com/article/10.1007/s00360-017-1101-x)
-
-3. Helms Cahan S, **Nguyen AD**, Stanton-Geddes J, Penick CA, Hernáiz-Hernández Y, DeMarco BB, Gotelli NJ. 2017. Modulation of the heat shock response is associated with acclimation to novel temperatures but not adaptation to climatic variation in the ants Aphaenogaster picea and A. rudis. Comparative Biochemistry and Physiology Part A: Molecular & Integrative Physiology 204:113–120. 
-    * [Paper](http://www.sciencedirect.com/science/article/pii/S109564331630277X) and [Data](https://zenodo.org/record/164924#.WIeZtbYrJTY)    
-
-
-4. **Nguyen AD**, Gotelli NJ, Cahan SH. 2016. The evolution of heat shock protein sequences, cis-regulatory elements, and expression profiles in the eusocial Hymenoptera. BMC Evolutionary Biology 16:15.        
-    * [Paper and Data](http://bmcevolbiol.biomedcentral.com/articles/10.1186/s12862-015-0573-0)  
-  
-
-5. Stanton-Geddes J, **Nguyen A**, Chick L, Vincent J, Vangala M, Dunn RR, Ellison AM, Sanders NJ, Gotelli NJ, Cahan SH. 2016. Thermal reactionomes reveal divergent responses to thermal extremes in warm and cool-climate ant species. BMC Genomics 17:171.    
-    * [Paper and Data](http://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2466-z)
-
-6. Cicconardi F,..,**Nguyen AD**,..,Steiner FM,Schlick-Steiner, BC. 2020. Genomic signature of shifts in selection in a sub-alpine ant and its physiological adaptations. Molecular Biology and Evolution. https://doi.org/10.1093/molbev/msaa076 [Paper](https://doi.org/10.1093/molbev/msaa076)
-
-7. Lau MK, Ellison AM, **Nguyen A**, Penick C, DeMarco B, Gotelli NJ, Sanders NJ, Dunn RR, Helms Cahan S. 2019. Draft Aphaenogaster genomes expand our view of ant genome size variation across climate gradients. PeerJ 7:e6447 https://doi.org/10.7717/peerj.6447
-
-  
 
 Skills
 ----------
