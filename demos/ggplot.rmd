@@ -10,7 +10,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-Hi all, this page reviews plots done with ggplot2. I'll share my settings and tips + tricks. 
+I'll be demo'ing the tidyverse on a project I worked on in my postdoc at the Unversity of Florida. The project details are publicly available through this github repository. 
 
 
 # Load libraries 
@@ -18,10 +18,13 @@ Hi all, this page reviews plots done with ggplot2. I'll share my settings and ti
 ```{r, load libaries}
 library(tidyverse) # for ggplot2, data visualization and data filtering with dplyr 
 library(ggbeeswarm) # for quasirandom plotting
+library(caret)# for ML analysis
 
+#ggplot2 settings I like: 
+T<-theme_bw()+theme(,text=element_text(size=25),axis.text=element_text(size=18), panel.grid.major=element_blank(), panel.grid.minor.x = element_blank(), panel.grid = element_blank(), legend.key = element_blank(),axis.title.y=element_text(margin=margin(t=0,r=15,b=0,l=0)),axis.title.x=element_text(margin=margin(t=15,r=,b=0,l=0)))#+ theme(legend.position="none")
 ```
 
-## The dataset!
+## The dataset! Let's explore different plots
 
 There's a nice dataset I generated from my postdoctoral research in Dr. Dan Hahn's lab. I collected eclosion times (when an insect transitions from pupae to adult) for fruit flies (Rhagoletis) from either the apple or hawthorne fruit. The project and details are found [here](https://github.com/adnguyen/Circadian_rhythm_runs_seasonal_timing) and has metadata. 
 
@@ -29,60 +32,139 @@ There's a nice dataset I generated from my postdoctoral research in Dr. Dan Hahn
 #fruit.fly<-read.delim("https://raw.githubusercontent.com/adnguyen/Circadian_rhythm_runs_seasonal_timing/master/Data/2018-08-14_master_data_slice.csv")
 
 fruit.fly<-read.csv("https://raw.githubusercontent.com/adnguyen/Circadian_rhythm_runs_seasonal_timing/master/Scripts_analyses/05_master_dataset_eclosions_IDs.csv")
-glimpse(fruit.fly)
-
-```
-
-These data are complicated, but let's this: 
-* Barplot -> 
-* 
-
-# Barplots 
-
-Here I'm showing a barplot of the number of 
-
-```{r barplots}
-#summary(factor(fruit.fly$cohort_date)) # finding out the number of fruit flies eclosed per day 
-fruit.fly$year<-year(ymd(fruit.fly$eclosion_date))
-
-
-# Calculate the number of fruit flies for each cohort. Fruit flies were collected from each host fruit at a given day. 
-fruit.fly%>%
-  dplyr::filter(Host!="" | organism=="fly")%>%
-  group_by(Host)%>%
-  mutate(total.num=length(Host))%>% #finding total sample size
-  ungroup()%>%
-  group_by(Host,cohort_date)%>%
-  dplyr::summarise(num=length(cohort_date),proportion=num/total.num)%>%
-  ggplot(aes(x=cohort_date,y=num))+geom_bar(stat="identity")+facet_wrap(~Host)
-
+#glimpse(fruit.fly)
+#take out the data of interest
+fruit.fly1<-fruit.fly%>%
+  select(Site_name,mass_day10,Host,cohort_day,resp_day15,new.eclosions,organism,treatment)%>%
+  dplyr::filter(organism=="fly" &treatment !="GC" & treatment!="")# GC = genetic controls, those were saved for genomic analyses and we're just focusing on eclosion of flies (not the parasites)
+glimpse(fruit.fly1)
 ```
 
 
-# Quasirandom plots 
 
-These types of plots are nice to show the distribution of the data. In this case, we have continuous data on the y axis and categorical on the x.  
 
-```{r}
 
+I need to find out proportions of eclosion and need to transform eclosion data such that NA = 0 and a number in days = 1. And I want to display the proportions by treatment (RT = Room Temperature vs SO = Simulated Overwintering) and host fruit (apple vs haw). 
+
+```{r data manipulation}
+
+
+fruit.fly1$eclfac<-as.numeric(ifelse(fruit.fly1$new.eclosions>1,"1","0"))
+fruit.fly1$eclfac[is.na(fruit.fly1$eclfac)]<-0
+
+ecl.num<-fruit.fly1%>%
+  group_by(treatment,Host,eclfac)%>%
+  count()
+knitr::kable(ecl.num)
+
+```
+
+**You can see most flies have eclosed.**
+
+
+
+We can show the data in a number of different ways:     
+
+* barplots    
+* cumulative distribution plots   
+
+
+### Barplots   
+
+Let's first start off with a barplot:
+
+```{r barplot}
+
+#let's create a barplot 
+# treatments, RT = room temperature, SO = simulated overwintering 
+ggplot(ecl.num,aes(y=n,x=factor(eclfac),fill=factor(eclfac)))+
+  geom_bar(stat="identity")+
+  facet_wrap(treatment~Host)+ #this function creates multi-panels and is super handy at conveying complex datasets with multiple treatments /categorical variables
+  ylab("Number of Adults Emerged")+xlab("Eclosed (1) or not (0)")+
+  T+ # my own plotting settings, see library
+  theme(legend.position="none")+ # removing legend
+  scale_y_continuous(expand=c(0,0),limits=c(0,300),breaks=seq(0,300,100),labels=seq(0,300,100))+ # makes sure the y-axis starts at 0, this is something I always use when making barplots with ggplot2
+  geom_text(aes(label=n),size=5,vjust=-.5) # it is nice to annotate the bars to help the eyes interpret them
+```
+
+Let's remove the ones that have not eclosed and observe their differences in timing and we can visualize the data as a cumulative distribution plot. 
+==Remember to save the figure with ggsave() and you can specify the dpi and dimensions of the plot.== 
+
+
+```{r removing zeros and ECDF plots}
+ff1<-fruit.fly1%>%
+  dplyr::filter(eclfac==1)
+
+ggplot(ff1,aes(x=new.eclosions,colour=Host))+stat_ecdf(linewidth=1)+facet_wrap(~treatment)+T+scale_x_continuous(limits=c(0,300),labels=seq(0,300,100),breaks=seq(0,300,100))+xlab("Days Until Adult Emergence (Days)")+ylab("ECDF")
 
 ```
 
 
-# Scatter plots to display regressions
+### Quasirandom plots 
 
-```{r}
+These types of plots are nice to show the distribution of the data. In this case, we have continuous data on the y axis and categorical on the x. 
+```{r quasi random plots}
 
+ggplot(ff1,aes(x=Host,y=new.eclosions,fill=Host))+
+  geom_quasirandom(size=2,alpha=.5,shape=21,colour="black")+ # change the points so that there is a black outline and color is filled in by host
+  facet_wrap(~treatment)+ylab("Days Until Adult Emergence (Days)")+
+  stat_summary(fun = mean, geom = "errorbar", aes(ymax =after_stat(y) , ymin = after_stat(y)),width = .75,lwd=1,colour="black")#add average horizontal line, which adds a nice touch
 
 ```
 
-# Multipanel plots 
-
-You can display a wealth of information by plotting with facets/panel in ggplot2. For example, you can display each facet/panels by different levels of a variable, which can include sample sizes and p-values. 
-
-```{r}
+It looks like there are two populations within the RT treatment. When conditions are optimal for growth (they're at room temperature and not diapausing), then there looks to be a subpopulation that emerges very quickly. 
 
 
+### Scatter plots to display regressions
+
+For illustrative purposes, I'm plotting mass with eclosion days just to show how to implement scatter plots. 
+
+```{r scatter plots}
+ggplot(ff1,aes(x=mass_day10,y=new.eclosions,colour=Host))+geom_point()+stat_smooth(method="lm")+#fits regression lines with standard errors and takes into account the Host when colour is specified
+  facet_wrap(~treatment,scale="free")+ylab("Days Until Adult Emergence (days)")+xlab("Mass (mgs)")
+
+```
+
+## Survival analysis
+
+The data are best suited for a surival analysis because we have time of events. 
+
+```{r survival analysis}
+
+```
+
+## Machine Learning -> predicting host fruit from organismal features
+
+Is it possible to predict host fruit based on the measurements we made? We'll create data partitions for training and then testing the model. 
+
+```{r SVM }
+# I need to convert Host into a factor
+ff1$hfac<-factor(ifelse(ff1$Host=="Apple","1","0"))
+
+ff2<-ff1%>%
+  dplyr::filter(treatment=="SO")%>%
+  dplyr::select(hfac,mass_day10,resp_day15,new.eclosions)
+  #just picking out variables that we want 
+
+intrain <- createDataPartition(y = ff2$hfac, p= 0.7, list = FALSE)
+training <- ff2[intrain,]
+testing <- ff2[-intrain,]
+
+trctrl <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
+#The “method” parameter defines the resampling method, in this demo we’ll be using the repeatedcv or the repeated cross-validation method.
+
+#The next parameter is the “number”, this basically holds the number of resampling iterations.
+
+#The “repeats ” parameter contains the sets to compute for our repeated cross-validation. We are using setting number =10 and repeats =
+
+svm_Linear <- train(hfac ~., data = training, method = "svmLinear",
+trControl=trctrl, preProcess = c("center", "scale"), tuneLength = 10)
+
+svm_Linear
+##let's see how well it predicts
+
+test_pred <- predict(svm_Linear, newdata = testing)
+confusionMatrix(table(test_pred, testing$hfac))
 ```
 
 
