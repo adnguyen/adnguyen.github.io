@@ -1,7 +1,7 @@
 ---
 title: "Data Related and Demos"
 author: "Andrew D. Nguyen, Quantitative Biologist"
-date: "Last updated: 2020-01-17"
+date: "Last updated: 2020-08-21"
 output:
   prettydoc::html_pretty:
     theme: hpstr
