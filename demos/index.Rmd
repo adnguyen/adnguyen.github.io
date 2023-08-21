@@ -1,31 +1,34 @@
 ---
 title: "Data Related and Demos"
-author: "Antdrew D. Nguyen, Evolutionary Physiologist"
+author: "Andrew D. Nguyen, Quantitative Biologist"
 date: "Last updated: 2020-01-17"
 output:
   prettydoc::html_pretty:
     theme: hpstr
-    toc: yes
+    toc: no
+editor_options: 
+  chunk_output_type: console
 ---
 
 [Back to main page](https://adnguyen.github.io/)
 
-Hi All, I'll be sharing some R code on this page and will serve as a reference. 
+This page demos codes that I've worked on over the years. I enjoy learning difference analyses and interesting ways to show results. 
 
+I hope this page will serve as a useful reference! Across all scripts, I show the libraries I've loaded and output the sessioninfo to facilitate reproducibility. 
 
 ### Data visualization and statistics in R:     
 
-* My review of [1-way ANOVA](20170601_ANOVA_vignette.html): calculating sums of squares.
+* Plotting figures with [ggplot](ggplot.html): barplots, scatter plots, multi-panels  
 
 * Demos for maps:      
     * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*       
-    * [Grabbing land cover data](20160219_grabbing_land_cover_data.html). Poorly annotated, but its still a reference.  
-    * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
+    * [Grabbing land cover data](20160219_grabbing_land_cover_data.html)     * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
     * Make interactive maps with [leaflet](Leaflet_code.html)
 
 * Cool project where we asked whether ants were stressed under experimental [warming](20170508_stressed_ants_report_forSHC_NJG.html)  
     * Script starts from calculating log2 fold change in gene expression to statistical models to predicting stress back out into nature.   
 
+* My review of [1-way ANOVA](20170601_ANOVA_vignette.html): calculating sums of squares.
 
 ### Function-valued traits  
 
@@ -33,7 +36,7 @@ Hi All, I'll be sharing some R code on this page and will serve as a reference.
 * Gene expression as function-valued trait demo: [Fitting boltzmann curve to transcript abundance dataset](Function_valued_traits.html)    
 * Proteins unfolding as a function valued trait: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)      
     * Messing around with unfolding parameters and interpretting their biological significance: [Unfolding curve parameter tweaks](2020-03-12_unfolding_curves.html)    
-* Evaluating evolutionary responses to selection of performance curves, the Kingsolver way. [Simulating Data for clones and their performance curves, estimating G, and decomposing the variation in G](2018-01-10_simulate_perf_curves.html)
+* Evaluating evolutionary responses to selection of performance curves. [Simulating Data for clones and their performance curves, estimating G, and decomposing the variation in G](2018-01-10_simulate_perf_curves.html)
 
 ### Reasoning with Uncertainty   
 

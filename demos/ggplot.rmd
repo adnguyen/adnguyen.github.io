@@ -1,0 +1,93 @@
+---
+title: "Publication Quality Figures -> ggplot2"
+author: "Andrew Nguyen"
+date: "2023-08-20"
+output: 
+  html_document: 
+    theme: cosmo
+    toc: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+Hi all, this page reviews plots done with ggplot2. I'll share my settings and tips + tricks. 
+
+
+# Load libraries 
+
+```{r, load libaries}
+library(tidyverse) # for ggplot2, data visualization and data filtering with dplyr 
+library(ggbeeswarm) # for quasirandom plotting
+
+```
+
+## The dataset!
+
+There's a nice dataset I generated from my postdoctoral research in Dr. Dan Hahn's lab. I collected eclosion times (when an insect transitions from pupae to adult) for fruit flies (Rhagoletis) from either the apple or hawthorne fruit. The project and details are found [here](https://github.com/adnguyen/Circadian_rhythm_runs_seasonal_timing) and has metadata. 
+
+```{r fruit fly}
+#fruit.fly<-read.delim("https://raw.githubusercontent.com/adnguyen/Circadian_rhythm_runs_seasonal_timing/master/Data/2018-08-14_master_data_slice.csv")
+
+fruit.fly<-read.csv("https://raw.githubusercontent.com/adnguyen/Circadian_rhythm_runs_seasonal_timing/master/Scripts_analyses/05_master_dataset_eclosions_IDs.csv")
+glimpse(fruit.fly)
+
+```
+
+These data are complicated, but let's this: 
+* Barplot -> 
+* 
+
+# Barplots 
+
+Here I'm showing a barplot of the number of 
+
+```{r barplots}
+#summary(factor(fruit.fly$cohort_date)) # finding out the number of fruit flies eclosed per day 
+fruit.fly$year<-year(ymd(fruit.fly$eclosion_date))
+
+
+# Calculate the number of fruit flies for each cohort. Fruit flies were collected from each host fruit at a given day. 
+fruit.fly%>%
+  dplyr::filter(Host!="" | organism=="fly")%>%
+  group_by(Host)%>%
+  mutate(total.num=length(Host))%>% #finding total sample size
+  ungroup()%>%
+  group_by(Host,cohort_date)%>%
+  dplyr::summarise(num=length(cohort_date),proportion=num/total.num)%>%
+  ggplot(aes(x=cohort_date,y=num))+geom_bar(stat="identity")+facet_wrap(~Host)
+
+```
+
+
+# Quasirandom plots 
+
+These types of plots are nice to show the distribution of the data. In this case, we have continuous data on the y axis and categorical on the x.  
+
+```{r}
+
+
+```
+
+
+# Scatter plots to display regressions
+
+```{r}
+
+
+```
+
+# Multipanel plots 
+
+You can display a wealth of information by plotting with facets/panel in ggplot2. For example, you can display each facet/panels by different levels of a variable, which can include sample sizes and p-values. 
+
+```{r}
+
+
+```
+
+
+# Session info
+
+```{r, sessioninfo}
+sessionInfo()
+```

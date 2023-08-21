@@ -27,7 +27,7 @@ Experience
 ---------
 
 2019-Present
-:   **Research Associate**, People for the Ethical Treatment of Animals ([PETA](https://support.peta.org/page/27010/donate/1?utm_source=PETA::Google&utm_medium=Ad&utm_campaign=1220::gen::PETA::Google::S-P::eg::searchad&gclid=Cj0KCQiAvvKBBhCXARIsACTePW-gAE7NzY2QJe157VPDkUvaPpC6lyCT6aErfpv0k8UenI277WsF5ScaAksZEALw_wcB))
+:   **Associate Scientist**, People for the Ethical Treatment of Animals ([PETA](https://support.peta.org/page/27010/donate/1?utm_source=PETA::Google&utm_medium=Ad&utm_campaign=1220::gen::PETA::Google::S-P::eg::searchad&gclid=Cj0KCQiAvvKBBhCXARIsACTePW-gAE7NzY2QJe157VPDkUvaPpC6lyCT6aErfpv0k8UenI277WsF5ScaAksZEALw_wcB))
 
     Work collaboratively with government agencies and industry stakeholders on the adoption and usage of non-animal test methods in the areas of pyrogen testing and personal lubricants
     
