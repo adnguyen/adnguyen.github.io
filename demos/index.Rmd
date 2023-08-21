@@ -18,14 +18,15 @@ I hope this page will serve as a useful reference! Across all scripts, I show th
 
 ### Data visualization and statistics in R:     
 
-* Plotting figures with [ggplot](ggplot.html): barplots, scatter plots, multi-panels  
+* Demo'ing [tidyverse](ggplot.html) starting from a fruit fly dataset to publication quality figures
+  * barplots, scatterplots, multi-panel plots in ggplot2   
 
 * Demos for maps:      
     * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*       
     * [Grabbing land cover data](20160219_grabbing_land_cover_data.html)     * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
     * Make interactive maps with [leaflet](Leaflet_code.html)
 
-* Cool project where we asked whether ants were stressed under experimental [warming](20170508_stressed_ants_report_forSHC_NJG.html)  
+* Surveyed ants for gene expression exposed to experimental warming in nature [warming](20170508_stressed_ants_report_forSHC_NJG.html)  
     * Script starts from calculating log2 fold change in gene expression to statistical models to predicting stress back out into nature.   
 
 * My review of [1-way ANOVA](20170601_ANOVA_vignette.html): calculating sums of squares.
@@ -36,7 +37,7 @@ I hope this page will serve as a useful reference! Across all scripts, I show th
 * Gene expression as function-valued trait demo: [Fitting boltzmann curve to transcript abundance dataset](Function_valued_traits.html)    
 * Proteins unfolding as a function valued trait: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)      
     * Messing around with unfolding parameters and interpretting their biological significance: [Unfolding curve parameter tweaks](2020-03-12_unfolding_curves.html)    
-* Evaluating evolutionary responses to selection of performance curves. [Simulating Data for clones and their performance curves, estimating G, and decomposing the variation in G](2018-01-10_simulate_perf_curves.html)
+* Evaluating evolutionary responses to selection of performance curves using statistical genetics approaches by Joel Kingsolver. [Simulating Data for clones and their performance curves, estimating G, and decomposing the variation in G](2018-01-10_simulate_perf_curves.html)
 
 ### Reasoning with Uncertainty   
 
