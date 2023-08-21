@@ -23,10 +23,11 @@ I hope this page will serve as a useful reference! Across all scripts, I show th
 
 * Demos for maps:      
     * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*       
-    * [Grabbing land cover data](20160219_grabbing_land_cover_data.html)     * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
+    * [Grabbing land cover data](20160219_grabbing_land_cover_data.html)   
+    * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
     * Make interactive maps with [leaflet](Leaflet_code.html)
 
-* Surveyed ants for gene expression exposed to experimental warming in nature [warming](20170508_stressed_ants_report_forSHC_NJG.html)  
+* Surveyed ants for gene expression exposed to [experimental warming in nature](20170508_stressed_ants_report_forSHC_NJG.html)  
     * Script starts from calculating log2 fold change in gene expression to statistical models to predicting stress back out into nature.   
 
 * My review of [1-way ANOVA](20170601_ANOVA_vignette.html): calculating sums of squares.
