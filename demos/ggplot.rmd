@@ -19,6 +19,7 @@ I'll be demo'ing the tidyverse on a project I worked on in my postdoc at the Unv
 library(tidyverse) # for ggplot2, data visualization and data filtering with dplyr 
 library(ggbeeswarm) # for quasirandom plotting
 library(caret)# for ML analysis
+library(survival) # for survival analysis
 
 #ggplot2 settings I like: 
 T<-theme_bw()+theme(,text=element_text(size=25),axis.text=element_text(size=18), panel.grid.major=element_blank(), panel.grid.minor.x = element_blank(), panel.grid = element_blank(), legend.key = element_blank(),axis.title.y=element_text(margin=margin(t=0,r=15,b=0,l=0)),axis.title.x=element_text(margin=margin(t=15,r=,b=0,l=0)))#+ theme(legend.position="none")
@@ -108,7 +109,9 @@ These types of plots are nice to show the distribution of the data. In this case
 ggplot(ff1,aes(x=Host,y=new.eclosions,fill=Host))+
   geom_quasirandom(size=2,alpha=.5,shape=21,colour="black")+ # change the points so that there is a black outline and color is filled in by host
   facet_wrap(~treatment)+ylab("Days Until Adult Emergence (Days)")+
-  stat_summary(fun = mean, geom = "errorbar", aes(ymax =after_stat(y) , ymin = after_stat(y)),width = .75,lwd=1,colour="black")#add average horizontal line, which adds a nice touch
+  stat_summary(fun = mean, geom = "errorbar", aes(ymax =after_stat(y) , ymin = after_stat(y)),width = .75,lwd=1,colour="black")+T+ theme(legend.position="none")
+
+#add average horizontal line, which adds a nice touch
 
 ```
 
@@ -121,31 +124,36 @@ For illustrative purposes, I'm plotting mass with eclosion days just to show how
 
 ```{r scatter plots}
 ggplot(ff1,aes(x=mass_day10,y=new.eclosions,colour=Host))+geom_point()+stat_smooth(method="lm")+#fits regression lines with standard errors and takes into account the Host when colour is specified
-  facet_wrap(~treatment,scale="free")+ylab("Days Until Adult Emergence (days)")+xlab("Mass (mgs)")
+  facet_wrap(~treatment,scale="free")+ylab("Days Until Adult Emergence (days)")+xlab("Mass (mgs)")+T
 
 ```
 
 ## Survival analysis
 
-The data are best suited for a surival analysis because we have time of events. 
+The data are best suited for a surival analysis because we have time of events. I'll fit a cox hazard proportional regression model to identify interactions between treatment and host fruit on eclosion timing. 
 
 ```{r survival analysis}
+# I need to convert Host into a factor
+ff1$hfac<-factor(ifelse(ff1$Host=="Apple","1","0"))
 
+
+#####################################
+
+coxmod<-coxph(Surv(new.eclosions, eclfac) ~ Host*treatment,data=ff1)
+summary(coxmod)
 ```
+
+There are two main effects: host fruit and treatment. Compared to Apple, the Hawthorne fruit is 34.77% less likely
 
 ## Machine Learning -> predicting host fruit from organismal features
 
 Is it possible to predict host fruit based on the measurements we made? We'll create data partitions for training and then testing the model. 
 
 ```{r SVM }
-# I need to convert Host into a factor
-ff1$hfac<-factor(ifelse(ff1$Host=="Apple","1","0"))
-
 ff2<-ff1%>%
   dplyr::filter(treatment=="SO")%>%
   dplyr::select(hfac,mass_day10,resp_day15,new.eclosions)
   #just picking out variables that we want 
-
 intrain <- createDataPartition(y = ff2$hfac, p= 0.7, list = FALSE)
 training <- ff2[intrain,]
 testing <- ff2[-intrain,]
