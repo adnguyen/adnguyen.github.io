@@ -21,7 +21,7 @@ Andrew D. Nguyen
 Research Interests
 ---------
 
-I am broadly interested in uncovering new knowledge with quantitative rigor and without infringing upon any sentient being's right to a free life or personhood.
+I am broadly interested in constructing narratives drawn from data to address real world problems.
 
 Experience
 ---------
@@ -38,6 +38,8 @@ Experience
     Research and draft safety testing strategies for food ingredients
     
     Create educational materials for the dissemination of non-animal test approaches for food testing and weight of evidence
+    
+    Disseminated scientific works and findings through blogs, webpages, factsheets, webinars, presentations, and peer-reviewed scientific literature
     
     
 
@@ -120,22 +122,28 @@ Publications
 Undergraduate researchers in *italics*      
 
 
-9\. Petersen, E. J., **Nguyen, AD**, et al. (2021) Characteristics to consider when selecting a positive control material for an in vitro assay, ALTEX - Alternatives to animal experimentation. doi: 10.14573/altex.2102111. **Both authors contributed equally**; [Paper link](https://www.altex.org/index.php/altex/article/view/2255)
+11\. Petersen, E. J., **Nguyen, AD**, et al. (2021) Characteristics to consider when selecting a positive control material for an in vitro assay, ALTEX - Alternatives to animal experimentation. doi: 10.14573/altex.2102111. **Both authors contributed equally**; [Paper link](https://www.altex.org/index.php/altex/article/view/2255)
 <br/>
 <br/>
-8\. **Nguyen AD** et al. 2019. Trade-Offs in Cold Resistance at the Northern Range Edge of the Common Woodland Ant Aphaenogaster picea (Formicidae). The American Naturalist. 194:6 [Paper](https://www.journals.uchicago.edu/doi/abs/10.1086/705939) and [Data](http://harvardforest.fas.harvard.edu:8080/exist/apps/datasets/showData.html?id=hf323)
+10\. **Nguyen AD** et al. 2019. Trade-Offs in Cold Resistance at the Northern Range Edge of the Common Woodland Ant Aphaenogaster picea (Formicidae). The American Naturalist. 194:6 [Paper](https://www.journals.uchicago.edu/doi/abs/10.1086/705939) and [Data](http://harvardforest.fas.harvard.edu:8080/exist/apps/datasets/showData.html?id=hf323)
 <br/>
 <br/>
-7\. Powell THQ, **Nguyen AD**, et al. 2020. A rapidly evolved shift in life‐history timing during ecological speciation is driven by the transition between developmental phases. Journal of Evolutionary Biology 33:10. [Paper link](https://onlinelibrary.wiley.com/doi/abs/10.1111/jeb.13676)
+9\. Powell THQ, **Nguyen AD**, et al. 2020. A rapidly evolved shift in life‐history timing during ecological speciation is driven by the transition between developmental phases. Journal of Evolutionary Biology 33:10. [Paper link](https://onlinelibrary.wiley.com/doi/abs/10.1111/jeb.13676)
 <br/>
 <br/>
-6\. **Nguyen AD**, *DeNovellis K*, *Resendez S*, *Pustilnik JD*, Gotelli NJ, Parker JD, Cahan SH. 2017. Effects of desiccation and starvation on thermal tolerance and the heat-shock response in forest ants. J Comp Physiol B:1–10. [Paper](https://link.springer.com/article/10.1007/s00360-017-1101-x)
+8\. **Nguyen AD**, *DeNovellis K*, *Resendez S*, *Pustilnik JD*, Gotelli NJ, Parker JD, Cahan SH. 2017. Effects of desiccation and starvation on thermal tolerance and the heat-shock response in forest ants. J Comp Physiol B:1–10. [Paper](https://link.springer.com/article/10.1007/s00360-017-1101-x)
 <br/>
 <br/>
-5\. Helms Cahan S, **Nguyen AD**, Stanton-Geddes J, Penick CA, Hernáiz-Hernández Y, DeMarco BB, Gotelli NJ. 2017. Modulation of the heat shock response is associated with acclimation to novel temperatures but not adaptation to climatic variation in the ants Aphaenogaster picea and A. rudis. Comparative Biochemistry and Physiology Part A: Molecular & Integrative Physiology 204:113–120. [Paper](http://www.sciencedirect.com/science/article/pii/S109564331630277X) and [Data](https://zenodo.org/record/164924#.WIeZtbYrJTY)
+7\. **Nguyen AD**, Gotelli NJ, Cahan SH. 2016. The evolution of heat shock protein sequences, cis-regulatory elements, and expression profiles in the eusocial Hymenoptera. BMC Evolutionary Biology 16:15. [Paper and Data](http://bmcevolbiol.biomedcentral.com/articles/10.1186/s12862-015-0573-0)
 <br/>
 <br/>
-4\. **Nguyen AD**, Gotelli NJ, Cahan SH. 2016. The evolution of heat shock protein sequences, cis-regulatory elements, and expression profiles in the eusocial Hymenoptera. BMC Evolutionary Biology 16:15. [Paper and Data](http://bmcevolbiol.biomedcentral.com/articles/10.1186/s12862-015-0573-0)
+6\. Helms Cahan S, Nguyen AD, Zhou Y. Population genomics supports multiple hybrid zone origins of socially hybridogenetic lineages of Pogonomyrmex harvester ants. Evolution (N Y). 2022;76(5):1016-1032. doi:10.1111/evo.14481
+<br/>
+<br/>
+5\. Stevens L, Lima-Cordón RA, Helms Cahan S, Nguyen AD, et al. Catch me if you can: Under-detection of Trypanosoma cruzi (Kinetoplastea: Trypanosomatida) infections in Triatoma dimidiata s.l. (Hemiptera: Reduviidae) from Central America. Acta Trop. 2021;224:106130. doi:10.1016/J.ACTATROPICA.2021.106130
+<br/>
+<br/>
+4\. Helms Cahan S, **Nguyen AD**, Stanton-Geddes J, Penick CA, Hernáiz-Hernández Y, DeMarco BB, Gotelli NJ. 2017. Modulation of the heat shock response is associated with acclimation to novel temperatures but not adaptation to climatic variation in the ants Aphaenogaster picea and A. rudis. Comparative Biochemistry and Physiology Part A: Molecular & Integrative Physiology 204:113–120. [Paper](http://www.sciencedirect.com/science/article/pii/S109564331630277X) and [Data](https://zenodo.org/record/164924#.WIeZtbYrJTY)
 <br/>
 <br/>
 3\. Stanton-Geddes J, **Nguyen A**, Chick L, Vincent J, Vangala M, Dunn RR, Ellison AM, Sanders NJ, Gotelli NJ, Cahan SH. 2016. Thermal reactionomes reveal divergent responses to thermal extremes in warm and cool-climate ant species. BMC Genomics 17:171. [Paper and Data](http://bmcgenomics.biomedcentral.com/articles/10.1186/s12864-016-2466-z)
@@ -151,7 +159,7 @@ Skills
 ----------
 **Computing:**    
 
-* *R* – Data wrangling, visualization, and analysis
+* *R* – Data wrangling, visualization, and analysis within the *tidyverse*
 * *Unix* – General command line, shell bash scripting, and remote computing
 * *Github* – Reproducible science through version control and online notebooks/documentation
 * *Phylogenetics* - Maximum likelihood (RAxML) and Bayesian (MrBayes) methods
@@ -171,20 +179,26 @@ Skills
 External Reviewer
 -------------   
 
-Genome Biology and Evolution (1)   
-Molecular Ecology (1)    
-Journal of Animal Ecology (1)      
-Journal of Experimental Biology (1)    
-Scientific Reports (1)       
-Conservation Physiology (1)     
-Journal of Insect Physiology (1)       
-Insectes Sociaux (2)      
-Insect Science  (1)      
+Computational Toxicology   
+Innate Immunity   
+The Journal of Pathology   
+Genome Biology and Evolution    
+Molecular Ecology     
+Journal of Animal Ecology       
+Journal of Experimental Biology     
+Scientific Reports        
+Conservation Physiology      
+Journal of Insect Physiology        
+Insectes Sociaux       
+Insect Science        
 
 
 
 Conferences/Workshops Attended
 -------------
+
+2022
+: ASCCT, Gaithersburg, MD
 
 2020
 : [Practical Methods for In Vitro Toxicology Workshop](https://iivs.org/education-outreach/practical-methods-for-in-vitro-toxicology-workshop/), Gaithersburg, MD
