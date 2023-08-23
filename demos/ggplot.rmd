@@ -143,7 +143,7 @@ coxmod<-coxph(Surv(new.eclosions, eclfac) ~ Host*treatment,data=ff1)
 summary(coxmod)
 ```
 
-There are two main effects: host fruit and treatment. Compared to Apple, the Hawthorne fruit is 34.77% less likely
+There are two main effects: host fruit and treatment. Compared to Apple, the Hawthorne fruit has a 34.77% lower eclosion (hazard) rate. 
 
 ## Machine Learning -> predicting host fruit from organismal features
 
