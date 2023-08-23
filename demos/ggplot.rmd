@@ -1,5 +1,5 @@
 ---
-title: "Publication Quality Figures -> ggplot2"
+title: "Seasonal timing of fruit flies - demo'ing tidyverse"
 author: "Andrew Nguyen"
 date: "2023-08-20"
 output: 
@@ -88,9 +88,12 @@ ggplot(ecl.num,aes(y=n,x=factor(eclfac),fill=factor(eclfac)))+
   geom_text(aes(label=n),size=5,vjust=-.5) # it is nice to annotate the bars to help the eyes interpret them
 ```
 
+### Empirical Cumulative Distribution Function plots
+
 Let's remove the ones that have not eclosed and observe their differences in timing and we can visualize the data as a cumulative distribution plot. 
 ==Remember to save the figure with ggsave() and you can specify the dpi and dimensions of the plot.== 
 
+I think this is a nice plot to show for these data. You can see that fruit flies on apple host eclose (adult emergence from pupae) sooner than fruit flies on hawthorn fruit. (See survival analysis below!) 
 
 ```{r removing zeros and ECDF plots}
 ff1<-fruit.fly1%>%
@@ -143,7 +146,7 @@ coxmod<-coxph(Surv(new.eclosions, eclfac) ~ Host*treatment,data=ff1)
 summary(coxmod)
 ```
 
-There are two main effects: host fruit and treatment. Compared to Apple, the Hawthorne fruit has a 34.77% lower eclosion (hazard) rate. 
+There are two main effects: host fruit and treatment. Compared to Apple, the Hawthorne fruit has a 34.77% lower eclosion (hazard) rate, which supports the ECDF figure where fruit flies on apple fruit had earlier eclosion timing. The simulated overwintering effect had a 53.39% lower eclosion (hazard) rate than the room temperature treatment. This makes sense because overwintering costs energy and energy levels become depleted afterwards, so development to eclosion is slower. 
 
 ## Machine Learning -> predicting host fruit from organismal features
 
