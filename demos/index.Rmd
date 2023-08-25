@@ -20,7 +20,7 @@ I hope this page will serve as a useful reference! Across all scripts, I show th
 
 ### Data visualization and statistics in R:     
 
-* [Demo'ing tidyverse](ggplot.html) starting from a fruit fly dataset to publication quality figures
+* [Demo'ing tidyverse](ggplot.pdf) starting from a fruit fly dataset to publication quality figures
   * barplots, cumulative density plots, scatterplots, multi-panel plots in ggplot2    
   * Survival analysis and machine learning with SVM    
 

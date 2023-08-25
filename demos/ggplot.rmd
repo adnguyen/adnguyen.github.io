@@ -1,43 +1,56 @@
 ---
-title: "Seasonal timing of fruit flies - demo'ing tidyverse"
-author: "Andrew Nguyen"
-date: "2023-08-20"
-output: 
-  html_document: 
+title: "Seasonal timing in fruit flies: figures, surival analysis, SVM"
+author: "Andrew D. Nguyen"
+date: "2023-08-25"
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+  html_document:
     theme: cosmo
     toc: yes
-editor_options: 
+editor_options:
   chunk_output_type: console
 ---
 
-I'll be demo'ing the tidyverse on a project I worked on in my postdoc at the Unversity of Florida. The project details are publicly available through this github repository. 
+I'll be demo'ing the tidyverse, surival analysis, and SVM on a project I worked on in my postdoc at the Unversity of Florida. The project details are publicly available through this github repository. 
 
 
 # Load libraries 
 
-```{r, load libaries}
+```{r, load libaries,message=FALSE}
 library(tidyverse) # for ggplot2, data visualization and data filtering with dplyr 
 library(ggbeeswarm) # for quasirandom plotting
 library(caret)# for ML analysis
 library(survival) # for survival analysis
 
 #ggplot2 settings I like: 
-T<-theme_bw()+theme(,text=element_text(size=25),axis.text=element_text(size=18), panel.grid.major=element_blank(), panel.grid.minor.x = element_blank(), panel.grid = element_blank(), legend.key = element_blank(),axis.title.y=element_text(margin=margin(t=0,r=15,b=0,l=0)),axis.title.x=element_text(margin=margin(t=15,r=,b=0,l=0)))#+ theme(legend.position="none")
+T<-theme_bw()+theme(,text=element_text(size=18),
+                    axis.text=element_text(size=18),
+                    panel.grid.major=element_blank(),
+                    panel.grid.minor.x = element_blank(),
+                    panel.grid = element_blank(),
+                    legend.key = element_blank(),
+                    axis.title.y=element_text(margin=margin(t=0,r=15,b=0,l=0)),
+                    axis.title.x=element_text(margin=margin(t=15,r=,b=0,l=0)))#+ theme(legend.position="none")
 ```
 
 ## The dataset! Let's explore different plots
 
 There's a nice dataset I generated from my postdoctoral research in Dr. Dan Hahn's lab. I collected eclosion times (when an insect transitions from pupae to adult) for fruit flies (Rhagoletis) from either the apple or hawthorne fruit. The project and details are found [here](https://github.com/adnguyen/Circadian_rhythm_runs_seasonal_timing) and has metadata. 
 
+Apologies, but latex cuts off the dataset URL, so **[here](https://raw.githubusercontent.com/adnguyen/Circadian_rhythm_runs_seasonal_timing/master/Scripts_analyses/05_master_dataset_eclosions_IDs.csv)** it is.
+
 ```{r fruit fly}
-#fruit.fly<-read.delim("https://raw.githubusercontent.com/adnguyen/Circadian_rhythm_runs_seasonal_timing/master/Data/2018-08-14_master_data_slice.csv")
 
 fruit.fly<-read.csv("https://raw.githubusercontent.com/adnguyen/Circadian_rhythm_runs_seasonal_timing/master/Scripts_analyses/05_master_dataset_eclosions_IDs.csv")
 #glimpse(fruit.fly)
 #take out the data of interest
 fruit.fly1<-fruit.fly%>%
   select(Site_name,mass_day10,Host,cohort_day,resp_day15,new.eclosions,organism,treatment)%>%
-  dplyr::filter(organism=="fly" &treatment !="GC" & treatment!="")# GC = genetic controls, those were saved for genomic analyses and we're just focusing on eclosion of flies (not the parasites)
+  dplyr::filter(organism=="fly" &treatment !="GC" & treatment!="")
+# GC = genetic controls, those were saved for genomic analyses
+#and we're just focusing on eclosion of flies (not the parasites)
 glimpse(fruit.fly1)
 ```
 
@@ -80,12 +93,16 @@ Let's first start off with a barplot:
 # treatments, RT = room temperature, SO = simulated overwintering 
 ggplot(ecl.num,aes(y=n,x=factor(eclfac),fill=factor(eclfac)))+
   geom_bar(stat="identity")+
-  facet_wrap(treatment~Host)+ #this function creates multi-panels and is super handy at conveying complex datasets with multiple treatments /categorical variables
+  facet_wrap(treatment~Host)+ #this function creates multi-panels 
+#and is super handy at conveying complex datasets with multiple treatments /categorical variables
   ylab("Number of Adults Emerged")+xlab("Eclosed (1) or not (0)")+
   T+ # my own plotting settings, see library
   theme(legend.position="none")+ # removing legend
-  scale_y_continuous(expand=c(0,0),limits=c(0,300),breaks=seq(0,300,100),labels=seq(0,300,100))+ # makes sure the y-axis starts at 0, this is something I always use when making barplots with ggplot2
-  geom_text(aes(label=n),size=5,vjust=-.5) # it is nice to annotate the bars to help the eyes interpret them
+  scale_y_continuous(expand=c(0,0),limits=c(0,300),breaks=seq(0,300,100),labels=seq(0,300,100))+ 
+# makes sure the y-axis starts at 0, this is something
+#I always use when making barplots with ggplot2
+  geom_text(aes(label=n),size=5,vjust=-.5) # it is nice to annotate 
+#the bars to help the eyes interpret them
 ```
 
 ### Empirical Cumulative Distribution Function plots
@@ -99,7 +116,12 @@ I think this is a nice plot to show for these data. You can see that fruit flies
 ff1<-fruit.fly1%>%
   dplyr::filter(eclfac==1)
 
-ggplot(ff1,aes(x=new.eclosions,colour=Host))+stat_ecdf(linewidth=1)+facet_wrap(~treatment)+T+scale_x_continuous(limits=c(0,300),labels=seq(0,300,100),breaks=seq(0,300,100))+xlab("Days Until Adult Emergence (Days)")+ylab("ECDF")
+ggplot(ff1,aes(x=new.eclosions,colour=Host))+
+  stat_ecdf(linewidth=1)+
+  facet_wrap(~treatment)+T+
+  scale_x_continuous(limits=c(0,300),
+                    labels=seq(0,300,100),breaks=seq(0,300,100))+
+  xlab("Days Until Adult Emergence (Days)")+ylab("ECDF")
 
 ```
 
@@ -110,9 +132,14 @@ These types of plots are nice to show the distribution of the data. In this case
 ```{r quasi random plots}
 
 ggplot(ff1,aes(x=Host,y=new.eclosions,fill=Host))+
-  geom_quasirandom(size=2,alpha=.5,shape=21,colour="black")+ # change the points so that there is a black outline and color is filled in by host
-  facet_wrap(~treatment)+ylab("Days Until Adult Emergence (Days)")+
-  stat_summary(fun = mean, geom = "errorbar", aes(ymax =after_stat(y) , ymin = after_stat(y)),width = .75,lwd=1,colour="black")+T+ theme(legend.position="none")
+  geom_quasirandom(size=2,alpha=.5,
+                   shape=21,colour="black")+ # change the points 
+#so that there is a black outline and color is filled in by host
+  facet_wrap(~treatment)+
+  ylab("Days Until Adult Emergence (Days)")+
+  stat_summary(fun = mean, geom = "errorbar",
+               aes(ymax =after_stat(y) , ymin = after_stat(y)),width = .75,lwd=1,colour="black")+
+  T+ theme(legend.position="none")
 
 #add average horizontal line, which adds a nice touch
 
@@ -126,8 +153,13 @@ It looks like there are two populations within the RT treatment. When conditions
 For illustrative purposes, I'm plotting mass with eclosion days just to show how to implement scatter plots. 
 
 ```{r scatter plots}
-ggplot(ff1,aes(x=mass_day10,y=new.eclosions,colour=Host))+geom_point()+stat_smooth(method="lm")+#fits regression lines with standard errors and takes into account the Host when colour is specified
-  facet_wrap(~treatment,scale="free")+ylab("Days Until Adult Emergence (days)")+xlab("Mass (mgs)")+T
+ggplot(ff1,aes(x=mass_day10,y=new.eclosions,colour=Host))+
+  geom_point()+stat_smooth(method="lm")+
+#fits regression lines with standard errors 
+#and takes into account the Host when colour is specified
+  facet_wrap(~treatment,scale="free")+
+  ylab("Days Until Adult Emergence (days)")+
+  xlab("Mass (mgs)")+T
 
 ```
 
@@ -162,11 +194,15 @@ training <- ff2[intrain,]
 testing <- ff2[-intrain,]
 
 trctrl <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
-#The “method” parameter defines the resampling method, in this demo we’ll be using the repeatedcv or the repeated cross-validation method.
+#The “method” parameter defines the resampling method,
+#in this demo we’ll be using the repeatedcv or the repeated cross-validation method.
 
-#The next parameter is the “number”, this basically holds the number of resampling iterations.
+#The next parameter is the “number”, 
+#this basically holds the number of resampling iterations.
 
-#The “repeats ” parameter contains the sets to compute for our repeated cross-validation. We are using setting number =10 and repeats =
+#The “repeats ” parameter contains the sets to 
+#compute for our repeated cross-validation. 
+#We are using setting number =10 and repeats =
 
 svm_Linear <- train(hfac ~., data = training, method = "svmLinear",
 trControl=trctrl, preProcess = c("center", "scale"), tuneLength = 10)
