@@ -5,7 +5,7 @@ date: "Last updated: 2020-08-21"
 output:
   prettydoc::html_pretty:
     theme: hpstr
-    toc: no
+    toc: yes
 editor_options: 
   chunk_output_type: console
 ---
@@ -15,8 +15,6 @@ editor_options:
 This page demos codes that I've worked on over the years. I enjoy learning difference analyses and interesting ways to show results. 
 
 I hope this page will serve as a useful reference! Across all scripts, I show the libraries I've loaded and output the sessioninfo to facilitate reproducibility. 
-
-
 
 ### Data visualization and statistics in R:     
 
