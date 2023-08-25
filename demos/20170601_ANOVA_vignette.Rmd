@@ -3,11 +3,11 @@ title: "One-Way ANOVA vignette"
 author: "Author: Antdrew D. Nguyen"
 date: "Date: 2017-06-01"
 output:
+  html_notebook: default
   prettydoc::html_pretty:
     theme: cayman
     highlight: github
     toc: TRUE
-  html_notebook: default
 ---
 
 # Libraries

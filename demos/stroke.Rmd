@@ -1,0 +1,24 @@
+---
+title: "Stroke Prediction"
+author: "Andrew Nguyen"
+date: "2023-08-25"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Libraries
+
+```{r libraries,message=FALSE}
+library(tidyverse)
+```
+
+
+
+# SessionInfo
+
+```{r sessioninfo}
+sessionInfo()
+
+```
+

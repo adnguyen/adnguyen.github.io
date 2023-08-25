@@ -1,10 +1,11 @@
 ---
-title: "2018-01-10_simulate_perf_curves"
-author: "Antdrew D. Nguyen, Evolutionary Physiologist"
-
-output: 
+title: "Simulating performance curves"
+author: "Andrew D. Nguyen, Quantitative Biologist"
+output:
   html_document: 
+    toc: yes
     theme: cerulean
+  pdf_document:
     toc: yes
 ---
 
@@ -31,11 +32,14 @@ setup<-theme_bw()+theme(axis.title.x=element_blank(),
 
 # Workflow
 
+This simulation estimates broad sense heritability and assumes the experimental design where clones of the same species are repeatedly and independently sampled. When these clones are measured across an environmental gradient (or any gradient), then the genetic associations of the population of clones can be expressed as the G matrix, or variance-covariance matrix. 
+
 Simulate 3 possible outcomes for how performance curves (modeled as a gaussian function) can vary: 
 
 1. Veritical --traits are all correlated across environmental gradient
 2. Horizontal -- optimum varies along environmental gradient; so genotypes/clones have different optimum
 3. Generalist-specialist -- those with higher max performance, also operate over a smaller window along the environmental gradient 
+
 
 
 For each possibility:  

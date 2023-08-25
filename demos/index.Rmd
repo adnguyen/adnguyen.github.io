@@ -16,33 +16,42 @@ This page demos codes that I've worked on over the years. I enjoy learning diffe
 
 I hope this page will serve as a useful reference! Across all scripts, I show the libraries I've loaded and output the sessioninfo to facilitate reproducibility. 
 
+
+
 ### Data visualization and statistics in R:     
 
-* Demo'ing [tidyverse](ggplot.html) starting from a fruit fly dataset to publication quality figures
-  * barplots, scatterplots, multi-panel plots in ggplot2   
+* [Demo'ing tidyverse](ggplot.html) starting from a fruit fly dataset to publication quality figures
+  * barplots, cumulative density plots, scatterplots, multi-panel plots in ggplot2    
+  * Survival analysis and machine learning with SVM    
 
 * Demos for maps:      
     * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*       
-    * [Grabbing land cover data](20160219_grabbing_land_cover_data.html)   
-    * [Grabbing tree canopy cover](2017-03-06_tree_cover.html)    
     * Make interactive maps with [leaflet](Leaflet_code.html)
+
+### Independent [Kaggle](https://www.kaggle.com/) Projects:    
+* Stroke Prediction [dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset?resource=download), [exploratory analyses](stroke.pdf)   
+
+
+### Reasoning with Uncertainty:   
+
+* My [shinyapp](https://antdrewdnguyen.shinyapps.io/dempster_shafer/) for binary classification using Dempster-Shafer Theory (DST). This specific use case of DST accounts for model uncertainty for predictions and then combining different sources of evidence. 
+
+
+### Unpublished projects:   
 
 * Surveyed ants for gene expression exposed to [experimental warming in nature](20170508_stressed_ants_report_forSHC_NJG.html)  
     * Script starts from calculating log2 fold change in gene expression to statistical models to predicting stress back out into nature.   
 
-* My review of [1-way ANOVA](20170601_ANOVA_vignette.html): calculating sums of squares.
 
-### Function-valued traits  
+### Simulations: traits as functions   
 
+* Evaluating evolutionary responses to selection of performance curves using statistical genetics approaches by Joel Kingsolver. [Simulating Data for clones and their performance curves, estimating G, and decomposing the variation in G](2018-01-10_simulate_perf_curves.html)  
 * Diapause exit as a function valued trait: [Plotting parameters of diapause termination](2018-01-10_phases_of_diapause_exit.html)
 * Gene expression as function-valued trait demo: [Fitting boltzmann curve to transcript abundance dataset](Function_valued_traits.html)    
 * Proteins unfolding as a function valued trait: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)      
-    * Messing around with unfolding parameters and interpretting their biological significance: [Unfolding curve parameter tweaks](2020-03-12_unfolding_curves.html)    
-* Evaluating evolutionary responses to selection of performance curves using statistical genetics approaches by Joel Kingsolver. [Simulating Data for clones and their performance curves, estimating G, and decomposing the variation in G](2018-01-10_simulate_perf_curves.html)
+    * Simulating unfolding parameters and interpreting their biological significance: [Unfolding curve parameter tweaks](2020-03-12_unfolding_curves.html)    
 
-### Reasoning with Uncertainty   
 
-* My [shinyapp](https://antdrewdnguyen.shinyapps.io/dempster_shafer/) for binary classification using Dempster-Shafer Theory, accounting for model uncertainty. 
 
 
 
