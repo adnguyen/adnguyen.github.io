@@ -10,9 +10,127 @@ editor_options:
 # Libraries
 
 ```{r libraries,message=FALSE}
-library(tidyverse)
+library(tidyverse) # data wrangling
+library(caret) # ML , training and testing
+library(rpart) # ML
+library(rpart.plot) # plotting ML models
+library(vip) # identifying feature importance 
+library(smotefamily) # for handling imbalnces in dataset
+#ggplot2 settings I like: 
+T<-theme_bw()+theme(,text=element_text(size=18),
+                    axis.text=element_text(size=18),
+                    panel.grid.major=element_blank(),
+                    panel.grid.minor.x = element_blank(),
+                    panel.grid = element_blank(),
+                    legend.key = element_blank(),
+                    axis.title.y=element_text(margin=margin(t=0,r=15,b=0,l=0)),
+                    axis.title.x=element_text(margin=margin(t=15,r=,b=0,l=0)))
+#+ theme(legend.position="none")
 ```
 
+# Loading the data
+
+I downloaded the [Stroke Prediction Database](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset?resource=download) from kaggle. There are 11 clinical features for predicting stroke events.   
+
+Let's load it in and see what it looks like! We also need to process the data and remove ID because it is only an unique identifier, remove unknown smokers, and remove bmi NA values. 
+
+
+
+```{r load the data}
+dat<-read.csv("data/healthcare-dataset-stroke-data.csv")
+
+#get a sense of the data with glimpse
+glimpse(dat)
+#need to make bmi a numeric
+dat$bmi<-as.numeric(dat$bmi)
+#need to remove ID and and samples with no BMI measurements
+#filter out unknown smokers too
+dat<-dat%>%
+  dplyr::select(!id)%>%
+  dplyr::filter(bmi!="N/A")%>%
+  dplyr::filter(smoking_status!="Unknown")
+#let's se how many people get strokes in this sample
+dat%>%
+  group_by(stroke)%>%
+  count()%>%
+  knitr::kable()
+
+dat$stroke<-factor(dat$stroke)
+glimpse(dat)
+```
+
+For the dataset:   
+
+I'm not seeing many stroke events here.    
+
+For the variables:
+
+What I see missing here is diet, exercise, and sleep, which would be nice to have. But these variables can definitely impact the ones listed such as heart health.
+
+I would like to try a decision tree model because I want to see if it produces intuitive cut-offs in these features. The interpretation could be cleaner because the data don't have to be standardized and the continue variables retain their original units. 
+
+We can compare the performance of a decision tree with a logistic regression. To avoid overfitting our models, let's split the dataset into training and test. 
+
+## Splitting dataset into training and testing
+
+* Training = 70% of data
+* Testing = 30% of data
+
+```{r}
+intrain <- createDataPartition(y = dat$stroke, p= 0.7, list = FALSE)
+training <- dat[intrain,]
+testing <- dat[-intrain,]
+
+```
+
+### Fit a logistic regression 
+
+* fit three 10-fold cross validated logistic regression models    
+
+```{r glm logistic regression, warning=FALSE}
+#for reproducibility 
+set.seed(123)
+logistic.reg <- train(
+  stroke ~ ., 
+  data = dat, 
+  method = "glm",
+  family = "binomial",
+  trControl = trainControl(method = "cv", number = 10)
+)
+# predict class on test dataset
+pred_class <- predict(logistic.reg,testing)
+
+# create confusion matrix
+confusionMatrix(table(pred_class, testing$stroke))
+vip(logistic.reg) ### figuring out variable importance
+```
+
+Performance is terrible, lots of false positives.
+
+### Fit a decision tree
+
+
+```{r decision tree}
+
+
+trctrl <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
+
+set.seed(3333)
+#dtree_fit<-rpart(stroke~.,data=training,method="class")
+dtree_fit <- train(stroke ~., data = training, method = "rpart",
+                   parms = list(split = "information"),
+                   trControl=trctrl,
+                   tuneLength = 10)
+prp(dtree_fit$finalModel, box.palette = "Reds")
+
+pred_class2 <- predict(dtree_fit,newdata=testing)
+
+confusionMatrix(table(pred_class2, testing$stroke))
+vip(dtree_fit)
+
+```
+
+These performances are terrible. I'm [finding that others are finding the same issue I'm having](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset/discussion/359384) in that the features don't have a great association with the event, stroke. And there is a suggestion to use SMOTE as a way to handle imbalances within the dataset. 
 
 
 # SessionInfo
