@@ -5,7 +5,7 @@ date: "2023-08-25"
 output:
   pdf_document:
     toc: yes
-    toc_depth: 3
+    toc_depth: 5
   html_document:
     theme: cosmo
     toc: yes
@@ -23,6 +23,7 @@ library(tidyverse) # for ggplot2, data visualization and data filtering with dpl
 library(ggbeeswarm) # for quasirandom plotting
 library(caret)# for ML analysis
 library(survival) # for survival analysis
+library(mclust) # cluster analysis 
 
 #ggplot2 settings I like: 
 T<-theme_bw()+theme(,text=element_text(size=18),
@@ -107,7 +108,7 @@ ggplot(ecl.num,aes(y=n,x=factor(eclfac),fill=factor(eclfac)))+
 
 ### Empirical Cumulative Distribution Function plots
 
-Let's remove the ones that have not eclosed and observe their differences in timing and we can visualize the data as a cumulative distribution plot. 
+Let's remove the ones that have not eclosed (data could be right censored too) and observe their differences in timing and we can visualize the data as a cumulative distribution plot. 
 ==Remember to save the figure with ggsave() and you can specify the dpi and dimensions of the plot.== 
 
 I think this is a nice plot to show for these data. You can see that fruit flies on apple host eclose (adult emergence from pupae) sooner than fruit flies on hawthorn fruit. (See survival analysis below!) 
@@ -120,13 +121,13 @@ ggplot(ff1,aes(x=new.eclosions,colour=Host))+
   stat_ecdf(linewidth=1)+
   facet_wrap(~treatment)+T+
   scale_x_continuous(limits=c(0,300),
-                    labels=seq(0,300,100),breaks=seq(0,300,100))+
+  labels=seq(0,300,100),breaks=seq(0,300,100))+
   xlab("Days Until Adult Emergence (Days)")+ylab("ECDF")
 
 ```
 
 
-### Quasirandom plots 
+### Quasirandom plots  
 
 These types of plots are nice to show the distribution of the data. In this case, we have continuous data on the y axis and categorical on the x. 
 ```{r quasi random plots}
@@ -148,7 +149,7 @@ ggplot(ff1,aes(x=Host,y=new.eclosions,fill=Host))+
 It looks like there are two populations within the RT treatment. When conditions are optimal for growth (they're at room temperature and not diapausing), then there looks to be a subpopulation that emerges very quickly. 
 
 
-### Scatter plots to display regressions
+### Scatter plots to display regressions   
 
 For illustrative purposes, I'm plotting mass with eclosion days just to show how to implement scatter plots. 
 
@@ -163,7 +164,7 @@ ggplot(ff1,aes(x=mass_day10,y=new.eclosions,colour=Host))+
 
 ```
 
-## Survival analysis
+## Survival analysis   
 
 The data are best suited for a surival analysis because we have time of events. I'll fit a cox hazard proportional regression model to identify interactions between treatment and host fruit on eclosion timing. 
 
@@ -180,16 +181,81 @@ summary(coxmod)
 
 There are two main effects: host fruit and treatment. Compared to Apple, the Hawthorne fruit has a 34.77% lower eclosion (hazard) rate, which supports the ECDF figure where fruit flies on apple fruit had earlier eclosion timing. The simulated overwintering effect had a 53.39% lower eclosion (hazard) rate than the room temperature treatment. This makes sense because overwintering costs energy and energy levels become depleted afterwards, so development to eclosion is slower. 
 
-## Machine Learning -> predicting host fruit from organismal features
+Cox hazard regression models assumes a proportional hazard ratio. But the ECDF plots show that for the RT treatment, this assumption is violated. From the quasi-random plots, you can see that there are 3 populations of early, medium, and longer eclosers. Let's see if we can create clusters from eclosion timing.     
+
+## Cluster Analysis on adult emergence timing (eclosion)
+
+I'll be using mclust, which uses a guassian finite mixture model fitted by EM algorithm.   
+
+```{r cluster analysis}
+mcbic<-mclustBIC(ff1$new.eclosions)#
+plot(mcbic) #finding the optimal number of clusters
+#based on BIC criterion
+clustmod1 <- Mclust(ff1$new.eclosions, x = mcbic)
+summary(clustmod1, parameters = TRUE)
+#plot(clustmod1,what="classification")
+
+ff1$ecl.class<-factor(predict(clustmod1)$classification)
+#rename clusters
+ff1$ecl.class<-ifelse(ff1$ecl.class=="1","Non-Diapause",ifelse(ff1$ecl.class=="2","Shallow Diapause","Late Diapause"))
+#need to reorder factors
+#
+ff1$ecl.class<-factor(ff1$ecl.class,levels=c("Non-Diapause","Shallow Diapause","Late Diapause"))
+#plot out new classifications
+#need to add sample sizes to facets 
+ff1<-ff1%>%
+  dplyr::group_by(treatment,ecl.class)%>%
+  mutate(nfac=paste("N = ",length(ecl.class),sep=""))
+
+ecl.trt<-ggplot(ff1,aes(x=Host,y=new.eclosions,fill=ecl.class,group=ecl.class))+
+  geom_quasirandom(size=2,alpha=.5,
+                   shape=21,colour="black")+ 
+  facet_wrap(~treatment)+
+  ylab("Days Until Adult Emergence (Days)")+
+  stat_summary(fun = mean, geom = "errorbar",
+               aes(ymax =after_stat(y) , ymin = after_stat(y)),width = .75,lwd=1,colour="black")+
+  T+guides(fill=guide_legend(title="Eclosion Class"))+theme(legend.position="top")
+ecl.trt
+#ggsave(ecl.trt,filename="2023.08.26_adultemergence_byeclosionclass.png",dpi=300,width=10,height=5)
+
+e1<-ggplot(ff1,aes(x=new.eclosions,colour=Host))+
+  stat_ecdf(linewidth=1)+
+  facet_wrap(treatment~ecl.class~nfac,scale="free_x")+T+
+  xlab("Days Until Adult Emergence (Days)")+ylab("ECDF")
+#+scale_x_continuous(limits=c(0,300),
+  #labels=seq(0,300,100),breaks=seq(0,300,100))
+e1
+#ggsave(e1,filename="2023.08.26_ECDF_clusters.png",dpi=300,width=15,height=7.5)
+```
+
+There's no variation in group 1 (early eclosers) and group 3(late eclosers) have very few sample sizes. We can partition data to just focus on group 2 (medium eclosers).    
+
+### Survival analysis under new eclosion clusters   
+
+```{r survival #2}
+ff1.2<-ff1%>%
+  dplyr::filter(ecl.class=="Shallow Diapause")
+coxmod2<-coxph(Surv(new.eclosions, eclfac) ~ Host*treatment,data=ff1.2)
+summary(coxmod2)
+
+```
+
+There is a staticial trend (not significant) for a host by treatment interaction such that there flies emerging from hawthorne fruit have a slower rate of eclosion compared to applies under SO than RT treatments. This is all focused on the group 2 eclosers (medium timing).  
+
+
+## Machine Learning -> predicting host fruit from organismal features   
 
 Is it possible to predict host fruit based on the measurements we made? We'll create data partitions for training and then testing the model. 
 
 ```{r SVM }
-ff2<-ff1%>%
+ff2<-ff1[,-11:-12]%>%
   dplyr::filter(treatment=="SO")%>%
   dplyr::select(hfac,mass_day10,resp_day15,new.eclosions)
   #just picking out variables that we want 
+ff2<-ff2[,-1]
+
 intrain <- createDataPartition(y = ff2$hfac, p= 0.7, list = FALSE)
+
 training <- ff2[intrain,]
 testing <- ff2[-intrain,]
 
