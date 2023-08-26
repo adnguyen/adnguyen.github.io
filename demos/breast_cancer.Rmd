@@ -1,0 +1,115 @@
+---
+title: "Breast Cancer Survivor"
+author: "Andrew Nguyen"
+date: "2023-08-26"
+output: 
+  pdf_document: 
+    toc: yes
+    toc_depth: 3
+    number_sections: yes
+editor_options: 
+  chunk_output_type: console
+---
+# Load Libraries and dataset
+I have downloaded a **[breast cancer dataset](https://www.kaggle.com/datasets/kreeshrajani/breast-cancer-survival-dataset)** from Kaggle. It has the following variables: 
+
+>The dataset contains information on breast cancer patients, including their Patient_ID, Age, Gender, and expression levels of four proteins (Protein1, Protein2, Protein3, Protein4). The dataset also includes the Breast cancer stage of the patient (Tumor_Stage), Histology (type of cancer), ER, PR, and HER2 status, Surgery_type, Date of Surgery, Date of Last Visit, and Patient Status (Alive/Dead).
+
+Also...
+
+>This information can be used to analyze the relationship between protein expression levels, cancer stage, and patient outcomes. It can also be used to understand the impact of different types of surgeries on patient survival and to identify potential risk factors for breast cancer progression.
+
+From this information, I'm going to assume that the different in time from surgery date and date of last visit is the time of event. 
+
+
+
+```{r, message=FALSE}
+library(tidyverse)# package for data wrangling 
+library(lubridate) # package for timing
+library(survival) # for fitting cox hazard proportional regression models
+
+dat<-read.csv("data/breast_cancer_survival.csv")
+dat <- dat %>%
+  mutate(across(where(is.character), as.factor))
+glimpse(dat)
+
+
+summary(dat)
+### gender -> exclude from analysis, only 4 males
+#N = 334 
+# ER.status, PR.status are not informative
+#HER2.status is not very informative either 
+
+#check how many have survived and not 
+dat%>%
+  group_by(Patient_Status)%>%
+  count(Patient_Status)
+
+dat%>%
+  dplyr::group_by(Surgery_type)%>%
+  count(Patient_Status)
+# there are missing values for patient status  
+
+
+```
+
+
+
+## Data cleaning:  
+
+Data cleaning list to conduct a survival analysis:    
+
+1. We need to find out the time between date of surgery and date of last visit.
+2. We also need to exclude the missing values for patient status. 
+3. Exclude the gender,ER.status,PR.status,HER2.status, category from analysis because there are too few males 
+
+
+```{r data cleaning}
+
+# removing missing patient status values 
+dat.stat<-dat%>%
+  dplyr::filter(Patient_Status!="")
+#removed 13 samples 
+
+##find out the timing 
+dat.stat$time<-time_length(interval(dmy(dat.stat$Date_of_Surgery),dmy(dat.stat$Date_of_Last_Visit)),"day")
+### there are NA's, should be removed 
+dat.stat<-dat.stat%>%
+  dplyr::filter(!is.na(time))%>%
+  mutate(ps=as.numeric(ifelse(Patient_Status=="Alive",1,2)))
+# alive =1, dead = 0 
+#dat.stat$Patient_Status<-factor(dat.stat$Patient_Status,levels=c("Dead","Alive"),labels=c("1","2"))
+#removes 4 samples
+```
+
+## Fitting cox hazard proportional regression models (survival analysis)
+
+Variables of interest:   
+* Age  
+* Protein 1-4   
+* Histology  
+* Tumour stage  
+* Surgery type -> probably the most important given that this is the intervention   
+
+
+
+```{r, warning=FALSE}
+### let's explore protein levels
+mod1<-coxph(Surv(time, ps) ~ Protein1+Protein2+Protein3+Protein4+Age+Surgery_type+Tumour_Stage+Histology, data = dat.stat) 
+
+summary(mod1)
+
+
+```
+
+### Results
+
+No significant effects observed in the hazard rate of breast cancer patients undergoing different types of surgery or patients with different types of histology or tumor status. There may be a trend for tumour status such that patients with stage III tumours have 129% higher hazard death rate than stage III tumours.    
+
+Patients with greater protein 4 have 76% increase in the hazard death rate per unit of concentration.
+
+
+# sessionInfo
+```{r}
+sessionInfo()
+```

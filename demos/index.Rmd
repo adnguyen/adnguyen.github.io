@@ -18,15 +18,19 @@ I hope this page will serve as a useful reference! Across all scripts, I show th
 
 ### Data visualization and statistics in R:     
 
-* [Demo'ing tidyverse](ggplot.pdf) starting from a fruit fly dataset to publication quality figures
-  * barplots, cumulative density plots, scatterplots, multi-panel plots in ggplot2    
+* [Demo'ing tidyverse](ggplot.pdf) starting from a fruit fly dataset   
+  * publication quality barplots, cumulative density plots, scatterplots, multi-panel plots        
   * Survival analysis and machine learning with SVM    
 
 * Demos for maps:      
     * [Demo](RasterPCA_demo.html) for making maps in R and performing PCA on climate rasters with *rasterPCA()*       
     * Make interactive maps with [leaflet](Leaflet_code.html)
 
-### Independent [Kaggle](https://www.kaggle.com/) Projects:    
+### Exploring [Kaggle](https://www.kaggle.com/) datasets:   
+
+Kaggle has a wealth of datasets for data scientists to explore different analyses.   
+
+* [Breast Cancer](breast_cancer.pdf) survival analysis  
 * Stroke Prediction [dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset?resource=download), [exploratory analyses](stroke.pdf)   
 
 
@@ -48,9 +52,6 @@ I hope this page will serve as a useful reference! Across all scripts, I show th
 * Gene expression as function-valued trait demo: [Fitting boltzmann curve to transcript abundance dataset](Function_valued_traits.html)    
 * Proteins unfolding as a function valued trait: [Fitting unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)      
     * Simulating unfolding parameters and interpreting their biological significance: [Unfolding curve parameter tweaks](2020-03-12_unfolding_curves.html)    
-
-
-
 
 
 ---------
