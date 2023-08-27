@@ -13,7 +13,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-I'll be demo'ing the tidyverse, surival analysis, and SVM on a project I worked on in my postdoc at the Unversity of Florida. The project details are publicly available through this github repository. 
+\newpage   
+
+# Introduction 
+
+I'll be demo'ing the tidyverse, survival analysis (cox hazard proportional regression), and machine learning techniques (SVM) on a project I worked on in my postdoc at the Unversity of Florida. The project details are publicly available through **[this github repository](https://github.com/adnguyen/Circadian_rhythm_runs_seasonal_timing).** 
 
 
 # Load libraries 
@@ -228,7 +232,7 @@ e1
 #ggsave(e1,filename="2023.08.26_ECDF_clusters.png",dpi=300,width=15,height=7.5)
 ```
 
-There's no variation in group 1 (early eclosers) and group 3(late eclosers) have very few sample sizes. We can partition data to just focus on group 2 (medium eclosers).    
+There's no variation in group 1 (early eclosers) between species (apple vs haw) and group 3 (late eclosers) have very few sample sizes. We can partition data to just focus on group 2 (medium eclosers).    
 
 ### Survival analysis under new eclosion clusters   
 
@@ -240,7 +244,7 @@ summary(coxmod2)
 
 ```
 
-There is a staticial trend (not significant) for a host by treatment interaction such that there flies emerging from hawthorne fruit have a slower rate of eclosion compared to applies under SO than RT treatments. This is all focused on the group 2 eclosers (medium timing).  
+There is a staticial trend (not significant) for a host by treatment interaction suggesting greater divergence timing between flies on apple vs haw under SO than RT treatments. This is all focused on the group 2 eclosers (shallow diapausers).  
 
 
 ## Machine Learning -> predicting host fruit from organismal features   
