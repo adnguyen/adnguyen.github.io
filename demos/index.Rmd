@@ -28,6 +28,7 @@ Kaggle has a wealth of datasets for data scientists to explore different analyse
 
 ### Decision making under uncertainty:   
 
+* Vignette on the general application of [Dempster-Shafer Theory](DSTmodel_uncertainty.pdf) for decision making       
 * My [shinyapp](https://antdrewdnguyen.shinyapps.io/dempster_shafer/) for binary classification using Dempster-Shafer Theory (DST). This specific use case of DST accounts for model uncertainty for predictions and then combining different sources of evidence. 
 
 ### Simulations: traits as functions   

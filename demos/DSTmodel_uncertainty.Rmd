@@ -126,7 +126,7 @@ Typically, posterior probabilities from say a logistic regression would show a f
 
 Here, I'll simulate posterior probabilities, and model uncertainties to determine how it impacts decision making. 
 
-```{r simulating model uncertainty}
+```{r simulating model uncertainty, fig.height = 10, fig.width = 7}
 #simulate a range of model uncertainty 
 #both in the positive predictive value 
 # and negative predictive value 
@@ -173,7 +173,21 @@ ggplot(d.long,aes(x=yes,colour=decision))+
 
 ```
 
+Thoughts:   
+
 What you can see is that decisions can't be made if there is too much uncertainty (0-0.5 model performance). But, at 0.6 model performance, posterior probabilities have to be very high in order to make a confident decision. And then you can see traditionally, if we assume a perfect model, model performance = 1, then the support bands are flat, which is typically how we treat predictive models in general.  
+
+# Summary   
+
+DST offers a flexible and creative approach to accounting for uncertainty when making a decision. DST re-frames sources of evidence such that uncertain cases can have some level of evidence assigned to it. The assignment of the degree of evidence, or masses can resemble probabilities across all answers. The approach outlined here involves restructuring poster probabilities from a model into masses. This is done by scaling the posterior probabilities by model performance, which is derived from the confusion matrix. In traditional machine learning approaches, data are split into training and testing. The confusion matrix of the model applied to the testing dataset could be used. Based on the masses, then the degree of support can be calculated to help inform decision-making.    
+
+
+# RshinyApp
+
+Try plugging in your own posterior probabilities or masses and plug in your own PPV or NPV in this **[RShinyApp](https://antdrewdnguyen.shinyapps.io/dempster_shafer/).** 
+
+
+
 
 # References    
 
