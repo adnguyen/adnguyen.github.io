@@ -1,0 +1,55 @@
+---
+title: "Title - SQL demo"
+author: "Author: Andrew D. Nguyen, PhD, Quantitative Biologist"
+date: "Date:2023-08-27"
+output: 
+  pdf_document: 
+    toc: yes
+    toc_depth: 5
+    number_sections: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+\newpage
+
+# Introduction -> Goals   
+
+In this demo, I become more familiar with interacting with SQL databases. I'll be following a tutorial from **[data carpentry](https://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html)**, but I'd also like to peruse open databases to become more versed in SQL and querying databases into R for data wrangling and analyses. Lastly, I'll construct my own databases from datasets I have generated.    
+
+# Load Libraries
+
+```{r load libaries, message=FALSE}
+library(tidyverse) # data wrangling
+library(RSQLite) # SQL - R package
+library(dbplyr) # SQL - R package, lets dplyr apply to
+#SQL databases
+```
+
+# The database - Portal Mammals Database
+
+I have to first download the portal mammals database off of figshare. Then, load the mammals database.
+
+```{r portal mammals database}
+#download.file(url = "https://ndownloader.figshare.com/files/2292171",
+#              destfile = "data/portal_mammals.sqlite", mode = "wb")
+# load data
+mammals<-DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
+#This command does not load the data into the R session
+#(as the read_csv() function did). 
+#Instead, it merely instructs R 
+#to connect to the SQLite database
+#contained in the portal_mammals.sqlite file.
+
+#now, lets see what the database is made of
+src_dbi(mammals)
+```
+
+
+
+# SessionInfo
+
+```{r session info}
+sessionInfo()
+
+```
