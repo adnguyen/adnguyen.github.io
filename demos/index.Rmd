@@ -26,7 +26,7 @@ Kaggle has a wealth of datasets for data scientists to explore different analyse
 * Stroke Prediction [dataset](https://www.kaggle.com/datasets/fedesoriano/stroke-prediction-dataset?resource=download), [exploratory analyses](stroke.pdf)   
 
 
-### Reasoning with Uncertainty:   
+### Decision making under uncertainty:   
 
 * My [shinyapp](https://antdrewdnguyen.shinyapps.io/dempster_shafer/) for binary classification using Dempster-Shafer Theory (DST). This specific use case of DST accounts for model uncertainty for predictions and then combining different sources of evidence. 
 

@@ -1,0 +1,44 @@
+---
+title: "Dempster-Shafer Theory - Decision making under uncertainty"
+author: "Author: Andrew D. Nguyen, PhD, Quantitative Biologist"
+date: "2023-08-27"
+output: 
+  pdf_document: 
+    toc: yes
+    toc_depth: 5
+    number_sections: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+\newpage
+
+# Introduction 
+
+Dempster-Shafer Theory (DST) is a way to account for uncertainty when making a decision. For example, imagine the answer to a question has two mutually exclusive outcomes: yes or no. Then, DST, would describe this as the *frame of discernment*, or $\theta$, where,
+
+$$ \theta = \{yes,no\}$$
+But, when we try to estimate these answers, there are multiple possibilities, especially if you're unsure. For example, sometimes when you measure something, you're not sure if the answer is yes or no. All possible states are represented as a power set, $2^\theta$, such that
+
+$$2^\theta = \{\{\emptyset\},\{yes\},\{no\},\{\theta\}\}$$
+and notice that $\theta = \{yes,no\}$, which is the set where you're sure whether the answer is yes or no. 
+
+## References    
+
+* Rathman JF, Yang C, Zhou H. **[Dempster-Shafer theory for combining in silico evidence and estimating uncertainty in chemical risk assessment](https://www.sciencedirect.com/science/article/abs/pii/S2468111318300197)**. Comput Toxicol. 2018;6:16-31. doi:10.1016/j.comtox.2018.03.001   
+
+
+# Load libraries
+
+```{r load libraries, message=FALSE}
+library(tidyverse) # data wrangling, visualization
+library(EvCombR) # package for dempster shafer
+```
+
+
+# Session info 
+
+```{r session info }
+sessionInfo()
+
+```
