@@ -37,12 +37,33 @@ I have to first download the portal mammals database off of figshare. Then, load
 mammals<-DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
 #This command does not load the data into the R session
 #(as the read_csv() function did). 
-#Instead, it merely instructs R 
+#Instead, it instructs R 
 #to connect to the SQLite database
 #contained in the portal_mammals.sqlite file.
 
 #now, lets see what the database is made of
 src_dbi(mammals)
+
+## querying database with tbl
+tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
+
+surveys <- tbl(mammals, "surveys")
+surveys %>%
+    select(year, species_id, plot_id)
+
+show_query(head(surveys, n = 10))
+
+surveys %>%
+  filter(weight < 5) %>%
+  select(species_id, sex, weight)
+##R is lazy and doesn't read in data until specified
+# using collect to read in the data into R
+data_subset <- surveys %>%
+  filter(weight < 5) %>%
+  select(species_id, sex, weight) %>%
+  collect()
+data_subset
+
 ```
 
 
