@@ -43,6 +43,10 @@ mammals<-DBI::dbConnect(RSQLite::SQLite(), "data/portal_mammals.sqlite")
 
 #now, lets see what the database is made of
 src_dbi(mammals)
+##look up headers, would help to join tables
+# in the future
+
+
 
 ## querying database with tbl
 tbl(mammals, sql("SELECT year, species_id, plot_id FROM surveys"))
@@ -56,6 +60,8 @@ show_query(head(surveys, n = 10))
 surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight)
+
+names(surveys)
 ##R is lazy and doesn't read in data until specified
 # using collect to read in the data into R
 data_subset <- surveys %>%
@@ -64,8 +70,40 @@ data_subset <- surveys %>%
   collect()
 data_subset
 
+
+##I'm exploring all of the datasets within the database
+src_dbi(mammals)
+#there are:
+#plots
+#species
+#surveys -already set to a variable
+##look up headers, would help to join tables
+# in the future
+plots<-tbl(mammals, "plots")
+names(plots)
+
+sp<-tbl(mammals, "species")
+names(sp)
+names(surveys)
+
+##we can join datasets based on plot id = 1
+plots %>%
+  filter(plot_id == 1) %>%
+  inner_join(surveys) %>%
+  collect()
+
 ```
 
+# Create my own database
+
+```{r}
+a<-read.csv("data/phd_data/20160517_ANBE_ant_sampling.csv")
+b<-read.csv("data/phd_data/20160609_hsp_gxp_assembled.csv")
+b$colony.id2<-b$colony #making sure colony id is consistent
+
+
+
+```
 
 
 # SessionInfo
