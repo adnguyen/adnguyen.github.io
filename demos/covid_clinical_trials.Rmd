@@ -1,0 +1,56 @@
+---
+title: "Covid_clinical_trials"
+author: "Andrew D. Nguyen, PhD, Quantitative Biologist"
+date: "2023-08-30"
+output: 
+  pdf_document: 
+    toc: yes
+    toc_depth: 3
+    number_sections: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+\newpage
+
+# Load Libraries
+
+```{r, message=FALSE}
+library(tidyverse)
+
+```
+
+
+# Load in data and explore it
+
+Data downloaded from Kaggle: [Lung Cancer Clinical Trial](https://www.kaggle.com/datasets/clancy33/lung-cancer-clinical-trial)
+
+## Metadata and background    
+
+From Kaggle dataset webpage: 
+
+
+## Analytical approach   
+
+I'll fit a cox hazard proportional regression model to determine the effects of C-reactive protein (difference between day 180 and day 0), treatment, stratisfied by sex. 
+
+
+
+```{r clinical trial data}
+
+dat<-read.csv("data/patient_survival.csv")
+glimpse(dat)
+summary(factor(dat$Completion.Date))
+## count nas across all columns
+dat %>%
+  select(everything()) %>%  # replace to your needs
+  summarise_all(funs(sum(is.na(.))))
+
+
+```
+
+# Session info
+
+```{r session info}
+sessionInfo()
+```

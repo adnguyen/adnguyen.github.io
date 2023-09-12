@@ -97,7 +97,9 @@ plots %>%
 # Create my own database
 
 ```{r}
-a<-read.csv("data/phd_data/20160517_ANBE_ant_sampling.csv")
+a<-read.csv2("data/phd_data/20160517_ANBE_ant_sampling.csv") 
+head(a)
+#trait data and 
 b<-read.csv("data/phd_data/20160609_hsp_gxp_assembled.csv")
 b$colony.id2<-b$colony #making sure colony id is consistent
 
