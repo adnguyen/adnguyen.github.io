@@ -21,13 +21,13 @@ Andrew D. Nguyen
 Research Interests
 ---------
 
-I am broadly interested in constructing narratives drawn from data to address real world problems.
+I am broadly interested in constructing narratives from data to address real world problems.
 
 Experience
 ---------
 
 2019-Present
-:   **Associate Scientist**, People for the Ethical Treatment of Animals ([PETA](https://support.peta.org/page/27010/donate/1?utm_source=PETA::Google&utm_medium=Ad&utm_campaign=1220::gen::PETA::Google::S-P::eg::searchad&gclid=Cj0KCQiAvvKBBhCXARIsACTePW-gAE7NzY2QJe157VPDkUvaPpC6lyCT6aErfpv0k8UenI277WsF5ScaAksZEALw_wcB))
+:   **Associate Scientist**, People for the Ethical Treatment of Animals, Regulatory Toxicology Department   ([PETA](https://support.peta.org/page/27010/donate/1?utm_source=PETA::Google&utm_medium=Ad&utm_campaign=1220::gen::PETA::Google::S-P::eg::searchad&gclid=Cj0KCQiAvvKBBhCXARIsACTePW-gAE7NzY2QJe157VPDkUvaPpC6lyCT6aErfpv0k8UenI277WsF5ScaAksZEALw_wcB))
 
     Work collaboratively with government agencies and industry stakeholders on the adoption and usage of non-animal test methods in the areas of pyrogen testing and personal lubricants
     
@@ -137,10 +137,10 @@ Undergraduate researchers in *italics*
 7\. **Nguyen AD**, Gotelli NJ, Cahan SH. 2016. The evolution of heat shock protein sequences, cis-regulatory elements, and expression profiles in the eusocial Hymenoptera. BMC Evolutionary Biology 16:15. [Paper and Data](http://bmcevolbiol.biomedcentral.com/articles/10.1186/s12862-015-0573-0)
 <br/>
 <br/>
-6\. Helms Cahan S, Nguyen AD, Zhou Y. Population genomics supports multiple hybrid zone origins of socially hybridogenetic lineages of Pogonomyrmex harvester ants. Evolution (N Y). 2022;76(5):1016-1032. doi:10.1111/evo.14481
+6\. Helms Cahan S, **Nguyen AD**, Zhou Y. Population genomics supports multiple hybrid zone origins of socially hybridogenetic lineages of Pogonomyrmex harvester ants. Evolution (N Y). 2022;76(5):1016-1032. doi:10.1111/evo.14481
 <br/>
 <br/>
-5\. Stevens L, Lima-Cordón RA, Helms Cahan S, Nguyen AD, et al. Catch me if you can: Under-detection of Trypanosoma cruzi (Kinetoplastea: Trypanosomatida) infections in Triatoma dimidiata s.l. (Hemiptera: Reduviidae) from Central America. Acta Trop. 2021;224:106130. doi:10.1016/J.ACTATROPICA.2021.106130
+5\. Stevens L, Lima-Cordón RA, Helms Cahan S, **Nguyen AD**, et al. Catch me if you can: Under-detection of Trypanosoma cruzi (Kinetoplastea: Trypanosomatida) infections in Triatoma dimidiata s.l. (Hemiptera: Reduviidae) from Central America. Acta Trop. 2021;224:106130. doi:10.1016/J.ACTATROPICA.2021.106130
 <br/>
 <br/>
 4\. Helms Cahan S, **Nguyen AD**, Stanton-Geddes J, Penick CA, Hernáiz-Hernández Y, DeMarco BB, Gotelli NJ. 2017. Modulation of the heat shock response is associated with acclimation to novel temperatures but not adaptation to climatic variation in the ants Aphaenogaster picea and A. rudis. Comparative Biochemistry and Physiology Part A: Molecular & Integrative Physiology 204:113–120. [Paper](http://www.sciencedirect.com/science/article/pii/S109564331630277X) and [Data](https://zenodo.org/record/164924#.WIeZtbYrJTY)
