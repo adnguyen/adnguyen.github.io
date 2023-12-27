@@ -1,0 +1,215 @@
+---
+title: "Randomization and power analysis"
+author: "Andrew D. Nguyen, PhD"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 5
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+link-citations: yes
+---
+
+\newpage
+
+# Introduction:  
+
+The aim of this demo is to showcase how to conduct randomization and power analyses in clinical trial designs. R has a suite of packages geared towards clinical trial design, monitoring, and analyses (CRAN R Projects- Clinical Trials @zhang_cran_2021). I'm also modeling my demo off of Peter Higgin's *Reproducible Medical Research with R* book, chapter 20 (@higgins_2023). 
+
+# Load Libraries  
+
+```{r library,message=FALSE}
+library(tidyverse) # for ggplot2, data visualization and data filtering with dplyr 
+library(ggbeeswarm) # for quasirandom plotting
+library(pwr) # power analysis
+library(gsDesign) # power analysis for survival
+library(blockrand) # randomization package
+
+#ggplot2 settings I like: 
+T<-theme_bw()+theme(,text=element_text(size=18),
+                    axis.text=element_text(size=18),
+                    panel.grid.major=element_blank(),
+                    panel.grid.minor.x = element_blank(),
+                    panel.grid = element_blank(),
+                    legend.key = element_blank(),
+                    axis.title.y=element_text(margin=margin(t=0,r=15,b=0,l=0)),
+                    axis.title.x=element_text(margin=margin(t=15,r=,b=0,l=0)))
+#+ theme(legend.position="none")
+```
+
+# Power analyses and sample size calculations  
+
+It is important to find the appropriate number of participants in a clinical trial because too few participants may lead to an inability to detect differences (studies may be underpowered) and too many participants lead to excessive use of resources. 
+
+The critical information to obtain are:   
+
+* alpha ($\alpha$) level - probability of committing a type I error (false positive)  
+* beta ($\beta$) level - probability of committing a type II error (false negative)   
+  * sometimes the program will ask for power, which is 1-$\beta$ and is the probability of detecting differences if they truly exist    
+* effect size between groups (*cohen's d*)  
+  * Note that cohen's d is expressed as: $\frac{(\bar\mu_1 - \bar\mu_2)}{S_{pooled}}$, where $\bar\mu_1$ is the mean of one group and $\bar\mu_2$ is the mean of the other group, and $S_{pooled}$ is the pooled standard deviation. Therefore, cohen's d is interpreted in units of standard deviation.    
+* drop out rates  
+
+Other information to consider for survival analyses:  
+
+* rate of enrollment  
+* length of study  
+* hazard rate of each group   
+
+
+
+## T-test designs and sample size calculations     
+
+We will be using the *pwr* package. To start, let's estimate a sample size with:  
+
+* alpha = 0.05   
+* power = 0.80 (1-$\beta$)  
+* effect size, cohen's d  = 0.5, which is considered a moderate effect size
+
+
+```{r pwr t test two sample}
+pwr::pwr.t.test(sig.level=0.05,type="two.sample",power=.8,d=.5)
+
+```
+
+**Key result: 64 volunteers per arm.** We round up because there can be no fractional individuals.   
+
+For a different study design, let's assume there is a before and after measurement of a continuous variable and this would produce paired results with the same assumptions about $\alpha$,$\beta$, and cohen's d.  
+
+```{r pwr paired t-test}
+pwr::pwr.t.test(sig.level=0.05,type="paired",power=.8,d=.5)
+```
+
+**Key result: 34 volunteers per arm.**  
+
+We also may need to consider drop out rates. For example, if there is a 20% drop out rate, then add 20% to the sample sizes per arm. 34 x 20% = ~7, so we would need 41 volunteers.  
+
+### Simulating effect sizes and power 
+
+What if we don't know the effect size and want to find out sample sizes based on different inputs of effect size and power?  
+
+* simulating effect sizes from 0 to 2 in .1 increments   
+* over two levels of power (0.8 and .9)   
+
+```{r simulate t.test effsize power}
+#code to get sample size from pwr.t.test
+#round(pwr::pwr.t.test(sig.level=0.05,type="two.sample",power=.8,d=c(.5),n=NULL)$n,0)
+
+d<-data.frame(efsize=rep(seq(0.1,2,.1),2),
+              power=c(rep(.8,length(seq(0.1,2,.1))),
+                      rep(.9,length(seq(0.1,2,.1)))))
+d%>%
+  group_by(efsize,power)%>%
+  mutate(n=round(pwr::pwr.t.test(sig.level=0.05,
+                                 type="two.sample",power=power,
+                                 d=efsize,n=NULL)$n,0),
+         power2=paste("Power = ",power,sep=""))%>%
+  #power2 is for plotting
+  ggplot(.,aes(x=efsize,y=n,colour=factor(power)))+
+  geom_point()+geom_line()+
+  theme_minimal()+
+  geom_text(aes(label=n),vjust=-1)+
+  facet_wrap(~power2,ncol=1)+
+  xlab("Effect size (cohen's d)")+
+  ylab("Sample size per arm")+
+  theme(legend.position = "none")+
+  scale_x_continuous(,limits=c(0,2)
+                     ,breaks=seq(0,2,.25),
+                     labels=seq(0,2,.25))+
+  scale_y_continuous(limits=c(0,2500))
+
+```
+
+
+## Chi-square 2x2 contingency table design   
+
+In this design, let's say there are counts of diseased and not-diseased individuals that were exposed and not exposed to some chemical. We want to find the association between the two variables and we need to specify the expected proportions of the 2x2 under the alternative hypothesis. 
+
+```{r chisquare design}
+#ES.w2() # chi-square for test of association
+#pwr.chisq.test()
+
+d2<-data.frame(exposure=c("exposed","not exposed"),non_diseased=c(.25,.3),diseased=c(0.25,.2))
+knitr::kable(d2)
+```
+
+Now that we have the expected 2x2 matrix under the alternative hypothesis (not independent), then we need to identify the effect size with *ES.w2()* and then plug and chug with *pwr.chisq.test()* with $\alpha$ = 0.05 and power = 0.8.  
+
+```{r chisquare power analysis}
+ef.sim.dat<-ES.w2(d2[,-1])
+pwr.chisq.test(w=ef.sim.dat,df=1,power=.8,sig.level=.05)
+```
+
+**Key result: We need 778 observations.** Note that the degrees of freedom on 1 in this case for a 2x2 contingency table, which is calculated as (# of columns - 1) x (# of rows -1).      
+
+## Time to event types of designs  
+
+I will be using the *gsDesign* package and referencing an online resource [**here**](https://cran.r-project.org/web/packages/gsDesign/vignettes/SurvivalOverview.html). 
+
+
+```{r}
+
+hr=.7 # hazard ratio
+controlMedian<-8 # 8 months
+lambda1 <- log(2) / controlMedian #estimated hazard rate of control
+
+nSurvival(
+  lambda1 = lambda1,
+  lambda2 = lambda1 * hr, #hazard rate for experimental
+  Ts = 24, #24 months
+  Tr = 6, # 6 months
+  eta = .1, # 1 per month dropout rate
+  ratio = 1, # equal sampling
+  alpha = .05,
+  beta = .2
+)
+
+
+```
+
+# Randomization  
+
+Using the t-test design (2 trial arms), we'd like to implement block randomization across a strata. Often times, we can't sample participants all at once and so we need to apply treatments in groupings as they enroll in the study, or blocks. To ensure equal sampling of treatments across different sub-populations, randomization can be conducted at the level of different sub-populations (strata). For example, randomization can be conducted for males and females separately. With a sample size of 100 per arm, in a two-arm trial, I'm randomization across a gender strata.   
+
+```{r stratified block randomization}
+mrand<-blockrand(n = 100, 
+                     num.levels = 2, # three treatments
+                     levels = c("Con.Arm", "Treat.Arm"), # arm names
+                     stratum = "Strat.male", # stratum name
+                     id.prefix = "SM", # stratum abbrev
+                     block.sizes = c(3,4), # times arms = 6,8
+                     block.prefix = "blksm") # stratum abbrev
+
+frand<-blockrand(n = 100, 
+                     num.levels = 2, # three treatments
+                     levels = c("Con.Arm", "Treat.Arm"), # arm names
+                     stratum = "Strat.female", # stratum name
+                     id.prefix = "SF", # stratum abbrev
+                     block.sizes = c(3,4), # times arms = 6,8
+                     block.prefix = "blkfm") # stratum abbrev
+totrand<-rbind(mrand,frand)
+knitr::kable(head(totrand,25))
+```
+
+We can then create patient randomization "cards" based on the *blockrand()* output. 
+
+```{r blockrand card pdf}
+
+plotblockrand(totrand,'mystudy.pdf',
+              top=list(text=c('MyStudy','Patient:%ID%','Treatment:%TREAT%'),
+                       col=c('black','black','red'),font=c(1,1,4)),
+              middle=list(text=c("MyStudy","Sex:%STRAT%","Patient:%ID%"),
+                          col=c('black','blue','green'),font=c(1,2,3)),
+              bottom="Call123-4567toreportpatiententry", cut.marks=TRUE)
+
+```
+
+# Session Info
+```{r sessioninfo}
+sessionInfo()
+```
+
+# References  
+
