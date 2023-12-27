@@ -18,29 +18,35 @@ Andrew D. Nguyen
 
 ----
 
-Research Interests
+Career Profile
 ---------
 
-I am broadly interested in constructing narratives from data to address real world problems.
+I am a data-driven biologist with six years of relevant experience in biostatistics in addition to five years of PhD training. Over the past four years, I have excelled as a remote worker as a statistical analyst at a non-profit in the field of regulatory toxicology and worked for two years as a research scientist in an academic lab applying statistical techniques to understand seasonal timing in agricultural pests. The culmination of my experiences has led me to be skilled in constructing narratives from data to address real world problems.   
+
+My go-to tool is R (RStudio), where I have the most experience in data wrangling (cleaning, parsing, transforming), data analysis, simulations, and data visualization. I also have familiarity with Unix and Git version control. 
+
+Career Highlights 
+---------   
+
+* Served as a statistical lead and coordinator for projects in collaboration with the US EPA and US FDA   
+* Flexible and quick learner as exemplified in diverse professional experiences over the past 11 years    
+* Excellent scientific communicator as exemplified in 11 peer-reviewed publications and scientific presentations   
+
 
 Experience
 ---------
 
 2019-Present
-:   **Associate Scientist**, People for the Ethical Treatment of Animals, Regulatory Toxicology Department   ([PETA](https://support.peta.org/page/27010/donate/1?utm_source=PETA::Google&utm_medium=Ad&utm_campaign=1220::gen::PETA::Google::S-P::eg::searchad&gclid=Cj0KCQiAvvKBBhCXARIsACTePW-gAE7NzY2QJe157VPDkUvaPpC6lyCT6aErfpv0k8UenI277WsF5ScaAksZEALw_wcB))
+:   **Regulatory Scientific Strategist**, [(PSCI](https://www.thepsci.eu/), Regulatory Toxicology Department   
 
-    Work collaboratively with government agencies and industry stakeholders on the adoption and usage of non-animal test methods in the areas of pyrogen testing and personal lubricants
+    Developed database and analyzed chronic toxicity studies with quantitative (ANOVA, regression) and qualitative (Chi-square tests) approaches in collaboration with the U.S. Environmental Protection Agency (EPA) to inform risk assessments to pesticide exposure   
     
-    Aggregate and analyze diverse datasets of systemic toxicological apical endpoints to inform regulatory testing needs
+    Designed experiments, analyzed results (ANOVA), and submitted proposals to the US Food and Drug Administration (FDA) in support of regulatory use of in vitro methods for medical device evaluations    
     
-    Review *in silico* models of systemic toxicity and provide model developers with feedback    
+    Consulted food and medical device companies to support safety assessments in regulatory submissions to US FDA   
     
-    Research and draft safety testing strategies for food ingredients
-    
-    Create educational materials for the dissemination of non-animal test approaches for food testing and weight of evidence
-    
-    Disseminated scientific works and findings through blogs, webpages, factsheets, webinars, presentations, and peer-reviewed scientific literature
-    
+    Communicated scientific knowledge and findings in plain English to technical and non-technical stakeholders 
+
     
 
 2017 - 2019
@@ -59,13 +65,16 @@ Experience
 2012-2017
 : **Dissertation research**; University of Vermont    
 
-    Worked independently and in  collaboration to complete Dimensions of Biodiversity, National Science Foundation grant objectives        
+    Fitted functional response curves of transcriptomic and proteomic data to understand environmental damage to whole organisms
     
-    Completed projects starting from ideas to experimentation, data analysis, visualization, and manuscript preparation    
+    Used machine-learning techniques to predict species presence or absence over heterogeneous climatic landscapes
     
-    Disseminated research through seminars and workshops within the Biology Department
+    Applied quantitative genetics approaches such as fitting mixed-effects models to understand gene by environmental interactions
     
-    Organized weekly meetings for project progress and reported updates
+    Worked collaboratively with research groups spanning multiple universities
+    
+    Communicated research findings in peer-reviewed publications, intradepartmental meetings, and national conferences
+
     
 2014
 :   **Research Associate**, [Dr. Lori Stevens lab](https://www.uvm.edu/~biology/?Page=faculty/stevens.php&SM=facultysubmenu.html); University of Vermont   
@@ -172,7 +181,7 @@ Skills
 * RNA,DNA, and protein isolation    
 * PCR and qPCR     
 * Gel electrophoresis: polyacrylamide and agarose   
-* Immunochemistry - western blots, ELISAs, IHC 
+* Immunochemistry - western blots, ELISA, IHC 
 * Cell culture (primary and established lines)    
 * Flow Cytometry   
 
@@ -197,8 +206,12 @@ Insect Science
 Conferences/Workshops Attended
 -------------
 
+2023
+: American Society for Cellular and Computational Toxicology ([ASCCT](https://www.ascctox.org/annual-meeting)), Silver Spring, MD
+: [Biocompatibility Insights](https://medicaldevice.wuxiapptec.com/events/biocompatibility-insights/), Annapolis, MD   
+
 2022
-: ASCCT, Gaithersburg, MD
+: American Society for Cellular and Computational Toxicology ([ASCCT](https://www.ascctox.org/annual-meeting)), Gaithersburg, MD
 
 2020
 : [Practical Methods for In Vitro Toxicology Workshop](https://iivs.org/education-outreach/practical-methods-for-in-vitro-toxicology-workshop/), Gaithersburg, MD

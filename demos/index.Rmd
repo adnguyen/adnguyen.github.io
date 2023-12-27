@@ -22,6 +22,7 @@ I enjoy learning different analyses and interesting ways to show results. I hope
 
 * [Making maps](RasterPCA_demo.html) in R and performing PCA on climate rasters and a [leaflet demo](Leaflet_code.html) for making interactive maps
 
+
 # Exploring [Kaggle](https://www.kaggle.com/) datasets:   
 
 Kaggle has a wealth of datasets for data scientists to explore different analyses.   
