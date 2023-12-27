@@ -1,12 +1,16 @@
 ---
 title: "Simulating performance curves"
 author: "Andrew D. Nguyen, Quantitative Biologist"
+date: "`r Sys.Date()`"
 output:
   html_document: 
     toc: yes
     theme: cerulean
-  pdf_document:
-    toc: yes
+    toc_float: true
+    collapsed: false
+    smooth_scroll: false
+editor_options: 
+  chunk_output_type: console
 ---
 
 # Libaries
@@ -74,7 +78,7 @@ plot(gau()$t,gau()$performance,type="l")
 
 ## Simulate data with just vertical variation/responses
 
-### making the data
+### Simulating the data
 
 ```{r}
 #simulate vert values
@@ -210,7 +214,7 @@ dat3$t<-as.factor(dat2$t)
 
 ### Mixed effects model to estimate G
 
-```{r mixed efefcts model gen specialist}
+```{r mixed effects model gen specialist}
 ###model
 hwmod<-lmer(formula=performance~1+(0+t|colonies),REML=TRUE,data=dat3)
 #summary(hmod)
