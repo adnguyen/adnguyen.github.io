@@ -18,7 +18,7 @@ I enjoy learning different analyses and interesting ways to show results. I hope
 # Data wrangling, visualization, and statistics in R:     
 
 * *[tidyverse demo](ggplot.pdf)* from a fruit fly dataset and features survival analysis and machine learning with SVM    
-* [Sample size estimation and Stratified block randomization](Randomization_and_Power_analysis.pdf) - a demo on estimating sample sizes based and conducting randomization   
+* [Sample size estimation and stratified block randomization](Randomization_and_Power_analysis.pdf) - a demo on estimating sample sizes based and conducting randomization   
 * [SQL and R demo](SQL_demo.pdf)- learning how to connect R with a SQL database and building my own SQL database    
 
 * [Making maps](RasterPCA_demo.html) in R and performing PCA on climate rasters and a [leaflet demo](Leaflet_code.html) for making interactive maps

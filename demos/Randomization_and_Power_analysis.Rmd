@@ -1,5 +1,5 @@
 ---
-title: "Randomization and power analysis"
+title: "Randomization and sample size estimation"
 author: "Andrew D. Nguyen, PhD"
 date: "`r Sys.Date()`"
 output:
@@ -16,7 +16,7 @@ link-citations: yes
 
 # Introduction:  
 
-The aim of this demo is to showcase how to conduct randomization and power analyses in clinical trial designs. R has a suite of packages geared towards clinical trial design, monitoring, and analyses (CRAN R Projects- Clinical Trials @zhang_cran_2021). I'm also modeling my demo off of Peter Higgin's *Reproducible Medical Research with R* book, chapter 20 (@higgins_2023). 
+The aim of this demo is to showcase how to estimate sample sizes and conduct randomization in clinical trial designs. R has a suite of packages geared towards clinical trial design, monitoring, and analyses (CRAN R Projects- Clinical Trials @zhang_cran_2021). I'm also modeling my demo off of Peter Higgin's *Reproducible Medical Research with R* book, chapter 20 (@higgins_2023). 
 
 # Load Libraries  
 
@@ -39,7 +39,7 @@ T<-theme_bw()+theme(,text=element_text(size=18),
 #+ theme(legend.position="none")
 ```
 
-# Power analyses and sample size calculations  
+# Sample size calculations  
 
 It is important to find the appropriate number of participants in a clinical trial because too few participants may lead to an inability to detect differences (studies may be underpowered) and too many participants lead to excessive use of resources. 
 
@@ -144,7 +144,7 @@ pwr.chisq.test(w=ef.sim.dat,df=1,power=.8,sig.level=.05)
 
 **Key result: We need 778 observations.** Note that the degrees of freedom on 1 in this case for a 2x2 contingency table, which is calculated as (# of columns - 1) x (# of rows -1).      
 
-## Time to event types of designs  
+## Time to event types of designs (survival analyses)  
 
 I will be using the *gsDesign* package and referencing an online resource [**here**](https://cran.r-project.org/web/packages/gsDesign/vignettes/SurvivalOverview.html). 
 
@@ -160,7 +160,7 @@ nSurvival(
   lambda2 = lambda1 * hr, #hazard rate for experimental
   Ts = 24, #24 months
   Tr = 6, # 6 months
-  eta = .1, # 1 per month dropout rate
+  eta = .1, # value per month dropout rate
   ratio = 1, # equal sampling
   alpha = .05,
   beta = .2
