@@ -170,9 +170,13 @@ nSurvival(
 
 ```
 
-# Randomization  
+# Randomization (stratified permuted block randomization)   
+
 
 Using the t-test design (2 trial arms), we'd like to implement block randomization across a strata. Often times, we can't sample participants all at once and so we need to apply treatments in groupings as they enroll in the study, or blocks. To ensure equal sampling of treatments across different sub-populations, randomization can be conducted at the level of different sub-populations (strata). For example, randomization can be conducted for males and females separately. With a sample size of 200 per arm, in a two-arm trial, I'm randomization across a gender strata (100 each so they're equally sampled).   
+
+
+## ...with *blockrand* package
 
 ```{r stratified block randomization}
 mrand<-blockrand(n = 100, 
@@ -205,6 +209,32 @@ plotblockrand(totrand,'mystudy.pdf',
                           col=c('black','blue','green'),font=c(1,2,3)),
               bottom="Call123-4567toreportpatiententry", cut.marks=TRUE)
 
+```
+
+
+## ...with *randomizeR* package
+
+Using the randomized permuted block randomization function, *rpbrPar()*. The details:
+
+
+>Fix the possible random block lengths rb, the number of treatment groups K, the sample size N and the vector of the ratio. Afterwards, one block length is randomly selected of the random block lengths. The patients are assigned according to the ratio to the corresponding treatment groups. This procedure is repeated until N patients are assigned. Within each block all possible randomization sequences are equiprobable.
+
+
+```{r randomizeR}
+#randomization parameters
+males<-rpbrPar(N=100, #total sample size
+               rb=6, # block length parameter
+               K=2) # number of groups
+rr<-genSeq(males) # saving randomization procedure
+rr.out<-as.vector(getRandList(rr))# grab randomizations
+#put into dataframe and make it look better
+male.r.dat<-data.frame(sex="M",
+                       subject=paste("SM",
+                                     seq(1:length(rr.out)),sep=""),
+                       treatment=rr.out,
+                       treatmentname=ifelse(rr.out=="A","Control","Treatment"))
+#male.r.dat
+knitr::kable(head(male.r.dat,10))
 ```
 
 # Session Info
