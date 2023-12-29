@@ -26,6 +26,7 @@ library(ggbeeswarm) # for quasirandom plotting
 library(pwr) # power analysis
 library(gsDesign) # power analysis for survival
 library(blockrand) # randomization package
+library(randomizeR)# another randomization package
 
 #ggplot2 settings I like: 
 T<-theme_bw()+theme(,text=element_text(size=18),
@@ -171,7 +172,7 @@ nSurvival(
 
 # Randomization  
 
-Using the t-test design (2 trial arms), we'd like to implement block randomization across a strata. Often times, we can't sample participants all at once and so we need to apply treatments in groupings as they enroll in the study, or blocks. To ensure equal sampling of treatments across different sub-populations, randomization can be conducted at the level of different sub-populations (strata). For example, randomization can be conducted for males and females separately. With a sample size of 100 per arm, in a two-arm trial, I'm randomization across a gender strata.   
+Using the t-test design (2 trial arms), we'd like to implement block randomization across a strata. Often times, we can't sample participants all at once and so we need to apply treatments in groupings as they enroll in the study, or blocks. To ensure equal sampling of treatments across different sub-populations, randomization can be conducted at the level of different sub-populations (strata). For example, randomization can be conducted for males and females separately. With a sample size of 200 per arm, in a two-arm trial, I'm randomization across a gender strata (100 each so they're equally sampled).   
 
 ```{r stratified block randomization}
 mrand<-blockrand(n = 100, 

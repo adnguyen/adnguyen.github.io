@@ -48,8 +48,7 @@ A lot of my PhD was spent thinking about understanding complex characteristics o
  
 * [Fitting boltzmann curves to transcript abundance data](Function_valued_traits.html)       
 
-* [Fitting protein unfolding curves](20170411_prelim_analyses_pog_aph_proteomics.html)      
-    * Simulating unfolding parameters and interpreting their biological significance: [Unfolding curve parameter tweaks](2020-03-12_unfolding_curves.html)     
+* Simulating unfolding parameters and interpreting their biological significance: [Unfolding curve parameter tweaks](2020-03-12_unfolding_curves.html)     
 
 
 
