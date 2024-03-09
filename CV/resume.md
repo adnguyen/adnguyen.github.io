@@ -21,27 +21,35 @@ Andrew D. Nguyen
 Career Profile
 ---------
 
-I am a data-driven biologist with six years of relevant experience in biostatistics in addition to five years of PhD training. Over the past four years, I have excelled as a remote worker as a statistical analyst at a non-profit in the field of regulatory toxicology and worked for two years as a research scientist in an academic lab applying statistical techniques to understand seasonal timing in agricultural pests. The culmination of my experiences has led me to be skilled in constructing narratives from data to address real world problems.   
+I am a data-driven biologist with six years of relevant experience in biostatistics in addition to five years of PhD training. As a statistical analyst, I worked at a non-profit in the field of regulatory toxicology, and I worked for two years as a research scientist in an academic lab applying statistical techniques to understand seasonal timing in agricultural pests. Currently, I am a biostatistician for the Orlando Health Cancer Institute, where I support research in clinical quality and in clinical trials. The culmination of my experiences has led me to be skilled in constructing narratives from data to address real world problems.   
 
-My go-to tool is R (RStudio), where I have the most experience in data wrangling (cleaning, parsing, transforming), data analysis, simulations, and data visualization. I also have familiarity with Unix and Git version control. 
+My go-to tool is R (RStudio), where I have the most experience in data wrangling (cleaning, parsing, transforming), data analysis, simulations, and data visualization. 
 
 Career Highlights 
 ---------   
 
-* Served as a statistical lead and coordinator for projects in collaboration with the US EPA and US FDA   
-* Flexible and quick learner as exemplified in diverse professional experiences over the past 11 years    
+* Served as a statistical lead on projects for clinical researchers and government agencies      
+* Flexible and quick learner as exemplified in diverse professional experiences over the past 12 years    
 * Excellent scientific communicator as exemplified in 11 peer-reviewed publications and scientific presentations   
 
 
 Experience
 ---------
 
-2019-Present
-:   **Regulatory Scientific Strategist**, [(PSCI](https://www.thepsci.eu/), Regulatory Toxicology Department   
+2024-Present
+:   **Biostatistician**, [Orlando Health Cancer Institute](https://www.orlandohealth.com/services-and-specialties/orlando-health-cancer-institute/about-us), Clinical Quality Department
 
-    Developed database and analyzed chronic toxicity studies with quantitative (ANOVA, regression) and qualitative (Chi-square tests) approaches in collaboration with the U.S. Environmental Protection Agency (EPA) to inform risk assessments to pesticide exposure   
+    Serving as the lead biostatistician for clinical trials and performing critical activities such as conducting sample size calculations, drafting statistical analysis plans, and developing clinical databases (REDCap)   
     
-    Designed experiments, analyzed results (ANOVA), and submitted proposals to the US Food and Drug Administration (FDA) in support of regulatory use of in vitro methods for medical device evaluations    
+    Supporting Clinical Quality research activities such as evaluating how different policies impact patient outcomes (survival, hospital visits, and length of stay) using causal inference techniques      
+
+
+2019-2024  
+:   **Regulatory Scientific Strategist**, [PSCI](https://www.thepsci.eu/), Regulatory Toxicology Department   
+
+    Developed database and analyzed chronic toxicity studies with quantitative and qualitative approaches in collaboration with the U.S. Environmental Protection Agency (EPA) to inform risk assessments to pesticide exposure   
+    
+    Designed experiments, analyzed results, and submitted proposals to the US Food and Drug Administration (FDA) in support of regulatory use of in vitro methods for medical device evaluations    
     
     Consulted food and medical device companies to support safety assessments in regulatory submissions to US FDA   
     
@@ -174,7 +182,7 @@ Skills
 * *Phylogenetics* - Maximum likelihood (RAxML) and Bayesian (MrBayes) methods
 * Nucleotide and Protein Sequence analysis
 * *Microsoft Office* – Data preparation, organization, and word processing
-* Mendeley - organize references in a collaborative fashion
+* Mendeley/Zotero - organize and curate references in a collaborative fashion     
 
 **Laboratory:**     
 
