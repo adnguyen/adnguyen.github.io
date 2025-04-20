@@ -22,6 +22,7 @@ book:
       chapters:
         - 12_Bayesian_inference_discrete_simple_case.qmd
         - 13_Bayesian_inference_Beta_priors_JingchenHu_lab1.qmd
+        - 00_Bayesian_priors_power_analysis.qmd
     - part: "Misc Frequentist statistics"
       chapters:
         - Randomization_and_Power_analysis.qmd
