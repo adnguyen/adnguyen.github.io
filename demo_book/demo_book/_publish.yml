@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: 497e23bc-ca5d-4e53-8aee-d036fef7263b
+      url: https://andrewnguyenbe.quarto.pub/my-demo-notebook
