@@ -1,0 +1,114 @@
+---
+title: "Time series causal impact with CausalImpact"
+toc: true
+date: "2024-04-02"
+editor_options:
+  chunk_output_type: console
+---
+
+# Load libraries
+
+```{r, warning=FALSE,message=FALSE}
+library(CausalImpact) # R package for determining 
+library(dplyr) # R package for data wrangling
+library(ggplot2) # R package for plotting
+library(gt) # R package for constructing tables
+
+#.libPaths()
+```
+
+# Simulate synthetic control data and focal time series data
+
+Following this tutorial: <https://google.github.io/CausalImpact/CausalImpact.html>
+
+```{r increase}
+set.seed(1)
+x1 <- 100 + arima.sim(model = list(ar = 0.999), n = 100) # createa  control variable
+y <- 1.2 * x1 + rnorm(100) # create the quality metric variable that is dependent on x1 (control variable)
+y[71:100] <- y[71:100] + 10 
+data <- cbind(y, x1) # combine the datasets 
+plot(data) # plot the datasets, roughly
+```
+
+# What the simulated data look like:
+
+```{r}
+
+#let's see what the data look like 
+head(round(tibble(y1=data[,1],x1=data[,2]),1),6)|>
+  gt()
+
+```
+
+# Run analysis
+
+```{r}
+
+pre<-c(1,70) # set the pre period with no intervention
+post<-c(71,100) # set the post period, after the intervention
+
+impact<-CausalImpact(data,pre,post) # Conduct the analysis
+
+plot(impact) # plot the results
+#summary(impact,"report")
+
+
+
+
+```
+
+# Analysis report from the R package
+
+Analysis report {CausalImpact}
+
+During the post-intervention period, the response variable had an average value of approx. 117.05. By contrast, in the absence of an intervention, we would have expected an average response of 106.54. The 95% interval of this counterfactual prediction is [105.84, 107.29]. Subtracting this prediction from the observed response yields an estimate of the causal effect the intervention had on the response variable. This effect is 10.51 with a 95% interval of [9.76, 11.21]. For a discussion of the significance of this effect, see below.
+
+Summing up the individual data points during the post-intervention period (which can only sometimes be meaningfully interpreted), the response variable had an overall value of 3.51K. By contrast, had the intervention not taken place, we would have expected a sum of 3.20K. The 95% interval of this prediction is [3.18K, 3.22K].
+
+The above results are given in terms of absolute numbers. In relative terms, the response variable showed an increase of +10%. The 95% interval of this percentage is [+9%, +11%].
+
+This means that the positive effect observed during the intervention period is statistically significant and unlikely to be due to random fluctuations. It should be noted, however, that the question of whether this increase also bears substantive significance can only be answered by comparing the absolute effect (10.51) to the original goal of the underlying intervention.
+
+The probability of obtaining this effect by chance is very small (Bayesian one-sided tail-area probability p = 0.001). This means the causal effect can be considered statistically significant.
+
+## Output table
+
+```{r}
+knitr::kable(t(round(impact$summary,2)))
+```
+
+# stylized figure
+
+```{r}
+#splitting out datasets
+#names(impact$series)
+
+
+orig<-impact$series|>
+  data.frame()|>
+  tibble()|>
+  dplyr::select(response,point.pred,point.pred.lower,point.pred.upper)
+
+cf<-ggplot(orig,aes(x=seq(1,100,1),y=point.pred))+geom_vline(xintercept=70,colour='#AA1E2D',lwd=1)+geom_line(linetype="dotdash",linewidth=1.2,colour='#404C58')+geom_ribbon(aes(ymax=point.pred.upper,ymin=point.pred.lower),fill=	'#DC5C1D',alpha=.2)+geom_line(aes(y=response),linewidth=1.2,colour='#2A3C47')+theme_bw()+ylab("Y variable")+xlab("Time")+geom_line(aes(y=x1),colour='#65C9D5',linewidth=2)+scale_y_continuous(limits=c(80,130))+annotate("text",x=c(90,80,87),y=c(85,125,100),label=c("Control Variable","Observed data","Counterfactual Synthetic Control"))
+cf
+
+
+#ggsave(cf,filename="Timeseriesbayesian.png",width=8,height=5,dpi=600,unit="in")
+#geom_text(aes(x=c(10,75),y=c(90,125),label=c("Synthetic Control","Observed data")))+
+
+
+#cf1<-ggplot(orig,aes(x=seq(1,100,1),y=point.pred))+geom_vline(xintercept=70,colour='#AA1E2D',lwd=1)+geom_line(aes(y=response),linewidth=1.2,colour='#2A3C47')+theme_bw()+ylab("Y variable")+xlab("Time")
+#cf1
+#ggsave(cf1,filename="observed_data_timeseries.png",width=10,height=5,unit="in",dpi=600)
+
+
+#cf2<-ggplot(orig,aes(x=seq(1,100,1),y=point.pred))+geom_vline(xintercept=70,colour='#AA1E2D',lwd=1)+geom_line(aes(y=response),linewidth=1.2,colour='#2A3C47')+theme_bw()+ylab("Y variable")+xlab("Time")+geom_line(linetype="dotdash",linewidth=1.2,colour='#404C58')+geom_ribbon(aes(ymax=point.pred.upper,ymin=point.pred.lower),fill=	'#DC5C1D',alpha=.2)
+#cf2
+#ggsave(cf2,filename="observed_data_timeseries_with_counterfactual.png",width=10,height=5,unit="in",dpi=600)
+```
+
+# Session Info
+
+```{r}
+sessionInfo()
+```

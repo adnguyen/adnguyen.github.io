@@ -1,0 +1,126 @@
+---
+title: "Bayesian inference in discrete case"
+author: "Andrew D. Nguyen"
+format: html
+toc: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+Date: `r Sys.Date()`
+
+# Load libraries
+
+```{r, warning=FALSE,message=FALSE}
+library(tidyverse)
+```
+
+# Bayesian inference in discrete case: simple example
+
+The scenario (taken from Dr. Jingchen (Monika) Hu from [youtube, S22 Math 347 course](https://www.youtube.com/watch?v=OOqDyAGp2y4&list=PL_lWxa4iVNt2GBPOVZMVKD4jYl9Q7hs2K&index=8)): A chinese food restaurant owner wants to increase the business profits and wants to know when people prefer to come into her restaurant. Specifically, she is interested in how often people chose Friday. So, Friday = "success", and all other days are considered "failures". She wants to use a Bayesian approach to estimate the probability that patrons will believe Friday is their favorite day to eat.
+
+## Steps
+
+She wants to use a Bayesian approach and involves the following steps:
+
+1.  **Set up the prior expectations of success** $\pi(p)$ or $\pi(success)$
+
+2.  **Collect data and estimate the likelihood** -\> use binomial distribution
+
+Likelihood of p and Binomial probability mass function (pmf):$$\pi(y|p_{i})=L(p_{i})=P(Y = y) = \binom{n}{y} p^y (1-p)^{n-y}$$
+
+Assumptions of binomial experiment:
+
+1.  repeating same task/trial many times\
+2.  on each trial, 2 possible outcomes: "success" or "failure"\
+3.  Prob of success, p, same for each trial\
+4.  Results of outcomes from different trials are independent
+
+ 
+
+3.  **Apply Baye's rule**
+
+Bayes rule: $$\pi(p_{i}| y) = \frac{\pi(y|p_{i}) \times \pi(p_{i})}{\pi(y)} $$
+
+$$\pi(y) = \sum_{j} \pi(p_{j}\times L(p_{j})) $$
+
+The denominator gives the marginal distribution of the observation $y$ by the law of total probability.
+
+## Set up prior $\pi(p)$
+
+```{r prior}
+#probabilities of success to consider
+p<-seq(.3,.8,.1)
+#p
+
+#probabilities for each of p 
+prior<-c(.125,.125,.25,.25,.125,.125)
+
+d<-tibble(prior,p)
+
+ggplot(d,aes(x=p,y=prior))+geom_bar(stat="identity")+theme_bw()+scale_x_continuous(limits=c(0,1),breaks=seq(0,1,.1),labels=seq(0,1,.1))+ylab("prior probability")
+```
+
+## Calculate likelihood -binomial
+
+She surveyed 20 patrons and 12 chose Friday. So this looks like
+
+$$L(p_{i}) = \binom{20}{12}p^{12}\times (1-p)^{20-12}$$
+
+```{r lp}
+#use the density binomial function , dbinom()
+d$likelihood<-dbinom(x=12,size=20,prob=d$p)
+knitr::kable(d)
+```
+
+## Apply Baye's rule and calculate the posterior probability ($\pi(p_{i}|y)$)
+
+$\pi(p_{i}|y)$ is the posterior probability of $p = p_{i}$ given the number of successes $y$.
+
+```{r posterior }
+d$marg<-sum(d$prior*d$likelihood)
+
+d$posterior<-(d$prior*d$likelihood)/d$marg
+
+#plot table
+knitr::kable(d)
+
+#let's plot everything out 
+#ggplot(d,aes(x=p,y=posterior))+geom_point()
+
+
+```
+
+### inferential question: What is the posterior prob that over half of the customers prefer to eat out on friday for dinner?
+
+```{r inferential question}
+an<-d|>
+  filter(p>.5)|>
+  dplyr::summarise(oh=sum(posterior))
+
+```
+
+$Prob(p>0.5) =$ `r an`
+
+### Let's plot out the prior, likelihood, and posterior
+
+I'm going to normalize the likelihood function with 3x the max for plottig purposes.
+
+```{r}
+d$sl<-d$likelihood/(max(d$likelihood)*3)
+
+d2<-d|>
+  select(p,prior,sl,posterior)|>
+  pivot_longer(prior:posterior)|>
+  mutate(parameter=if_else(name=="prior","Prior",if_else(name=="sl","Likelihood","Posterior")))
+
+
+ggplot(d2,aes(x=p,y=value,colour=parameter))+geom_point()+geom_line(linewidth=1)+xlab("Probability")+ylab("Density")+theme_bw()+theme(legend.position="top")+scale_colour_manual(name="",values=c('#AA1E2D','#46A6B2','#18272F'))
+```
+
+# Sessioninfo
+
+```{r session}
+sessionInfo()
+```

@@ -1,0 +1,206 @@
+---
+title: "Longitudinal ordinal regression model simulations"
+toc: TRUE
+---
+
+# Load libraries
+
+```{r, message=FALSE,warning=FALSE}
+library(tidyverse)
+library(brms)
+library(ggbeeswarm)
+library(MASS) # fit ordinal logistic regression 
+library(brant) # check proportional odds assumption
+library(marginaleffects) # contrats, g-computation
+library(patchwork) # visualization
+library(ordinal) # fitting longitudinal ordinal model
+library(ggeffects)# plotting long ordinal model
+library(tidybayes)
+oh_cols<- c('#50BECB',	'#46A6B2',	'#65C9D5',	'#97D3DC',	'#CDEBF0',	'#EDE668',	'#AA1E2D',	'#E4E5E3',	'#F26828',	'#DC5C1D',	'#F89C70',	'#FDCEB0',	'#2A3C47',	'#18272F',	'#404C58',	'#646A74',	'#C3C3C8',	'#74308C')
+oh_cols<- c('#65C9D5',	'#EDE668',	'#AA1E2D',	'#F26828',	'#FDCEB0',	'#C3C3C8',	'#74308C','#18272F')
+```
+
+# Cross-sectional ordinal design
+
+## Simulating ordinal data
+
+Simulating a RCT, treatment A vs treatment B, and their impact on quality of life. How to simulate?
+
+-   For treatment B, Draw from a normal distribution, normal (100, std=20).\
+-   Split normal distribution based on 7 cut offs ; so there are 8 ordinal categories\
+-   Sample treatment A from normal (110,std=20), and categorize based on treatment B splits/categories.
+
+```{r cs ordinal data simulation}
+#sample 1000 patients
+n<-1000
+
+od<-tibble(A=rnorm(n=n,mean=105,sd=20),B=rnorm(n=n,mean=110,sd=20))|>
+  pivot_longer(names_to = "treatment",values_to = "num",A:B)
+#get  cutoffs
+probs=seq(0,1,1/8)[2:8]
+#get quantiles 
+quantiles <- qnorm(probs, mean = 100, sd = 20)#
+
+od<-od|>
+  mutate(QOL=if_else(num<quantiles[1],1,if_else(num<quantiles[2],2,if_else(num<quantiles[3],3,if_else(num<quantiles[4],4,if_else(num<quantiles[5],5,if_else(num<quantiles[6],6,if_else(num<quantiles[7],7,8))))))))|>
+  mutate(QOL=factor(as.character(QOL)))
+
+#compare ordinal values between groups
+#ggplot(od,aes(x=treatment,y=QOL,colour=treatment))+geom_quasirandom()
+#visualize the data
+fig5<-ggplot(od,aes(x=treatment,y=num,colour=treatment))+geom_quasirandom()+theme(legend.position="none")+geom_hline(yintercept = quantiles)+scale_y_continuous(limits=c(40,180),breaks=c(quantiles,133)-5,labels=c("none","less","slight","mild","above mild","severe","overly severe","death"),name="Ordinal scale QOL")+scale_color_manual(values=c('#65C9D5','#74308C'))
+fig5
+ggsave(fig5,filename="01_QOL-ordinal_vs_treatmentA-B_crosssectional.png",unit="in",dpi=600,width=4,height=4)
+```
+
+## Fit ordinal logistic mode
+
+```{r fitting frequentist ordinal model}
+# ordinal model 
+mod1 <- polr(QOL~ treatment, data = od, Hess=TRUE)
+summary(mod1) # model output
+exp(coef(mod1)) # treatment B has a 2.2 increased odds ratio in QOL than treatment A
+#check proportional odds
+brant(mod1)
+
+##predict values 
+new.dat<-data.frame(treatment=c("A","B"))
+
+#get predictions
+npred<-predict(mod1,new.dat,type="probs")|>
+  data.frame()|>
+  mutate(treatment=c("A","B"))|>
+  pivot_longer(X1:X8,names_to = "Ordinal",values_to="Probability")|>
+  mutate(ord.num=substr(Ordinal,2,2))
+
+#ggplot(npred,aes(x=treatment,y=Probability,colour=treatment))+geom_point(size=5)+facet_wrap(~Ordinal,ncol=4)
+
+#plot on more continuous scale 
+fig1<-ggplot(npred,aes(x=ord.num,y=Probability,colour=treatment,group=treatment))+geom_point(size=5)+geom_line(linewidth=1)+theme_bw()+theme(legend.position = "top")+xlab("Ordinal Scale (Good QOL -> Bad QOL)")+scale_y_continuous(limits=c(0,.3),breaks=seq(0,.3,.025),labels=seq(0,.3,.025))
+
+```
+
+## Let's see if we can conduct g-computation
+
+```{r frequentist g-computation}
+#try marginaleffects 
+nd<-expand.grid(treatment=c("A","B"),ind=1:1000)
+#gcomp<-avg_comparisons(mod1,variables = "treatment",newdata=nd)
+gcomp<-avg_comparisons(mod1,variables = "treatment",newdata=datagrid(newdata = od,grid_type="counterfactual",treatment=c("A","B"))) # same code as above
+gdat<-gcomp|>
+  broom::tidy()
+
+fig2<-ggplot(gdat,aes(x=1:8,y=estimate))+geom_point(size=3)+geom_line(linewidth=.75)+geom_ribbon(aes(ymin=conf.low,ymax=conf.high),alpha=.5,colour="grey80")+scale_x_continuous(breaks=1:8,labels=1:8)+theme_bw()+geom_hline(yintercept = 0,lty="dotdash",linewidth=.75)+ylab("Contrast (Treatment B-A)")+xlab("Ordinal scale (Good QOL -> Bad QOL)")
+
+fig12<-fig1+fig2
+fig12
+ggsave(fig12,filename="01_two_panel_ordinal_scale_contrast_treatmentA_treatmentB.png",width=7,height=5,dpi=600,unit="in")
+```
+
+# Longitudinal ordinal design
+
+Simulating RCT, treatment A vs B, and their impact on quality of life. QOL is tracked over time. Treatment A reduces QOL at a faster rate than treatment B. How to simulate?
+
+-   Get a global normal distribution, normal(200,25) and split data
+-   Have 4 ordinal levels (none, low, mild, severe, death)
+-   Have 5 time points -\> increase mean from 120, every 20 over each time point for treatment B, for treatment A increase from 120, every 40 over each time point.
+
+```{r longitudinal ordinal model }
+#number of patients
+n<-100
+#get  cutoffs
+probs=seq(0,1,1/5)[2:5]
+#get quantiles 
+quantiles <- qnorm(probs, mean = 180, sd = 50)#
+
+tp1<-tibble(A=rnorm(n=n,mean=120,sd=20),B=rnorm(n=n,mean=110,sd=20),time=1)|>
+  pivot_longer(names_to = "treatment",values_to = "num",A:B)|>
+  mutate(id=1:length(num))
+
+tp2<-tibble(A=rnorm(n=n,mean=160,sd=20),B=rnorm(n=n,mean=130,sd=20),time=2)|>
+  pivot_longer(names_to = "treatment",values_to = "num",A:B)|>
+  mutate(id=1:length(num))
+
+tp3<-tibble(A=rnorm(n=n,mean=200,sd=20),B=rnorm(n=n,mean=160,sd=20),time=3)|>
+  pivot_longer(names_to = "treatment",values_to = "num",A:B)|>
+  mutate(id=1:length(num))
+
+tp4<-tibble(A=rnorm(n=n,mean=240,sd=20),B=rnorm(n=n,mean=180,sd=10),time=4)|>
+  pivot_longer(names_to = "treatment",values_to = "num",A:B)|>
+  mutate(id=1:length(num))
+
+tp5<-tibble(A=rnorm(n=n,mean=280,sd=20),B=rnorm(n=n,mean=200,sd=20),time=5)|>
+  pivot_longer(names_to = "treatment",values_to = "num",A:B)|>
+  mutate(id=1:length(num))
+
+#combine longitudinal data
+tpd<-rbind(tp1,tp2,tp3,tp4,tp5)|>
+  arrange(id,time,treatment)|>
+  mutate(QOL=if_else(num<quantiles[1],1,if_else(num<quantiles[2],2,if_else(num<quantiles[3],3,if_else(num<quantiles[4],4,5)))),QOL=as.factor(as.character(QOL)))
+
+
+##spagehtti plots 
+
+fig4<-ggplot(tpd,aes(x=time,y=num,colour=treatment,group=factor(id)))+geom_point()+geom_line(aes(group=factor(id)))+theme(legend.position="top")+geom_hline(yintercept = quantiles)+scale_y_continuous(limits=c(50,310),breaks=c(quantiles,250)-15,labels=c("none","less","mild","severe","death"),name="Ordinal scale QOL")+scale_color_manual(values=c('#65C9D5','#74308C'))
+fig4
+#ggsave(fig4,filename="01_ordinal_scale_fig_ztreatmentA_B_vstime_longitudinal.png",width=5,height=4,dpi=600,)
+
+```
+
+## Fitting longitudinal ordinal regression model
+
+frequentist doesnt work well for estimating contrasts, but I'm going to try with the brms package (bayesian)
+
+
+(didn't run this code because it takes too long)
+```{r, eval=FALSE}
+#set up the model 
+#ordinal longitudinal random effects model
+#random intercept and random slope 
+#mod2<-clmm(QOL~treatment+time+(1+time|id),data=tpd)
+tpd$QOL <- as.ordered(tpd$QOL)
+mod2<-brm(QOL~treatment+time+(1+time|id),data=tpd,family=cumulative(),iter = 1000)
+#prior=set_prior("normal(0,5)",class="b")
+summary(mod2)
+# I should save the model, bc it takes forever to run
+saveRDS(mod2,"Output_datasets/longitudinal_ordinal_bayesian_brmsmodel_simulateddata_time_and_treatmenteffects")
+
+
+
+####model checks
+##check the model: 
+pp_check(mod2)
+#trace plots 
+mcmc_plot(mod2, type = "trace")
+mcmc_plot(mod2, type = "dens_overlay")
+
+#
+# Generate posterior predictions
+predictions <- add_predicted_draws(mod2, newdata = tpd)
+
+# Plot predictions
+ggplot(predictions, aes(x = time, y = .prediction, color = treatment)) +
+  geom_line() +
+  labs(title = "Posterior Predictive Distribution")
+
+
+
+##########
+
+
+##################3g-comp
+
+##g-computation
+nd1<-expand.grid(treatment=c("A","B"),ind=1:100)
+
+gcomp2<-avg_comparisons(mod2,variables = "treatment",newdata=datagrid(newdata = tpd,grid_type="counterfactual",treatment=c("A","B"))) # same code as above
+#predict(mod2,nd1,type="probs")
+
+gcomp2
+```
+
+# Session Info
+
+```{r}
+sessionInfo()
+```

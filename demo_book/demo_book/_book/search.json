@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "My demo notebook",
     "section": "",
-    "text": "Preface\nHello, welcome to my demo notebook. The purpose of this notebook is to log ideas I’ve explored. It’ll be useful for me, and hopefully, also for you!",
+    "text": "Preface\nHello, welcome to my demo notebook. The purpose of this notebook is to log ideas I’ve explored. It’ll be useful for me, and hopefully, also for you!\nThe themes I’ve explored include causal inference, bayesian stats, frequentist stats, decision making under uncertainty, and function-valued traits.",
     "crumbs": [
       "Preface"
     ]
@@ -58,7 +58,7 @@
     "href": "08_causal_inference_simulations.html#changing-the-mediator-to-a-categorical-variable-to-visualize",
     "title": "1  Title: Causal diagram simulations",
     "section": "4.1 Changing the mediator to a categorical variable to visualize",
-    "text": "4.1 Changing the mediator to a categorical variable to visualize\n\n# try to set b as a categorical variable \na&lt;-rnorm(n=100,mean=50,sd=5)\nb&lt;-if_else(a&lt;50,0,1)\nc&lt;-b+rnorm(n=100,mean=0,sd=1)\n\n\n\nmod2.11&lt;-lm(c~a+b)\nmod2.11|&gt;\n  tbl_regression()\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\np-value\n\n\n\n\na\n0.00\n-0.07, 0.07\n&gt;0.9\n\n\nb\n0.93\n0.29, 1.6\n0.005\n\n\n\nAbbreviation: CI = Confidence Interval\n\n\n\n\n\n\n\n#grouping by b (mediator) disrupts the correlation by a nd c\nggplot(data=tibble(a,c),aes(x=a,y=c,group=factor(b)))+geom_point()+stat_smooth(method=\"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'",
+    "text": "4.1 Changing the mediator to a categorical variable to visualize\n\n# try to set b as a categorical variable \na&lt;-rnorm(n=100,mean=50,sd=5)\nb&lt;-if_else(a&lt;50,0,1)\nc&lt;-b+rnorm(n=100,mean=0,sd=1)\n\n\n\nmod2.11&lt;-lm(c~a+b)\nmod2.11|&gt;\n  tbl_regression()\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\np-value\n\n\n\n\na\n0.00\n-0.07, 0.07\n&gt;0.9\n\n\nb\n1.1\n0.45, 1.7\n&lt;0.001\n\n\n\nAbbreviation: CI = Confidence Interval\n\n\n\n\n\n\n\n#grouping by b (mediator) disrupts the correlation by a nd c\nggplot(data=tibble(a,c),aes(x=a,y=c,group=factor(b)))+geom_point()+stat_smooth(method=\"lm\")\n\n`geom_smooth()` using formula = 'y ~ x'",
     "crumbs": [
       "Causal inference section",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Title: Causal diagram simulations</span>"
@@ -69,32 +69,351 @@
     "href": "08_causal_inference_simulations.html#more-complicated-collider-case",
     "title": "1  Title: Causal diagram simulations",
     "section": "5.1 More complicated collider case",
-    "text": "5.1 More complicated collider case\nwhere:\n\nmermaid(\"graph TD\n        A--&gt;B\n        A--&gt;C\n        B--&gt;C\")\n\n\n\n\n\n\\[a \\sim Normal(50,5)\\]\n\\[b \\sim a+\\epsilon\\]\n\\[c \\sim a+b+\\epsilon\\]\nRandom error: \\(\\epsilon \\sim Normal(0,5)\\)\nNote: It is expected for a and b to have 1:1 relationship\n\na&lt;-rnorm(n=100,mean=50,sd=5)\nb&lt;-a+rnorm(n=100,mean=0,sd=5) #b is a function of a + random error \nc&lt;-a+b+rnorm(n=100,mean=0,sd=5) # c is a fucntion of a and b with random error\n\n#fit a model between a-&gt; b\n#there is a 1:1 relationship\nmod3.1&lt;-lm(b~a)\nmod3.1|&gt;\n  tbl_regression()\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\np-value\n\n\n\n\na\n0.94\n0.75, 1.1\n&lt;0.001\n\n\n\nAbbreviation: CI = Confidence Interval\n\n\n\n\n\n\n\n#There is no association between A and B. \n\n#fit a model with a collider c\nmod4.1&lt;-lm(b~a+c)\nmod4.1|&gt;\n  tbl_regression()\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\np-value\n\n\n\n\na\n-0.05\n-0.31, 0.20\n0.7\n\n\nc\n0.50\n0.39, 0.61\n&lt;0.001\n\n\n\nAbbreviation: CI = Confidence Interval\n\n\n\n\n\n\n\n\nNote that the association between a and b is negative when conditioning on c, the collider (above) and when we do it here when a and b are correlated, the correlation breaks.",
+    "text": "5.1 More complicated collider case\nwhere:\n\nmermaid(\"graph TD\n        A--&gt;B\n        A--&gt;C\n        B--&gt;C\")\n\n\n\n\n\n\\[a \\sim Normal(50,5)\\]\n\\[b \\sim a+\\epsilon\\]\n\\[c \\sim a+b+\\epsilon\\]\nRandom error: \\(\\epsilon \\sim Normal(0,5)\\)\nNote: It is expected for a and b to have 1:1 relationship\n\na&lt;-rnorm(n=100,mean=50,sd=5)\nb&lt;-a+rnorm(n=100,mean=0,sd=5) #b is a function of a + random error \nc&lt;-a+b+rnorm(n=100,mean=0,sd=5) # c is a fucntion of a and b with random error\n\n#fit a model between a-&gt; b\n#there is a 1:1 relationship\nmod3.1&lt;-lm(b~a)\nmod3.1|&gt;\n  tbl_regression()\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\np-value\n\n\n\n\na\n0.97\n0.80, 1.1\n&lt;0.001\n\n\n\nAbbreviation: CI = Confidence Interval\n\n\n\n\n\n\n\n#There is no association between A and B. \n\n#fit a model with a collider c\nmod4.1&lt;-lm(b~a+c)\nmod4.1|&gt;\n  tbl_regression()\n\n\n\n\n\n\n\nCharacteristic\nBeta\n95% CI\np-value\n\n\n\n\na\n0.13\n-0.11, 0.37\n0.3\n\n\nc\n0.44\n0.33, 0.54\n&lt;0.001\n\n\n\nAbbreviation: CI = Confidence Interval\n\n\n\n\n\n\n\n\nNote that the association between a and b is negative when conditioning on c, the collider (above) and when we do it here when a and b are correlated, the correlation breaks.",
     "crumbs": [
       "Causal inference section",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Title: Causal diagram simulations</span>"
     ]
   },
   {
-    "objectID": "13_Bayesian_inference_Beta_priors_JingchenHu_lab1.html",
-    "href": "13_Bayesian_inference_Beta_priors_JingchenHu_lab1.html",
-    "title": "2  Lab1: Bayesian inference with beta priors, Jingchen Hu",
+    "objectID": "15_DAG-adjustment_sets_confounders.html",
+    "href": "15_DAG-adjustment_sets_confounders.html",
+    "title": "2  DAGs and adjustment sets",
     "section": "",
-    "text": "3 Intro\nThis is a lab by a professor, Jingchen Hu, which goes over Bayesian inference with beta priors.\n\n\n4 Load libraries\n\nlibrary(tidyverse)\nlibrary(ProbBayes)\n\n\n\n5 Posterior predictive checking\n\nS&lt;-10000 # number of simulations\na&lt;-3.06 # a in beta(a,b)\nb&lt;-2.56 # b in beta(a,b)\nn&lt;-20 # number of trials\ny&lt;-12 # number of successes \n\nnewy=as.data.frame(rep(NA,S))\nnames(newy)=c(\"y\")\n\nset.seed(123)\nfor (s in 1:S){\n  pred_p_sim&lt;-rbeta(1, a+y, b+n-y) # step 1 ; get posterior param\n  pred_y_sim&lt;-rbinom(1,n,pred_p_sim) # step 2; based on param, predict outcome-&gt; # of successes\n  newy[s,]=pred_y_sim\n}\nknitr::kable(head(newy))\n\n\n\n\ny\n\n\n\n\n14\n\n\n13\n\n\n8\n\n\n12\n\n\n14\n\n\n5\n\n\n\n\n#how i would write the simluation\n\ndat&lt;-tibble(pred_p=rbeta(S,a+y,b+n-y))|&gt;\n  rowwise()|&gt;\n  mutate(pred_y=rbinom(1,n,pred_p))\n\nsum(dat$pred_y&gt;=5&dat$pred_y&lt;=15)/S\n\n[1] 0.8943\n\n#dat$pred_y&lt;-rbinom(1000,n,dat$pred_p)\nggplot(data=dat,aes(pred_y))+geom_density()+scale_x_continuous(breaks=seq(0,20,1),labels=seq(0,20,1))\n\n\n\n\n\n\n\n\n\n\n6 Let’s try to simulate a situation with mismatched prior with the data\n\nbeta_draw(c(3.06,2.56)) #prior fromp revious section \n\n\n\n\n\n\n\nbeta_draw(c(0.5,5)) #this looks liek a good prior to mess up the data \n\n\n\n\n\n\n\ns&lt;-10000\nn&lt;-20 # trials\ny&lt;-12 #successes\na&lt;-.5\nb&lt;-5\n\ndat2&lt;-tibble(pred_p=rbeta(S,a+y,b+n-y))|&gt;\n  rowwise()|&gt;\n  mutate(pred_y=rbinom(1,n,pred_p))\n\n# model check : how often pr(y &gt; ypred|y)\nsum(y&gt;dat2$pred_y)/S # how often collected data above posterior prediction\n\n[1] 0.7158\n\n1-sum(y&gt;dat2$pred_y)/S #how often collected data below posterior prediction\n\n[1] 0.2842\n\n#draw posterior\nbeta_prior_post(c(.5,5),c(a+y,b+n-y))\n\n\n\n\n\n\n\n\n\n\n7 Session info\n\nbeta_draw(c(.3,.7)) \n\n\n\n\n\n\n\nsessionInfo()\n\nR version 4.5.0 (2025-04-11 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 11 x64 (build 26100)\n\nMatrix products: default\n  LAPACK version 3.12.1\n\nlocale:\n[1] LC_COLLATE=English_United States.utf8 \n[2] LC_CTYPE=English_United States.utf8   \n[3] LC_MONETARY=English_United States.utf8\n[4] LC_NUMERIC=C                          \n[5] LC_TIME=English_United States.utf8    \n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] ProbBayes_1.1     shiny_1.10.0      gridExtra_2.3     LearnBayes_2.15.1\n [5] lubridate_1.9.4   forcats_1.0.0     stringr_1.5.1     dplyr_1.1.4      \n [9] purrr_1.0.4       readr_2.1.5       tidyr_1.3.1       tibble_3.2.1     \n[13] ggplot2_3.5.2     tidyverse_2.0.0  \n\nloaded via a namespace (and not attached):\n [1] generics_0.1.3    stringi_1.8.7     hms_1.1.3         digest_0.6.37    \n [5] magrittr_2.0.3    evaluate_1.0.3    grid_4.5.0        timechange_0.3.0 \n [9] fastmap_1.2.0     jsonlite_2.0.0    promises_1.3.2    scales_1.3.0     \n[13] cli_3.6.4         rlang_1.1.6       munsell_0.5.1     withr_3.0.2      \n[17] yaml_2.3.10       tools_4.5.0       tzdb_0.5.0        colorspace_2.1-1 \n[21] httpuv_1.6.16     vctrs_0.6.5       R6_2.6.1          mime_0.13        \n[25] lifecycle_1.0.4   htmlwidgets_1.6.4 pkgconfig_2.0.3   pillar_1.10.2    \n[29] later_1.4.2       gtable_0.3.6      glue_1.8.0        Rcpp_1.0.14      \n[33] xfun_0.52         tidyselect_1.2.1  knitr_1.50        farver_2.1.2     \n[37] xtable_1.8-4      htmltools_0.5.8.1 rmarkdown_2.29    labeling_0.4.3   \n[41] compiler_4.5.0",
+    "text": "3 Intro\nR can determine the adjustment set of confounders for you if you specify the DAG. Description of function adjustmentSets {dagitty}: \n\nEnumerates sets of covariates that (asymptotically) allow unbiased estimation of causal effects from observational data, assuming that the input causal graph is correct\n\n\n\n4 Load libraries\n\nlibrary(tidyverse)\nlibrary(ggdag)\n\n\n\n5 set up dag\n\ndag&lt;-dagify(\n  y~ x + a + b,\n  x~ a,\n  b~ a,\n  exposure=\"x\",\n  outcome=\"y\"\n)\n\ntidy_dagitty(dag)|&gt;\n  dag_adjustment_sets()\n\n# A DAG with 4 nodes and 5 edges\n#\n# Exposure: x\n# Outcome: y\n#\n# A tibble: 6 × 10\n  name       x      y direction to      xend   yend circular adjusted   set  \n  &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;     &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;    &lt;chr&gt;      &lt;chr&gt;\n1 a      0.605 -1.54  -&gt;        b     -0.483 -1.48  FALSE    adjusted   {a}  \n2 a      0.605 -1.54  -&gt;        x      1.35  -0.735 FALSE    adjusted   {a}  \n3 a      0.605 -1.54  -&gt;        y      0.257 -0.680 FALSE    adjusted   {a}  \n4 b     -0.483 -1.48  -&gt;        y      0.257 -0.680 FALSE    unadjusted {a}  \n5 x      1.35  -0.735 -&gt;        y      0.257 -0.680 FALSE    unadjusted {a}  \n6 y      0.257 -0.680 &lt;NA&gt;      &lt;NA&gt;  NA     NA     FALSE    unadjusted {a}  \n\nggdag(dag)\n\n\n\n\n\n\n\nggdag_adjustment_set(dag)\n\n\n\n\n\n\n\n# What if x causes b? \ndag2&lt;-dagify(\n  y~ x + a + b,\n  x~ a,\n  b~ a+x,\n  exposure=\"x\",\n  outcome=\"y\"\n)\nggdag_adjustment_set(dag2)\n\n\n\n\n\n\n\n\n\n\n6 Session info\n\nsessionInfo()\n\nR version 4.5.0 (2025-04-11 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 11 x64 (build 26100)\n\nMatrix products: default\n  LAPACK version 3.12.1\n\nlocale:\n[1] LC_COLLATE=English_United States.utf8 \n[2] LC_CTYPE=English_United States.utf8   \n[3] LC_MONETARY=English_United States.utf8\n[4] LC_NUMERIC=C                          \n[5] LC_TIME=English_United States.utf8    \n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] ggdag_0.2.13    lubridate_1.9.4 forcats_1.0.0   stringr_1.5.1  \n [5] dplyr_1.1.4     purrr_1.0.4     readr_2.1.5     tidyr_1.3.1    \n [9] tibble_3.2.1    ggplot2_3.5.2   tidyverse_2.0.0\n\nloaded via a namespace (and not attached):\n [1] viridis_0.6.5      utf8_1.2.4         generics_0.1.3     stringi_1.8.7     \n [5] hms_1.1.3          digest_0.6.37      magrittr_2.0.3     evaluate_1.0.3    \n [9] grid_4.5.0         timechange_0.3.0   fastmap_1.2.0      jsonlite_2.0.0    \n[13] ggrepel_0.9.6      gridExtra_2.3      dagitty_0.3-4      viridisLite_0.4.2 \n[17] scales_1.3.0       tweenr_2.0.3       cli_3.6.4          graphlayouts_1.2.2\n[21] rlang_1.1.6        polyclip_1.10-7    tidygraph_1.3.1    munsell_0.5.1     \n[25] cachem_1.1.0       withr_3.0.2        yaml_2.3.10        tools_4.5.0       \n[29] tzdb_0.5.0         memoise_2.0.1      colorspace_2.1-1   boot_1.3-31       \n[33] curl_6.2.2         vctrs_0.6.5        R6_2.6.1           lifecycle_1.0.4   \n[37] V8_6.0.3           htmlwidgets_1.6.4  MASS_7.3-65        ggraph_2.2.1      \n[41] pkgconfig_2.0.3    pillar_1.10.2      gtable_0.3.6       glue_1.8.0        \n[45] Rcpp_1.0.14        ggforce_0.4.2      xfun_0.52          tidyselect_1.2.1  \n[49] knitr_1.50         farver_2.1.2       htmltools_0.5.8.1  igraph_2.1.4      \n[53] labeling_0.4.3     rmarkdown_2.29     compiler_4.5.0",
+    "crumbs": [
+      "Causal inference section",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>DAGs and adjustment sets</span>"
+    ]
+  },
+  {
+    "objectID": "10_TimeSeriesCausalImpact.html",
+    "href": "10_TimeSeriesCausalImpact.html",
+    "title": "3  Time series causal impact with CausalImpact",
+    "section": "",
+    "text": "4 Load libraries\nlibrary(CausalImpact) # R package for determining \nlibrary(dplyr) # R package for data wrangling\nlibrary(ggplot2) # R package for plotting\nlibrary(gt) # R package for constructing tables\n\n#.libPaths()",
+    "crumbs": [
+      "Causal inference section",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Time series causal impact with CausalImpact</span>"
+    ]
+  },
+  {
+    "objectID": "10_TimeSeriesCausalImpact.html#output-table",
+    "href": "10_TimeSeriesCausalImpact.html#output-table",
+    "title": "3  Time series causal impact with CausalImpact",
+    "section": "8.1 Output table",
+    "text": "8.1 Output table\n\nknitr::kable(t(round(impact$summary,2)))\n\n\n\n\n\nAverage\nCumulative\n\n\n\n\nActual\n117.05\n3511.46\n\n\nPred\n106.54\n3196.12\n\n\nPred.lower\n105.86\n3175.73\n\n\nPred.upper\n107.27\n3218.05\n\n\nPred.sd\n0.37\n11.13\n\n\nAbsEffect\n10.51\n315.34\n\n\nAbsEffect.lower\n9.78\n293.41\n\n\nAbsEffect.upper\n11.19\n335.72\n\n\nAbsEffect.sd\n0.37\n11.13\n\n\nRelEffect\n0.10\n0.10\n\n\nRelEffect.lower\n0.09\n0.09\n\n\nRelEffect.upper\n0.11\n0.11\n\n\nRelEffect.sd\n0.00\n0.00\n\n\nalpha\n0.05\n0.05\n\n\np\n0.00\n0.00",
+    "crumbs": [
+      "Causal inference section",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Time series causal impact with CausalImpact</span>"
+    ]
+  },
+  {
+    "objectID": "04.1_AFT_math_curves_params.html",
+    "href": "04.1_AFT_math_curves_params.html",
+    "title": "4  Accelerated Failure time models",
+    "section": "",
+    "text": "5 Load libraries\nlibrary(tidyr)\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(survival)\nlibrary(survminer)\nlibrary(hrbrthemes)\n\n#colour range\noh_cols&lt;- c('#65C9D5',  '#EDE668',  '#AA1E2D',  '#F26828',  '#FDCEB0',  '#C3C3C8',  '#74308C','#18272F')\ncc&lt;-colorRampPalette(c('#65C9D5', '#AA1E2D'))\n\nmy_colors &lt;- cc(500)  \n\ncc1&lt;-colorRampPalette(c('#C3C3C8','#74308C'))\nmy_colors1 &lt;- cc1(10)",
+    "crumbs": [
+      "Notes on statistical models",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Accelerated Failure time models</span>"
+    ]
+  },
+  {
+    "objectID": "04.1_AFT_math_curves_params.html#the-exponential-distribution",
+    "href": "04.1_AFT_math_curves_params.html#the-exponential-distribution",
+    "title": "4  Accelerated Failure time models",
+    "section": "6.1 The Exponential distribution",
+    "text": "6.1 The Exponential distribution\nThe exponential distribution has the survival function, \\(S_{T}(t) = e^{-\\lambda t}\\) for all \\(t \\ge 0, \\lambda &gt; 0\\) and the hazard function is constant, \\(h_{T}(t)=\\lambda\\). If the lifetime of \\(T\\) is exponential, then \\(\\epsilon\\) follows a Gumbel distribution witht he survival function \\(S_{\\epsilon}(y)= exp(-e^{y})\\) and obtain:\n\\[S_{T|X}(t|x)= exp(-\\lambda t); \\frac{1}{\\lambda}=exp(\\beta_{0}+\\beta'x)\\]",
+    "crumbs": [
+      "Notes on statistical models",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Accelerated Failure time models</span>"
+    ]
+  },
+  {
+    "objectID": "04.1_AFT_math_curves_params.html#the-weibull-distribution",
+    "href": "04.1_AFT_math_curves_params.html#the-weibull-distribution",
+    "title": "4  Accelerated Failure time models",
+    "section": "6.2 The Weibull distribution",
+    "text": "6.2 The Weibull distribution\nThe survival function:\n\\[S_{T}(t)=e^{(-\\lambda t)^\\alpha}\\]\nwhere…\n\n\\(\\alpha\\) is the shape parameter\n\n\\(\\lambda\\) is the scale parameter\n\nIn an AFT regression, \\(\\frac{1}{\\lambda} = exp(\\beta_{0} + \\beta'x)\\) and \\(\\alpha = \\frac{1}{\\sigma}\\). The exponential model is a special case of the weibull model with a shape parameter equal to 1.\n\nexpo&lt;-tibble(t=1:100,exp.surv=exp(-.02*t),llog=1/(1+(.2*t)^.8),weib.surv=exp(-(.02*t)^.8))\nexpo1&lt;-expo|&gt;\n  pivot_longer(cols=exp.surv:weib.surv)\nggplot(expo1,aes(x=t,y=value,color=name))+geom_line()\n\n\n\n\n\n\n\n#let's simulate different weibull \n#simulate different scale parameters \ndat&lt;-expand.grid(scale=seq(0.001,2,.2),time=seq(0,24,.1))|&gt;\n  group_by(scale)|&gt;\n  mutate(weib=exp(-(scale*time)^.8))\n\nggplot(dat,aes(x=time,y=weib,colour=scale,group=scale,fill=scale))+geom_line(linewidth=2)+scale_y_continuous(limits=c(0,1))+xlab(\"Time\")+ylab(\"Survival probability Pr(T&gt;t)\")+theme_bw()+scale_colour_gradientn(colors = my_colors)\n\n\n\n\n\n\n\n#Higher scale values = quicker drop in survival probability. \n\n\n#now simulate different shape parameters \ndat2&lt;-expand.grid(shape=seq(0.01,.8,.2),time=seq(0,24,.1))|&gt;\n  group_by(shape)|&gt;\n  mutate(weib=exp(-(.5*time)^shape))\n\n\n\nggplot(dat2,aes(x=time,y=weib,colour=shape,group=shape,fill=shape))+geom_line(linewidth=2)+scale_y_continuous(limits=c(0,1))+xlab(\"Time\")+ylab(\"Survival probability Pr(T&gt;t)\")+theme_bw()+scale_colour_gradientn(colors = my_colors1)\n\n\n\n\n\n\n\n#higher shape values lead to steeper drop",
+    "crumbs": [
+      "Notes on statistical models",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Accelerated Failure time models</span>"
+    ]
+  },
+  {
+    "objectID": "03_longitudinal_ordinal_modelling.html",
+    "href": "03_longitudinal_ordinal_modelling.html",
+    "title": "5  Longitudinal ordinal regression model simulations",
+    "section": "",
+    "text": "6 Load libraries\nlibrary(tidyverse)\nlibrary(brms)\nlibrary(ggbeeswarm)\nlibrary(MASS) # fit ordinal logistic regression \nlibrary(brant) # check proportional odds assumption\nlibrary(marginaleffects) # contrats, g-computation\nlibrary(patchwork) # visualization\nlibrary(ordinal) # fitting longitudinal ordinal model\nlibrary(ggeffects)# plotting long ordinal model\nlibrary(tidybayes)\noh_cols&lt;- c('#50BECB',  '#46A6B2',  '#65C9D5',  '#97D3DC',  '#CDEBF0',  '#EDE668',  '#AA1E2D',  '#E4E5E3',  '#F26828',  '#DC5C1D',  '#F89C70',  '#FDCEB0',  '#2A3C47',  '#18272F',  '#404C58',  '#646A74',  '#C3C3C8',  '#74308C')\noh_cols&lt;- c('#65C9D5',  '#EDE668',  '#AA1E2D',  '#F26828',  '#FDCEB0',  '#C3C3C8',  '#74308C','#18272F')",
+    "crumbs": [
+      "Notes on statistical models",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Longitudinal ordinal regression model simulations</span>"
+    ]
+  },
+  {
+    "objectID": "03_longitudinal_ordinal_modelling.html#simulating-ordinal-data",
+    "href": "03_longitudinal_ordinal_modelling.html#simulating-ordinal-data",
+    "title": "5  Longitudinal ordinal regression model simulations",
+    "section": "7.1 Simulating ordinal data",
+    "text": "7.1 Simulating ordinal data\nSimulating a RCT, treatment A vs treatment B, and their impact on quality of life. How to simulate?\n\nFor treatment B, Draw from a normal distribution, normal (100, std=20).\n\nSplit normal distribution based on 7 cut offs ; so there are 8 ordinal categories\n\nSample treatment A from normal (110,std=20), and categorize based on treatment B splits/categories.\n\n\n#sample 1000 patients\nn&lt;-1000\n\nod&lt;-tibble(A=rnorm(n=n,mean=105,sd=20),B=rnorm(n=n,mean=110,sd=20))|&gt;\n  pivot_longer(names_to = \"treatment\",values_to = \"num\",A:B)\n#get  cutoffs\nprobs=seq(0,1,1/8)[2:8]\n#get quantiles \nquantiles &lt;- qnorm(probs, mean = 100, sd = 20)#\n\nod&lt;-od|&gt;\n  mutate(QOL=if_else(num&lt;quantiles[1],1,if_else(num&lt;quantiles[2],2,if_else(num&lt;quantiles[3],3,if_else(num&lt;quantiles[4],4,if_else(num&lt;quantiles[5],5,if_else(num&lt;quantiles[6],6,if_else(num&lt;quantiles[7],7,8))))))))|&gt;\n  mutate(QOL=factor(as.character(QOL)))\n\n#compare ordinal values between groups\n#ggplot(od,aes(x=treatment,y=QOL,colour=treatment))+geom_quasirandom()\n#visualize the data\nfig5&lt;-ggplot(od,aes(x=treatment,y=num,colour=treatment))+geom_quasirandom()+theme(legend.position=\"none\")+geom_hline(yintercept = quantiles)+scale_y_continuous(limits=c(40,180),breaks=c(quantiles,133)-5,labels=c(\"none\",\"less\",\"slight\",\"mild\",\"above mild\",\"severe\",\"overly severe\",\"death\"),name=\"Ordinal scale QOL\")+scale_color_manual(values=c('#65C9D5','#74308C'))\nfig5\n\n\n\n\n\n\n\nggsave(fig5,filename=\"01_QOL-ordinal_vs_treatmentA-B_crosssectional.png\",unit=\"in\",dpi=600,width=4,height=4)",
+    "crumbs": [
+      "Notes on statistical models",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Longitudinal ordinal regression model simulations</span>"
+    ]
+  },
+  {
+    "objectID": "03_longitudinal_ordinal_modelling.html#fit-ordinal-logistic-mode",
+    "href": "03_longitudinal_ordinal_modelling.html#fit-ordinal-logistic-mode",
+    "title": "5  Longitudinal ordinal regression model simulations",
+    "section": "7.2 Fit ordinal logistic mode",
+    "text": "7.2 Fit ordinal logistic mode\n\n# ordinal model \nmod1 &lt;- polr(QOL~ treatment, data = od, Hess=TRUE)\nsummary(mod1) # model output\n\nCall:\npolr(formula = QOL ~ treatment, data = od, Hess = TRUE)\n\nCoefficients:\n            Value Std. Error t value\ntreatmentB 0.4545    0.07887   5.762\n\nIntercepts:\n    Value    Std. Error t value \n1|2  -2.4126   0.0953   -25.3156\n2|3  -1.4824   0.0712   -20.8163\n3|4  -0.8811   0.0633   -13.9119\n4|5  -0.3898   0.0603    -6.4655\n5|6   0.1386   0.0597     2.3235\n6|7   0.6941   0.0614    11.3044\n7|8   1.4762   0.0684    21.5912\n\nResidual Deviance: 8021.418 \nAIC: 8037.418 \n\nexp(coef(mod1)) # treatment B has a 2.2 increased odds ratio in QOL than treatment A\n\ntreatmentB \n  1.575329 \n\n#check proportional odds\nbrant(mod1)\n\n-------------------------------------------- \nTest for    X2  df  probability \n-------------------------------------------- \nOmnibus     4.64    6   0.59\ntreatmentB  4.64    6   0.59\n-------------------------------------------- \n\nH0: Parallel Regression Assumption holds\n\n##predict values \nnew.dat&lt;-data.frame(treatment=c(\"A\",\"B\"))\n\n#get predictions\nnpred&lt;-predict(mod1,new.dat,type=\"probs\")|&gt;\n  data.frame()|&gt;\n  mutate(treatment=c(\"A\",\"B\"))|&gt;\n  pivot_longer(X1:X8,names_to = \"Ordinal\",values_to=\"Probability\")|&gt;\n  mutate(ord.num=substr(Ordinal,2,2))\n\n#ggplot(npred,aes(x=treatment,y=Probability,colour=treatment))+geom_point(size=5)+facet_wrap(~Ordinal,ncol=4)\n\n#plot on more continuous scale \nfig1&lt;-ggplot(npred,aes(x=ord.num,y=Probability,colour=treatment,group=treatment))+geom_point(size=5)+geom_line(linewidth=1)+theme_bw()+theme(legend.position = \"top\")+xlab(\"Ordinal Scale (Good QOL -&gt; Bad QOL)\")+scale_y_continuous(limits=c(0,.3),breaks=seq(0,.3,.025),labels=seq(0,.3,.025))",
+    "crumbs": [
+      "Notes on statistical models",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Longitudinal ordinal regression model simulations</span>"
+    ]
+  },
+  {
+    "objectID": "03_longitudinal_ordinal_modelling.html#lets-see-if-we-can-conduct-g-computation",
+    "href": "03_longitudinal_ordinal_modelling.html#lets-see-if-we-can-conduct-g-computation",
+    "title": "5  Longitudinal ordinal regression model simulations",
+    "section": "7.3 Let’s see if we can conduct g-computation",
+    "text": "7.3 Let’s see if we can conduct g-computation\n\n#try marginaleffects \nnd&lt;-expand.grid(treatment=c(\"A\",\"B\"),ind=1:1000)\n#gcomp&lt;-avg_comparisons(mod1,variables = \"treatment\",newdata=nd)\ngcomp&lt;-avg_comparisons(mod1,variables = \"treatment\",newdata=datagrid(newdata = od,grid_type=\"counterfactual\",treatment=c(\"A\",\"B\"))) # same code as above\ngdat&lt;-gcomp|&gt;\n  broom::tidy()\n\nfig2&lt;-ggplot(gdat,aes(x=1:8,y=estimate))+geom_point(size=3)+geom_line(linewidth=.75)+geom_ribbon(aes(ymin=conf.low,ymax=conf.high),alpha=.5,colour=\"grey80\")+scale_x_continuous(breaks=1:8,labels=1:8)+theme_bw()+geom_hline(yintercept = 0,lty=\"dotdash\",linewidth=.75)+ylab(\"Contrast (Treatment B-A)\")+xlab(\"Ordinal scale (Good QOL -&gt; Bad QOL)\")\n\nfig12&lt;-fig1+fig2\nfig12\n\n\n\n\n\n\n\nggsave(fig12,filename=\"01_two_panel_ordinal_scale_contrast_treatmentA_treatmentB.png\",width=7,height=5,dpi=600,unit=\"in\")",
+    "crumbs": [
+      "Notes on statistical models",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Longitudinal ordinal regression model simulations</span>"
+    ]
+  },
+  {
+    "objectID": "03_longitudinal_ordinal_modelling.html#fitting-longitudinal-ordinal-regression-model",
+    "href": "03_longitudinal_ordinal_modelling.html#fitting-longitudinal-ordinal-regression-model",
+    "title": "5  Longitudinal ordinal regression model simulations",
+    "section": "8.1 Fitting longitudinal ordinal regression model",
+    "text": "8.1 Fitting longitudinal ordinal regression model\nfrequentist doesnt work well for estimating contrasts, but I’m going to try with the brms package (bayesian)\n(didn’t run this code because it takes too long)\n\n#set up the model \n#ordinal longitudinal random effects model\n#random intercept and random slope \n#mod2&lt;-clmm(QOL~treatment+time+(1+time|id),data=tpd)\ntpd$QOL &lt;- as.ordered(tpd$QOL)\nmod2&lt;-brm(QOL~treatment+time+(1+time|id),data=tpd,family=cumulative(),iter = 1000)\n#prior=set_prior(\"normal(0,5)\",class=\"b\")\nsummary(mod2)\n# I should save the model, bc it takes forever to run\nsaveRDS(mod2,\"Output_datasets/longitudinal_ordinal_bayesian_brmsmodel_simulateddata_time_and_treatmenteffects\")\n\n\n\n####model checks\n##check the model: \npp_check(mod2)\n#trace plots \nmcmc_plot(mod2, type = \"trace\")\nmcmc_plot(mod2, type = \"dens_overlay\")\n\n#\n# Generate posterior predictions\npredictions &lt;- add_predicted_draws(mod2, newdata = tpd)\n\n# Plot predictions\nggplot(predictions, aes(x = time, y = .prediction, color = treatment)) +\n  geom_line() +\n  labs(title = \"Posterior Predictive Distribution\")\n\n\n\n##########\n\n\n##################3g-comp\n\n##g-computation\nnd1&lt;-expand.grid(treatment=c(\"A\",\"B\"),ind=1:100)\n\ngcomp2&lt;-avg_comparisons(mod2,variables = \"treatment\",newdata=datagrid(newdata = tpd,grid_type=\"counterfactual\",treatment=c(\"A\",\"B\"))) # same code as above\n#predict(mod2,nd1,type=\"probs\")\n\ngcomp2",
+    "crumbs": [
+      "Notes on statistical models",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Longitudinal ordinal regression model simulations</span>"
+    ]
+  },
+  {
+    "objectID": "12_Bayesian_inference_discrete_simple_case.html",
+    "href": "12_Bayesian_inference_discrete_simple_case.html",
+    "title": "6  Bayesian inference in discrete case",
+    "section": "",
+    "text": "7 Load libraries\nDate: 2025-04-19\nlibrary(tidyverse)",
     "crumbs": [
       "Misc Bayesian statistics",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lab1: Bayesian inference with beta priors, Jingchen Hu</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bayesian inference in discrete case</span>"
+    ]
+  },
+  {
+    "objectID": "12_Bayesian_inference_discrete_simple_case.html#steps",
+    "href": "12_Bayesian_inference_discrete_simple_case.html#steps",
+    "title": "6  Bayesian inference in discrete case",
+    "section": "8.1 Steps",
+    "text": "8.1 Steps\nShe wants to use a Bayesian approach and involves the following steps:\n\nSet up the prior expectations of success \\(\\pi(p)\\) or \\(\\pi(success)\\)\nCollect data and estimate the likelihood -&gt; use binomial distribution\n\nLikelihood of p and Binomial probability mass function (pmf):\\[\\pi(y|p_{i})=L(p_{i})=P(Y = y) = \\binom{n}{y} p^y (1-p)^{n-y}\\]\nAssumptions of binomial experiment:\n\nrepeating same task/trial many times\n\non each trial, 2 possible outcomes: “success” or “failure”\n\nProb of success, p, same for each trial\n\nResults of outcomes from different trials are independent\n\n \n\nApply Baye’s rule\n\nBayes rule: \\[\\pi(p_{i}| y) = \\frac{\\pi(y|p_{i}) \\times \\pi(p_{i})}{\\pi(y)} \\]\n\\[\\pi(y) = \\sum_{j} \\pi(p_{j}\\times L(p_{j})) \\]\nThe denominator gives the marginal distribution of the observation \\(y\\) by the law of total probability.",
+    "crumbs": [
+      "Misc Bayesian statistics",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bayesian inference in discrete case</span>"
+    ]
+  },
+  {
+    "objectID": "12_Bayesian_inference_discrete_simple_case.html#set-up-prior-pip",
+    "href": "12_Bayesian_inference_discrete_simple_case.html#set-up-prior-pip",
+    "title": "6  Bayesian inference in discrete case",
+    "section": "8.2 Set up prior \\(\\pi(p)\\)",
+    "text": "8.2 Set up prior \\(\\pi(p)\\)\n\n#probabilities of success to consider\np&lt;-seq(.3,.8,.1)\n#p\n\n#probabilities for each of p \nprior&lt;-c(.125,.125,.25,.25,.125,.125)\n\nd&lt;-tibble(prior,p)\n\nggplot(d,aes(x=p,y=prior))+geom_bar(stat=\"identity\")+theme_bw()+scale_x_continuous(limits=c(0,1),breaks=seq(0,1,.1),labels=seq(0,1,.1))+ylab(\"prior probability\")",
+    "crumbs": [
+      "Misc Bayesian statistics",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bayesian inference in discrete case</span>"
+    ]
+  },
+  {
+    "objectID": "12_Bayesian_inference_discrete_simple_case.html#calculate-likelihood--binomial",
+    "href": "12_Bayesian_inference_discrete_simple_case.html#calculate-likelihood--binomial",
+    "title": "6  Bayesian inference in discrete case",
+    "section": "8.3 Calculate likelihood -binomial",
+    "text": "8.3 Calculate likelihood -binomial\nShe surveyed 20 patrons and 12 chose Friday. So this looks like\n\\[L(p_{i}) = \\binom{20}{12}p^{12}\\times (1-p)^{20-12}\\]\n\n#use the density binomial function , dbinom()\nd$likelihood&lt;-dbinom(x=12,size=20,prob=d$p)\nknitr::kable(d)\n\n\n\n\nprior\np\nlikelihood\n\n\n\n\n0.125\n0.3\n0.0038593\n\n\n0.125\n0.4\n0.0354974\n\n\n0.250\n0.5\n0.1201344\n\n\n0.250\n0.6\n0.1797058\n\n\n0.125\n0.7\n0.1143967\n\n\n0.125\n0.8\n0.0221609",
+    "crumbs": [
+      "Misc Bayesian statistics",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bayesian inference in discrete case</span>"
+    ]
+  },
+  {
+    "objectID": "12_Bayesian_inference_discrete_simple_case.html#apply-bayes-rule-and-calculate-the-posterior-probability-pip_iy",
+    "href": "12_Bayesian_inference_discrete_simple_case.html#apply-bayes-rule-and-calculate-the-posterior-probability-pip_iy",
+    "title": "6  Bayesian inference in discrete case",
+    "section": "8.4 Apply Baye’s rule and calculate the posterior probability (\\(\\pi(p_{i}|y)\\))",
+    "text": "8.4 Apply Baye’s rule and calculate the posterior probability (\\(\\pi(p_{i}|y)\\))\n\\(\\pi(p_{i}|y)\\) is the posterior probability of \\(p = p_{i}\\) given the number of successes \\(y\\).\n\nd$marg&lt;-sum(d$prior*d$likelihood)\n\nd$posterior&lt;-(d$prior*d$likelihood)/d$marg\n\n#plot table\nknitr::kable(d)\n\n\n\n\nprior\np\nlikelihood\nmarg\nposterior\n\n\n\n\n0.125\n0.3\n0.0038593\n0.0969493\n0.0049759\n\n\n0.125\n0.4\n0.0354974\n0.0969493\n0.0457680\n\n\n0.250\n0.5\n0.1201344\n0.0969493\n0.3097865\n\n\n0.250\n0.6\n0.1797058\n0.0969493\n0.4634013\n\n\n0.125\n0.7\n0.1143967\n0.0969493\n0.1474955\n\n\n0.125\n0.8\n0.0221609\n0.0969493\n0.0285728\n\n\n\n\n#let's plot everything out \n#ggplot(d,aes(x=p,y=posterior))+geom_point()\n\n\n8.4.1 inferential question: What is the posterior prob that over half of the customers prefer to eat out on friday for dinner?\n\nan&lt;-d|&gt;\n  filter(p&gt;.5)|&gt;\n  dplyr::summarise(oh=sum(posterior))\n\n\\(Prob(p&gt;0.5) =\\) 0.6394696\n\n\n8.4.2 Let’s plot out the prior, likelihood, and posterior\nI’m going to normalize the likelihood function with 3x the max for plottig purposes.\n\nd$sl&lt;-d$likelihood/(max(d$likelihood)*3)\n\nd2&lt;-d|&gt;\n  select(p,prior,sl,posterior)|&gt;\n  pivot_longer(prior:posterior)|&gt;\n  mutate(parameter=if_else(name==\"prior\",\"Prior\",if_else(name==\"sl\",\"Likelihood\",\"Posterior\")))\n\n\nggplot(d2,aes(x=p,y=value,colour=parameter))+geom_point()+geom_line(linewidth=1)+xlab(\"Probability\")+ylab(\"Density\")+theme_bw()+theme(legend.position=\"top\")+scale_colour_manual(name=\"\",values=c('#AA1E2D','#46A6B2','#18272F'))",
+    "crumbs": [
+      "Misc Bayesian statistics",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bayesian inference in discrete case</span>"
+    ]
+  },
+  {
+    "objectID": "13_Bayesian_inference_Beta_priors_JingchenHu_lab1.html",
+    "href": "13_Bayesian_inference_Beta_priors_JingchenHu_lab1.html",
+    "title": "7  Lab1: Bayesian inference with beta priors, Jingchen Hu",
+    "section": "",
+    "text": "8 Intro\nThis is a lab by a professor, Jingchen Hu, which goes over Bayesian inference with beta priors.\n\n\n9 Load libraries\n\nlibrary(tidyverse)\nlibrary(ProbBayes)\n\n\n\n10 Posterior predictive checking\n\nS&lt;-10000 # number of simulations\na&lt;-3.06 # a in beta(a,b)\nb&lt;-2.56 # b in beta(a,b)\nn&lt;-20 # number of trials\ny&lt;-12 # number of successes \n\nnewy=as.data.frame(rep(NA,S))\nnames(newy)=c(\"y\")\n\nset.seed(123)\nfor (s in 1:S){\n  pred_p_sim&lt;-rbeta(1, a+y, b+n-y) # step 1 ; get posterior param\n  pred_y_sim&lt;-rbinom(1,n,pred_p_sim) # step 2; based on param, predict outcome-&gt; # of successes\n  newy[s,]=pred_y_sim\n}\nknitr::kable(head(newy))\n\n\n\n\ny\n\n\n\n\n14\n\n\n13\n\n\n8\n\n\n12\n\n\n14\n\n\n5\n\n\n\n\n#how i would write the simluation\n\ndat&lt;-tibble(pred_p=rbeta(S,a+y,b+n-y))|&gt;\n  rowwise()|&gt;\n  mutate(pred_y=rbinom(1,n,pred_p))\n\nsum(dat$pred_y&gt;=5&dat$pred_y&lt;=15)/S\n\n[1] 0.8943\n\n#dat$pred_y&lt;-rbinom(1000,n,dat$pred_p)\nggplot(data=dat,aes(pred_y))+geom_density()+scale_x_continuous(breaks=seq(0,20,1),labels=seq(0,20,1))\n\n\n\n\n\n\n\n\n\n\n11 Let’s try to simulate a situation with mismatched prior with the data\n\nbeta_draw(c(3.06,2.56)) #prior fromp revious section \n\n\n\n\n\n\n\nbeta_draw(c(0.5,5)) #this looks liek a good prior to mess up the data \n\n\n\n\n\n\n\ns&lt;-10000\nn&lt;-20 # trials\ny&lt;-12 #successes\na&lt;-.5\nb&lt;-5\n\ndat2&lt;-tibble(pred_p=rbeta(S,a+y,b+n-y))|&gt;\n  rowwise()|&gt;\n  mutate(pred_y=rbinom(1,n,pred_p))\n\n# model check : how often pr(y &gt; ypred|y)\nsum(y&gt;dat2$pred_y)/S # how often collected data above posterior prediction\n\n[1] 0.7158\n\n1-sum(y&gt;dat2$pred_y)/S #how often collected data below posterior prediction\n\n[1] 0.2842\n\n#draw posterior\nbeta_prior_post(c(.5,5),c(a+y,b+n-y))\n\n\n\n\n\n\n\n\n\n\n12 Session info\n\nbeta_draw(c(.3,.7)) \n\n\n\n\n\n\n\nsessionInfo()\n\nR version 4.5.0 (2025-04-11 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 11 x64 (build 26100)\n\nMatrix products: default\n  LAPACK version 3.12.1\n\nlocale:\n[1] LC_COLLATE=English_United States.utf8 \n[2] LC_CTYPE=English_United States.utf8   \n[3] LC_MONETARY=English_United States.utf8\n[4] LC_NUMERIC=C                          \n[5] LC_TIME=English_United States.utf8    \n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] ProbBayes_1.1     shiny_1.10.0      gridExtra_2.3     LearnBayes_2.15.1\n [5] lubridate_1.9.4   forcats_1.0.0     stringr_1.5.1     dplyr_1.1.4      \n [9] purrr_1.0.4       readr_2.1.5       tidyr_1.3.1       tibble_3.2.1     \n[13] ggplot2_3.5.2     tidyverse_2.0.0  \n\nloaded via a namespace (and not attached):\n [1] generics_0.1.3    stringi_1.8.7     hms_1.1.3         digest_0.6.37    \n [5] magrittr_2.0.3    evaluate_1.0.3    grid_4.5.0        timechange_0.3.0 \n [9] fastmap_1.2.0     jsonlite_2.0.0    promises_1.3.2    scales_1.3.0     \n[13] cli_3.6.4         rlang_1.1.6       munsell_0.5.1     withr_3.0.2      \n[17] yaml_2.3.10       tools_4.5.0       tzdb_0.5.0        colorspace_2.1-1 \n[21] httpuv_1.6.16     vctrs_0.6.5       R6_2.6.1          mime_0.13        \n[25] lifecycle_1.0.4   htmlwidgets_1.6.4 pkgconfig_2.0.3   pillar_1.10.2    \n[29] later_1.4.2       gtable_0.3.6      glue_1.8.0        Rcpp_1.0.14      \n[33] xfun_0.52         tidyselect_1.2.1  knitr_1.50        farver_2.1.2     \n[37] xtable_1.8-4      htmltools_0.5.8.1 rmarkdown_2.29    labeling_0.4.3   \n[41] compiler_4.5.0",
+    "crumbs": [
+      "Misc Bayesian statistics",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Lab1: Bayesian inference with beta priors, Jingchen Hu</span>"
+    ]
+  },
+  {
+    "objectID": "Randomization_and_Power_analysis.html",
+    "href": "Randomization_and_Power_analysis.html",
+    "title": "8  Randomization and sample size estimation",
+    "section": "",
+    "text": "9 Introduction:\nThe aim of this demo is to showcase how to estimate sample sizes and conduct randomization in clinical trial designs. R has a suite of packages geared towards clinical trial design, monitoring, and analyses (CRAN R Projects- Clinical Trials Zhang, Zhang, and Zhang (2021)). I’m also modeling my demo off of Peter Higgin’s Reproducible Medical Research with R book, chapter 20 (Higgins (2023)).",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Randomization and sample size estimation</span>"
+    ]
+  },
+  {
+    "objectID": "Randomization_and_Power_analysis.html#t-test-designs-and-sample-size-calculations",
+    "href": "Randomization_and_Power_analysis.html#t-test-designs-and-sample-size-calculations",
+    "title": "8  Randomization and sample size estimation",
+    "section": "11.1 T-test designs and sample size calculations",
+    "text": "11.1 T-test designs and sample size calculations\nWe will be using the pwr package. To start, let’s estimate a sample size with:\n\nalpha = 0.05\n\npower = 0.80 (1-\\(\\beta\\))\n\neffect size, cohen’s d = 0.5, which is considered a moderate effect size\n\n\npwr::pwr.t.test(sig.level=0.05,type=\"two.sample\",power=.8,d=.5)\n\n\n     Two-sample t test power calculation \n\n              n = 63.76561\n              d = 0.5\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\nKey result: 64 volunteers per arm. We round up because there can be no fractional individuals.\nFor a different study design, let’s assume there is a before and after measurement of a continuous variable and this would produce paired results with the same assumptions about \\(\\alpha\\),\\(\\beta\\), and cohen’s d.\n\npwr::pwr.t.test(sig.level=0.05,type=\"paired\",power=.8,d=.5)\n\n\n     Paired t test power calculation \n\n              n = 33.36713\n              d = 0.5\n      sig.level = 0.05\n          power = 0.8\n    alternative = two.sided\n\nNOTE: n is number of *pairs*\n\n\nKey result: 34 volunteers per arm.\nWe also may need to consider drop out rates. For example, if there is a 20% drop out rate, then add 20% to the sample sizes per arm. 34 x 20% = ~7, so we would need 41 volunteers.\n\n11.1.1 Simulating effect sizes and power\nWhat if we don’t know the effect size and want to find out sample sizes based on different inputs of effect size and power?\n\nsimulating effect sizes from 0 to 2 in .1 increments\n\nover two levels of power (0.8 and .9)\n\n\n#code to get sample size from pwr.t.test\n#round(pwr::pwr.t.test(sig.level=0.05,type=\"two.sample\",power=.8,d=c(.5),n=NULL)$n,0)\n\nd&lt;-data.frame(efsize=rep(seq(0.1,2,.1),2),\n              power=c(rep(.8,length(seq(0.1,2,.1))),\n                      rep(.9,length(seq(0.1,2,.1)))))\nd%&gt;%\n  group_by(efsize,power)%&gt;%\n  mutate(n=round(pwr::pwr.t.test(sig.level=0.05,\n                                 type=\"two.sample\",power=power,\n                                 d=efsize,n=NULL)$n,0),\n         power2=paste(\"Power = \",power,sep=\"\"))%&gt;%\n  #power2 is for plotting\n  ggplot(.,aes(x=efsize,y=n,colour=factor(power)))+\n  geom_point()+geom_line()+\n  theme_minimal()+\n  geom_text(aes(label=n),vjust=-1)+\n  facet_wrap(~power2,ncol=1)+\n  xlab(\"Effect size (cohen's d)\")+\n  ylab(\"Sample size per arm\")+\n  theme(legend.position = \"none\")+\n  scale_x_continuous(,limits=c(0,2)\n                     ,breaks=seq(0,2,.25),\n                     labels=seq(0,2,.25))+\n  scale_y_continuous(limits=c(0,2500))",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Randomization and sample size estimation</span>"
+    ]
+  },
+  {
+    "objectID": "Randomization_and_Power_analysis.html#chi-square-2x2-contingency-table-design",
+    "href": "Randomization_and_Power_analysis.html#chi-square-2x2-contingency-table-design",
+    "title": "8  Randomization and sample size estimation",
+    "section": "11.2 Chi-square 2x2 contingency table design",
+    "text": "11.2 Chi-square 2x2 contingency table design\nIn this design, let’s say there are counts of diseased and not-diseased individuals that were exposed and not exposed to some chemical. We want to find the association between the two variables and we need to specify the expected proportions of the 2x2 under the alternative hypothesis.\n\n#ES.w2() # chi-square for test of association\n#pwr.chisq.test()\n\nd2&lt;-data.frame(exposure=c(\"exposed\",\"not exposed\"),non_diseased=c(.25,.3),diseased=c(0.25,.2))\nknitr::kable(d2)\n\n\n\n\nexposure\nnon_diseased\ndiseased\n\n\n\n\nexposed\n0.25\n0.25\n\n\nnot exposed\n0.30\n0.20\n\n\n\n\n\nNow that we have the expected 2x2 matrix under the alternative hypothesis (not independent), then we need to identify the effect size with ES.w2() and then plug and chug with pwr.chisq.test() with \\(\\alpha\\) = 0.05 and power = 0.8.\n\nef.sim.dat&lt;-ES.w2(d2[,-1])\npwr.chisq.test(w=ef.sim.dat,df=1,power=.8,sig.level=.05)\n\n\n     Chi squared power calculation \n\n              w = 0.1005038\n              N = 777.0372\n             df = 1\n      sig.level = 0.05\n          power = 0.8\n\nNOTE: N is the number of observations\n\n\nKey result: We need 778 observations. Note that the degrees of freedom on 1 in this case for a 2x2 contingency table, which is calculated as (# of columns - 1) x (# of rows -1).",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Randomization and sample size estimation</span>"
+    ]
+  },
+  {
+    "objectID": "Randomization_and_Power_analysis.html#time-to-event-types-of-designs-survival-analyses",
+    "href": "Randomization_and_Power_analysis.html#time-to-event-types-of-designs-survival-analyses",
+    "title": "8  Randomization and sample size estimation",
+    "section": "11.3 Time to event types of designs (survival analyses)",
+    "text": "11.3 Time to event types of designs (survival analyses)\nI will be using the gsDesign package and referencing an online resource here.\n\nhr=.7 # hazard ratio\ncontrolMedian&lt;-8 # 8 months\nlambda1 &lt;- log(2) / controlMedian #estimated hazard rate of control\n\nnSurvival(\n  lambda1 = lambda1,\n  lambda2 = lambda1 * hr, #hazard rate for experimental\n  Ts = 24, #24 months\n  Tr = 6, # 6 months\n  eta = .1, # value per month dropout rate\n  ratio = 1, # equal sampling\n  alpha = .05,\n  beta = .2\n)\n\nFixed design, two-arm trial with time-to-event\noutcome (Lachin and Foulkes, 1986).\nStudy duration (fixed):          Ts=24\nAccrual duration (fixed):        Tr=6\nUniform accrual:              entry=\"unif\"\nControl median:      log(2)/lambda1=8\nExperimental median: log(2)/lambda2=11.4\nCensoring median:        log(2)/eta=6.9\nControl failure rate:       lambda1=0.087\nExperimental failure rate:  lambda2=0.061\nCensoring rate:                 eta=0.1\nPower:                 100*(1-beta)=80%\nType I error (1-sided):   100*alpha=5%\nEqual randomization:          ratio=1\nSample size based on hazard ratio=0.7 (type=\"rr\")\nSample size (computed):           n=476\nEvents required (computed): nEvents=195",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Randomization and sample size estimation</span>"
+    ]
+  },
+  {
+    "objectID": "Randomization_and_Power_analysis.html#with-blockrand-package",
+    "href": "Randomization_and_Power_analysis.html#with-blockrand-package",
+    "title": "8  Randomization and sample size estimation",
+    "section": "12.1 …with blockrand package",
+    "text": "12.1 …with blockrand package\n\nmrand&lt;-blockrand(n = 100, \n                     num.levels = 2, # three treatments\n                     levels = c(\"Con.Arm\", \"Treat.Arm\"), # arm names\n                     stratum = \"Strat.male\", # stratum name\n                     id.prefix = \"SM\", # stratum abbrev\n                     block.sizes = c(3,4), # times arms = 6,8\n                     block.prefix = \"blksm\") # stratum abbrev\n\nfrand&lt;-blockrand(n = 100, \n                     num.levels = 2, # three treatments\n                     levels = c(\"Con.Arm\", \"Treat.Arm\"), # arm names\n                     stratum = \"Strat.female\", # stratum name\n                     id.prefix = \"SF\", # stratum abbrev\n                     block.sizes = c(3,4), # times arms = 6,8\n                     block.prefix = \"blkfm\") # stratum abbrev\ntotrand&lt;-rbind(mrand,frand)\nknitr::kable(head(totrand,25))\n\n\n\n\nid\nstratum\nblock.id\nblock.size\ntreatment\n\n\n\n\nSM001\nStrat.male\nblksm01\n8\nTreat.Arm\n\n\nSM002\nStrat.male\nblksm01\n8\nTreat.Arm\n\n\nSM003\nStrat.male\nblksm01\n8\nTreat.Arm\n\n\nSM004\nStrat.male\nblksm01\n8\nCon.Arm\n\n\nSM005\nStrat.male\nblksm01\n8\nTreat.Arm\n\n\nSM006\nStrat.male\nblksm01\n8\nCon.Arm\n\n\nSM007\nStrat.male\nblksm01\n8\nCon.Arm\n\n\nSM008\nStrat.male\nblksm01\n8\nCon.Arm\n\n\nSM009\nStrat.male\nblksm02\n8\nTreat.Arm\n\n\nSM010\nStrat.male\nblksm02\n8\nTreat.Arm\n\n\nSM011\nStrat.male\nblksm02\n8\nTreat.Arm\n\n\nSM012\nStrat.male\nblksm02\n8\nCon.Arm\n\n\nSM013\nStrat.male\nblksm02\n8\nTreat.Arm\n\n\nSM014\nStrat.male\nblksm02\n8\nCon.Arm\n\n\nSM015\nStrat.male\nblksm02\n8\nCon.Arm\n\n\nSM016\nStrat.male\nblksm02\n8\nCon.Arm\n\n\nSM017\nStrat.male\nblksm03\n6\nCon.Arm\n\n\nSM018\nStrat.male\nblksm03\n6\nTreat.Arm\n\n\nSM019\nStrat.male\nblksm03\n6\nTreat.Arm\n\n\nSM020\nStrat.male\nblksm03\n6\nTreat.Arm\n\n\nSM021\nStrat.male\nblksm03\n6\nCon.Arm\n\n\nSM022\nStrat.male\nblksm03\n6\nCon.Arm\n\n\nSM023\nStrat.male\nblksm04\n8\nTreat.Arm\n\n\nSM024\nStrat.male\nblksm04\n8\nTreat.Arm\n\n\nSM025\nStrat.male\nblksm04\n8\nCon.Arm\n\n\n\n\n\nWe can then create patient randomization “cards” based on the blockrand() output.\n\nplotblockrand(totrand,'mystudy.pdf',\n              top=list(text=c('MyStudy','Patient:%ID%','Treatment:%TREAT%'),\n                       col=c('black','black','red'),font=c(1,1,4)),\n              middle=list(text=c(\"MyStudy\",\"Sex:%STRAT%\",\"Patient:%ID%\"),\n                          col=c('black','blue','green'),font=c(1,2,3)),\n              bottom=\"Call123-4567toreportpatiententry\", cut.marks=TRUE)",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Randomization and sample size estimation</span>"
+    ]
+  },
+  {
+    "objectID": "Randomization_and_Power_analysis.html#with-randomizer-package",
+    "href": "Randomization_and_Power_analysis.html#with-randomizer-package",
+    "title": "8  Randomization and sample size estimation",
+    "section": "12.2 …with randomizeR package",
+    "text": "12.2 …with randomizeR package\nUsing the randomized permuted block randomization function, rpbrPar(). The details:\n\nFix the possible random block lengths rb, the number of treatment groups K, the sample size N and the vector of the ratio. Afterwards, one block length is randomly selected of the random block lengths. The patients are assigned according to the ratio to the corresponding treatment groups. This procedure is repeated until N patients are assigned. Within each block all possible randomization sequences are equiprobable.\n\n\n#randomization parameters\nmales&lt;-rpbrPar(N=100, #total sample size\n               rb=6, # block length parameter\n               K=2) # number of groups\nrr&lt;-genSeq(males) # saving randomization procedure\nrr.out&lt;-as.vector(getRandList(rr))# grab randomizations\n#put into dataframe and make it look better\nmale.r.dat&lt;-data.frame(sex=\"M\",\n                       subject=paste(\"SM\",\n                                     seq(1:length(rr.out)),sep=\"\"),\n                       treatment=rr.out,\n                       treatmentname=ifelse(rr.out==\"A\",\"Control\",\"Treatment\"))\n#male.r.dat\nknitr::kable(head(male.r.dat,10))\n\n\n\n\nsex\nsubject\ntreatment\ntreatmentname\n\n\n\n\nM\nSM1\nB\nTreatment\n\n\nM\nSM2\nB\nTreatment\n\n\nM\nSM3\nA\nControl\n\n\nM\nSM4\nA\nControl\n\n\nM\nSM5\nB\nTreatment\n\n\nM\nSM6\nA\nControl\n\n\nM\nSM7\nA\nControl\n\n\nM\nSM8\nA\nControl\n\n\nM\nSM9\nB\nTreatment\n\n\nM\nSM10\nB\nTreatment",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Randomization and sample size estimation</span>"
+    ]
+  },
+  {
+    "objectID": "20170601_ANOVA_vignette.html",
+    "href": "20170601_ANOVA_vignette.html",
+    "title": "9  One-Way ANOVA vignette",
+    "section": "",
+    "text": "10 Libraries\nlibrary(plyr)\nlibrary(tidyr)",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>One-Way ANOVA vignette</span>"
+    ]
+  },
+  {
+    "objectID": "20170601_ANOVA_vignette.html#enter-data",
+    "href": "20170601_ANOVA_vignette.html#enter-data",
+    "title": "9  One-Way ANOVA vignette",
+    "section": "11.1 Enter data",
+    "text": "11.1 Enter data\n\n#data, \n# a = 3, 3 treatments\n# n = 4, 4 reps\nn=4\nunman&lt;-c(10,12,12,13)\ncontrol&lt;-c(9,11,11,12)\ntreat&lt;-c(12,13,15,16)\n\nwide.dat&lt;-data.frame(unman,control,treat);wide.dat\n\n  unman control treat\n1    10       9    12\n2    12      11    13\n3    12      11    15\n4    13      12    16\n\nlong.dat&lt;-gather(wide.dat,treatment,measure,unman:treat);long.dat\n\n   treatment measure\n1      unman      10\n2      unman      12\n3      unman      12\n4      unman      13\n5    control       9\n6    control      11\n7    control      11\n8    control      12\n9      treat      12\n10     treat      13\n11     treat      15\n12     treat      16\n\n#global mean\ngrandmean&lt;-round(mean(c(unman,control,treat)),2);grandmean\n\n[1] 12.17",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>One-Way ANOVA vignette</span>"
+    ]
+  },
+  {
+    "objectID": "20170601_ANOVA_vignette.html#ss_total-calculations",
+    "href": "20170601_ANOVA_vignette.html#ss_total-calculations",
+    "title": "9  One-Way ANOVA vignette",
+    "section": "11.2 \\(SS_{total}\\) calculations",
+    "text": "11.2 \\(SS_{total}\\) calculations\n\nsum((long.dat$measure-grandmean)^2)\n\n[1] 41.6668",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>One-Way ANOVA vignette</span>"
+    ]
+  },
+  {
+    "objectID": "20170601_ANOVA_vignette.html#ss_among-calculations",
+    "href": "20170601_ANOVA_vignette.html#ss_among-calculations",
+    "title": "9  One-Way ANOVA vignette",
+    "section": "11.3 \\(SS_{among}\\) calculations",
+    "text": "11.3 \\(SS_{among}\\) calculations\n\n## calculating 1 case\n\n(mean(unman)-grandmean)^2\n\n[1] 0.1764\n\n### making a whole function \n#with ddply\nssa&lt;-function(n=n,vec=c(1,3,3),grandmean=grandmean){\n  SSa&lt;-(mean(vec)-grandmean)^2\n  SSa\n}\nssa(vec=unman,n=n,grandmean=grandmean) # verify function\n\n[1] 0.1764\n\n## executing function\nssam&lt;-ddply(long.dat,.(treatment),summarize,ssamong=ssa(vec=measure,n=n,grandmean=grandmean));ssam\n\n  treatment ssamong\n1   control  2.0164\n2     treat  3.3489\n3     unman  0.1764\n\nSSAM&lt;-n*sum(ssam$ssamong);SSAM\n\n[1] 22.1668\n\n# for a balanced design!",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>One-Way ANOVA vignette</span>"
+    ]
+  },
+  {
+    "objectID": "20170601_ANOVA_vignette.html#ss_within-calculations",
+    "href": "20170601_ANOVA_vignette.html#ss_within-calculations",
+    "title": "9  One-Way ANOVA vignette",
+    "section": "11.4 \\(SS_{within}\\) calculations",
+    "text": "11.4 \\(SS_{within}\\) calculations\n\n## calculating 1 case\nsum((unman-mean(unman))^2)\n\n[1] 4.75\n\n### making a whole function \n#with ddply\nsswi&lt;-function(x){\n  SSwithin&lt;-sum((x-mean(x))^2)\n  SSwithin\n}\nsswi(unman) # verify function\n\n[1] 4.75\n\nSSwi&lt;-ddply(long.dat,.(treatment),summarize,sswi=sswi(measure));SSwi\n\n  treatment  sswi\n1   control  4.75\n2     treat 10.00\n3     unman  4.75\n\nsumwithin&lt;-sum(SSwi$sswi);sumwithin\n\n[1] 19.5",
+    "crumbs": [
+      "Misc Frequentist statistics",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>One-Way ANOVA vignette</span>"
     ]
   },
   {
     "objectID": "14_simulating_95CI_frequentist.html",
     "href": "14_simulating_95CI_frequentist.html",
-    "title": "3  Simulating 95% confidence intervals",
+    "title": "10  Simulating 95% confidence intervals",
     "section": "",
-    "text": "4 Load Libraries\n\nlibrary(tidyverse)\n\n\n\n5 Simulating 95% frequentist confidence intervals\nA good explanation here:\nA 95% confidence interval is constructed such that if the model assumptions are correct and if you were to hypothetically repeat the experiment or sampling many many times, 95% of the intervals constructed would contain the true value of the parameter.\nMy own words: The 95% confidence interval is when the true parameter is contained within the interval 95% of the time from constructing the 95% confidence interval from repeated experiments under the assumption of a correct model.\nLet’s gain intuition by what this means:\n\nSimulate data and do it a bunch of times\n\nThen calculate 95% confidence interval with say a t-test\nDetermine how many times the true parameter (which we set in step 1) is in between the confidence intervals\n\n\n#1) simulate data \nsim&lt;-10000\n#dataset size\nn&lt;-100\n# sampel data with mean 10, sd =1 \nx&lt;-rnorm(n,mean=10,sd=1)\n#fit t.test ; grab lower and upper confidence interval\n#as.vector(c(t.test(x)$conf.int,t.test(x)$estimate))\n\n\n## now simulate across sim \n\n#for loop is prob best \n#prep dataset\n#d&lt;-tibble(lower=rep(0,sim),upper=rep(0,sim),mean=rep(0,sim))\nd&lt;-array(0,dim=c(sim,2))\n\nfor (i in 1:sim){\n  x&lt;-rnorm(n,mean=10,sd=1)\n  d[i,]&lt;-as.vector(c(t.test(x)$conf.int))\n}\n\n\n#head(d)\nd&lt;-data.frame(d)\nnames(d)&lt;-c(\"lower\",\"upper\")\nknitr::kable(head(d))\n\n\n\n\nlower\nupper\n\n\n\n\n10.000598\n10.356480\n\n\n9.683469\n10.095189\n\n\n9.757796\n10.178317\n\n\n9.588976\n9.965566\n\n\n9.899874\n10.311059\n\n\n9.840751\n10.267930\n\n\n\n\n#count how many times the lower and upper confidence interval is below true value of 10\nd&lt;-d|&gt;\n  mutate(out=1*(lower&lt;10 & upper&gt;10))\nmean(d$out)\n\n[1] 0.9477\n\n#cases where confidence interval is does not include true parameter \nd|&gt;\n  filter(out==0)|&gt;\n  head()\n\n      lower     upper out\n1 10.000598 10.356480   0\n2  9.588976  9.965566   0\n3  9.608780  9.951664   0\n4  9.574674  9.978122   0\n5 10.039472 10.435154   0\n6 10.043015 10.447883   0\n\n\nAdditional notes:\n\nCementing interpretation: When you have a single 95% CI on a single sample, it doesn’t mean, that the population mean belongs to this particular interval with a particular probability. If you were to repeat the experiment many many times and calculate this interval on each fo the samples, then 95% of the repeated samples would have the true population mean.\n\n\n6 Session info\n\nsessionInfo()\n\nR version 4.5.0 (2025-04-11 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 11 x64 (build 26100)\n\nMatrix products: default\n  LAPACK version 3.12.1\n\nlocale:\n[1] LC_COLLATE=English_United States.utf8 \n[2] LC_CTYPE=English_United States.utf8   \n[3] LC_MONETARY=English_United States.utf8\n[4] LC_NUMERIC=C                          \n[5] LC_TIME=English_United States.utf8    \n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] lubridate_1.9.4 forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4    \n [5] purrr_1.0.4     readr_2.1.5     tidyr_1.3.1     tibble_3.2.1   \n [9] ggplot2_3.5.2   tidyverse_2.0.0\n\nloaded via a namespace (and not attached):\n [1] gtable_0.3.6      jsonlite_2.0.0    compiler_4.5.0    tidyselect_1.2.1 \n [5] scales_1.3.0      yaml_2.3.10       fastmap_1.2.0     R6_2.6.1         \n [9] generics_0.1.3    knitr_1.50        htmlwidgets_1.6.4 munsell_0.5.1    \n[13] pillar_1.10.2     tzdb_0.5.0        rlang_1.1.6       stringi_1.8.7    \n[17] xfun_0.52         timechange_0.3.0  cli_3.6.4         withr_3.0.2      \n[21] magrittr_2.0.3    digest_0.6.37     grid_4.5.0        hms_1.1.3        \n[25] lifecycle_1.0.4   vctrs_0.6.5       evaluate_1.0.3    glue_1.8.0       \n[29] colorspace_2.1-1  rmarkdown_2.29    tools_4.5.0       pkgconfig_2.0.3  \n[33] htmltools_0.5.8.1",
+    "text": "11 Load Libraries\n\nlibrary(tidyverse)\n\n\n\n12 Simulating 95% frequentist confidence intervals\nA good explanation here:\nA 95% confidence interval is constructed such that if the model assumptions are correct and if you were to hypothetically repeat the experiment or sampling many many times, 95% of the intervals constructed would contain the true value of the parameter.\nMy own words: The 95% confidence interval is when the true parameter is contained within the interval 95% of the time from constructing the 95% confidence interval from repeated experiments under the assumption of a correct model.\nLet’s gain intuition by what this means:\n\nSimulate data and do it a bunch of times\n\nThen calculate 95% confidence interval with say a t-test\nDetermine how many times the true parameter (which we set in step 1) is in between the confidence intervals\n\n\n#1) simulate data \nsim&lt;-10000\n#dataset size\nn&lt;-100\n# sampel data with mean 10, sd =1 \nx&lt;-rnorm(n,mean=10,sd=1)\n#fit t.test ; grab lower and upper confidence interval\n#as.vector(c(t.test(x)$conf.int,t.test(x)$estimate))\n\n\n## now simulate across sim \n\n#for loop is prob best \n#prep dataset\n#d&lt;-tibble(lower=rep(0,sim),upper=rep(0,sim),mean=rep(0,sim))\nd&lt;-array(0,dim=c(sim,2))\n\nfor (i in 1:sim){\n  x&lt;-rnorm(n,mean=10,sd=1)\n  d[i,]&lt;-as.vector(c(t.test(x)$conf.int))\n}\n\n\n#head(d)\nd&lt;-data.frame(d)\nnames(d)&lt;-c(\"lower\",\"upper\")\nknitr::kable(head(d))\n\n\n\n\nlower\nupper\n\n\n\n\n9.847847\n10.19025\n\n\n9.787594\n10.18937\n\n\n9.819170\n10.17815\n\n\n9.860503\n10.22109\n\n\n9.589548\n10.01933\n\n\n9.648604\n10.03122\n\n\n\n\n#count how many times the lower and upper confidence interval is below true value of 10\nd&lt;-d|&gt;\n  mutate(out=1*(lower&lt;10 & upper&gt;10))\nmean(d$out)\n\n[1] 0.9493\n\n#cases where confidence interval is does not include true parameter \nd|&gt;\n  filter(out==0)|&gt;\n  head()\n\n      lower     upper out\n1 10.061735 10.399420   0\n2 10.031712 10.407205   0\n3 10.053732 10.430890   0\n4  9.611352  9.979660   0\n5  9.588866  9.937954   0\n6 10.007912 10.369917   0\n\n\nAdditional notes:\n\nCementing interpretation: When you have a single 95% CI on a single sample, it doesn’t mean, that the population mean belongs to this particular interval with a particular probability. If you were to repeat the experiment many many times and calculate this interval on each fo the samples, then 95% of the repeated samples would have the true population mean.\n\n\n13 Session info\n\nsessionInfo()\n\nR version 4.5.0 (2025-04-11 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 11 x64 (build 26100)\n\nMatrix products: default\n  LAPACK version 3.12.1\n\nlocale:\n[1] LC_COLLATE=English_United States.utf8 \n[2] LC_CTYPE=English_United States.utf8   \n[3] LC_MONETARY=English_United States.utf8\n[4] LC_NUMERIC=C                          \n[5] LC_TIME=English_United States.utf8    \n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] lubridate_1.9.4 forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4    \n [5] purrr_1.0.4     readr_2.1.5     tidyr_1.3.1     tibble_3.2.1   \n [9] ggplot2_3.5.2   tidyverse_2.0.0\n\nloaded via a namespace (and not attached):\n [1] gtable_0.3.6      jsonlite_2.0.0    compiler_4.5.0    tidyselect_1.2.1 \n [5] scales_1.3.0      yaml_2.3.10       fastmap_1.2.0     R6_2.6.1         \n [9] generics_0.1.3    knitr_1.50        htmlwidgets_1.6.4 munsell_0.5.1    \n[13] pillar_1.10.2     tzdb_0.5.0        rlang_1.1.6       stringi_1.8.7    \n[17] xfun_0.52         timechange_0.3.0  cli_3.6.4         withr_3.0.2      \n[21] magrittr_2.0.3    digest_0.6.37     grid_4.5.0        hms_1.1.3        \n[25] lifecycle_1.0.4   vctrs_0.6.5       evaluate_1.0.3    glue_1.8.0       \n[29] colorspace_2.1-1  rmarkdown_2.29    tools_4.5.0       pkgconfig_2.0.3  \n[33] htmltools_0.5.8.1",
     "crumbs": [
       "Misc Frequentist statistics",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Simulating 95% confidence intervals</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Simulating 95% confidence intervals</span>"
+    ]
+  },
+  {
+    "objectID": "DSTmodel_uncertainty.html",
+    "href": "DSTmodel_uncertainty.html",
+    "title": "11  Dempster-Shafer Theory, notes",
+    "section": "",
+    "text": "12 Introduction - plain English understanding\nDempster-Shafer Theory (DST) is a way to account for uncertainty when making a decision. For example, imagine the answer to a question has two mutually exclusive outcomes: yes or no. Then, DST, would describe this as the frame of discernment, or \\(\\theta\\), where,\n\\[ \\theta = \\{yes,no\\}\\] But, when we try to estimate these answers, there are multiple possibilities, especially if you’re unsure. For example, sometimes when you measure something, you’re not sure if the answer is yes or no. All possible states are represented as a power set, \\(2^\\theta\\), such that\n\\[2^\\theta = \\{\\{\\emptyset\\},\\{yes\\},\\{no\\},\\{\\theta\\}\\}\\] and notice that \\(\\theta = \\{yes,no\\}\\), which is the set where you’re sure whether the answer is yes or no.\nNow, each set can have a numerical value assigned to them and can be expressed as:\n\\[m:2^\\theta -&gt; [0,1]\\]\nand the value is referred to as a mass. From the formulation above, the mass of the powerset is between 0 and 1, referred to as the mass function. The sum of the masses of the powerset add up to 1:\n\\[\\sum_{A\\in2^\\theta} m(A)=1\\]. In other words, for all members (A) within the powerset \\(2^\\theta\\), the sum of all these members is 1. Naturally, values closer to 1 means there is more evidence for that particular set (m(A)). For example,\n\n\n\n\\(2^\\theta\\)\nMass\n\n\n\n\n{yes}\n0.2\n\n\n{no}\n0.6\n\n\n{yes, no}\n0.2\n\n\n{\\(\\emptyset\\)}\n0\n\n\n\nthe mass assignments all sum to 1. Notice that the \\(\\emptyset\\) is 0, which is a feature of DST expressed in this way. And notice that typically, in say a logistic regression, the posterior probabilities are a way to fill in these masses for a {yes} or {no} answer.\nMost notably, the support for what we care about, \\(\\theta\\) have overlaps in the sets. For example, {yes,no} overlaps with {yes}. So how can we express the real answer given this framework? DST attempts to do this by forming two levels of support for an answer in \\(\\theta\\) such that:\n\nThe belief is the lowest level of support\n\nThe plausibility is the highest level of support\n\nThe in {yes} is the sum of the masses of  (B) of {yes}, expressed as:\n\\[bel(\\{yes\\}) = \\sum_{B\\subset \\{yes\\}} m(B).\\]\nThe of {yes} is the sum of all masses of sets B that  with {yes}, expressed as:\n\\[pl(\\{yes\\} = \\sum_{B\\cap \\{yes\\}} m(B).\\]\nIn our example from the mass assignments, they would induce the following beliefs and plausibilities:\n\n\n\n\\(2^\\theta\\)\nMass\nBelief\nPlausibility\n\n\n\n\n{yes}\n0.2\n0.2\n0.4\n\n\n{no}\n0.6\n0.6\n0.8\n\n\n{yes, no}\n0.2\n1.0\n1.0\n\n\n{\\(\\emptyset\\)}\n0.0\n0.0\n0.0\n\n\n\nFor example, the belief in {yes} is the mass of {yes} (0.2). The plausibility in {yes} is the mass of {yes} and {yes,no} because they intersect (0.2 + 0.2 = 0.4).\n\n\n13 Possible ways to decide based on beliefs and plausibility\nGiven this evidence, how do we decide on whether the answer to the question? There would be 3 outcomes instead of 2:\n\nYes\nNo\nDon’t know ({yes,no})\n\nI’ll simulate some data and show how. Load packages first.\n\nlibrary(tidyverse) # data wrangling, visualization\nlibrary(EvCombR) # package for dempster shafer\n##ggplot2 settings\nT&lt;-theme_bw()+theme(,text=element_text(size=14),\n                    axis.text=element_text(size=14),\n                    panel.grid.major=element_blank(),\n                    panel.grid.minor.x = element_blank(),\n                    panel.grid = element_blank(),\n                    legend.key = element_blank(),                    axis.title.y=element_text(margin=margin(t=0,r=15,b=0,l=0)),\n                    \naxis.title.x=element_text(margin=margin(t=15,r=,b=0,l=0)))+\ntheme(legend.position=\"none\")\n\n\n# simulate some beliefs \n# and plausibilities\n# that would lead to each type of outcome\noutcome&lt;-rep(c(\"{yes}\",\"{no}\",\"{yes,no}\"),3)\ndecision&lt;-c(rep(\"No\",3),rep(c(\"Yes\"),3),rep(c(\"Don't know\"),3))\nbelief&lt;-c(c(.2,.6,.2),c(.6,.2,.2),c(.25,.25,.5))\npl&lt;-c(c(0.4,.8,1),c(0.8,.4,1),c(0.75,.75,1))\nd&lt;-data.frame(outcome,decision,belief,pl)\nd&lt;-d%&gt;%\n  dplyr::filter(outcome!=\"{yes,no}\")\n#filter out {yes,no}\nd$decision&lt;-factor(d$decision,levels=c(\"Yes\",\"No\",\"Don't know\"))\n\n#plot it out\nggplot(d,aes(x=outcome))+\n  geom_errorbar(aes(ymax=pl,ymin=belief),\n                width=.5,linewidth=.85)+\n  facet_wrap(~decision)+\n  scale_y_continuous(limits = c(0,1),\n                     breaks=seq(0,1,.1),\n                     labels=seq(0,1,.1))+\n  ylab(\"Support\")+xlab(\"Outcome\")+\n  geom_hline(yintercept=.5,linetype=\"dotdash\")+T\n\n\n\n\n\n\n\n\nHere, you can see that the lower bound of the range in each outcome is the belief and the upper bound of the range is the plausibility. Each panel would show the decision being made. Notice that in the “Don’t know” panel, the levels of support overlap. There are ways to make decisions even if the levels of support overlap but we won’t get into that.\nDST is very flexible and there are no set rules for constructing mass functions.\nTypically, posterior probabilities from say a logistic regression would show a flat level of support (only the belief). However, the posterior probabilities can be restructured into a mass function by accounting for model uncertainty. Model uncertainty can be extracted from a confusion matrix. So the posterior probability for yes would be scaled by the positive predictive value, which is the degree of confidence in the model to make a yes call. This is how we can account for uncertainty when using a predictive model.\n\n\n14 Simulations of model uncertainty\nHere, I’ll simulate posterior probabilities, and model uncertainties to determine how it impacts decision making.\n\n#simulate a range of model uncertainty \n#both in the positive predictive value \n# and negative predictive value \n\n## simulate a 1000 samples with posterior probs\nyes&lt;-rep(seq(0,1,.1),11)\n\n#number of different model uncertainties\nmu&lt;-sort(rep(seq(0,1,.1),11)) #simulate model\n# uncertainty from 0 to 1 in .1 steps \ndat&lt;-data.frame(cbind(yes,mu))\ndat$no&lt;- (1-dat$yes) # get the no post prob\n#assuming model uncertainty is the same\n# same PPV and NPV\n##now we can construct mass assignments\ndat&lt;-dat%&gt;%\n  mutate(y.mass=yes*mu,n.mass=no*mu,yn.mass=1-y.mass-n.mass,y.pl=yn.mass+y.mass,n.pl=yn.mass+n.mass)\n\n##lets set up factors by decision point\n#if the uppper bound of yes is less than\n#lower bound of no, then decide NO\n\n#if upper bound of no is less than \n#lower bound of yes, then decide YES \ndat&lt;-dat%&gt;%\n  mutate(decision=ifelse(y.pl&lt;n.mass,\"No\",ifelse(n.pl&lt;y.mass,\"Yes\",\"Don't know\")))\nglimpse(dat)\n\nRows: 121\nColumns: 9\n$ yes      &lt;dbl&gt; 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 0.0, 0…\n$ mu       &lt;dbl&gt; 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0…\n$ no       &lt;dbl&gt; 1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.0, 1.0, 0…\n$ y.mass   &lt;dbl&gt; 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0…\n$ n.mass   &lt;dbl&gt; 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0…\n$ yn.mass  &lt;dbl&gt; 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.9, 0…\n$ y.pl     &lt;dbl&gt; 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1…\n$ n.pl     &lt;dbl&gt; 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1…\n$ decision &lt;chr&gt; \"Don't know\", \"Don't know\", \"Don't know\", \"Don't know\", \"Don'…\n\n#need to convert to long\nd.long&lt;-dat%&gt;%\n  pivot_longer(cols=y.mass:n.mass,names_to = \"Outcome\",values_to = \"support\")%&gt;%\n  mutate(plaus=support+yn.mass)\n\n##let's plot out the simulation \nggplot(d.long,aes(x=yes,colour=decision))+\n  geom_errorbar(aes(ymax=plaus,ymin=support),\n                width=.5,linewidth=.85)+\n  facet_wrap(~mu,nrow=4)+\n  scale_y_continuous(limits = c(0,1),\n                     breaks=seq(0,1,.1),\n                     labels=seq(0,1,.1))+\n  ylab(\"Support\")+xlab(\"Simulated Posterior Probabilities\")+\n  geom_hline(yintercept=.5,linetype=\"dotdash\")+T+theme(legend.position = \"top\")\n\n\n\n\n\n\n\n\nThoughts:\nWhat you can see is that decisions can’t be made if there is too much uncertainty (0-0.5 model performance). But, at 0.6 model performance, posterior probabilities have to be very high in order to make a confident decision. And then you can see traditionally, if we assume a perfect model, model performance = 1, then the support bands are flat, which is typically how we treat predictive models in general.\n\n\n15 Summary\nDST offers a flexible and creative approach to accounting for uncertainty when making a decision. DST re-frames sources of evidence such that uncertain cases can have some level of evidence assigned to it. The assignment of the degree of evidence, or masses can resemble probabilities across all answers. The approach outlined here involves restructuring poster probabilities from a model into masses. This is done by scaling the posterior probabilities by model performance, which is derived from the confusion matrix. In traditional machine learning approaches, data are split into training and testing. The confusion matrix of the model applied to the testing dataset could be used. Based on the masses, then the degree of support can be calculated to help inform decision-making.\n\n\n16 RshinyApp\nTry plugging in your own posterior probabilities or masses and plug in your own PPV or NPV in this RShinyApp.\n\n\n17 References\n\nRathman JF, Yang C, Zhou H. Dempster-Shafer theory for combining in silico evidence and estimating uncertainty in chemical risk assessment. Comput Toxicol. 2018;6:16-31. doi:10.1016/j.comtox.2018.03.001\n\n\n\n18 Session info\n\nsessionInfo()\n\nR version 4.5.0 (2025-04-11 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 11 x64 (build 26100)\n\nMatrix products: default\n  LAPACK version 3.12.1\n\nlocale:\n[1] LC_COLLATE=English_United States.utf8 \n[2] LC_CTYPE=English_United States.utf8   \n[3] LC_MONETARY=English_United States.utf8\n[4] LC_NUMERIC=C                          \n[5] LC_TIME=English_United States.utf8    \n\ntime zone: America/New_York\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] EvCombR_0.1-4   lubridate_1.9.4 forcats_1.0.0   stringr_1.5.1  \n [5] dplyr_1.1.4     purrr_1.0.4     readr_2.1.5     tidyr_1.3.1    \n [9] tibble_3.2.1    ggplot2_3.5.2   tidyverse_2.0.0\n\nloaded via a namespace (and not attached):\n [1] gtable_0.3.6      jsonlite_2.0.0    compiler_4.5.0    tidyselect_1.2.1 \n [5] scales_1.3.0      yaml_2.3.10       fastmap_1.2.0     R6_2.6.1         \n [9] labeling_0.4.3    generics_0.1.3    knitr_1.50        htmlwidgets_1.6.4\n[13] munsell_0.5.1     pillar_1.10.2     tzdb_0.5.0        rlang_1.1.6      \n[17] stringi_1.8.7     xfun_0.52         timechange_0.3.0  cli_3.6.4        \n[21] withr_3.0.2       magrittr_2.0.3    digest_0.6.37     grid_4.5.0       \n[25] hms_1.1.3         lifecycle_1.0.4   vctrs_0.6.5       evaluate_1.0.3   \n[29] glue_1.8.0        farver_2.1.2      colorspace_2.1-1  rmarkdown_2.29   \n[33] tools_4.5.0       pkgconfig_2.0.3   htmltools_0.5.8.1",
+    "crumbs": [
+      "Decision making under uncertainty",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Dempster-Shafer Theory, notes</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Higgins, Peter D. R. 2023. Chapter 20 Randomization for\nClinical Trials with R\n Reproducible Medical\nResearch with R. https://bookdown.org/pdr_higgins/rmrwr/randomization-for-clinical-trials-with-r.html.\n\n\nZhang, Ed, W. G. Zhang, and R. G. Zhang. 2021. “CRAN\nTask View: Clinical\nTrial Design, Monitoring, and\nAnalysis.” https://CRAN.R-project.org/view=ClinicalTrials.",
+    "crumbs": [
+      "Appendices",
+      "References"
     ]
   }
 ]

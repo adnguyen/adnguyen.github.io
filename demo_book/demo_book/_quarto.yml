@@ -12,12 +12,25 @@ book:
     - part: "Causal inference section"
       chapters:
         - 08_causal_inference_simulations.qmd
+        - 15_DAG-adjustment_sets_confounders.qmd
+        - 10_TimeSeriesCausalImpact.qmd
+    - part: "Notes on statistical models"
+      chapters: 
+        - 04.1_AFT_math_curves_params.qmd
+        - 03_longitudinal_ordinal_modelling.qmd
     - part: "Misc Bayesian statistics"
       chapters:
+        - 12_Bayesian_inference_discrete_simple_case.qmd
         - 13_Bayesian_inference_Beta_priors_JingchenHu_lab1.qmd
     - part: "Misc Frequentist statistics"
       chapters:
+        - Randomization_and_Power_analysis.qmd
+        - 20170601_ANOVA_vignette.qmd
         - 14_simulating_95CI_frequentist.qmd
+        
+    - part: "Decision making under uncertainty"
+      chapters:
+        - DSTmodel_uncertainty.qmd
     - part: "Function-valued traits"
 
       

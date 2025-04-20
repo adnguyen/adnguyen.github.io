@@ -20,5 +20,29 @@
   },
   "13_Bayesian_inference_Beta_priors_JingchenHu_lab1.qmd": {
     "13_Bayesian_inference_Beta_priors_JingchenHu_lab1.html": "c22aa806"
+  },
+  "12_Bayesian_inference_discrete_simple_case.qmd": {
+    "12_Bayesian_inference_discrete_simple_case.html": "7e48a995"
+  },
+  "10_TimeSeriesCausalImpact.qmd": {
+    "10_TimeSeriesCausalImpact.html": "782b02cc"
+  },
+  "15_DAG-adjustment_sets_confounders.qmd": {
+    "15_DAG-adjustment_sets_confounders.html": "5aa6c587"
+  },
+  "20170601_ANOVA_vignette.qmd": {
+    "20170601_ANOVA_vignette.html": "51bc1b0b"
+  },
+  "DSTmodel_uncertainty.qmd": {
+    "DSTmodel_uncertainty.html": "f89239b5"
+  },
+  "Randomization_and_Power_analysis.qmd": {
+    "Randomization_and_Power_analysis.html": "593d3496"
+  },
+  "04.1_AFT_math_curves_params.qmd": {
+    "04.1_AFT_math_curves_params.html": "63bb26cd"
+  },
+  "03_longitudinal_ordinal_modelling.qmd": {
+    "03_longitudinal_ordinal_modelling.html": "fb811188"
   }
 }

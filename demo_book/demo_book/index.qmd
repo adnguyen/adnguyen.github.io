@@ -1,3 +1,5 @@
 # Preface {.unnumbered}
 
 Hello, welcome to my demo notebook. The purpose of this notebook is to log ideas I've explored. It'll be useful for me, and hopefully, also for you!
+
+The themes I've explored include causal inference, bayesian stats, frequentist stats, decision making under uncertainty, and function-valued traits. 

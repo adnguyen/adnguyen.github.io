@@ -1,0 +1,58 @@
+---
+title: "DAGs and adjustment sets"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Intro
+
+R can determine the adjustment set of confounders for you if you specify the DAG. 
+Description of function adjustmentSets {dagitty}:\ 
+
+>Enumerates sets of covariates that (asymptotically) allow unbiased estimation of causal effects from observational data, assuming that the input causal graph is correct
+
+# Load libraries
+
+```{r, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(ggdag)
+```
+
+# set up dag
+
+```{r set up dag}
+dag<-dagify(
+  y~ x + a + b,
+  x~ a,
+  b~ a,
+  exposure="x",
+  outcome="y"
+)
+
+tidy_dagitty(dag)|>
+  dag_adjustment_sets()
+
+ggdag(dag)
+
+ggdag_adjustment_set(dag)
+
+# What if x causes b? 
+dag2<-dagify(
+  y~ x + a + b,
+  x~ a,
+  b~ a+x,
+  exposure="x",
+  outcome="y"
+)
+ggdag_adjustment_set(dag2)
+
+```
+
+# Session info
+
+```{r session info}
+sessionInfo()
+
+```
