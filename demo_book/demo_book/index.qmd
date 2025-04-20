@@ -1,0 +1,3 @@
+# Preface {.unnumbered}
+
+Hello, welcome to my demo notebook. The purpose of this notebook is to log ideas I've explored. It'll be useful for me, and hopefully, also for you!

@@ -1,0 +1,82 @@
+---
+title: "Lab1: Bayesian inference with beta priors, Jingchen Hu"
+format: html
+toc: true
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Intro
+
+This is a lab by a professor, Jingchen Hu, which goes over Bayesian inference with beta priors. 
+
+# Load libraries
+
+```{r load libraries, warning=FALSE,message=FALSE}
+library(tidyverse)
+library(ProbBayes)
+```
+
+# Posterior predictive checking
+
+```{r lab}
+S<-10000 # number of simulations
+a<-3.06 # a in beta(a,b)
+b<-2.56 # b in beta(a,b)
+n<-20 # number of trials
+y<-12 # number of successes 
+
+newy=as.data.frame(rep(NA,S))
+names(newy)=c("y")
+
+set.seed(123)
+for (s in 1:S){
+  pred_p_sim<-rbeta(1, a+y, b+n-y) # step 1 ; get posterior param
+  pred_y_sim<-rbinom(1,n,pred_p_sim) # step 2; based on param, predict outcome-> # of successes
+  newy[s,]=pred_y_sim
+}
+knitr::kable(head(newy))
+
+#how i would write the simluation
+
+dat<-tibble(pred_p=rbeta(S,a+y,b+n-y))|>
+  rowwise()|>
+  mutate(pred_y=rbinom(1,n,pred_p))
+
+sum(dat$pred_y>=5&dat$pred_y<=15)/S
+#dat$pred_y<-rbinom(1000,n,dat$pred_p)
+ggplot(data=dat,aes(pred_y))+geom_density()+scale_x_continuous(breaks=seq(0,20,1),labels=seq(0,20,1))
+```
+
+# Let's try to simulate a situation with mismatched prior with the data
+
+```{r}
+beta_draw(c(3.06,2.56)) #prior fromp revious section 
+beta_draw(c(0.5,5)) #this looks liek a good prior to mess up the data 
+
+s<-10000
+n<-20 # trials
+y<-12 #successes
+a<-.5
+b<-5
+
+dat2<-tibble(pred_p=rbeta(S,a+y,b+n-y))|>
+  rowwise()|>
+  mutate(pred_y=rbinom(1,n,pred_p))
+
+# model check : how often pr(y > ypred|y)
+sum(y>dat2$pred_y)/S # how often collected data above posterior prediction
+1-sum(y>dat2$pred_y)/S #how often collected data below posterior prediction
+
+#draw posterior
+beta_prior_post(c(.5,5),c(a+y,b+n-y))
+```
+
+# Session info
+
+```{r}
+
+beta_draw(c(.3,.7)) 
+sessionInfo()
+```

@@ -1,0 +1,81 @@
+---
+title: "Simulating 95% confidence intervals"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Load Libraries
+```{r, warning=FALSE,message=FALSE}
+library(tidyverse)
+```
+
+
+# Simulating 95% frequentist confidence intervals 
+
+A good explanation [here](https://thestatsgeek.com/2020/11/21/interpretation-of-frequentist-confidence-intervals-and-bayesian-credible-intervals/):
+
+**A 95% confidence interval is constructed such that if the model assumptions are correct and if you were to hypothetically repeat the experiment or sampling many many times, 95% of the intervals constructed would contain the true value of the parameter.** 
+
+My own words: **The 95% confidence interval is when the true parameter is contained within the interval 95% of the time from constructing the 95% confidence interval from repeated experiments under the assumption of a correct model.** 
+
+Let's gain intuition by what this means:    
+
+1. Simulate data and do it a bunch of times\
+2. Then calculate 95% confidence interval with say a t-test 
+3. Determine how many times the true parameter (which we set in step 1) is in between the confidence intervals   
+
+
+
+```{r}
+#1) simulate data 
+sim<-10000
+#dataset size
+n<-100
+# sampel data with mean 10, sd =1 
+x<-rnorm(n,mean=10,sd=1)
+#fit t.test ; grab lower and upper confidence interval
+#as.vector(c(t.test(x)$conf.int,t.test(x)$estimate))
+
+
+## now simulate across sim 
+
+#for loop is prob best 
+#prep dataset
+#d<-tibble(lower=rep(0,sim),upper=rep(0,sim),mean=rep(0,sim))
+d<-array(0,dim=c(sim,2))
+
+for (i in 1:sim){
+  x<-rnorm(n,mean=10,sd=1)
+  d[i,]<-as.vector(c(t.test(x)$conf.int))
+}
+
+
+#head(d)
+d<-data.frame(d)
+names(d)<-c("lower","upper")
+knitr::kable(head(d))
+
+#count how many times the lower and upper confidence interval is below true value of 10
+d<-d|>
+  mutate(out=1*(lower<10 & upper>10))
+mean(d$out)
+
+#cases where confidence interval is does not include true parameter 
+d|>
+  filter(out==0)|>
+  head()
+```
+
+Additional notes:\
+
+Cementing interpretation: When you have a single 95% CI on a single sample, it doesn't mean, that the population mean belongs to this particular interval with a particular probability. If you were to repeat the experiment many many times and calculate this interval on each fo the samples, then 95% of the repeated samples would have the true population mean. 
+
+# Session info 
+
+```{r}
+sessionInfo()
+```
+
