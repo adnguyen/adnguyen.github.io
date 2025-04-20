@@ -1,5 +1,6 @@
 project:
-  type: book
+  type: website
+  output-dir: docs
 
 
 book:
@@ -19,7 +20,7 @@ book:
       chapters:
         - 14_simulating_95CI_frequentist.qmd
     - part: "Function-valued traits"
-      chapters:
+
       
   appendices:
     - references.qmd
