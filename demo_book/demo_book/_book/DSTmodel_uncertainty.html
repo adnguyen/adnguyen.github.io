@@ -9,7 +9,7 @@
 <meta name="author" content="Author: Andrew D. Nguyen">
 <meta name="dcterms.date" content="2023-08-27">
 
-<title>11&nbsp; Dempster-Shafer Theory, notes – My demo notebook</title>
+<title>12&nbsp; Dempster-Shafer Theory, notes – My demo notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DSTmodel_uncertainty.html">Decision making under uncertainty</a></li><li class="breadcrumb-item"><a href="./DSTmodel_uncertainty.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DSTmodel_uncertainty.html">Decision making under uncertainty</a></li><li class="breadcrumb-item"><a href="./DSTmodel_uncertainty.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -252,6 +252,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab1: Bayesian inference with beta priors, Jingchen Hu</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Bayesian_priors_power_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power analysis and Bayesian priors</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -266,19 +272,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Randomization_and_Power_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14_simulating_95CI_frequentist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
   </div>
 </li>
       </ul>
@@ -295,7 +301,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./DSTmodel_uncertainty.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
   </div>
 </li>
       </ul>
@@ -331,22 +337,22 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction---plain-english-understanding" id="toc-introduction---plain-english-understanding" class="nav-link active" data-scroll-target="#introduction---plain-english-understanding"><span class="header-section-number">12</span> Introduction - plain English understanding</a></li>
-  <li><a href="#possible-ways-to-decide-based-on-beliefs-and-plausibility" id="toc-possible-ways-to-decide-based-on-beliefs-and-plausibility" class="nav-link" data-scroll-target="#possible-ways-to-decide-based-on-beliefs-and-plausibility"><span class="header-section-number">13</span> Possible ways to decide based on beliefs and plausibility</a></li>
-  <li><a href="#simulations-of-model-uncertainty" id="toc-simulations-of-model-uncertainty" class="nav-link" data-scroll-target="#simulations-of-model-uncertainty"><span class="header-section-number">14</span> Simulations of model uncertainty</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">15</span> Summary</a></li>
-  <li><a href="#rshinyapp" id="toc-rshinyapp" class="nav-link" data-scroll-target="#rshinyapp"><span class="header-section-number">16</span> RshinyApp</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">17</span> References</a></li>
-  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">18</span> Session info</a></li>
+  <li><a href="#introduction---plain-english-understanding" id="toc-introduction---plain-english-understanding" class="nav-link active" data-scroll-target="#introduction---plain-english-understanding"><span class="header-section-number">13</span> Introduction - plain English understanding</a></li>
+  <li><a href="#possible-ways-to-decide-based-on-beliefs-and-plausibility" id="toc-possible-ways-to-decide-based-on-beliefs-and-plausibility" class="nav-link" data-scroll-target="#possible-ways-to-decide-based-on-beliefs-and-plausibility"><span class="header-section-number">14</span> Possible ways to decide based on beliefs and plausibility</a></li>
+  <li><a href="#simulations-of-model-uncertainty" id="toc-simulations-of-model-uncertainty" class="nav-link" data-scroll-target="#simulations-of-model-uncertainty"><span class="header-section-number">15</span> Simulations of model uncertainty</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">16</span> Summary</a></li>
+  <li><a href="#rshinyapp" id="toc-rshinyapp" class="nav-link" data-scroll-target="#rshinyapp"><span class="header-section-number">17</span> RshinyApp</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">18</span> References</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">19</span> Session info</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DSTmodel_uncertainty.html">Decision making under uncertainty</a></li><li class="breadcrumb-item"><a href="./DSTmodel_uncertainty.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./DSTmodel_uncertainty.html">Decision making under uncertainty</a></li><li class="breadcrumb-item"><a href="./DSTmodel_uncertainty.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></h1>
 </div>
 
 
@@ -376,8 +382,8 @@ window.Quarto = {
 
 
 <div style="page-break-after: always;"></div>
-<section id="introduction---plain-english-understanding" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Introduction - plain English understanding</h1>
+<section id="introduction---plain-english-understanding" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Introduction - plain English understanding</h1>
 <p>Dempster-Shafer Theory (DST) is a way to account for uncertainty when making a decision. For example, imagine the answer to a question has two mutually exclusive outcomes: yes or no. Then, DST, would describe this as the <em>frame of discernment</em>, or <span class="math inline">\(\theta\)</span>, where,</p>
 <p><span class="math display">\[ \theta = \{yes,no\}\]</span> But, when we try to estimate these answers, there are multiple possibilities, especially if you’re unsure. For example, sometimes when you measure something, you’re not sure if the answer is yes or no. All possible states are represented as a power set, <span class="math inline">\(2^\theta\)</span>, such that</p>
 <p><span class="math display">\[2^\theta = \{\{\emptyset\},\{yes\},\{no\},\{\theta\}\}\]</span> and notice that <span class="math inline">\(\theta = \{yes,no\}\)</span>, which is the set where you’re sure whether the answer is yes or no.</p>
@@ -461,8 +467,8 @@ In our example from the mass assignments, they would induce the following belief
 </table>
 <p>For example, the belief in {yes} is the mass of {yes} (0.2). The plausibility in {yes} is the mass of {yes} and {yes,no} because they intersect (0.2 + 0.2 = 0.4).</p>
 </section>
-<section id="possible-ways-to-decide-based-on-beliefs-and-plausibility" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Possible ways to decide based on beliefs and plausibility</h1>
+<section id="possible-ways-to-decide-based-on-beliefs-and-plausibility" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Possible ways to decide based on beliefs and plausibility</h1>
 <p>Given this evidence, how do we decide on whether the answer to the question? There would be 3 outcomes instead of 2:</p>
 <ul>
 <li>Yes</li>
@@ -520,8 +526,8 @@ In our example from the mass assignments, they would induce the following belief
 <p>DST is very flexible and there are no set rules for constructing mass functions.</p>
 <p>Typically, posterior probabilities from say a logistic regression would show a flat level of support (only the belief). However, the posterior probabilities can be restructured into a mass function by accounting for model uncertainty. Model uncertainty can be extracted from a confusion matrix. So the posterior probability for yes would be scaled by the positive predictive value, which is the degree of confidence in the model to make a yes call. This is how we can account for uncertainty when using a predictive model.</p>
 </section>
-<section id="simulations-of-model-uncertainty" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Simulations of model uncertainty</h1>
+<section id="simulations-of-model-uncertainty" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Simulations of model uncertainty</h1>
 <p>Here, I’ll simulate posterior probabilities, and model uncertainties to determine how it impacts decision making.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simulate a range of model uncertainty </span></span>
@@ -590,22 +596,22 @@ $ decision &lt;chr&gt; "Don't know", "Don't know", "Don't know", "Don't know", "
 <p>Thoughts:</p>
 <p>What you can see is that decisions can’t be made if there is too much uncertainty (0-0.5 model performance). But, at 0.6 model performance, posterior probabilities have to be very high in order to make a confident decision. And then you can see traditionally, if we assume a perfect model, model performance = 1, then the support bands are flat, which is typically how we treat predictive models in general.</p>
 </section>
-<section id="summary" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Summary</h1>
+<section id="summary" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Summary</h1>
 <p>DST offers a flexible and creative approach to accounting for uncertainty when making a decision. DST re-frames sources of evidence such that uncertain cases can have some level of evidence assigned to it. The assignment of the degree of evidence, or masses can resemble probabilities across all answers. The approach outlined here involves restructuring poster probabilities from a model into masses. This is done by scaling the posterior probabilities by model performance, which is derived from the confusion matrix. In traditional machine learning approaches, data are split into training and testing. The confusion matrix of the model applied to the testing dataset could be used. Based on the masses, then the degree of support can be calculated to help inform decision-making.</p>
 </section>
-<section id="rshinyapp" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> RshinyApp</h1>
+<section id="rshinyapp" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> RshinyApp</h1>
 <p>Try plugging in your own posterior probabilities or masses and plug in your own PPV or NPV in this <a href="https://antdrewdnguyen.shinyapps.io/dempster_shafer/"><strong>RShinyApp</strong></a><strong>.</strong></p>
 </section>
-<section id="references" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> References</h1>
+<section id="references" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> References</h1>
 <ul>
 <li>Rathman JF, Yang C, Zhou H. <a href="https://www.sciencedirect.com/science/article/abs/pii/S2468111318300197"><strong>Dempster-Shafer theory for combining in silico evidence and estimating uncertainty in chemical risk assessment</strong></a>. Comput Toxicol. 2018;6:16-31. <a href="doi:10.1016/j.comtox.2018.03.001" class="uri">doi:10.1016/j.comtox.2018.03.001</a></li>
 </ul>
 </section>
-<section id="session-info" class="level1" data-number="18">
-<h1 data-number="18"><span class="header-section-number">18</span> Session info</h1>
+<section id="session-info" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> Session info</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1053,7 +1059,7 @@ loaded via a namespace (and not attached):
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./14_simulating_95CI_frequentist.html" class="pagination-link" aria-label="Simulating 95% confidence intervals">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

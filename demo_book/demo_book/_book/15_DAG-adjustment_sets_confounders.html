@@ -221,6 +221,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab1: Bayesian inference with beta priors, Jingchen Hu</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Bayesian_priors_power_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power analysis and Bayesian priors</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -235,19 +241,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Randomization_and_Power_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14_simulating_95CI_frequentist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
   </div>
 </li>
       </ul>
@@ -264,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./DSTmodel_uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
   </div>
 </li>
       </ul>
@@ -363,14 +369,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # Outcome: y
 #
 # A tibble: 6 × 10
-  name       x      y direction to      xend   yend circular adjusted   set  
-  &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;     &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;    &lt;chr&gt;      &lt;chr&gt;
-1 a      0.605 -1.54  -&gt;        b     -0.483 -1.48  FALSE    adjusted   {a}  
-2 a      0.605 -1.54  -&gt;        x      1.35  -0.735 FALSE    adjusted   {a}  
-3 a      0.605 -1.54  -&gt;        y      0.257 -0.680 FALSE    adjusted   {a}  
-4 b     -0.483 -1.48  -&gt;        y      0.257 -0.680 FALSE    unadjusted {a}  
-5 x      1.35  -0.735 -&gt;        y      0.257 -0.680 FALSE    unadjusted {a}  
-6 y      0.257 -0.680 &lt;NA&gt;      &lt;NA&gt;  NA     NA     FALSE    unadjusted {a}  </code></pre>
+  name         x      y direction to        xend   yend circular adjusted  set  
+  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;     &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;    &lt;chr&gt;     &lt;chr&gt;
+1 a      0.291    0.623 -&gt;        b      0.00415 -0.430 FALSE    adjusted  {a}  
+2 a      0.291    0.623 -&gt;        x     -0.330    1.52  FALSE    adjusted  {a}  
+3 a      0.291    0.623 -&gt;        y     -0.616    0.468 FALSE    adjusted  {a}  
+4 b      0.00415 -0.430 -&gt;        y     -0.616    0.468 FALSE    unadjust… {a}  
+5 x     -0.330    1.52  -&gt;        y     -0.616    0.468 FALSE    unadjust… {a}  
+6 y     -0.616    0.468 &lt;NA&gt;      &lt;NA&gt;  NA       NA     FALSE    unadjust… {a}  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdag</span>(dag)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">

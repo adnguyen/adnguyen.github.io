@@ -195,7 +195,7 @@ c<-a+b+rnorm(n=100,mean=0,sd=5) # c is a fucntion of a and b with random error
 mod3.1<-lm(b~a)
 mod3.1|>
   tbl_regression()
-#There is no association between A and B. 
+#There IS an  association between A and B in this example. 
 
 #fit a model with a collider c
 mod4.1<-lm(b~a+c)

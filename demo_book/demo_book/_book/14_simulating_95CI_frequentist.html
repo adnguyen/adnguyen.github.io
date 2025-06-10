@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>10&nbsp; Simulating 95% confidence intervals – My demo notebook</title>
+<title>11&nbsp; Simulating 95% confidence intervals – My demo notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./14_simulating_95CI_frequentist.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./14_simulating_95CI_frequentist.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -221,6 +221,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab1: Bayesian inference with beta priors, Jingchen Hu</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Bayesian_priors_power_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power analysis and Bayesian priors</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -235,19 +241,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Randomization_and_Power_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14_simulating_95CI_frequentist.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
   </div>
 </li>
       </ul>
@@ -264,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./DSTmodel_uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
   </div>
 </li>
       </ul>
@@ -300,18 +306,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">11</span> Load Libraries</a></li>
-  <li><a href="#simulating-95-frequentist-confidence-intervals" id="toc-simulating-95-frequentist-confidence-intervals" class="nav-link" data-scroll-target="#simulating-95-frequentist-confidence-intervals"><span class="header-section-number">12</span> Simulating 95% frequentist confidence intervals</a></li>
-  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">13</span> Session info</a></li>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">12</span> Load Libraries</a></li>
+  <li><a href="#simulating-95-frequentist-confidence-intervals" id="toc-simulating-95-frequentist-confidence-intervals" class="nav-link" data-scroll-target="#simulating-95-frequentist-confidence-intervals"><span class="header-section-number">13</span> Simulating 95% frequentist confidence intervals</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">14</span> Session info</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./14_simulating_95CI_frequentist.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./14_simulating_95CI_frequentist.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></h1>
 </div>
 
 
@@ -328,14 +334,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="load-libraries" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Load Libraries</h1>
+<section id="load-libraries" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Load Libraries</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="simulating-95-frequentist-confidence-intervals" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Simulating 95% frequentist confidence intervals</h1>
+<section id="simulating-95-frequentist-confidence-intervals" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Simulating 95% frequentist confidence intervals</h1>
 <p>A good explanation <a href="https://thestatsgeek.com/2020/11/21/interpretation-of-frequentist-confidence-intervals-and-bayesian-credible-intervals/">here</a>:</p>
 <p><strong>A 95% confidence interval is constructed such that if the model assumptions are correct and if you were to hypothetically repeat the experiment or sampling many many times, 95% of the intervals constructed would contain the true value of the parameter.</strong></p>
 <p>My own words: <strong>The 95% confidence interval is when the true parameter is contained within the interval 95% of the time from constructing the 95% confidence interval from repeated experiments under the assumption of a correct model.</strong></p>
@@ -384,28 +390,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">9.847847</td>
-<td style="text-align: right;">10.19025</td>
+<td style="text-align: right;">9.719960</td>
+<td style="text-align: right;">10.154584</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">9.787594</td>
-<td style="text-align: right;">10.18937</td>
+<td style="text-align: right;">9.885735</td>
+<td style="text-align: right;">10.285324</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">9.819170</td>
-<td style="text-align: right;">10.17815</td>
+<td style="text-align: right;">9.809819</td>
+<td style="text-align: right;">10.186245</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">9.860503</td>
-<td style="text-align: right;">10.22109</td>
+<td style="text-align: right;">9.695480</td>
+<td style="text-align: right;">10.073617</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">9.589548</td>
-<td style="text-align: right;">10.01933</td>
+<td style="text-align: right;">9.562795</td>
+<td style="text-align: right;">9.946987</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">9.648604</td>
-<td style="text-align: right;">10.03122</td>
+<td style="text-align: right;">9.671525</td>
+<td style="text-align: right;">10.061539</td>
 </tr>
 </tbody>
 </table>
@@ -415,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">out=</span><span class="dv">1</span><span class="sc">*</span>(lower<span class="sc">&lt;</span><span class="dv">10</span> <span class="sc">&amp;</span> upper<span class="sc">&gt;</span><span class="dv">10</span>))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(d<span class="sc">$</span>out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9493</code></pre>
+<pre><code>[1] 0.9471</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#cases where confidence interval is does not include true parameter </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d<span class="sc">|&gt;</span></span>
@@ -423,20 +429,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      lower     upper out
-1 10.061735 10.399420   0
-2 10.031712 10.407205   0
-3 10.053732 10.430890   0
-4  9.611352  9.979660   0
-5  9.588866  9.937954   0
-6 10.007912 10.369917   0</code></pre>
+1  9.562795  9.946987   0
+2 10.027006 10.399768   0
+3  9.578330  9.988799   0
+4 10.011383 10.418496   0
+5 10.073673 10.479524   0
+6  9.546747  9.954103   0</code></pre>
 </div>
 </div>
 <p>Additional notes:<br>
 </p>
 <p>Cementing interpretation: When you have a single 95% CI on a single sample, it doesn’t mean, that the population mean belongs to this particular interval with a particular probability. If you were to repeat the experiment many many times and calculate this interval on each fo the samples, then 95% of the repeated samples would have the true population mean.</p>
 </section>
-<section id="session-info" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Session info</h1>
+<section id="session-info" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Session info</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -884,12 +890,12 @@ loaded via a namespace (and not attached):
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./20170601_ANOVA_vignette.html" class="pagination-link" aria-label="One-Way ANOVA vignette">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./DSTmodel_uncertainty.html" class="pagination-link" aria-label="Dempster-Shafer Theory, notes">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

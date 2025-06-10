@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Andrew D. Nguyen, PhD">
-<meta name="dcterms.date" content="2025-04-19">
+<meta name="dcterms.date" content="2025-04-20">
 
-<title>8&nbsp; Randomization and sample size estimation – My demo notebook</title>
+<title>9&nbsp; Randomization and sample size estimation – My demo notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -88,7 +88,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./20170601_ANOVA_vignette.html" rel="next">
-<link href="./13_Bayesian_inference_Beta_priors_JingchenHu_lab1.html" rel="prev">
+<link href="./00_Bayesian_priors_power_analysis.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -168,7 +168,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -272,6 +272,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab1: Bayesian inference with beta priors, Jingchen Hu</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Bayesian_priors_power_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power analysis and Bayesian priors</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -286,19 +292,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Randomization_and_Power_analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14_simulating_95CI_frequentist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,7 +321,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./DSTmodel_uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
   </div>
 </li>
       </ul>
@@ -351,32 +357,32 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">9</span> Introduction:</a></li>
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><span class="header-section-number">10</span> Load Libraries</a></li>
-  <li><a href="#sample-size-calculations" id="toc-sample-size-calculations" class="nav-link" data-scroll-target="#sample-size-calculations"><span class="header-section-number">11</span> Sample size calculations</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">10</span> Introduction:</a></li>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries"><span class="header-section-number">11</span> Load Libraries</a></li>
+  <li><a href="#sample-size-calculations" id="toc-sample-size-calculations" class="nav-link" data-scroll-target="#sample-size-calculations"><span class="header-section-number">12</span> Sample size calculations</a>
   <ul class="collapse">
-  <li><a href="#t-test-designs-and-sample-size-calculations" id="toc-t-test-designs-and-sample-size-calculations" class="nav-link" data-scroll-target="#t-test-designs-and-sample-size-calculations"><span class="header-section-number">11.1</span> T-test designs and sample size calculations</a>
+  <li><a href="#t-test-designs-and-sample-size-calculations" id="toc-t-test-designs-and-sample-size-calculations" class="nav-link" data-scroll-target="#t-test-designs-and-sample-size-calculations"><span class="header-section-number">12.1</span> T-test designs and sample size calculations</a>
   <ul class="collapse">
-  <li><a href="#simulating-effect-sizes-and-power" id="toc-simulating-effect-sizes-and-power" class="nav-link" data-scroll-target="#simulating-effect-sizes-and-power"><span class="header-section-number">11.1.1</span> Simulating effect sizes and power</a></li>
+  <li><a href="#simulating-effect-sizes-and-power" id="toc-simulating-effect-sizes-and-power" class="nav-link" data-scroll-target="#simulating-effect-sizes-and-power"><span class="header-section-number">12.1.1</span> Simulating effect sizes and power</a></li>
   </ul></li>
-  <li><a href="#chi-square-2x2-contingency-table-design" id="toc-chi-square-2x2-contingency-table-design" class="nav-link" data-scroll-target="#chi-square-2x2-contingency-table-design"><span class="header-section-number">11.2</span> Chi-square 2x2 contingency table design</a></li>
-  <li><a href="#time-to-event-types-of-designs-survival-analyses" id="toc-time-to-event-types-of-designs-survival-analyses" class="nav-link" data-scroll-target="#time-to-event-types-of-designs-survival-analyses"><span class="header-section-number">11.3</span> Time to event types of designs (survival analyses)</a></li>
+  <li><a href="#chi-square-2x2-contingency-table-design" id="toc-chi-square-2x2-contingency-table-design" class="nav-link" data-scroll-target="#chi-square-2x2-contingency-table-design"><span class="header-section-number">12.2</span> Chi-square 2x2 contingency table design</a></li>
+  <li><a href="#time-to-event-types-of-designs-survival-analyses" id="toc-time-to-event-types-of-designs-survival-analyses" class="nav-link" data-scroll-target="#time-to-event-types-of-designs-survival-analyses"><span class="header-section-number">12.3</span> Time to event types of designs (survival analyses)</a></li>
   </ul></li>
-  <li><a href="#randomization-stratified-permuted-block-randomization" id="toc-randomization-stratified-permuted-block-randomization" class="nav-link" data-scroll-target="#randomization-stratified-permuted-block-randomization"><span class="header-section-number">12</span> Randomization (stratified permuted block randomization)</a>
+  <li><a href="#randomization-stratified-permuted-block-randomization" id="toc-randomization-stratified-permuted-block-randomization" class="nav-link" data-scroll-target="#randomization-stratified-permuted-block-randomization"><span class="header-section-number">13</span> Randomization (stratified permuted block randomization)</a>
   <ul class="collapse">
-  <li><a href="#with-blockrand-package" id="toc-with-blockrand-package" class="nav-link" data-scroll-target="#with-blockrand-package"><span class="header-section-number">12.1</span> …with <em>blockrand</em> package</a></li>
-  <li><a href="#with-randomizer-package" id="toc-with-randomizer-package" class="nav-link" data-scroll-target="#with-randomizer-package"><span class="header-section-number">12.2</span> …with <em>randomizeR</em> package</a></li>
+  <li><a href="#with-blockrand-package" id="toc-with-blockrand-package" class="nav-link" data-scroll-target="#with-blockrand-package"><span class="header-section-number">13.1</span> …with <em>blockrand</em> package</a></li>
+  <li><a href="#with-randomizer-package" id="toc-with-randomizer-package" class="nav-link" data-scroll-target="#with-randomizer-package"><span class="header-section-number">13.2</span> …with <em>randomizeR</em> package</a></li>
   </ul></li>
-  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">13</span> Session Info</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">14</span> Session Info</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></h1>
 </div>
 
 
@@ -393,7 +399,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 19, 2025</p>
+      <p class="date">April 20, 2025</p>
     </div>
   </div>
   
@@ -406,12 +412,12 @@ window.Quarto = {
 
 
 <div style="page-break-after: always;"></div>
-<section id="introduction" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Introduction:</h1>
+<section id="introduction" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Introduction:</h1>
 <p>The aim of this demo is to showcase how to estimate sample sizes and conduct randomization in clinical trial designs. R has a suite of packages geared towards clinical trial design, monitoring, and analyses (CRAN R Projects- Clinical Trials <span class="citation" data-cites="zhang_cran_2021">Zhang, Zhang, and Zhang (<a href="references.html#ref-zhang_cran_2021" role="doc-biblioref">2021</a>)</span>). I’m also modeling my demo off of Peter Higgin’s <em>Reproducible Medical Research with R</em> book, chapter 20 (<span class="citation" data-cites="higgins_2023">Higgins (<a href="references.html#ref-higgins_2023" role="doc-biblioref">2023</a>)</span>).</p>
 </section>
-<section id="load-libraries" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Load Libraries</h1>
+<section id="load-libraries" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Load Libraries</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for ggplot2, data visualization and data filtering with dplyr </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbeeswarm) <span class="co"># for quasirandom plotting</span></span>
@@ -432,8 +438,8 @@ window.Quarto = {
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#+ theme(legend.position="none")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="sample-size-calculations" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Sample size calculations</h1>
+<section id="sample-size-calculations" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Sample size calculations</h1>
 <p>It is important to find the appropriate number of participants in a clinical trial because too few participants may lead to an inability to detect differences (studies may be underpowered) and too many participants lead to excessive use of resources.</p>
 <p>The critical information to obtain are:</p>
 <ul>
@@ -459,8 +465,8 @@ window.Quarto = {
 </li>
 <li>hazard rate of each group</li>
 </ul>
-<section id="t-test-designs-and-sample-size-calculations" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="t-test-designs-and-sample-size-calculations"><span class="header-section-number">11.1</span> T-test designs and sample size calculations</h2>
+<section id="t-test-designs-and-sample-size-calculations" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="t-test-designs-and-sample-size-calculations"><span class="header-section-number">12.1</span> T-test designs and sample size calculations</h2>
 <p>We will be using the <em>pwr</em> package. To start, let’s estimate a sample size with:</p>
 <ul>
 <li>alpha = 0.05<br>
@@ -503,8 +509,8 @@ NOTE: n is number of *pairs*</code></pre>
 </div>
 <p><strong>Key result: 34 volunteers per arm.</strong></p>
 <p>We also may need to consider drop out rates. For example, if there is a 20% drop out rate, then add 20% to the sample sizes per arm. 34 x 20% = ~7, so we would need 41 volunteers.</p>
-<section id="simulating-effect-sizes-and-power" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="simulating-effect-sizes-and-power"><span class="header-section-number">11.1.1</span> Simulating effect sizes and power</h3>
+<section id="simulating-effect-sizes-and-power" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="simulating-effect-sizes-and-power"><span class="header-section-number">12.1.1</span> Simulating effect sizes and power</h3>
 <p>What if we don’t know the effect size and want to find out sample sizes based on different inputs of effect size and power?</p>
 <ul>
 <li>simulating effect sizes from 0 to 2 in .1 increments<br>
@@ -547,8 +553,8 @@ NOTE: n is number of *pairs*</code></pre>
 </div>
 </section>
 </section>
-<section id="chi-square-2x2-contingency-table-design" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="chi-square-2x2-contingency-table-design"><span class="header-section-number">11.2</span> Chi-square 2x2 contingency table design</h2>
+<section id="chi-square-2x2-contingency-table-design" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="chi-square-2x2-contingency-table-design"><span class="header-section-number">12.2</span> Chi-square 2x2 contingency table design</h2>
 <p>In this design, let’s say there are counts of diseased and not-diseased individuals that were exposed and not exposed to some chemical. We want to find the association between the two variables and we need to specify the expected proportions of the 2x2 under the alternative hypothesis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ES.w2() # chi-square for test of association</span></span>
@@ -599,8 +605,8 @@ NOTE: N is the number of observations</code></pre>
 </div>
 <p><strong>Key result: We need 778 observations.</strong> Note that the degrees of freedom on 1 in this case for a 2x2 contingency table, which is calculated as (# of columns - 1) x (# of rows -1).</p>
 </section>
-<section id="time-to-event-types-of-designs-survival-analyses" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="time-to-event-types-of-designs-survival-analyses"><span class="header-section-number">11.3</span> Time to event types of designs (survival analyses)</h2>
+<section id="time-to-event-types-of-designs-survival-analyses" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="time-to-event-types-of-designs-survival-analyses"><span class="header-section-number">12.3</span> Time to event types of designs (survival analyses)</h2>
 <p>I will be using the <em>gsDesign</em> package and referencing an online resource <a href="https://cran.r-project.org/web/packages/gsDesign/vignettes/SurvivalOverview.html"><strong>here</strong></a>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hr<span class="ot">=</span>.<span class="dv">7</span> <span class="co"># hazard ratio</span></span>
@@ -639,11 +645,11 @@ Events required (computed): nEvents=195</code></pre>
 </div>
 </section>
 </section>
-<section id="randomization-stratified-permuted-block-randomization" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Randomization (stratified permuted block randomization)</h1>
+<section id="randomization-stratified-permuted-block-randomization" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Randomization (stratified permuted block randomization)</h1>
 <p>Using the t-test design (2 trial arms), we’d like to implement block randomization across a strata. Often times, we can’t sample participants all at once and so we need to apply treatments in groupings as they enroll in the study, or blocks. To ensure equal sampling of treatments across different sub-populations, randomization can be conducted at the level of different sub-populations (strata). For example, randomization can be conducted for males and females separately. With a sample size of 200 per arm, in a two-arm trial, I’m randomization across a gender strata (100 each so they’re equally sampled).</p>
-<section id="with-blockrand-package" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="with-blockrand-package"><span class="header-section-number">12.1</span> …with <em>blockrand</em> package</h2>
+<section id="with-blockrand-package" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="with-blockrand-package"><span class="header-section-number">13.1</span> …with <em>blockrand</em> package</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mrand<span class="ot">&lt;-</span><span class="fu">blockrand</span>(<span class="at">n =</span> <span class="dv">100</span>, </span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">num.levels =</span> <span class="dv">2</span>, <span class="co"># three treatments</span></span>
@@ -678,112 +684,112 @@ Events required (computed): nEvents=195</code></pre>
 <td style="text-align: left;">SM001</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm01</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM002</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm01</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">Treat.Arm</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM003</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm01</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM004</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm01</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM005</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm01</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">Treat.Arm</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM006</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm01</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">Con.Arm</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM007</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm01</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">Con.Arm</td>
+<td style="text-align: left;">blksm02</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM008</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm01</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: left;">blksm02</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM009</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm02</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">Treat.Arm</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM010</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm02</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">Treat.Arm</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM011</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm02</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM012</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm02</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">Con.Arm</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM013</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm02</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: left;">blksm03</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM014</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm02</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: left;">blksm03</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM015</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm02</td>
-<td style="text-align: right;">8</td>
-<td style="text-align: left;">Con.Arm</td>
+<td style="text-align: left;">blksm03</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM016</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm02</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: left;">blksm03</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="odd">
@@ -791,42 +797,42 @@ Events required (computed): nEvents=195</code></pre>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm03</td>
 <td style="text-align: right;">6</td>
-<td style="text-align: left;">Con.Arm</td>
+<td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM018</td>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm03</td>
 <td style="text-align: right;">6</td>
-<td style="text-align: left;">Treat.Arm</td>
+<td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM019</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm03</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">Treat.Arm</td>
+<td style="text-align: left;">blksm04</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM020</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm03</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">Treat.Arm</td>
+<td style="text-align: left;">blksm04</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM021</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm03</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">Con.Arm</td>
+<td style="text-align: left;">blksm04</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SM022</td>
 <td style="text-align: left;">Strat.male</td>
-<td style="text-align: left;">blksm03</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">Con.Arm</td>
+<td style="text-align: left;">blksm04</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Treat.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM023</td>
@@ -840,7 +846,7 @@ Events required (computed): nEvents=195</code></pre>
 <td style="text-align: left;">Strat.male</td>
 <td style="text-align: left;">blksm04</td>
 <td style="text-align: right;">8</td>
-<td style="text-align: left;">Treat.Arm</td>
+<td style="text-align: left;">Con.Arm</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SM025</td>
@@ -863,8 +869,8 @@ Events required (computed): nEvents=195</code></pre>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">bottom=</span><span class="st">"Call123-4567toreportpatiententry"</span>, <span class="at">cut.marks=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="with-randomizer-package" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="with-randomizer-package"><span class="header-section-number">12.2</span> …with <em>randomizeR</em> package</h2>
+<section id="with-randomizer-package" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="with-randomizer-package"><span class="header-section-number">13.2</span> …with <em>randomizeR</em> package</h2>
 <p>Using the randomized permuted block randomization function, <em>rpbrPar()</em>. The details:</p>
 <blockquote class="blockquote">
 <p>Fix the possible random block lengths rb, the number of treatment groups K, the sample size N and the vector of the ratio. Afterwards, one block length is randomly selected of the random block lengths. The patients are assigned according to the ratio to the corresponding treatment groups. This procedure is repeated until N patients are assigned. Within each block all possible randomization sequences are equiprobable.</p>
@@ -898,8 +904,8 @@ Events required (computed): nEvents=195</code></pre>
 <tr class="odd">
 <td style="text-align: left;">M</td>
 <td style="text-align: left;">SM1</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: left;">Treatment</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">Control</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">M</td>
@@ -928,8 +934,8 @@ Events required (computed): nEvents=195</code></pre>
 <tr class="even">
 <td style="text-align: left;">M</td>
 <td style="text-align: left;">SM6</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: left;">Control</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">Treatment</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">M</td>
@@ -940,8 +946,8 @@ Events required (computed): nEvents=195</code></pre>
 <tr class="even">
 <td style="text-align: left;">M</td>
 <td style="text-align: left;">SM8</td>
-<td style="text-align: left;">A</td>
-<td style="text-align: left;">Control</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">Treatment</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">M</td>
@@ -952,8 +958,8 @@ Events required (computed): nEvents=195</code></pre>
 <tr class="even">
 <td style="text-align: left;">M</td>
 <td style="text-align: left;">SM10</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: left;">Treatment</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">Control</td>
 </tr>
 </tbody>
 </table>
@@ -961,8 +967,8 @@ Events required (computed): nEvents=195</code></pre>
 </div>
 </section>
 </section>
-<section id="session-info" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Session Info</h1>
+<section id="session-info" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Session Info</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1426,13 +1432,13 @@ Zhang, Ed, W. G. Zhang, and R. G. Zhang. 2021. <span>“<span>CRAN</span> <span>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./13_Bayesian_inference_Beta_priors_JingchenHu_lab1.html" class="pagination-link" aria-label="Lab1: Bayesian inference with beta priors, Jingchen Hu">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab1: Bayesian inference with beta priors, Jingchen Hu</span></span>
+      <a href="./00_Bayesian_priors_power_analysis.html" class="pagination-link" aria-label="Power analysis and Bayesian priors">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power analysis and Bayesian priors</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./20170601_ANOVA_vignette.html" class="pagination-link" aria-label="One-Way ANOVA vignette">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

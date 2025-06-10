@@ -9,7 +9,7 @@
 <meta name="author" content="Author: Antdrew D. Nguyen">
 <meta name="dcterms.date" content="2017-06-01">
 
-<title>9&nbsp; One-Way ANOVA vignette – My demo notebook</title>
+<title>10&nbsp; One-Way ANOVA vignette – My demo notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./20170601_ANOVA_vignette.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./20170601_ANOVA_vignette.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -252,6 +252,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab1: Bayesian inference with beta priors, Jingchen Hu</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_Bayesian_priors_power_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power analysis and Bayesian priors</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -266,19 +272,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Randomization_and_Power_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14_simulating_95CI_frequentist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
   </div>
 </li>
       </ul>
@@ -295,7 +301,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./DSTmodel_uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
   </div>
 </li>
       </ul>
@@ -331,26 +337,26 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#libraries" id="toc-libraries" class="nav-link active" data-scroll-target="#libraries"><span class="header-section-number">10</span> Libraries</a></li>
-  <li><a href="#reviewing-analysis-of-variance-anova" id="toc-reviewing-analysis-of-variance-anova" class="nav-link" data-scroll-target="#reviewing-analysis-of-variance-anova"><span class="header-section-number">11</span> Reviewing Analysis of Variance (ANOVA)</a>
+  <li><a href="#libraries" id="toc-libraries" class="nav-link active" data-scroll-target="#libraries"><span class="header-section-number">11</span> Libraries</a></li>
+  <li><a href="#reviewing-analysis-of-variance-anova" id="toc-reviewing-analysis-of-variance-anova" class="nav-link" data-scroll-target="#reviewing-analysis-of-variance-anova"><span class="header-section-number">12</span> Reviewing Analysis of Variance (ANOVA)</a>
   <ul class="collapse">
-  <li><a href="#enter-data" id="toc-enter-data" class="nav-link" data-scroll-target="#enter-data"><span class="header-section-number">11.1</span> Enter data</a></li>
-  <li><a href="#ss_total-calculations" id="toc-ss_total-calculations" class="nav-link" data-scroll-target="#ss_total-calculations"><span class="header-section-number">11.2</span> <span class="math inline">\(SS_{total}\)</span> calculations</a></li>
-  <li><a href="#ss_among-calculations" id="toc-ss_among-calculations" class="nav-link" data-scroll-target="#ss_among-calculations"><span class="header-section-number">11.3</span> <span class="math inline">\(SS_{among}\)</span> calculations</a></li>
-  <li><a href="#ss_within-calculations" id="toc-ss_within-calculations" class="nav-link" data-scroll-target="#ss_within-calculations"><span class="header-section-number">11.4</span> <span class="math inline">\(SS_{within}\)</span> calculations</a></li>
+  <li><a href="#enter-data" id="toc-enter-data" class="nav-link" data-scroll-target="#enter-data"><span class="header-section-number">12.1</span> Enter data</a></li>
+  <li><a href="#ss_total-calculations" id="toc-ss_total-calculations" class="nav-link" data-scroll-target="#ss_total-calculations"><span class="header-section-number">12.2</span> <span class="math inline">\(SS_{total}\)</span> calculations</a></li>
+  <li><a href="#ss_among-calculations" id="toc-ss_among-calculations" class="nav-link" data-scroll-target="#ss_among-calculations"><span class="header-section-number">12.3</span> <span class="math inline">\(SS_{among}\)</span> calculations</a></li>
+  <li><a href="#ss_within-calculations" id="toc-ss_within-calculations" class="nav-link" data-scroll-target="#ss_within-calculations"><span class="header-section-number">12.4</span> <span class="math inline">\(SS_{within}\)</span> calculations</a></li>
   </ul></li>
-  <li><a href="#assumptions-of-anovas" id="toc-assumptions-of-anovas" class="nav-link" data-scroll-target="#assumptions-of-anovas"><span class="header-section-number">12</span> Assumptions of ANOVAs</a></li>
-  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="header-section-number">13</span> Hypothesis testing</a></li>
-  <li><a href="#verify-with-aov-function" id="toc-verify-with-aov-function" class="nav-link" data-scroll-target="#verify-with-aov-function"><span class="header-section-number">14</span> Verify with aov() function</a></li>
+  <li><a href="#assumptions-of-anovas" id="toc-assumptions-of-anovas" class="nav-link" data-scroll-target="#assumptions-of-anovas"><span class="header-section-number">13</span> Assumptions of ANOVAs</a></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="header-section-number">14</span> Hypothesis testing</a></li>
+  <li><a href="#verify-with-aov-function" id="toc-verify-with-aov-function" class="nav-link" data-scroll-target="#verify-with-aov-function"><span class="header-section-number">15</span> Verify with aov() function</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./20170601_ANOVA_vignette.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Randomization_and_Power_analysis.html">Misc Frequentist statistics</a></li><li class="breadcrumb-item"><a href="./20170601_ANOVA_vignette.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></h1>
 </div>
 
 
@@ -379,15 +385,15 @@ window.Quarto = {
 </header>
 
 
-<section id="libraries" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Libraries</h1>
+<section id="libraries" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Libraries</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="reviewing-analysis-of-variance-anova" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Reviewing Analysis of Variance (ANOVA)</h1>
+<section id="reviewing-analysis-of-variance-anova" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Reviewing Analysis of Variance (ANOVA)</h1>
 <p>I’ll be following Chapter 10 of <em>A Primer of Ecological Statistics</em> by Gotelli and Ellison</p>
 <p>Key Concepts:</p>
 <p>ANOVA aims to determine differences in a continuous variable between 2 or more groups.</p>
@@ -410,8 +416,8 @@ window.Quarto = {
 <p><span class="math display">\[ SS_{within} = \sum_{i=1}^a\sum_{j=1}^n (Y_{ij}-\bar{Y}_i)^2\]</span></p>
 <p><strong>Bringing it all together</strong>:</p>
 <p><span class="math display">\[ \sum_{i=1}^a\sum_{j=1}^n (Y_{ij}-\bar{Y})^2 =  \sum_{i=1}^a\sum_{j=1}^n (\bar{Y}_{i}-\bar{Y})^2 +  \sum_{i=1}^a\sum_{j=1}^n (Y_{ij}-\bar{Y}_i)^2\]</span></p>
-<section id="enter-data" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="enter-data"><span class="header-section-number">11.1</span> Enter data</h2>
+<section id="enter-data" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="enter-data"><span class="header-section-number">12.1</span> Enter data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#data, </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a = 3, 3 treatments</span></span>
@@ -452,8 +458,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="ss_total-calculations" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="ss_total-calculations"><span class="header-section-number">11.2</span> <span class="math inline">\(SS_{total}\)</span> calculations</h2>
+<section id="ss_total-calculations" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="ss_total-calculations"><span class="header-section-number">12.2</span> <span class="math inline">\(SS_{total}\)</span> calculations</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((long.dat<span class="sc">$</span>measure<span class="sc">-</span>grandmean)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -461,8 +467,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="ss_among-calculations" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="ss_among-calculations"><span class="header-section-number">11.3</span> <span class="math inline">\(SS_{among}\)</span> calculations</h2>
+<section id="ss_among-calculations" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="ss_among-calculations"><span class="header-section-number">12.3</span> <span class="math inline">\(SS_{among}\)</span> calculations</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculating 1 case</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -495,8 +501,8 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for a balanced design!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="ss_within-calculations" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="ss_within-calculations"><span class="header-section-number">11.4</span> <span class="math inline">\(SS_{within}\)</span> calculations</h2>
+<section id="ss_within-calculations" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="ss_within-calculations"><span class="header-section-number">12.4</span> <span class="math inline">\(SS_{within}\)</span> calculations</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculating 1 case</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>((unman<span class="sc">-</span><span class="fu">mean</span>(unman))<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -527,8 +533,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="assumptions-of-anovas" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Assumptions of ANOVAs</h1>
+<section id="assumptions-of-anovas" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Assumptions of ANOVAs</h1>
 <ol type="1">
 <li>Samples are indepednent and identically distributed.</li>
 <li>Variances are homogeneous among groups
@@ -543,8 +549,8 @@ window.Quarto = {
 <li>Maine effects are additive</li>
 </ol>
 </section>
-<section id="hypothesis-testing" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Hypothesis testing</h1>
+<section id="hypothesis-testing" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Hypothesis testing</h1>
 <p>Definitions:</p>
 <ul>
 <li><span class="math inline">\(Y_{ij}\)</span>: replicated <span class="math inline">\(j\)</span> associated with treatment level <span class="math inline">\(i\)</span><br>
@@ -561,8 +567,8 @@ window.Quarto = {
 <p>Alternative Hypothesis, <span class="math inline">\(H_a\)</span>: <span class="math inline">\(Y_{ij} = \mu + A_i + \epsilon_{ij}\)</span></p>
 <p>Null Hypothesis, <span class="math inline">\(H_o\)</span>: <span class="math inline">\(Y_{ij} = \mu + \epsilon_{ij}\)</span></p>
 </section>
-<section id="verify-with-aov-function" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Verify with aov() function</h1>
+<section id="verify-with-aov-function" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Verify with aov() function</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">round</span>(<span class="fu">summary</span>(<span class="fu">aov</span>(measure<span class="sc">~</span>treatment,<span class="at">data=</span>long.dat))[[<span class="dv">1</span>]],<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1005,12 +1011,12 @@ window.Quarto = {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./Randomization_and_Power_analysis.html" class="pagination-link" aria-label="Randomization and sample size estimation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./14_simulating_95CI_frequentist.html" class="pagination-link" aria-label="Simulating 95% confidence intervals">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
