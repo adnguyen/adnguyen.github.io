@@ -21,7 +21,7 @@ Andrew D. Nguyen
 Career Profile
 ---------
 
-I am a data-driven biologist with six years of relevant experience in biostatistics in addition to five years of PhD training. As a statistical analyst, I worked at a non-profit in the field of regulatory toxicology, and I worked for two years as a research scientist in an academic lab applying statistical techniques to understand seasonal timing in agricultural pests. Currently, I am a biostatistician for the Orlando Health Cancer Institute, where I support research in clinical quality and in clinical trials. The culmination of my experiences has led me to be skilled in constructing narratives from data to address real world problems.   
+I am a data-driven biologist with eight years of relevant experience in biostatistics in addition to five years of PhD training. As a statistical analyst, I worked at a non-profit in the field of regulatory toxicology, and I worked for two years as a research scientist in an academic lab applying statistical techniques to understand seasonal timing in agricultural pests. Currently, I am a biostatistician for the Orlando Health Cancer Institute, where I support research in clinical quality and in clinical trials. The culmination of my experiences has led me to be skilled in constructing narratives from data to address real world problems.   
 
 My go-to tool is R (RStudio), where I have the most experience in data wrangling (cleaning, parsing, transforming), data analysis, simulations, and data visualization. 
 
@@ -30,7 +30,7 @@ Career Highlights
 
 * Served as a statistical lead on projects for clinical researchers and government agencies      
 * Flexible and quick learner as exemplified in diverse professional experiences over the past 12 years    
-* Excellent scientific communicator as exemplified in 11 peer-reviewed publications and scientific presentations   
+* Excellent scientific communicator as exemplified in 13 peer-reviewed publications and scientific presentations   
 
 
 Experience
@@ -70,20 +70,6 @@ Experience
     
     Hosted workshops for conducting reproducible science   
 
-2012-2017
-: **Dissertation research**; University of Vermont    
-
-    Fitted functional response curves of transcriptomic and proteomic data to understand environmental damage to whole organisms
-    
-    Used machine-learning techniques to predict species presence or absence over heterogeneous climatic landscapes
-    
-    Applied quantitative genetics approaches such as fitting mixed-effects models to understand gene by environmental interactions
-    
-    Worked collaboratively with research groups spanning multiple universities
-    
-    Communicated research findings in peer-reviewed publications, intradepartmental meetings, and national conferences
-
-    
 2014
 :   **Research Associate**, [Dr. Lori Stevens lab](https://www.uvm.edu/~biology/?Page=faculty/stevens.php&SM=facultysubmenu.html); University of Vermont   
 
@@ -127,6 +113,15 @@ Education
     Advisors: [Sara Helms Cahan](http://shelmscahan.github.io/), [Nicholas J. Gotelli](https://www.uvm.edu/~ngotelli/homepage.html)    
     Committee: [Brent L. Lockwood](http://lockwoodlab.weebly.com/), [Jill Preston](https://www.uvm.edu/~plantbio/preston/Site/Home.html)    
 
+    Fitted functional response curves of transcriptomic and proteomic data to understand environmental damage to whole organisms
+    
+    Used machine-learning techniques to predict species presence or absence over heterogeneous climatic landscapes
+    
+    Applied quantitative genetics approaches such as fitting mixed-effects models to understand gene by environmental interactions
+    
+    Worked collaboratively with research groups spanning multiple universities
+    
+    Communicated research findings in peer-reviewed publications, intradepartmental meetings, and national conferences
 
 2004-2009
 :   **BSc, Biology**; Drexel University (Philadelphia)
@@ -138,7 +133,12 @@ Publications
 
 Undergraduate researchers in *italics*      
 
-
+13\. Cruz Z, **Nguyen AD**, Baker S, et al. (2025) Impact of Nurse Navigation on Overall Survival and Timeliness to Care in Patients With Pancreatic Cancer in Advanced Stages. Journal of Oncology Navigation & Survivorship
+<br/>
+<br/>
+12\. Chin MM, **Nguyen AD**, Jones A, et al.(2025) Electronic Health Record–Enabled Identification and Targeted Multipronged Intervention to Reduce Readmission and Length of Stay Among Patients With Metastatic Cancer. JCO Oncol Pract. doi:10.1200/OP-24-00708
+<br/>
+<br/>
 11\. Petersen, E. J., **Nguyen, AD**, et al. (2021) Characteristics to consider when selecting a positive control material for an in vitro assay, ALTEX - Alternatives to animal experimentation. doi: 10.14573/altex.2102111. **Both authors contributed equally**; [Paper link](https://www.altex.org/index.php/altex/article/view/2255)
 <br/>
 <br/>
