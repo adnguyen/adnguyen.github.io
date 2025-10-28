@@ -30,7 +30,7 @@ Career Highlights
 
 * Served as a statistical lead on projects for clinical researchers and government agencies      
 * Flexible and quick learner as exemplified in diverse professional experiences over the past 12 years    
-* Excellent scientific communicator as exemplified in 13 peer-reviewed publications and scientific presentations   
+* Excellent scientific communicator as exemplified in 14 peer-reviewed publications and scientific presentations   
 
 
 Experience
@@ -58,7 +58,7 @@ Experience
     
 
 2017 - 2019
-:   **Postdoctoral Associate**, University of Florida     
+:   **Research Scientist**, University of Florida     
     
     Supervisor: [Dr. Daniel Hahn](http://entnemdept.ufl.edu/hahn/lab/danhahn.htm)   
     
@@ -131,8 +131,9 @@ Education
 Publications
 ------------
 
-Undergraduate researchers in *italics*      
-
+14\. Styrvoky K, Levine A, **Nguyen AD**, Vollenweider M, Jiwani A. (2025) Apneic oxygenation during robotic-assisted bronchoscopy: a retrospective study on safety and diagnostic yield. Journal of Thoracic Disease.
+<br/>
+<br/>
 13\. Cruz Z, **Nguyen AD**, Baker S, et al. (2025) Impact of Nurse Navigation on Overall Survival and Timeliness to Care in Patients With Pancreatic Cancer in Advanced Stages. Journal of Oncology Navigation & Survivorship
 <br/>
 <br/>
@@ -148,7 +149,7 @@ Undergraduate researchers in *italics*
 9\. Powell THQ, **Nguyen AD**, et al. 2020. A rapidly evolved shift in life‐history timing during ecological speciation is driven by the transition between developmental phases. Journal of Evolutionary Biology 33:10. [Paper link](https://onlinelibrary.wiley.com/doi/abs/10.1111/jeb.13676)
 <br/>
 <br/>
-8\. **Nguyen AD**, *DeNovellis K*, *Resendez S*, *Pustilnik JD*, Gotelli NJ, Parker JD, Cahan SH. 2017. Effects of desiccation and starvation on thermal tolerance and the heat-shock response in forest ants. J Comp Physiol B:1–10. [Paper](https://link.springer.com/article/10.1007/s00360-017-1101-x)
+8\. **Nguyen AD**, DeNovellis K, Resendez S, Pustilnik JD, Gotelli NJ, Parker JD, Cahan SH. 2017. Effects of desiccation and starvation on thermal tolerance and the heat-shock response in forest ants. J Comp Physiol B:1–10. [Paper](https://link.springer.com/article/10.1007/s00360-017-1101-x)
 <br/>
 <br/>
 7\. **Nguyen AD**, Gotelli NJ, Cahan SH. 2016. The evolution of heat shock protein sequences, cis-regulatory elements, and expression profiles in the eusocial Hymenoptera. BMC Evolutionary Biology 16:15. [Paper and Data](http://bmcevolbiol.biomedcentral.com/articles/10.1186/s12862-015-0573-0)
