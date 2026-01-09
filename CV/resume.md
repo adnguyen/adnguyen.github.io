@@ -21,7 +21,7 @@ Andrew D. Nguyen
 Career Profile
 ---------
 
-I am a data-driven biologist with eight years of relevant experience in biostatistics in addition to five years of PhD training. As a statistical analyst, I worked at a non-profit in the field of regulatory toxicology, and I worked for two years as a research scientist in an academic lab applying statistical techniques to understand seasonal timing in agricultural pests. Currently, I am a biostatistician for the Orlando Health Cancer Institute, where I support research in clinical quality and in clinical trials. The culmination of my experiences has led me to be skilled in constructing narratives from data to address real world problems.   
+I am a data-driven biologist with eight years of relevant experience in biostatistics in addition to five years of PhD training. I am currently a biostatistician at the Orlando Health Cancer Institute, where I lead the analyses for observational studies as well as clinical trials. My previous experiences include holding a statistical analyst position at a non-profit in the field of regulatory toxicology, and I worked for two years as a research scientist in an academic lab applying statistical techniques to understand seasonal timing in agricultural pests. The culmination of my experiences has led me to be skilled in constructing narratives from data to uncover ways to enhance patient care. 
 
 My go-to tool is R (RStudio), where I have the most experience in data wrangling (cleaning, parsing, transforming), data analysis, simulations, and data visualization. 
 
@@ -130,7 +130,9 @@ Education
 
 Publications
 ------------
-
+15\. 	Latam Collaborative Colorectal Surgery Consortium, The European Society of Coloproctology (ESCP) Global Reach Committee, **Nguyen AD**. (2026) Outcomes of urgent gastrointestinal-related procedures in Latin America (LATAM-URG): a prospective multicentre study. The Lancet Regional Health - Americas.
+<br/>
+<br/>
 14\. Styrvoky K, Levine A, **Nguyen AD**, Vollenweider M, Jiwani A. (2025) Apneic oxygenation during robotic-assisted bronchoscopy: a retrospective study on safety and diagnostic yield. Journal of Thoracic Disease.
 <br/>
 <br/>
@@ -178,6 +180,9 @@ Skills
 **Computing:**    
 
 * *R* – Data wrangling, visualization, and analysis within the *tidyverse*
+* *Causal Inference* - Clinical trial design and target trial emulation, favoring Bayesian inference   
+* *Monte Carlo Simulation* - Power analyses 
+* *Database management* - REDCap with PowerBI integration
 * *Unix* – General command line, shell bash scripting, and remote computing
 * *Github* – Reproducible science through version control and online notebooks/documentation
 * *Phylogenetics* - Maximum likelihood (RAxML) and Bayesian (MrBayes) methods
@@ -255,7 +260,10 @@ Meeting (IUSSI-NAS), Greensboro, North Carolina
 Organizational Membership
 ----------
 
-2019-Present
+2024-Present
+: Florida Society of Clinical Research (FLASCO)
+
+2019-2024
 : American Society for Cellular and Computational Toxicology (ASCCT)
 
 2017-2018
@@ -273,7 +281,6 @@ Organizational Membership
 : International Union for the Study of Social Insects (IUSSI)     
 : Ecological Society of America (ESA)     
 
-  
 University Service
 --------
 
