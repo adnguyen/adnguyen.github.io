@@ -1,5 +1,5 @@
 ---
-title: "Lab1: Bayesian inference with beta priors, Jingchen Hu"
+title: "Bayesian inference with beta priors"
 format: html
 toc: true
 editor: visual
@@ -9,7 +9,7 @@ editor_options:
 
 # Intro
 
-This is a lab by a professor, Jingchen Hu, which goes over Bayesian inference with beta priors. 
+This is a lab by a professor, Jingchen Hu, which goes over Bayesian inference with beta priors.
 
 # Load libraries
 

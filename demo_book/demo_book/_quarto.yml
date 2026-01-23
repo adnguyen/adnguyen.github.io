@@ -4,8 +4,11 @@ project:
 
 book:
   title: "My demo notebook"
-  author: "Andrew D. Nguyen"
-  date: "2025-04-19"
+  author: 
+    - name: "Andrew D. Nguyen, PhD, Biostatistician"
+      orcid: 0000-0002-1378-1606
+      email: anbe642@gmail.com
+  date: today
   
   chapters: 
     - index.qmd
@@ -14,15 +17,20 @@ book:
         - 08_causal_inference_simulations.qmd
         - 15_DAG-adjustment_sets_confounders.qmd
         - 10_TimeSeriesCausalImpact.qmd
-    - part: "Notes on statistical models"
-      chapters: 
-        - 04.1_AFT_math_curves_params.qmd
-        - 03_longitudinal_ordinal_modelling.qmd
+        - 24_Regression_discontinuity_designs.qmd
     - part: "Misc Bayesian statistics"
       chapters:
         - 12_Bayesian_inference_discrete_simple_case.qmd
         - 13_Bayesian_inference_Beta_priors_JingchenHu_lab1.qmd
-        - 00_Bayesian_priors_power_analysis.qmd
+        - 26_Bayesian_sequential_design_one_arm_trial_simulation.qmd
+        - 22_Bayesian_simulations.qmd
+        - 25_Type_1_error_Bayesian_simulations.qmd
+        
+    - part: "Notes on statistical models"
+      chapters: 
+        - 04.1_AFT_math_curves_params.qmd
+        - 03_longitudinal_ordinal_modelling.qmd 
+        - 18_non-collapsibility_demo-odds_ratio.qmd
     - part: "Misc Frequentist statistics"
       chapters:
         - Randomization_and_Power_analysis.qmd

@@ -1,0 +1,439 @@
+---
+title: "Bayesian clinical trial simulations"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Load library
+
+```{r load libraries , warning=FALSE,message=FALSE}
+library(magrittr)
+library(tidyverse)
+library(brms)
+library(purrr)
+library(marginaleffects)
+library(patchwork)
+library(cowplot)
+library(gt)
+library(gtsummary)
+library(ggbeeswarm)
+oh_cols<- c('#50BECB',	'#46A6B2',	'#65C9D5',	'#97D3DC',	'#CDEBF0',	'#EDE668',	'#AA1E2D',	'#E4E5E3',	'#F26828',	'#DC5C1D',	'#F89C70',	'#FDCEB0',	'#2A3C47',	'#18272F',	'#404C58',	'#646A74',	'#C3C3C8',	'#74308C')
+
+brms_summary <- function(x) {
+  posterior::summarise_draws(x, "mean", "sd",  ~quantile(.x, probs = c(.025,0.8,0.95)))
+}
+
+options(mc.cores = parallel::detectCores())
+
+```
+
+# Intro
+
+This script showcases how to conduct power analyses for Bayesian clinical trial designs. I'll explore equivalence, non-inferiority, superiority/efficacy designs.
+
+# Establishing Bayesian priors, mcid, and similarity interval
+
+As an example, I'd like to show the prior distribution first.
+
+-   the MCID is log(0.8) or `r log(1/1.5)`\
+-   the similarity interval is \[`r log(1/1.5)` - `r log(1.5)`\]
+
+```{r graphing bayesian priors}
+#priors
+#lets see range of OR in log scale
+ordat<-round(tibble(or=c(0.1,.2,0.5,0.667,1,1.5,2,4,5,10),logor=log(or)),3) # +/- 1.61
+
+prior.plot<-ggplot(data = tibble(x = -2.3:2.3), aes(x)) +annotate(xmin=log(1/1.5),xmax=log(1.5),ymin=0,ymax=0.5,'rect',alpha=.5)+
+  stat_function(fun = dnorm, n = 101, args = list(0,log(5)/qnorm(0.975)),aes(colour="Skeptical"),linewidth=2) +theme_bw()+xlab("Log-odds ratio")+ylab("Density")+scale_x_continuous(limits=c(-2.3,2.3),labels =ordat$logor,breaks=ordat$logor,sec.axis = dup_axis(name="Odds ratio",labels=ordat$or))+
+  scale_colour_manual(breaks=c("Skeptical"),values=c("#97D3DC"),name="Prior")+theme(legend.position="top")+annotate("text",x=0,y=.02,label="Similarity interval")
+prior.plot
+
+
+```
+
+# Power analysis
+
+Bayesian power = probability of reaching trial goals
+
+## fitting initial model
+
+This part of the script will be useful for the real analysis, which includes fitting the logistic model, checking the model, and testing hypotheses.
+
+```{r power analysis}
+n=100 # sample size of patients total 
+
+#simulating the dataset
+d<-tibble(treatment=rbinom(n,1,.5))|>
+  mutate(y=ifelse(treatment ==0,rbinom(n,1,.19),
+                            rbinom(n,1,.19)))
+d|>
+  group_by(treatment)|>
+  count(y)
+
+#fit a brms model with skeptical prior
+#fit <-brm(data = d,
+#      family = bernoulli(),
+#      y~treatment,
+#      prior = c(prior(normal(0,log(5)/1.96), class = #b)),chains=4,cores=4)
+#saveRDS(fit,file="Power_analysis_simulations_outputs/Initial_fit_Bayesian_model.rds")
+fit<-readRDS("Power_analysis_simulations_outputs/Initial_fit_Bayesian_model.rds")
+
+plot(fit) # see chains
+print(fit) # check rhat, effective sample size, and model output
+prior_summary(fit)
+###posterior predictive checks 
+pp_check(fit,type="stat",stat="mean")
+pp_check(fit,stat="mean",ndraws=50)
+
+#get priors, if interested
+#get_prior(fit)
+#marginal effects
+
+```
+
+### Hypothesis testing of posterior distribution
+
+```{r testing hypotheses}
+#test hypotheses
+# test treatment <0, overall benefit
+ob<-hypothesis(fit,"treatment<0",alpha=0.1)
+ob
+###test for similarity ; within log(0.8)-log(1.2)
+si1<-hypothesis(fit,"treatment < log(1.5)",alpha=0.05)
+si2<-hypothesis(fit,"treatment <log(0.667)",alpha=0.05)
+si1$hypothesis$Post.Prob-si2$hypothesis$Post.Prob
+
+# dobule check my understanding by manually calculating probs
+samples<-as.data.frame(fit)
+n<-length(samples$b_treatment)
+
+#manual for overall benefit
+sum(samples$b_treatment<0)/n
+#similarity interval 
+sum(samples$b_treatment>log(0.667) & samples$b_treatment<log(1.5))/n
+
+#### hypothesis function and manual calculations are in agreement #####
+
+##plotting out the treatment effect 
+subs<-tibble(treatment=samples$b_treatment)|>
+  mutate(Prior="Skeptical")
+mean.paste<-paste(round(exp(mean(subs$treatment)),3)," odds ratio\n",round(mean(subs$treatment),3),"  log odds ratio",sep="")
+mp<-round(mean(subs$treatment),3)
+
+ggplot(subs,aes(x=treatment,..scaled..))+geom_density(fill='#46A6B2',alpha=.5)+theme_bw()+xlab("Treatment effect (log odds ratio)")+
+  scale_x_continuous(limits=c(-1.61,1.61),labels =c(-2.302,ordat$logor),breaks=c(-2.302585,ordat$logor),sec.axis = dup_axis(name="Treatment effect (odds ratio)",labels=c(0.1,ordat$or)))+
+  scale_y_continuous(expand=c(0,0),limits=c(0,1.3))+
+  annotate(xmin=log(1/1.5),xmax=log(1.5),ymin=0,ymax=1.3,'rect',alpha=.5)+
+  annotate("text",x=-1,y=1.15,label = mean.paste)+
+  annotate("text",x=log(1/1.5),y=1.2,label="Similarity interval",hjust=-.05)+ylab("Density")+
+  geom_vline(xintercept = 0,linewidth=1,lty="dotdash")
+
+```
+
+## Simulation for power analysis: Similarity and Non-inferiority
+
+The simulation takes a long time, so I ran and saved them.
+
+```{r simulation and fit}
+####fit simulate and fit
+#n=50
+seed<-1
+
+simfit <- function(seed, n) {
+  
+  set.seed(seed)
+  
+  d<-tibble(treatment=rbinom(n,1,.5))|>
+  mutate(y=ifelse(treatment ==0,rbinom(n,1,.19),
+                            rbinom(n,1,.19)))
+  outp<-update(fit,
+         newdata = d,
+         seed = seed,cores=4,recompile=FALSE,sample_prior="no",refresh=0) 
+  ot<-outp|>
+    brms_summary()|>
+  data.frame()|>
+  filter(variable=="b_treatment")
+  
+  si1<-hypothesis(outp,"treatment < log(1.5)",alpha=0.05)
+  si2<-hypothesis(outp,"treatment <log(0.6666)",alpha=0.05)
+  ot$similarity<-si1$hypothesis$Post.Prob-si2$hypothesis$Post.Prob
+  ot$similarity_below15<-si1$hypothesis$Post.Prob
+  
+  #benefit<-hypothesis(outp,"treatment <log(1)",alpha=0.05)
+  #ot$benefit<-benefit$hypothesis$Post.Prob
+  #ot$harm<- (1-ot$benefit)
+  return(ot)
+}
+
+
+#######################################################
+n_sim<-100 # number of simulations
+#simulation here, didn't run
+#sim2 <-tibble(expand.grid(seed=1:n_sim,ss=c(100,200,400,600,800)))|>
+#  group_by(seed,ss)|>
+#  do(out=simfit(seed=.$seed,n=.$ss))|>
+#  unnest(out)
+
+#mutate(out = pmap(list(seed, ss), ~ simfit(seed = ..1, n = ..2))) %>%
+
+#saveRDS(sim2,file="Power_analysis_simulations_outputs/Non-inferiority_andsimilarity_Bayesian_simulation_100trials_ss50-1000_log5over1.96prior_1.5OR.rds")
+
+sim2<-readRDS(file="Power_analysis_simulations_outputs/Non-inferiority_andsimilarity_Bayesian_simulation_100trials_ss50-1000_log5over1.96prior_1.5OR.rds")
+#calculating bayesian power for noninferiority and similarity
+sim2<-sim2|>
+  group_by(ss)|>
+  mutate(prbelow15=sum(if_else(similarity_below15>0.95,1,0))/length(similarity_below15),facet=paste("Pr(Non-inferiority>0.95)=",prbelow15,sep=""),
+         simprob=sum(if_else(similarity>.95,1,0)/length(similarity)),
+         facetsim=paste("Pr(Similarity>0.95)=",simprob,sep=""))|>
+  droplevels()
+head(sim2)
+sim2|>
+  count(ss)
+
+
+
+###############Non-inferiority trial
+
+nfplot<-ggplot(sim2,aes(y=similarity_below15,x=factor(ss)))+geom_quasirandom(shape=21,fill='#50BECB',alpha=.5,size=2)+scale_y_continuous(breaks=seq(0,1,.1),labels=seq(0,1,.1))+geom_hline(yintercept = .95,lty="dotdash")+xlab("Sample size")+ylab("Non-inferiority: Pr(OR<1.5)")+facet_wrap(~facet,scale="free_x",nrow=1)+theme_bw()
+nfplot
+
+#ggsave(nfplot,filename="Power_analysis_simulations_outputs/Non-inferiority_simulation_ss50-1000-log5over1.96prior_1.5OR.png",width=10,height=5,units="in",dpi=600)
+
+
+##similarity trial
+simfig<-ggplot(sim2,aes(y=similarity,x=factor(ss)))+geom_quasirandom(shape=21,fill='#50BECB',alpha=.5,size=2)+scale_y_continuous(breaks=seq(0,1,.1),labels=seq(0,1,.1))+geom_hline(yintercept = .95,lty="dotdash")+xlab("Sample size")+ylab("Similarity: Pr(0.66< OR <1.5)")+facet_wrap(~facetsim)+theme_bw()
+simfig
+
+#ggsave(simfig,filename="Power_analysis_simulations_outputs/equivalence_simulation_ss50-1000-log5over1.96prior_1.5OR.png",width=8,height=4,units="in",dpi=600)
+
+```
+
+# Efficacy trial simulation
+
+```{r}
+#####simulation function for efficacy 
+simfitefficacy <- function(seed, n) {
+  
+  set.seed(seed)
+  
+  d<-tibble(treatment=rbinom(n,1,.5))|>
+  mutate(y=ifelse(treatment ==0,rbinom(n,1,.2),
+                            rbinom(n,1,.1)))
+  
+    outp<-update(fit,
+         newdata = d,
+         seed = seed,cores=4) 
+  ot<-outp|>
+    brms_summary()|>
+  data.frame()|>
+  filter(variable=="b_treatment")
+  
+  benefit<-hypothesis(outp,"treatment <log(1)",alpha=0.05)
+  ot$benefit<-benefit$hypothesis$Post.Prob
+  ot$harm<- (1-ot$benefit)
+  return(ot)
+}
+
+###simulation
+#n_sim<-100 # number of simulations
+# --simulation, didn't run
+#sim3 <-tibble(expand.grid(seed=1:n_sim,ss=c(100,200,400,600,800)))|>
+#  mutate(out = pmap(list(seed, ss), ~ simfitefficacy(seed = ..1, n = ..2))) |>
+#  unnest(out)
+
+#saveRDS(sim3,file="Power_analysis_simulations_outputs/EFFICACY_Bayesian_simulation_100trials_ss50-1000_log5over1.96prior_1.5OR.rds")
+sim3<-readRDS("Power_analysis_simulations_outputs/EFFICACY_Bayesian_simulation_100trials_ss50-1000_log5over1.96prior_1.5OR.rds")
+
+sim3<-sim3|>
+  group_by(ss)|>
+  mutate(probeff=sum(if_else(benefit>0.95,1,0))/length(benefit),
+         facet=paste("Pr(Efficacy>0.95)=",probeff))
+
+
+
+fig_eff<-ggplot(sim3,aes(x=factor(ss),y=benefit))+geom_quasirandom(size=3,shape=21,fill='#50BECB',alpha=.5)+scale_y_continuous(breaks=seq(0,1,.1),labels=seq(0,1,.1))+xlab("Sample size")+ylab("Efficacy: Pr(OR<1)")+geom_hline(yintercept = 0.95,lty="dotdash",linewidth=1)+theme_bw()+facet_wrap(~facet,nrow=1)+theme(axis.text.x = element_text(angle = 45, hjust = 1))
+fig_eff
+#ggsave(fig_eff,filename="Power_analysis_simulations_outputs/efficacy_simulation_ss50-1000-log5over1.96prior_1.5OR.png",width=8,height=4,units="in",dpi=700)
+
+
+```
+
+# Posterior predictive distributions -assess whether a trial is likely to succeed
+
+1.  Define success criteria-\> Pr(OR \<0 )\>=0.95
+2.  Fit a Bayesian model (say halfway through the trial)
+3.  Posterior predictive distribution
+
+$$p(\tilde{y}|data) = \int p(\tilde{y}|\theta) p(\theta |data) d\theta$$ 4. Compute predictive probabilty of success (PPOS = Pr(Success at end \| current data))
+
+Here, simulate many future trial completions from posterior predictive distribution
+
+5.  Decision rules: if PPOS is high,continue, if it is low, stop
+
+```{r initial model fit, eval=FALSE }
+#rbinom(n=1,size=1,prob=.4)
+#workflow
+
+#conditions
+#efficacy trial
+# trial with 100 total patients, target is 200 patients total ; 100 per treatment
+# control = .2, treatment = .1
+n=100
+d<-tibble(treatment=rbinom(n,1,.5))|>
+  mutate(y=ifelse(treatment ==0,rbinom(n,1,.2),
+                            rbinom(n,1,.1)))
+
+#write.csv(d,"Power_analysis_simulations_outputs/d_dataset_randomtreatment_ybinary.csv")
+d<-read.csv("Power_analysis_simulations_outputs/d_dataset_randomtreatment_ybinary.csv")|>
+  select(-X)
+
+#fit model with 100 patients
+fit <-brm(data = d,
+      family = bernoulli(),
+      y~treatment,
+      prior = c(prior(normal(0,log(5)/1.96), class = b)),chains=4,cores=4)
+#summary(fit)
+#saveRDS(fit,"Power_analysis_simulations_outputs/00_simulated_dataset_original_brms_N100_logistic_regression.rds")
+
+#fit<-readRDS("Power_analysis_simulations_outputs/00_simulated_dataset_original_brms_N100_logistic_regression.rds")
+summary(fit)
+#Hypothesis testing here: Is there a treatment effect? 
+#fithyp<-hypothesis(fit,"treatment<log(1)")
+#fithyp$hypothesis$Post.Prob
+
+#get posterior probabilities and link them up with original dataset 
+# N goes from 100 to 200 
+
+newdat<-tibble(treatment=rbinom(100,1,.5))|>
+  arrange(treatment)
+
+pdraws<- posterior_predict(fit,summary=FALSE,newdata=newdat,ndraws=100)|>
+  data.frame()##1st column is control, 2nd column is treatment 
+names(pdraws)<-c("control","treatment")
+numdat<-newdat|>
+  count(treatment)
+  #mutate(y=if_else(treatment==0,sample(pdraws$control,size=1)))
+newdat2<-newdat|>
+  mutate(y=c(pdraws[1:numdat[[1,2]],1],pdraws[1:numdat[[2,2]],1]))
+fulld<-rbind(d,newdat2)
+
+#refit model using update 100 times
+upfit<-update(fit,
+         newdata = fulld,cores=4) 
+# determine which ones successful and calculate prob of success 
+hyp1<-hypothesis(upfit,"treatment<log(1)")
+hyp1$hypothesis$Post.Prob
+
+#now i need to construct a function to repeat many many times 
+```
+
+## Code to simulate new patients based on the current model
+
+```{r eval=FALSE}
+############
+#first create a datasets from already collected + posterior predicted outcomes
+dat<-list()
+
+n_iter <- 1000
+start_time <- proc.time()[["elapsed"]]
+
+for (i in seq_len(n_iter)) {
+  iter_start <- proc.time()[["elapsed"]]
+
+  # === your work ===
+  ndat<-tibble(treatment=c(0,1))
+  pdraws <- posterior_predict(fit, summary = FALSE,newdata = ndat, ndraws = 200) |>
+    data.frame()            # 1st col: control, 2nd: treatment
+  names(pdraws) <- c("control", "treatment")
+  
+  
+  newdat<-tibble(treatment=rbinom(100,1,.5))|>
+    arrange(treatment)
+  numdat<-newdat|>
+    count(treatment)
+  newdat<-newdat|>
+    mutate(y=c(pdraws[1:numdat[[1,2]],1],pdraws[1:numdat[[2,2]],1]))
+  fulldsim<-rbind(d,newdat)
+  
+  dat[[i]] <- fulldsim
+
+  # === progress print ===
+  iter_elapsed <- proc.time()[["elapsed"]] - iter_start
+  total_elapsed <- proc.time()[["elapsed"]] - start_time
+  avg_per_iter <- total_elapsed / i
+  eta <- avg_per_iter * (n_iter - i)
+
+  cat(sprintf("Iter %d/%d | iter: %.2fs | total: %.2fs | ETA: %.2fs\n",
+              i, n_iter, iter_elapsed, total_elapsed, eta))
+}
+```
+
+## Simulation and PPOS
+
+```{r simulation }
+#head(dat)
+#from the list of datasets, make it into a dataframe 
+#fdat<-bind_rows(dat,.id="source_id") #ocmment out, not run
+
+#write.csv(fdat,"Power_analysis_simulations_outputs/00_simulated_dataset_1000_brms_N100_logistic_regression_posteriorpredict_N50_rbind.csv")
+fdat<-read.csv("Power_analysis_simulations_outputs/00_simulated_dataset_1000_brms_N100_logistic_regression_posteriorpredict_N50_rbind.csv")
+head(fdat)
+
+#now I can iterate on each partition of the dataset by source_id
+#write a function to update
+
+updatebrm<-function(data){
+  data=data
+  outp<-update(fit,
+         newdata = data,
+         cores=4) 
+  ot<-outp|>
+    brms_summary()|>
+  data.frame()|>
+  filter(variable=="b_treatment")
+  ot$benefit<-hypothesis(outp,"treatment <log(1)",alpha=0.05)$hypothesis$Post.Prob
+  return(ot)
+}
+
+#now lets iterate 
+#simp1<-fdat[1:400,]|> # testing on 2 simulations
+
+#the simulation code here, not run, due to time
+#simp1<-fdat|>
+#  group_by(source_id)|>
+#  do(output=updatebrm(data=.))|>
+#  unnest(output)
+#simp1
+#write.csv(simp1,row.names=FALSE,"Power_analysis_simulations_outputs/00_simulated_dataset_1000_brms_N100_logistic_regression_posteriorpredict_N50_rbind_output_dataset_benefit.csv")
+simp1<-read.csv("Power_analysis_simulations_outputs/00_simulated_dataset_1000_brms_N100_logistic_regression_posteriorpredict_N50_rbind_output_dataset_benefit.csv")
+
+ggplot(simp1,aes(y=benefit,x=variable))+geom_quasirandom()+xlab("Treatment")+ylab("Posterior predictive success (Pr(OR<1))")+scale_y_continuous(labels=seq(0,1,.1),breaks=seq(0,1,.1))+geom_hline(yintercept = .8,lty="dotdash")
+#
+
+sum(if_else(simp1$benefit>0.9,1,0))/length(simp1$benefit)
+
+
+
+cutoff <- 0.9
+d <- density(simp1$benefit)
+dens_df <- tibble(x = d$x, y = d$y)
+
+fig1.1<-ggplot(dens_df, aes(x, y)) +
+  geom_line(color = '#18272F') +
+  geom_ribbon(
+    data = filter(dens_df, x > cutoff),
+    aes(ymin = 0, ymax = y),
+    fill = '#65C9D5', alpha = 0.5
+  ) +
+  xlab("Pr(OR<1)") + ylab("Density")+theme_bw()+scale_x_continuous(limits=c(.3,1),breaks=seq(0,1,.1),labels=seq(0,1,.1))
+fig1.1
+#ggsave(fig1.1,filename="Power_analysis_simulations_outputs/00_fig_posterior_Predictive_success_fig_1000simulations.png",width=8,height=5,dpi=900,units="in")
+```
+
+# session info
+
+```{r session info}
+sessionInfo()
+```

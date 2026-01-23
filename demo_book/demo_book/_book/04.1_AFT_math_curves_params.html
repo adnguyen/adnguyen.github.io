@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Accelerated Failure time models – My demo notebook</title>
+<title>10&nbsp; Accelerated Failure time models – My demo notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./03_longitudinal_ordinal_modelling.html" rel="next">
-<link href="./10_TimeSeriesCausalImpact.html" rel="prev">
+<link href="./25_Type_1_error_Bayesian_simulations.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -204,12 +204,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Time series causal impact with CausalImpact</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24_Regression_discontinuity_designs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Regression continuity designs</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Notes on statistical models</span></a>
+ <span class="menu-text">Misc Bayesian statistics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -217,14 +223,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04.1_AFT_math_curves_params.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></span></a>
+  <a href="./12_Bayesian_inference_discrete_simple_case.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Bayesian inference in discrete case</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_longitudinal_ordinal_modelling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Longitudinal ordinal regression model simulations</span></span></a>
+  <a href="./13_Bayesian_inference_Beta_priors_JingchenHu_lab1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bayesian inference with beta priors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26_Bayesian_sequential_design_one_arm_trial_simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Bayesian sequential analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22_Bayesian_simulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bayesian clinical trial simulations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./25_Type_1_error_Bayesian_simulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simulating error in Frequentist and Bayesian clinical trial designs</span></span></a>
   </div>
 </li>
       </ul>
@@ -232,7 +256,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Misc Bayesian statistics</span></a>
+ <span class="menu-text">Notes on statistical models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -240,20 +264,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./12_Bayesian_inference_discrete_simple_case.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bayesian inference in discrete case</span></span></a>
+  <a href="./04.1_AFT_math_curves_params.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13_Bayesian_inference_Beta_priors_JingchenHu_lab1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Lab1: Bayesian inference with beta priors, Jingchen Hu</span></span></a>
+  <a href="./03_longitudinal_ordinal_modelling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Longitudinal ordinal regression model simulations</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./00_Bayesian_priors_power_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Power analysis and Bayesian priors</span></span></a>
+  <a href="./18_non-collapsibility_demo-odds_ratio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></span></a>
   </div>
 </li>
       </ul>
@@ -270,19 +294,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Randomization_and_Power_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14_simulating_95CI_frequentist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Simulating 95% confidence intervals</span></span></a>
   </div>
 </li>
       </ul>
@@ -299,7 +323,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./DSTmodel_uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Dempster-Shafer Theory, notes</span></span></a>
   </div>
 </li>
       </ul>
@@ -335,24 +359,24 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">5</span> Load libraries</a></li>
-  <li><a href="#accelerated-failture-time-aft-model" id="toc-accelerated-failture-time-aft-model" class="nav-link" data-scroll-target="#accelerated-failture-time-aft-model"><span class="header-section-number">6</span> Accelerated failture time (AFT) model</a>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">11</span> Load libraries</a></li>
+  <li><a href="#accelerated-failture-time-aft-model" id="toc-accelerated-failture-time-aft-model" class="nav-link" data-scroll-target="#accelerated-failture-time-aft-model"><span class="header-section-number">12</span> Accelerated failture time (AFT) model</a>
   <ul class="collapse">
-  <li><a href="#the-exponential-distribution" id="toc-the-exponential-distribution" class="nav-link" data-scroll-target="#the-exponential-distribution"><span class="header-section-number">6.1</span> The Exponential distribution</a></li>
-  <li><a href="#the-weibull-distribution" id="toc-the-weibull-distribution" class="nav-link" data-scroll-target="#the-weibull-distribution"><span class="header-section-number">6.2</span> The Weibull distribution</a></li>
+  <li><a href="#the-exponential-distribution" id="toc-the-exponential-distribution" class="nav-link" data-scroll-target="#the-exponential-distribution"><span class="header-section-number">12.1</span> The Exponential distribution</a></li>
+  <li><a href="#the-weibull-distribution" id="toc-the-weibull-distribution" class="nav-link" data-scroll-target="#the-weibull-distribution"><span class="header-section-number">12.2</span> The Weibull distribution</a></li>
   </ul></li>
-  <li><a href="#simulating-cox-coefficients" id="toc-simulating-cox-coefficients" class="nav-link" data-scroll-target="#simulating-cox-coefficients"><span class="header-section-number">7</span> Simulating cox coefficients</a></li>
-  <li><a href="#analyzing-high-risk-patient-data-for-length-of-stay" id="toc-analyzing-high-risk-patient-data-for-length-of-stay" class="nav-link" data-scroll-target="#analyzing-high-risk-patient-data-for-length-of-stay"><span class="header-section-number">8</span> analyzing high risk patient data for length of stay</a></li>
-  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">9</span> Session info</a></li>
+  <li><a href="#simulating-cox-coefficients" id="toc-simulating-cox-coefficients" class="nav-link" data-scroll-target="#simulating-cox-coefficients"><span class="header-section-number">13</span> Simulating cox coefficients</a></li>
+  <li><a href="#analyzing-high-risk-patient-data-for-length-of-stay" id="toc-analyzing-high-risk-patient-data-for-length-of-stay" class="nav-link" data-scroll-target="#analyzing-high-risk-patient-data-for-length-of-stay"><span class="header-section-number">14</span> analyzing high risk patient data for length of stay</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">15</span> Session info</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></h1>
 </div>
 
 
@@ -369,8 +393,8 @@ window.Quarto = {
 </header>
 
 
-<section id="load-libraries" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Load libraries</h1>
+<section id="load-libraries" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Load libraries</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -389,8 +413,8 @@ window.Quarto = {
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>my_colors1 <span class="ot">&lt;-</span> <span class="fu">cc1</span>(<span class="dv">10</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="accelerated-failture-time-aft-model" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Accelerated failture time (AFT) model</h1>
+<section id="accelerated-failture-time-aft-model" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Accelerated failture time (AFT) model</h1>
 <p>Notes based on https://univ-pau.hal.science/hal-02953269/document</p>
 <p><span class="math display">\[log(T) = \beta_{0} + \beta'X+\sigma\epsilon\]</span></p>
 <ul>
@@ -404,13 +428,13 @@ window.Quarto = {
 </ul>
 <p>The AFT model assumes that covariates have a multiplicative effect on the survival time and an additive effect on <span class="math inline">\(log(T)\)</span>. And we can isolate <span class="math inline">\(T\)</span> as:</p>
 <p><span class="math display">\[T = exp(\beta_{0}) \times exp(\beta'X) \times exp(\sigma\epsilon)\]</span></p>
-<section id="the-exponential-distribution" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="the-exponential-distribution"><span class="header-section-number">6.1</span> The Exponential distribution</h2>
+<section id="the-exponential-distribution" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="the-exponential-distribution"><span class="header-section-number">12.1</span> The Exponential distribution</h2>
 <p>The exponential distribution has the survival function, <span class="math inline">\(S_{T}(t) = e^{-\lambda t}\)</span> for all <span class="math inline">\(t \ge 0, \lambda &gt; 0\)</span> and the hazard function is constant, <span class="math inline">\(h_{T}(t)=\lambda\)</span>. If the lifetime of <span class="math inline">\(T\)</span> is exponential, then <span class="math inline">\(\epsilon\)</span> follows a Gumbel distribution witht he survival function <span class="math inline">\(S_{\epsilon}(y)= exp(-e^{y})\)</span> and obtain:</p>
 <p><span class="math display">\[S_{T|X}(t|x)= exp(-\lambda t); \frac{1}{\lambda}=exp(\beta_{0}+\beta'x)\]</span></p>
 </section>
-<section id="the-weibull-distribution" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="the-weibull-distribution"><span class="header-section-number">6.2</span> The Weibull distribution</h2>
+<section id="the-weibull-distribution" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="the-weibull-distribution"><span class="header-section-number">12.2</span> The Weibull distribution</h2>
 <p>The survival function:</p>
 <p><span class="math display">\[S_{T}(t)=e^{(-\lambda t)^\alpha}\]</span></p>
 <p>where…</p>
@@ -468,8 +492,8 @@ window.Quarto = {
 </div>
 </section>
 </section>
-<section id="simulating-cox-coefficients" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Simulating cox coefficients</h1>
+<section id="simulating-cox-coefficients" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Simulating cox coefficients</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#simulating beta </span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -495,8 +519,8 @@ window.Quarto = {
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>d2<span class="sc">|&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="analyzing-high-risk-patient-data-for-length-of-stay" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> analyzing high risk patient data for length of stay</h1>
+<section id="analyzing-high-risk-patient-data-for-length-of-stay" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> analyzing high risk patient data for length of stay</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"07_30daysurvival_dataset-parsed-foranalysis.csv"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -528,8 +552,8 @@ window.Quarto = {
 <span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pred,<span class="fu">aes</span>(<span class="at">x=</span>time,<span class="at">y=</span>surv))<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">data=</span>kmd,<span class="fu">aes</span>(<span class="at">x=</span>time,<span class="at">y=</span>surv),<span class="at">color=</span><span class="st">"blue"</span>)<span class="sc">+</span><span class="fu">scale_x_continuous</span>(<span class="at">limit=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">30</span>),<span class="at">labels=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">2</span>),<span class="at">breaks=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="dv">2</span>))<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="session-info" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Session info</h1>
+<section id="session-info" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Session info</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -986,13 +1010,13 @@ loaded via a namespace (and not attached):
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./10_TimeSeriesCausalImpact.html" class="pagination-link" aria-label="Time series causal impact with CausalImpact">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Time series causal impact with CausalImpact</span></span>
+      <a href="./25_Type_1_error_Bayesian_simulations.html" class="pagination-link" aria-label="Simulating error in Frequentist and Bayesian clinical trial designs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simulating error in Frequentist and Bayesian clinical trial designs</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./03_longitudinal_ordinal_modelling.html" class="pagination-link" aria-label="Longitudinal ordinal regression model simulations">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Longitudinal ordinal regression model simulations</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Longitudinal ordinal regression model simulations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

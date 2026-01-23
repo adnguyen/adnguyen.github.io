@@ -47,5 +47,20 @@
   },
   "00_Bayesian_priors_power_analysis.qmd": {
     "00_Bayesian_priors_power_analysis.html": "1c2bd2a3"
+  },
+  "18_non-collapsibility_demo-odds_ratio.qmd": {
+    "18_non-collapsibility_demo-odds_ratio.html": "18d17ef4"
+  },
+  "22_Bayesian_simulations.qmd": {
+    "22_Bayesian_simulations.html": "2360de63"
+  },
+  "24_Regression_discontinuity_designs.qmd": {
+    "24_Regression_discontinuity_designs.html": "cb91e236"
+  },
+  "26_Bayesian_sequential_design_one_arm_trial_simulation.qmd": {
+    "26_Bayesian_sequential_design_one_arm_trial_simulation.html": "57b08e27"
+  },
+  "25_Type_1_error_Bayesian_simulations.qmd": {
+    "25_Type_1_error_Bayesian_simulations.html": "d252a047"
   }
 }

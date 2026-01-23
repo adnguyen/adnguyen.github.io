@@ -1,0 +1,306 @@
+---
+title: "Simulating error in Frequentist and Bayesian clinical trial designs"
+date: last-modified
+
+abstract: >
+  Simulations of error under Frequentist and Bayesian frameworks. Technically, in Bayesian framework, there is no type I error, instead, the error is the probability of making a mistake. 
+     
+format: 
+  html:
+    toc: TRUE
+    toc-depth: 4
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Load libraries
+
+```{r load libraries, warning=FALSE,message=FALSE}
+library(tidyverse)
+library(brms)
+library(gt)
+library(gtsummary)
+brms_summary <- function(x) {
+  posterior::summarise_draws(x, "mean", "sd",  ~quantile(.x, probs = c(.025,0.975)))
+}
+```
+
+# Introduction
+
+Type I error in a Frequentist framework is rejecting the null hypothesis when the null hypothesis is true. Type I error does not apply in Bayesian framework, and instead, the focus on making an error when acting. This is making making a mistake in decision making, and can be thought of as 1-pr(benefit) (as an example).
+
+I'll apply simulations to assessing error rate under frequentistism (type I error) as well as under a Bayesian framework (probability of making a mistake). I want to compare 2 priors: one with large standard deviation ($Normal(0,100)$) vs one with a narrower standard deviation ($Normal(0,5)$).
+
+Probability of benefit is defined as $Pr(\beta)>0.95$
+
+Frequentist approach steps:
+
+1.  Simulate 1000 datasets with a mean difference of 0, sd of 1 with difference sample sizes (50,100,200) 2.Approach for Frequentist type I error: For each dataset, Fit Bayesian model with two priors (N(0,5) and N(0,100))
+2.  Obtain 95% credible interval and median 
+3.  Calculate how many times Pr(Benefit\>0.95)
+
+Bayesian approach steps:
+
+1.  Simulate 1000 datasets with a mean difference of 4, sd of 6 with difference sample sizes (50,100,200)
+2.  Approach for Bayesian type I error: For each dataset, fit bayesian model with two priors (N(0,5) and N(0,100))
+3.  Obtain 95% credible interval and median
+4.  Calculate how many times 1-Pr(Benefit\>0.95) or Pr(harm)\>0.05
+
+Then, compare error for each approach by sample size and prior.
+
+# Frequentist simulation code
+
+```{r frequentist, eval=FALSE}
+
+#fit initial model to update
+n=100
+df<-tibble(treatment=rbinom(n,1,.5))|>
+    rowwise()|>
+    mutate(y=ifelse(treatment ==0,rnorm(n=1,0,6),
+                            rnorm(n=1,0,6)))
+
+ffitf<-brm(y~treatment,data=df,prior=prior(normal(0,5)))# prior with N(0,5)
+ffit1000f<-brm(y~treatment,data=df,prior=prior(normal(0,1000)))# prior with N(0,1000)
+
+
+#simulation function  for N(0,5 ) and N(0,1000) prior
+simfit3 <- function(seed, n) {
+  
+  set.seed(seed)
+  
+  df<-tibble(treatment=rbinom(n,1,.5))|>
+    rowwise()|>
+    mutate(y=ifelse(treatment ==0,rnorm(n=1,0,6),
+                            rnorm(n=1,0,6)))
+  outp<-update(ffitf,
+         newdata = df,
+         seed = seed,cores=4,recompile=FALSE,refresh=0,prior=prior(normal(0,5))) 
+  ot<-outp|>
+    brms_summary()|>
+  data.frame()|>
+  filter(variable=="b_treatment")
+  benefit<-hypothesis(outp,"treatment >0",alpha=0.05)
+  ot$benefit<-benefit$hypothesis$Post.Prob
+  ot$prior<-5
+  ###
+  outp2<-update(ffit1000f,
+         newdata = df,
+         seed = seed,cores=4,recompile=FALSE,refresh=0,prior=prior(normal(0,1000))) 
+  ot2<-outp2|>
+    brms_summary()|>
+    data.frame()|>
+    filter(variable=="b_treatment")
+  benefit2<-hypothesis(outp2,"treatment >0",alpha=0.05)
+  ot2$benefit<-benefit2$hypothesis$Post.Prob
+  ot2$prior<-100
+  
+  ot3<-rbind(ot,ot2)
+  
+  return(ot3)
+}
+```
+
+## Frequentist type I error Simulation
+
+Many don't agree with this, but we're simulating outcomes under the null hypothesis with Bayesian models. Then, we can identify how often positive results are observed over the simulation.
+
+```{r}
+###--Actual simulation--###
+#not run because it takes a very long time
+##ss is set to different sample sizes 
+#n_sim<-100 # number of simulations
+#sim3<-tibble(expand.grid(seed=1:n_sim,ss=c(25,50,100,200,500)))|>
+#  group_by(seed,ss)|>
+#  do(out=simfit3(seed=.$seed,n=.$ss))|>
+#  unnest(out)
+
+#head(sim3)
+#saveRDS(sim3,"Power_analysis_simulations_outputs/Type_1_error_Frequentist_framework_priorN05_N01000.rds")
+sim3<-readRDS("Power_analysis_simulations_outputs/Type_1_error_Frequentist_framework_priorN05_N01000.rds")
+
+sim3.parse<-sim3|>
+  group_by(seed,ss,prior)|>
+  mutate(benefit_yesno=if_else(X2.5.>0,1,0))|>
+  group_by(ss,prior)|>
+  dplyr::summarize(mean=mean(benefit_yesno))
+
+sim3.parse
+
+ggplot(sim3.parse,aes(x=ss,y=mean,colour=factor(prior)))+geom_point(size=5)+geom_line()+scale_y_continuous(limits=c(0,.06),breaks=seq(0,0.06,.01),labels=seq(0,.06,.01))+geom_hline(lty="dotdash",yintercept = 0.025)+ylab("Type I Error")+xlab("Sample size")+scale_x_continuous(limits=c(0,500),breaks=seq(0,500,50),labels=seq(0,500,50))
+
+```
+
+# Bayesian
+
+## The simulation function
+
+```{r bayesian, eval=FALSE}
+
+#fit initial model to update
+n=100
+d<-tibble(treatment=rbinom(n,1,.5))|>
+    rowwise()|>
+    mutate(y=ifelse(treatment ==0,rnorm(n=1,0,6),
+                            rnorm(n=1,4,6)))
+
+ffit<-brm(y~treatment,data=d,prior=prior(normal(0,5)))# prior with N(0,5)
+ffit1000<-brm(y~treatment,data=d,prior=prior(normal(0,1000)))# prior with N(0,1000)
+#hypothesis(ffit,"treatment>0",alpha=0.05)
+
+
+
+#simulation function  for N(0,5 ) and N(0,1000) prior
+simfit <- function(seed, n) {
+  
+  set.seed(seed)
+  
+  d<-tibble(treatment=rbinom(n,1,.5))|>
+    rowwise()|>
+    mutate(y=ifelse(treatment ==0,rnorm(n=1,0,6),
+                            rnorm(n=1,4,6)))
+  outp<-update(ffit,
+         newdata = d,
+         seed = seed,cores=4,recompile=FALSE,refresh=0,prior=prior(normal(0,5))) 
+  ot<-outp|>
+    brms_summary()|>
+  data.frame()|>
+  filter(variable=="b_treatment")
+  benefit<-hypothesis(outp,"treatment >0",alpha=0.05)
+  ot$benefit<-benefit$hypothesis$Post.Prob
+  ot$prior<-5
+  ###
+  outp2<-update(ffit1000,
+         newdata = d,
+         seed = seed,cores=4,recompile=FALSE,refresh=0,prior=prior(normal(0,1000))) 
+  ot2<-outp2|>
+    brms_summary()|>
+    data.frame()|>
+    filter(variable=="b_treatment")
+  benefit2<-hypothesis(outp2,"treatment >0",alpha=0.05)
+  ot2$benefit<-benefit2$hypothesis$Post.Prob
+  ot2$prior<-100
+  
+  ot3<-rbind(ot,ot2)
+  
+  return(ot3)
+}
+
+```
+
+## Bayesian simulation
+
+```{r actual bayesian simulation}
+#n_sim<-100 # number of simulations
+###--##comenting out simulation code - takes very long time
+#sim2<-tibble(expand.grid(seed=1:n_sim,ss=c(25,50,100,200,500)))|>
+#  group_by(seed,ss)|>
+#  do(out=simfit(seed=.$seed,n=.$ss))|>
+#  unnest(out)
+
+
+#saveRDS(sim2,"Power_analysis_simulations_outputs/Type_1_error_Bayesian_framework_priorN05_N01000.rds")
+sim2<-readRDS("Power_analysis_simulations_outputs/Type_1_error_Bayesian_framework_priorN05_N01000.rds")|>
+  mutate(prior=if_else(prior==100,1000,prior))
+head(sim2)
+
+```
+
+### Side quest- Generate a function that can determine power for a given sample size
+
+
+Grab data and run on your own.  
+
+```{r bayesian power, eval=FALSE}
+#Get power 
+sim2.parse<-sim2|>
+  group_by(seed,ss)|>
+  mutate(benefit_yesno=if_else(X2.5.>0,1,0))|>
+  group_by(ss,prior)|>
+  dplyr::summarize(mean=mean(benefit_yesno))
+
+sim2.parse
+
+##plot out the power by 
+ggplot(sim2.parse,aes(x=ss,y=mean,colour=factor(prior)))+geom_line()+geom_point()+scale_x_continuous(limits=c(0,500),breaks=seq(0,500,50),labels=seq(0,500,50))
+
+
+########---### create a power function so we can predict power given a sample size input
+sim2.parse5<-sim2.parse|>
+  filter(prior==5)
+# Hill model: y = ss^n / (K^n + ss^n)
+# Use non-linear brms formula syntax
+
+hill_formula <- bf(
+  mean ~ ss^n / (K^n + ss^n),
+  n + K ~ 1,
+  nl = TRUE
+)
+
+priors <- c(
+  prior(normal(2, 1), nlpar = "n", lb = 0),
+  prior(normal(60, 30), nlpar = "K", lb = 0),
+  # Use a proper prior for sigma on (0, ∞). Pick one:
+  prior(student_t(3, 0, 0.2), class = "sigma", lb = 0)   # robust, fairly tight
+)
+
+fit_bayes <- brm(
+  formula = hill_formula,
+  data = sim2.parse5,
+  family = gaussian(),       # still Gaussian
+  prior = priors,
+  control = list(adapt_delta = 0.95),
+  chains = 4, cores = 4
+)
+
+summary(fit_bayes)
+
+# Create a tidy posterior prediction function
+predict_hill <- function(ss_values) {
+  newdata <- data.frame(ss = ss_values)
+  posterior_epred(fit_bayes, newdata = newdata)
+}
+
+# Example: predict for ss = 75
+mean(predict_hill(75))
+
+
+##predict continuously from 0 to 500 
+
+powerf<-apply(predict_hill(seq(0,500,1)),2,mean)
+q025<-apply(predict_hill(seq(0,500,1)),2,quantile,probs=0.025)
+q975<-apply(predict_hill(seq(0,500,1)),2,quantile,probs=0.975)
+powerf1<-tibble(mean=powerf,ss=seq(0,500,1),lci=q025,uci=q975)
+###--plot with simulation points 
+
+ggplot(sim2.parse5,aes(x=ss,y=mean))+geom_point()+scale_x_continuous(limits=c(0,500),breaks=seq(0,500,50),labels=seq(0,500,50))+geom_line(data=powerf1,aes(x=ss,y=mean))+geom_ribbon(data=powerf1,aes(x=ss,ymin=lci,ymax=uci),alpha=.2)+xlab("Sample size")+ylab("Bayesian power Pr(benefit)>=0.95")
+
+powerf1|>
+  filter(ss==77)
+
+```
+
+### Back to original goal: figure out pr(harm)
+
+Calculate the pr(harm), which is 1-pr(benefit) for our simulations
+
+```{r}
+harmd<-sim2|>
+  mutate(harm=1-benefit)|>
+  group_by(ss,prior)|>
+  summarize(mean=mean(harm),lcri=quantile(harm,prob=0.025),ucri=quantile(harm,0.975))
+harmd
+
+#plot out 
+ggplot(harmd,aes(x=ss,y=mean,colour=factor(prior),fill=factor(prior)))+geom_point()+geom_line()+geom_ribbon(alpha=0.2,aes(ymin=lcri,ymax=ucri),colour=NA)+scale_x_continuous(labels=seq(0,500,50),breaks=seq(0,500,50),limits=c(0,500))+scale_y_continuous(breaks=seq(0,.7,.05),labels=seq(0,.7,.05))+geom_hline(yintercept = 0.025,lty="dotdash")+xlab("Sample size")+ylab("Pr(harm) or Pr(treatment<0)")
+
+
+```
+
+So a prior with narrower sd produces a higher error rate than a larger sd prior.
+
+# Session info
+
+```{r sessioninfo}
+sessionInfo()
+```

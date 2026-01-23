@@ -1,0 +1,247 @@
+---
+title: "Bayesian sequential analysis"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Load library
+
+```{r load library, warning=FALSE,message=FALSE}
+library(tidyverse)
+library(gt)
+```
+
+# Introduction
+
+In this script, I'm simulating sequential patient monitoring in a single-arm clinical trial. Here are the conditions that we can modify in the simulation:
+
+-   Number of simulations
+-   True event probability and target probability for decision making\
+-   Prior: $\beta(1,1)$, which is a flat prior
+-   Total sample size
+-   Sequential monitoring start at a given sample size
+-   Sequential monitoring step (every 1 patient is default)
+-   Posterior after n patients is: \$p\|data \sim \beta(1+x, 1+n-x) \$
+
+At each look, evaluate:
+
+-   Futility threshold
+-   Early efficacy threshold
+-   Otherwise continue
+
+# Simulation set up
+
+```{r simulation function }
+# Bayesian beta-binomial 1-arm simulation with configurable thresholds
+# Includes posterior bias = (posterior mean at stopping - true probability)
+simulate_trial <- function(true_p = 0.30,
+                           target_p = 0.30,
+                           maxN = 200,
+                           start_monitor = 50,
+                           monitor_every = 1,
+                           prior_a = 1,
+                           prior_b = 1,
+                           futility_threshold = 0.05,   # stop if Pr(p > target_p) < futility_threshold
+                           efficacy_threshold = 0.50,   # stop if Pr(p > target_p) >= efficacy_threshold
+                           nsim = 1,
+                           return_both = c("data", "summary")) {
+  stopifnot(start_monitor >= 1, maxN >= start_monitor,
+            monitor_every >= 1, nsim >= 1)
+  return_both <- match.arg(return_both)
+
+  # Storage for per-simulation results
+  results <- data.frame(
+    sim = integer(nsim),
+    n = integer(nsim),
+    x = integer(nsim),
+    decision = character(nsim),
+    post_mean = numeric(nsim),
+    post_lcl = numeric(nsim),
+    post_ucl = numeric(nsim),
+    pr_gt_p = numeric(nsim),
+    posterior_bias = numeric(nsim),   # NEW: posterior mean - true_p
+    stringsAsFactors = FALSE
+  )
+
+  for (s in seq_len(nsim)) {
+    # Generate Bernoulli outcomes under the true event rate
+    outcomes <- rbinom(maxN, size = 1, prob = true_p)
+
+    decision <- "Max Sample"
+    n_final <- maxN
+    x_final <- sum(outcomes)
+
+    looks <- seq(from = start_monitor, to = maxN, by = monitor_every)
+
+    for (n in looks) {
+      x <- sum(outcomes[1:n])
+
+      # Posterior parameters for Beta(prior_a, prior_b)
+      post_a <- prior_a + x
+      post_b <- prior_b + (n - x)
+
+      # Analytic posterior probability Pr(p > target_p)
+      pr_gt <- 1 - pbeta(target_p, shape1 = post_a, shape2 = post_b)
+
+      # Futility rule
+      if (pr_gt < futility_threshold) {
+        decision <- "Futility"
+        n_final <- n
+        x_final <- x
+        break
+      }
+
+      # Early efficacy rule
+      if (pr_gt >= efficacy_threshold) {
+        decision <- "Early Efficacy"
+        n_final <- n
+        x_final <- x
+        break
+      }
+      # Else continue
+    }
+
+    # Posterior summaries at stopping point (or maxN)
+    post_a <- prior_a + x_final
+    post_b <- prior_b + (n_final - x_final)
+
+    post_mean <- post_a / (post_a + post_b)
+    post_ci <- qbeta(c(0.025, 0.975), shape1 = post_a, shape2 = post_b)
+    pr_gt_p <- 1 - pbeta(target_p, shape1 = post_a, shape2 = post_b)
+    posterior_bias <- post_mean - true_p   # NEW
+
+    # Save results
+    results$sim[s]            <- s
+    results$n[s]              <- n_final
+    results$x[s]              <- x_final
+    results$decision[s]       <- decision
+    results$post_mean[s]      <- post_mean
+    results$post_lcl[s]       <- post_ci[1]
+    results$post_ucl[s]       <- post_ci[2]
+    results$pr_gt_p[s]        <- pr_gt_p
+    results$posterior_bias[s] <- posterior_bias
+  }
+
+  # Summaries across simulations
+  decision_table <- table(results$decision)
+  ess <- mean(results$n)
+  mean_post_mean <- mean(results$post_mean)
+  mean_posterior_bias <- mean(results$posterior_bias)  # NEW (same as mean_post_mean - true_p)
+
+  summary <- list(
+    settings = list(
+      true_p = true_p,
+      target_p = target_p,
+      maxN = maxN,
+      start_monitor = start_monitor,
+      monitor_every = monitor_every,
+      prior_a = prior_a,
+      prior_b = prior_b,
+      futility_threshold = futility_threshold,
+      efficacy_threshold = efficacy_threshold,
+      nsim = nsim
+    ),
+    decisions = decision_table,
+    expected_sample_size = ess,
+    mean_post_mean = mean_post_mean,
+    mean_posterior_bias = mean_posterior_bias
+  )
+
+  if (return_both == "data") {
+    return(results)
+  } else if (return_both == "summary") {
+    return(list(results = results, summary = summary))
+  }
+}
+
+
+```
+
+# Running simulation
+
+The target and true probability is 0.1 and I want to do 10,000 simulations.Max sample size is 200.
+
+```{r}
+
+trialsim1<-simulate_trial(true_p = 0.1,target_p=.1,nsim=10000)
+
+#count decisions 
+results<-trialsim1|>
+  dplyr::count(decision)|>
+  dplyr::mutate(proportion=round(n/sum(n),3))
+results|>
+  gt()
+
+#For the ones that go to max sample, did we reach the goal? 
+goalmax<-trialsim1|>
+  filter(decision=="Max Sample")|>
+  dplyr::mutate(goal=if_else(pr_gt_p>=.5,1,0))
+mean(goalmax$goal)
+#none of the max sample sizes reached their goal 
+
+```
+
+For this simulation, it looks like futility is too stringent. Let's try reducing futility threshold and increasing sample size
+
+-   Max sample size = 500
+-   Threshold for futility = 0.025
+
+```{r}
+trialsim2<-simulate_trial(true_p = 0.1,target_p=.1,nsim=10000,maxN = 500,futility_threshold = 0.025)
+
+trialsim2|>
+  dplyr::count(decision)|>
+  dplyr::mutate(percent=n/sum(n))
+
+#these look like better operating characteristics 
+#For the ones that go to max sample, did we reach the goal? 
+goalmax2<-trialsim2|>
+  filter(decision=="Max Sample")|>
+  dplyr::mutate(goal=if_else(pr_gt_p>=.5,1,0))
+mean(goalmax2$goal)
+#no 
+
+#Let's calculate the average sample size for early efficacy 
+trialsim2|>
+  filter(decision=="Early Efficacy")|>
+  summarize(meann=mean(n))
+#~71 patients
+
+#Let's see how biased we are for early stopping 
+trialsim2|>
+  filter(decision=="Early Efficacy")|>
+  ggplot(aes(x=post_mean))+geom_histogram()+scale_x_continuous(limits=c(0,.4),breaks=seq(0,.4,.025),labels=seq(0,.4,.025))
+
+#Let's see how many are within acceptable level of bias , say 0.8-.15? 
+trialsim2|>
+  filter(decision=="Early Efficacy")|>
+  dplyr::mutate(accept=if_else(post_mean>=0.8 | post_mean<=0.15,1,0))|>
+  summarize(`Acceptable bias`=mean(accept),`Not acceptable bias`=1-`Acceptable bias`)|>
+  round(2)
+```
+
+# Ways to limit early futility
+
+Lower futility threshold
+
+```{r}
+trialsim3<-simulate_trial(true_p = 0.1,target_p=.1,nsim=10000,maxN = 1000,futility_threshold = 0.01,start_monitor = 100)
+
+#trial results
+trialsim3|>
+  dplyr::count(decision)|>
+  dplyr::mutate(percent=n/sum(n))
+
+```
+
+# Concluding remarks
+
+This simulation code lets you simulate different scenarios for one-arm studies. You can change the true probability, target probability, number of simulations, sample sizes, thresholding, and when you want to start monitoring. 
+
+# Session info
+
+```{r sessioninfo}
+sessionInfo()
+```

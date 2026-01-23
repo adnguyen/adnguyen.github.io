@@ -1,0 +1,151 @@
+---
+title: "Demo on non-collapsibility"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Load Libraries
+
+```{r}
+library(tidyverse)
+library(marginaleffects)
+library(gtsummary)
+```
+
+# Demonstrating non-collapsibility of odds ratios
+
+Non-collapsibility refers to the fact that the conditional and marginal OR do not match. The conditional and marginal OR estimate agree in identity link regression model, so it is collapsible.
+
+Simulate data first: outcome, treatment, and one continuous covariate
+
+```{r}
+########----##
+n <- 5000
+# 1) Simulate covariates (examples)
+x1 <- rnorm(n, mean = 0, sd = 1)       # continuous
+treatment <- rbinom(n, size = 1, prob = 0.5)  # binary indicator, 
+# 2) Specify true effects (log-odds scale). Include factor via contrasts.
+#    For factors, use model.matrix or include as factor in a data.frame and formula.
+dat <- data.frame(x1, treatment)
+
+# Build design matrix with contrasts automatically
+X <- model.matrix(~ x1+treatment, data = dat)  # includes intercept and two dummies for x4
+
+# Coefficients (choose your truth)
+beta <- c(
+  "(Intercept)" = -2.0,   # baseline log-odds
+  "x1"          = 0.8,
+  "treatment"          = -0.7
+)
+
+# 3) Linear predictor and probabilities
+linpred <- as.numeric(X %*% beta)
+p <- 1 / (1 + exp(-linpred))  # inverse-logit
+
+# 4) Simulate binary outcome
+y <- rbinom(n, size = 1, prob = p)
+
+dat|>
+  cbind(y)|>
+  count(treatment,y)
+
+#(213/2317)-(380/2090)
+
+# Inspect prevalence and fit back a model to check recovery
+#mean(y)
+mod1<-glm(y ~ x1 + treatment, data = dat, family = binomial())
+mod1|>
+  tbl_regression(exponentiate = TRUE)
+
+mod2<-glm(y ~ treatment, data = dat, family = binomial())
+mod2|>
+  tbl_regression(exponentiate = TRUE)
+```
+
+The regression coefficients for x3 (binary treatment effect) differ. (The true OR is 0.5)
+
+# Now let's use g-computation
+
+```{r}
+# multiple variable logistic regression
+avg_comparisons(mod1,newdata=dat,variables="treatment")
+
+# marginal logistic regression 
+avg_comparisons(mod2,newdata=dat,variables="treatment")
+```
+
+# Let's simulate more datasets and measure the OR and probability difference (ATE)
+
+```{r}
+
+n <- 5000
+
+simdatORG<-function(n){
+# 1) Simulate covariates (examples)
+x1 <- rnorm(n, mean = 0, sd = 1)       # continuous
+treatment <- rbinom(n, size = 1, prob = 0.5)  # binary indicator, 
+# 2) Specify true effects (log-odds scale). Include factor via contrasts.
+#    For factors, use model.matrix or include as factor in a data.frame and formula.
+dat <- data.frame(x1, treatment)
+
+# Build design matrix with contrasts automatically
+X <- model.matrix(~ x1+treatment, data = dat)  # includes intercept and two dummies for x4
+
+# Coefficients (choose your truth)
+beta <- c(
+  "(Intercept)" = -2.0,   # baseline log-odds
+  "x1"          = 0.8,
+  "treatment"          = -0.7
+)
+
+# 3) Linear predictor and probabilities
+linpred <- as.numeric(X %*% beta)
+p <- 1 / (1 + exp(-linpred))  # inverse-logit
+
+# 4) Simulate binary outcome
+y <- rbinom(n, size = 1, prob = p)
+
+# Inspect prevalence and fit back a model to check recovery
+#mean(y)
+mod1<-glm(y ~ x1 + treatment, data = dat, family = binomial())
+#mod1$coefficients[3]
+mod2<-glm(y ~ treatment, data = dat, family = binomial())
+#mod2$coefficients[2]#
+#g-comput
+g1<-avg_comparisons(mod1,newdata=dat,variables="treatment")
+#g1$estimate
+g2<-avg_comparisons(mod2,newdata=dat,variables="treatment")
+#g2$estimate
+
+
+outtbl<-tibble(condbiasOR=exp(mod1$coefficients[3]),margbiasOR=exp(mod2$coefficients[2]),cmm=condbiasOR-margbiasOR,condbiasg=g1$estimate,margbiasg=g2$estimate,atecmm=condbiasg-margbiasg)
+return(outtbl)
+}
+
+#simulation
+sim0.1<-tibble(n=1:1000)|>
+  group_by(n)|>
+  do(out=simdatORG(n=1000))|>
+  unnest(out)
+#sim0.1
+
+comptbl<-sim0.1|>
+  select(-n)|>
+  tbl_summary(label = list(condbiasOR~"Conditional OR",margbiasOR~"Marginal OR",condbiasg~"Conditional ATE",margbiasg~"Marginal ATE",cmm~"Condition-Marginal OR",atecmm~"Condition-Marginal ATE"))|>
+  as_gt()
+comptbl
+
+#saving figures
+#gtsave(comptbl,filename="noncollapsibility_of_OR_treatment_covariate_model_vs_marginal_model.png")
+#gtsave(comptbl,filename="noncollapsibility_of_OR_treatment_covariate_model_vs_marginal_model.docx")
+```
+
+Across 1,000 simulations, the OR differ between a conditional OR vs marginal OR, but ATE remains the same between models (multivariable vs marginal model).
+
+# Sessioninfo
+
+```{r}
+sessionInfo()
+```

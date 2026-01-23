@@ -1,0 +1,158 @@
+---
+title: "Regression continuity designs"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Load libraries
+
+```{r ,warning=FALSE,message=FALSE}
+library(tidyverse)
+library(brms)
+library(marginaleffects)
+```
+
+# Introduction: Regression discontinuity
+
+Reviewing regression discontinuity from sources:
+
+-   https://www.bayes-pharma.org/wp-content/uploads/2019/06/Session-5.4-Sara-Geneletti.pdf
+
+The key to RD is the threshold acts like a randomizing device or an instrumental variable. Units close to the threshold are assumed to satisfy conditional exchangeability.
+
+Assumptions:
+
+1.  Unconfoundedness
+2.  indpendence of guidelines
+3.  monotonicity
+4.  Continuity
+
+1-3 are instrumental variable assumptions
+
+Sharp RD estimator:
+
+$$ATE = E(Y|Z=1) - E(Y|Z=0) - E(T|Z)=0 = \Delta_\beta = \beta_{0a}-\beta_{0b}$$ Estimand = sharp jump in regression function at the cutoff.
+
+$$Y_i = \alpha + \tau D_i + \beta_1 (X_i - c) + \beta_2 D_i (X_i - c) + \epsilon_i$$
+
+-   $\tau$ is the estimator - treatment effect of discontinuity
+-   $D_i = 1(X_i \geq  c)$\
+-   
+
+# Single group regression discontinuity
+
+Simulate data under 2 scenarios and then fit bayesian regression models:
+
+-   No treatment effect
+-   Treatment effect
+
+## No treatment effect
+
+```{r singless}
+#simulate data 
+n<-5000
+x<-runif(n,-10,10)
+treatment<-if_else(x<0,0,1)
+treatment_fac<-if_else(x<0,"before","after")
+cutoff<-0
+
+
+beta0<-50 # intercept
+beta1<-1.25 #slope at cutoff
+tau<-0 #jump at cutoff
+beta2<- 0  #slope change above cutoff
+
+y<-beta0+beta1*(x-cutoff)+tau*treatment+beta2*treatment*(x-cutoff)+rnorm(n=n,mean=0,sd=2)
+
+dat<-tibble(x=x,y=y,treatment=treatment_fac)|>
+  mutate(x_c=x-cutoff,D=if_else(x>=cutoff,1,0))
+
+ggplot(dat,aes(x=x,y=y,colour=factor(treatment)))+geom_point(alpha=.2)+stat_smooth(method="lm")
+
+#let's fit a model now to see if we recover the estimate 
+
+#set up prior = N(0,5) for fixed effects
+# set up intercept prior as N(0,30)
+priorset<-c(prior(normal(0,30),class="Intercept"),
+            prior(normal(0,10),class=b))
+
+#fit model 
+#mod1<-brm(y~D + x_c + D:x_c,prior = priorset,data=dat,family = gaussian())
+#saveRDS(mod1,"24_regression_discont_brms_model_withNOtreatmenteffect.rds")
+mod1<-readRDS("24_regression_discont_brms_model_withNOtreatmenteffect.rds")
+prior_summary(mod1) # checking priors in the model 
+summary(mod1) # getting results or model output, examine effective sample size and rhat
+#check chains 
+plot(mod1) # chains well mixed
+
+pp_check(mod1, type = "dens_overlay",ndraws=50)
+#pp_check(mod1, type = "scatter",ndraws=50)# good for RD 
+#pp_check(mod1, type = "intervals",ndraws=50)   # expected y vs observed y
+pp_check(mod1, type = "ecdf_overlay",ndraws=50)
+pp_check(mod1, type = "stat_2d",ndraws=50)     # good for RD with x vs y
+
+```
+
+## With a treatment effect
+
+```{r with treatment effect}
+tau2<-2.5 #jump at cutoff
+
+y2<-beta0+beta1*(x-cutoff)+tau2*treatment+beta2*treatment*(x-cutoff)+rnorm(n=n,mean=0,sd=2)
+dat2<-tibble(x=x,y=y2,treatment=treatment_fac)|>
+  mutate(x_c=x-cutoff,D=if_else(x>=cutoff,1,0))
+
+ggplot(dat2,aes(x=x,y=y,colour=factor(treatment)))+geom_point(alpha=.2)+stat_smooth(method="lm")
+
+# fit model ; use same priors
+#mod2<-brm(y~D + x_c + D:x_c,prior = priorset,data=dat2,family = gaussian())
+#write_rds(mod2,file="24_regression_discont_brms_model_withtreatmenteffect.rds")
+mod2<-readRDS("24_regression_discont_brms_model_withtreatmenteffect.rds")
+#prior_summary(mod2) # checking priors in the model 
+summary(mod2) # getting results or model output, examine effective sample size and rhat
+#the D parameter matches what we set above, 2.5
+
+
+#plot with conditional effects
+#plot(conditional_effects(mod2,"x_c",conditions=list(D=c(0,1))))
+#not really what i want
+```
+
+### Different way to plot
+
+```{r different way to plot}
+#make new dataset
+
+newdat <- expand.grid(
+  x_c = seq(min(dat$x_c), max(dat$x_c), length.out = 200),
+  D = c(0, 1)
+)
+#get estimates
+newdat$y_hat <- fitted(mod2, newdata = newdat)[, "Estimate"]
+
+
+ggplot() +
+  geom_point(data = dat2, aes(x = x_c, y = y, color = factor(D)), alpha = 0.4) +
+  geom_line(data = newdat, aes(x = x_c, y = y_hat, color = factor(D)), size = 1.2) +
+  scale_color_manual(values = c("blue", "red"), name = "D") +
+  theme_minimal() +
+  labs(x = "x (centered)", y = "y", title = "brms RD model fit")
+
+
+```
+
+# Multiple group regression discontinuity
+
+work in progress
+
+```{r}
+
+```
+
+# Session info
+
+```{r sessioninfo}
+sessionInfo()
+```
