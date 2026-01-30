@@ -1,0 +1,394 @@
+---
+title: "Ordinal regression modeling"
+format: 
+  html:
+      toc: true
+      toc-depth: 3
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Load libraries
+
+```{r loading libraries, message=FALSE,warning=FALSE}
+library(tidyverse) #data parsing and visualization 
+library(gtsummary) #this lets you create nice tables
+library(gt) # create nice tables
+library(brms) # bayesian modeling
+#library(REDCapDM) # interacting with redcap API
+library(splines)
+library(marginaleffects)
+#library(survival)
+library(ggbeeswarm)
+library(patchwork)
+library(tidybayes)
+
+
+brms_summary <- function(x) {
+  posterior::summarise_draws(x, "mean", "sd",  ~quantile(.x, probs = c(.025,0.975)))
+}
+```
+
+# Introduction
+
+In this script, I'm going to simulate different ordinal outcomes to explore how the ordinal regression modelling works. Some ideas to explore-
+
+-   Simply analyzing a continuous outcome as ordinal - Frank Harrell says there is a lot of power by doing this.\
+-   5 ordinal scale - 1-4 is qol and 5 is death
+    -   Get outcomes in terms of probability 1, \<2, \<4, 5
+-   Simulate proportional odds and non-proportional odds: evaluate models
+-   Explore longitudinal aspect
+
+## Notes on ordinal regression models
+
+Taking notes from ordinal regression in brms [github](https://github.com/kalealex/ordinal-regression-demo).
+
+Ordinal data are categories that show grades of an outcome. Ordinal regression models (cumulative models) assumes that the ordinal variable comes from a categorization of a latent (not observed) continuous $\hat{Y}$ variable.
+
+Example of ordinal data:
+
+```{r ordinal dataset}
+knitr::kable(tibble(groups=c("fundamentalist","moderate","liberal"),`1`=c(40,25,23),`2`=c(54,41,31),`3`=c(119,135,113),`4`=c(55,71,122)))
+```
+
+Assuming 4 categories:
+
+There are $K$ thresholds $\tau_k$ which partition $\hat{Y}$ into K+1 observable, ordered categories of $Y$. With 4 categories assumed, there are K+1=4 response categories, and K=3 thresholds.
+
+Assuming $\hat{Y}$ follows a normal distribution with a cumulative distribution function $F$ (CDF), then the probability of $Y$ being equal to category $k$ is:
+
+$$Pr(Y=k)= F(\tau_k)-F(\tau_{k-1})$$ The CDF of a threshold is subtracted from the CDF of the next lower level threshold to obtain the probability of Y being in a certain category.
+
+Example: $\phi$ is a normal CDF
+
+$$Pr(Y=2)=\phi(\tau_2) - \phi(\tau_1) = \phi(1)-\phi(-1)= 0.84 -0.16 = 0.68$$
+
+We need to incorporate and describe a regression model. So, the linear regression for $\hat{Y}$ with predictors is $\eta=b_1x_1+b_2x_2+..,$, so that $\hat{Y}= \eta + \epsilon$, where $\epsilon$ is the error term in the regression. Then, $\hat{Y$ can be split into these two parts. Note that there is no intercept in the predictor term because the thresholds $\tau_k$ replace the model's intercept as both are not identified at the same time. Thus, the probabilities of $Y$ being equal to category $k$ given the linear predictor $\eta$ is:
+
+$$Pr(Y=k|\eta)= F(\tau_k-\eta) - F(\tau_{k-1}-\eta)$$
+
+Thus..
+
+$$\hat{Y} = \eta + \epsilon = b_1 x_1 + b_2 x_2 + \epsilon$$ Assuming the latent variable $\hat{Y}$ is normally distributed, then the probabilities for each response cateogry $k$ can be computed as:
+
+$$Pr(Y=k) = \phi(\tau_k-(b_1x_1 + b_2x_2))-\phi(\tau_{k-1}-(b_1x_1 + b_2 x_2))$$
+
+There are also other models: sequential model (where movement across ordinal values depends on the last ordinal value), and the adjacent category model. Appendix A has more details.
+
+### Practical application notes
+
+-   We can specify a few different models, all of which can be compared with leave-one-out cross validation (LOO).
+    -   If comparing ACM, CM, and SM models, especially with category specific effects ($cs()$), then LOO should be also compared with model not specified with $cs()$.\
+-   brms can explore and account for unequal variances that can vary with predictors (but not cut off values).\
+-   brms can specify different levels of effects across different response categories. This is specified by $cs()$ function. Category specific estimates are not problematic for SM and ACM models, but there could be negative probabilities for cumulative models.
+-   Rhat and ESS are checked for chain convergence. Rhat should not be above 1.1 and ESS should be as high as possible. ESS \>1000 is a rule of thumb for stable estimates.
+
+# Let's first simulate a dataset for proportional ordinal regression
+
+```{r simulation proportional}
+#Let's set up probabilities, then add in some simulate outcomes based on those probabilities 
+ss<-1000 # sample size
+control.prob<-c(0.1,.2,.3,.25,.15)
+#sum(control.prob)# has to add up to 1
+OR<-.5 # odds ratio
+
+#creat cdf for treatment which is a function of control cdf that has an OR applied to it
+t.prob<-plogis(qlogis(cumsum(control.prob)[1:4]) - log(OR))
+#from cdf, back calculate to probabilities
+t.prob1<-tibble(prob=c(t.prob[1],diff(t.prob),1-t.prob[4]))
+
+#sample data ; control and treatment
+#control 
+control<-sample(size=ss,x=1:5,prob=control.prob,replace=TRUE)
+#treatment 
+trt<-sample(size=ss,x=1:5,prob=t.prob1$prob,replace=TRUE)
+
+#merge dataset 
+d<-tibble(y=c(control,trt),treat=c(rep("control",ss),rep("treated",ss)))
+head(d)
+#levels(factor(d$treat))
+#let's plot the data 
+
+d|>
+  count(treat,y)|>
+  mutate(prob=n/ss)|>
+  ggplot(aes(x=y,y=prob,colour=treat))+geom_point(size=4)+geom_line()+theme_bw()+theme(legend.position="top")
+```
+
+## Now let's fit a proportion ordinal regression model
+
+Let's use skeptical prior - normal(0,log(5)/1.96)
+
+```{r po ordinal regression model }
+# set Priors:
+priors <- c(
+  set_prior("student_t(3, 0, 5)", class = "Intercept"),  # cutpoints θ1..θ(K-1)
+  set_prior("normal(0, 0.8211418)",       class = "b")           # slopes on log-odds
+)
+
+#pomod1 <- brm(
+#  y ~ treat,                     # add predictors as needed
+#  data   = d,
+##  family = cumulative("logit"),     # proportional odds
+#  prior  = priors,
+#  chains = 4, iter = 4000, seed = 123
+#)
+#let's save the model so we don't have to rerun 
+#saveRDS(pomod1,file="31_proportional_ord_reg_model_Bayesian_prior0.2-5.0_COR_pomod1.rds")
+#read in the model 
+pomod1<-readRDS(file="31_proportional_ord_reg_model_Bayesian_prior0.2-5.0_COR_pomod1.rds")
+summary(pomod1) # get Rhat, ESS
+#plot(pomod1) # trace and densities
+pp_check(pomod1,type="bars",ndraws=100) # posterior predictive vs observed
+
+# get model summary - mean and 95% CrI
+brms_summary(pomod1)|>
+  filter(variable=="b_treattreated")|>
+  select(-variable)|>
+  exp()
+#very close to the real estimate, COR = 0.5!
+#if close to 1, can test hypotheses about being above or below 1 COR
+
+
+#chekc proportional odds 
+# approach - fit with a partial proportional odds model 
+# here, we suspect that the treatment effect differs by threshold 
+#then we use leave one out to determine which model is better 
+
+#pomod.partial <- brm(
+#  y ~ cs(treat),                     # add predictors as needed
+#  data   = d,
+#  family = cumulative("logit"),     # proportional odds
+#  prior  = priors,
+#  chains = 4, iter = 4000, seed = 123
+#)
+#save and read in pomod.partial
+#saveRDS(pomod.partial,file="31_partial_proportional_ord_reg_model_Bayesian_prior0.2-5.0_COR_pomod.partial.rds")
+pomod.partial<-readRDS(file="31_partial_proportional_ord_reg_model_Bayesian_prior0.2-5.0_COR_pomod.partial.rds")
+
+summary(pomod.partial)
+#leave one out analysis 
+#it is the out-of-sample predictive accuracy 
+#It asks, which model is better at predicting unseen data?
+
+##output
+#elpd_loo → Expected log predictive density
+#     * higher means better predictive perofrmance , the difference between models matter 
+#se_elpd_loo → Standard error of elpd
+#looic → LOO information criterion (−2 * elpd_loo)
+#p_loo → Effective number of parameters
+#pareto_k → Diagnostics
+
+
+#loopo<-loo_compare(loo(pomod1),loo(pomod.partial))
+#saveRDS(loopo,file="31_LOO_CMmodels_proportional_2models.rds")
+loopo<-readRDS(file="31_LOO_CMmodels_proportional_2models.rds")
+knitr::kable(loopo)
+```
+
+pomod1 predicts new data better than pomod.partial (higher ELPD is better; the top row is set to 0 by definition and is the best).
+
+The difference in ELPD is 2.5 with SE = 1.0. A common rule-of-thumb:
+
+if \|elpd_diff\| \> 2 × se_diff, there is strong evidence the top model predicts better.
+
+Here, 2.5/1.0=2.52.5 / 1.0 = 2.52.5/1.0=2.5 ⇒ strong evidence in favor of pomod1.
+
+## Extract predicted probabilities for each category
+
+### Not very tidy way of extraction
+
+```{r non tidy way of data parsing,eval=FALSE}
+# predict cateogry probabilities
+p_cat <- posterior_epred(pomod1, newdata = tibble(treat=c("control","treated")))  # draws x rows x K
+# Posterior means per arm and category:
+apply(p_cat, c(2,3), mean)          # rows: newdat rows, cols: categories
+# 95% CrI:
+apply(p_cat, c(2,3), quantile, c(.025,.975))
+#not very tidy...
+```
+
+### Using marginaleffects to extract
+
+This is much cleaner
+
+```{r using marginaleffects }
+#set up new data
+newd<-tibble(treat=c("control","treated"))
+#get marginal probabilities by treatment 
+avg_pr<-avg_predictions(pomod1,variables="treat",type="response",newdata=newd)
+head(avg_pr)
+#let's plot 
+
+fig1<-ggplot(avg_pr,aes(y=estimate,x=group,colour=treat,group=treat,fill=treat))+geom_line()+geom_point(size=3)+geom_ribbon(aes(ymin = conf.low,ymax=conf.high),alpha=.1,colour=NA)+theme_bw()+xlab("ordinal scale")+ylab("Probability")+theme(legend.position = "top")
+#looks like the original dataset, which is good 
+
+#lets get average differences 
+avg_diff<-avg_comparisons(pomod1,variables="treat")
+head(avg_diff)
+fig2<-avg_diff|>
+  data.frame()|>
+  select(-c(term,contrast))|>
+  ggplot(aes(x=group,y=estimate,group=1))+geom_ribbon(aes(ymin = conf.low,ymax=conf.high),alpha=.1,colour=NA)+geom_point()+geom_line()+theme_bw()+geom_hline(yintercept = 0,lty="dotdash")+xlab("ordinal scale")+ylab("ATE (Treatment-Control)")
+
+(fig1|fig2)+plot_annotation(tag_levels = "A")
+
+```
+
+# Partial proportional ordinal regression model- simulate data first
+
+Let's say the control mostly die (category 5) compared to treated. So I'll set the control and treatment to have their own probabilities
+
+```{r simulation partial }
+#Let's set up probabilities, then add in some simulate outcomes based on those probabilities 
+ss<-1000 # sample size
+control.prob<-c(0.1,.2,.3,.25,.15)
+#sum(control.prob)# has to add up to 1
+treat.prob<-c(0.025,.025,.025,.025,.9)
+#sample data ; control and treatment
+#control 
+control<-sample(size=ss,x=1:5,prob=control.prob,replace=TRUE)
+#treatment 
+trt<-sample(size=ss,x=1:5,prob=treat.prob,replace=TRUE)
+
+#merge dataset 
+d2<-tibble(y=c(control,trt),treat=c(rep("control",ss),rep("treated",ss)))
+head(d2)
+#levels(factor(d$treat))
+#let's plot the data 
+
+d2|>
+  count(treat,y)|>
+  mutate(prob=n/ss)|>
+  ggplot(aes(x=y,y=prob,colour=treat))+geom_point(size=4)+geom_line()+theme_bw()+theme(legend.position="top")
+```
+
+## Fit a partial proportional ordinal regression model
+
+```{r fit partial model}
+# set Priors:
+priors2 <- c(
+  set_prior("student_t(3, 0, 5)", class = "Intercept"),  # cutpoints θ1..θ(K-1)
+  set_prior("normal(0, 0.8211418)",       class = "b")           # slopes on log-odds
+)
+
+######part.mod1 fit 
+#part.mod1 <- brm(
+#  y ~ cs(treat),                
+#  data   = d2,
+#  family = cumulative("logit"),     
+#  prior  = priors2,
+#  chains = 4, iter = 4000, seed = 123
+#)
+#saveRDS(part.mod1,file="31_part.mod1_bayesian_partialpomod_case_specificfit.rds")
+part.mod1<-readRDS(file="31_part.mod1_bayesian_partialpomod_case_specificfit.rds")
+summary(part.mod1)
+
+pp_check(part.mod1,type="bars",ndraws=100) # posterior predictive vs observed
+
+# get model summary - mean and 95% CrI
+brms_summary(part.mod1)|>
+  filter(grepl(variable,pattern="bcs_")==TRUE)|>
+  mutate(mean=exp(mean),`2.5%`=exp(`2.5%`),`97.5%`=exp(`97.5%`))|>
+  select(-sd)
+
+conditional_effects(part.mod1,categorical=TRUE)
+
+########ACM ordinal regression fit #####################
+
+#the tutorial for ordinal regression in brms recommends different specification: 
+
+#case specific effects
+#part.mod2 <- brm(
+#  y ~ cs(treat),                
+#  data   = d2,
+#  family = acat("probit"),     
+#  prior  = priors2,
+#  chains = 4, iter = 4000, seed = 123
+#)
+#saveRDS(part.mod2,file="31_part.mod2_bayesian_ACMmod_probit_specificfit.rds")
+part.mod2<-readRDS("31_part.mod2_bayesian_ACMmod_probit_specificfit.rds")
+summary(part.mod2)
+conditional_effects(part.mod2,categorical=TRUE)
+
+#proportional effects 
+#part.mod3 <- brm(
+#  y ~ treat,                
+#  data   = d2,
+#  family = acat("probit"),     
+#  prior  = priors2,
+#  chains = 4, iter = 4000, seed = 123
+#)
+#saveRDS(part.mod3,file="31_part.mod3_bayesian_ACMmod_probit_NO_specificfit.rds")
+part.mod3<-readRDS("31_part.mod3_bayesian_ACMmod_probit_NO_specificfit.rds")
+summary(part.mod3)
+conditional_effects(part.mod3,categorical=TRUE)
+#######
+
+###now comparing with proportional ordinal regression model 
+#Leave one out cross validation 
+#In the context of model selection, a LOO difference greater than twice its corresponding
+#standard error can be interpreted as suggesting that the model with a lower LOO value fits
+#the data substantially better, at least when the number of observations is large enough
+#loopartial<-loo_compare(loo(part.mod1),loo(part.mod2),loo(part.mod3))
+#saveRDS(loopartial,file="31_LOO_partial_proportional_3models.rds")
+loopartial<-readRDS(file="31_LOO_partial_proportional_3models.rds")
+knitr::kable(loopartial)
+```
+
+The case specific effects models are more favorable models. Out of the case specific effects models, specifying with the model is ACM (acat) or CM yield similar models.
+
+# Now, analyzing a continuous variable with ordinal regression
+
+```{r simulate continuous data and convert to ordinal scale}
+
+co<-rnorm(n=ss,50,5)
+t<-co+rnorm(n=ss,5,1)
+cond<-tibble(y=c(co,t),treat=c(rep("control",ss),rep("treated",ss)))
+ggplot(cond,aes(y=treat,x=y,fill=treat))+stat_halfeye() 
+#let's convert to ordinal scale 
+cond$yord<-factor(round(cond$y,0),ordered=TRUE)
+
+##set up prior 
+priors3 <- c(
+  set_prior("student_t(3, 0, 5)", class = "Intercept"),  # cutpoints θ1..θ(K-1)
+  set_prior("normal(0, 2.349577)",       class = "b")           # slopes on log-odds
+)
+# I don't know what is plausible for cumulative odds ratio -> so I'll use a diffuse prior log(100)/1.96
+
+#let's fit proportional CM model 
+#comod1 <- brm(
+#  yord ~ treat,                    
+#  data   = cond,
+#  family = cumulative("logit"),     # proportional odds
+# prior  = priors3,
+#  chains = 4, iter = 4000, seed = 123,control = list(adapt_delta = 0.98)
+#)
+#saveRDS(comod1,file="31_comod1_ord_reg_CMmod_continuous_outcome_converted_to_ordinal.rds")
+comod1<-readRDS(file="31_comod1_ord_reg_CMmod_continuous_outcome_converted_to_ordinal.rds")
+summary(comod1) # get Rhat, ESS
+#plot(comod1)
+pp_check(comod1,type="bars",ndraws=100) # posterior predictive vs observed
+
+# get model summary - mean and 95% CrI
+brms_summary(comod1)|>
+  filter(variable=="b_treattreated")|>
+  select(-variable)|>
+  exp()
+# The cumulative odds is 5.58 and this means that the treated increases the odds by 5.58 to being in a higher ranked category. 
+conditional_effects(comod1,categorical=TRUE)
+#how many levels do i ahve? 
+length(levels(comod1$data$yord))
+
+```
+
+Notes- ordinal regression can work on continuous data, which means that you can break a continuous scale into ordinal values. This may be important for cases where you want to merge a continuous outcome with a terminal, absorbing state (death). In our case, 71 was highest continuous scale, and if we wanted to include death, then 72 could be representing death.
+
+To better obtain convergence of chains, the adapt_delta was set to 0.98. At adapt_delta set to 0.95, there were divergent chains.
+
+# Session info
+
+```{r session information}
+sessionInfo()
+```

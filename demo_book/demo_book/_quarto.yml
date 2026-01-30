@@ -29,7 +29,7 @@ book:
     - part: "Notes on statistical models"
       chapters: 
         - 04.1_AFT_math_curves_params.qmd
-        - 03_longitudinal_ordinal_modelling.qmd 
+        - 31_ordinal_regression_modeling.qmd 
         - 18_non-collapsibility_demo-odds_ratio.qmd
     - part: "Misc Frequentist statistics"
       chapters:
