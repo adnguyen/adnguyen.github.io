@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Demo on non-collapsibility – My demo notebook</title>
+<title>13&nbsp; Demo on non-collapsibility – My demo notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./Randomization_and_Power_analysis.html" rel="next">
-<link href="./03_longitudinal_ordinal_modelling.html" rel="prev">
+<link href="./31_ordinal_regression_modeling.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./18_non-collapsibility_demo-odds_ratio.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20170601_ANOVA_vignette.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./18_non-collapsibility_demo-odds_ratio.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Causal inference section</span></a>
+ <span class="menu-text">Causal Inference</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Misc Bayesian statistics</span></a>
+ <span class="menu-text">Bayesian statistics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -235,20 +235,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04.1_AFT_math_curves_params.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></span></a>
+  <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03_longitudinal_ordinal_modelling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Longitudinal ordinal regression model simulations</span></span></a>
+  <a href="./04.1_AFT_math_curves_params.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./31_ordinal_regression_modeling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18_non-collapsibility_demo-odds_ratio.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Misc Frequentist statistics</span></a>
+ <span class="menu-text">Frequentist statistics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -265,13 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Randomization_and_Power_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -300,8 +300,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Function-valued traits</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Misc</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Monty_hall_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Monty hall problem</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
@@ -330,20 +343,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">13</span> Load Libraries</a></li>
-  <li><a href="#demonstrating-non-collapsibility-of-odds-ratios" id="toc-demonstrating-non-collapsibility-of-odds-ratios" class="nav-link" data-scroll-target="#demonstrating-non-collapsibility-of-odds-ratios"><span class="header-section-number">14</span> Demonstrating non-collapsibility of odds ratios</a></li>
-  <li><a href="#now-lets-use-g-computation" id="toc-now-lets-use-g-computation" class="nav-link" data-scroll-target="#now-lets-use-g-computation"><span class="header-section-number">15</span> Now let’s use g-computation</a></li>
-  <li><a href="#lets-simulate-more-datasets-and-measure-the-or-and-probability-difference-ate" id="toc-lets-simulate-more-datasets-and-measure-the-or-and-probability-difference-ate" class="nav-link" data-scroll-target="#lets-simulate-more-datasets-and-measure-the-or-and-probability-difference-ate"><span class="header-section-number">16</span> Let’s simulate more datasets and measure the OR and probability difference (ATE)</a></li>
-  <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo"><span class="header-section-number">17</span> Sessioninfo</a></li>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">14</span> Load Libraries</a></li>
+  <li><a href="#demonstrating-non-collapsibility-of-odds-ratios" id="toc-demonstrating-non-collapsibility-of-odds-ratios" class="nav-link" data-scroll-target="#demonstrating-non-collapsibility-of-odds-ratios"><span class="header-section-number">15</span> Demonstrating non-collapsibility of odds ratios</a></li>
+  <li><a href="#now-lets-use-g-computation" id="toc-now-lets-use-g-computation" class="nav-link" data-scroll-target="#now-lets-use-g-computation"><span class="header-section-number">16</span> Now let’s use g-computation</a></li>
+  <li><a href="#lets-simulate-more-datasets-and-measure-the-or-and-probability-difference-ate" id="toc-lets-simulate-more-datasets-and-measure-the-or-and-probability-difference-ate" class="nav-link" data-scroll-target="#lets-simulate-more-datasets-and-measure-the-or-and-probability-difference-ate"><span class="header-section-number">17</span> Let’s simulate more datasets and measure the OR and probability difference (ATE)</a></li>
+  <li><a href="#sessioninfo" id="toc-sessioninfo" class="nav-link" data-scroll-target="#sessioninfo"><span class="header-section-number">18</span> Sessioninfo</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./18_non-collapsibility_demo-odds_ratio.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20170601_ANOVA_vignette.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./18_non-collapsibility_demo-odds_ratio.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></h1>
 </div>
 
 
@@ -360,8 +373,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="load-libraries" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Load Libraries</h1>
+<section id="load-libraries" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Load Libraries</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -380,8 +393,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="demonstrating-non-collapsibility-of-odds-ratios" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Demonstrating non-collapsibility of odds ratios</h1>
+<section id="demonstrating-non-collapsibility-of-odds-ratios" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Demonstrating non-collapsibility of odds ratios</h1>
 <p>Non-collapsibility refers to the fact that the conditional and marginal OR do not match. The conditional and marginal OR estimate agree in identity link regression model, so it is collapsible.</p>
 <p>Simulate data first: outcome, treatment, and one continuous covariate</p>
 <div class="cell">
@@ -416,10 +429,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(treatment,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  treatment y    n
-1         0 0 2146
-2         0 1  364
-3         1 0 2294
-4         1 1  196</code></pre>
+1         0 0 2137
+2         0 1  381
+3         1 0 2277
+4         1 1  205</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#(213/2317)-(380/2090)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -429,23 +442,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>mod1<span class="sc">|&gt;</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="rkcvukqfsy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rkcvukqfsy table {
+<div id="mavgyjjptp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mavgyjjptp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rkcvukqfsy thead, #rkcvukqfsy tbody, #rkcvukqfsy tfoot, #rkcvukqfsy tr, #rkcvukqfsy td, #rkcvukqfsy th {
+#mavgyjjptp thead, #mavgyjjptp tbody, #mavgyjjptp tfoot, #mavgyjjptp tr, #mavgyjjptp td, #mavgyjjptp th {
   border-style: none;
 }
 
-#rkcvukqfsy p {
+#mavgyjjptp p {
   margin: 0;
   padding: 0;
 }
 
-#rkcvukqfsy .gt_table {
+#mavgyjjptp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -471,12 +484,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_caption {
+#mavgyjjptp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rkcvukqfsy .gt_title {
+#mavgyjjptp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -488,7 +501,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#rkcvukqfsy .gt_subtitle {
+#mavgyjjptp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -500,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#rkcvukqfsy .gt_heading {
+#mavgyjjptp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -512,13 +525,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_bottom_border {
+#mavgyjjptp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_col_headings {
+#mavgyjjptp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -533,7 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_col_heading {
+#mavgyjjptp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -553,7 +566,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#rkcvukqfsy .gt_column_spanner_outer {
+#mavgyjjptp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -565,15 +578,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#rkcvukqfsy .gt_column_spanner_outer:first-child {
+#mavgyjjptp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rkcvukqfsy .gt_column_spanner_outer:last-child {
+#mavgyjjptp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rkcvukqfsy .gt_column_spanner {
+#mavgyjjptp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -585,11 +598,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#rkcvukqfsy .gt_spanner_row {
+#mavgyjjptp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rkcvukqfsy .gt_group_heading {
+#mavgyjjptp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -615,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#rkcvukqfsy .gt_empty_group_heading {
+#mavgyjjptp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -630,15 +643,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#rkcvukqfsy .gt_from_md > :first-child {
+#mavgyjjptp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rkcvukqfsy .gt_from_md > :last-child {
+#mavgyjjptp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rkcvukqfsy .gt_row {
+#mavgyjjptp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -657,7 +670,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#rkcvukqfsy .gt_stub {
+#mavgyjjptp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -670,7 +683,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rkcvukqfsy .gt_stub_row_group {
+#mavgyjjptp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -684,15 +697,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#rkcvukqfsy .gt_row_group_first td {
+#mavgyjjptp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rkcvukqfsy .gt_row_group_first th {
+#mavgyjjptp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rkcvukqfsy .gt_summary_row {
+#mavgyjjptp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -702,16 +715,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rkcvukqfsy .gt_first_summary_row {
+#mavgyjjptp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_first_summary_row.thick {
+#mavgyjjptp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rkcvukqfsy .gt_last_summary_row {
+#mavgyjjptp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -721,7 +734,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_grand_summary_row {
+#mavgyjjptp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -731,7 +744,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rkcvukqfsy .gt_first_grand_summary_row {
+#mavgyjjptp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -741,7 +754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_last_grand_summary_row_top {
+#mavgyjjptp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -751,11 +764,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_striped {
+#mavgyjjptp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rkcvukqfsy .gt_table_body {
+#mavgyjjptp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -764,7 +777,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_footnotes {
+#mavgyjjptp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -778,7 +791,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_footnote {
+#mavgyjjptp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -787,7 +800,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rkcvukqfsy .gt_sourcenotes {
+#mavgyjjptp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -801,7 +814,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#rkcvukqfsy .gt_sourcenote {
+#mavgyjjptp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -809,72 +822,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#rkcvukqfsy .gt_left {
+#mavgyjjptp .gt_left {
   text-align: left;
 }
 
-#rkcvukqfsy .gt_center {
+#mavgyjjptp .gt_center {
   text-align: center;
 }
 
-#rkcvukqfsy .gt_right {
+#mavgyjjptp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rkcvukqfsy .gt_font_normal {
+#mavgyjjptp .gt_font_normal {
   font-weight: normal;
 }
 
-#rkcvukqfsy .gt_font_bold {
+#mavgyjjptp .gt_font_bold {
   font-weight: bold;
 }
 
-#rkcvukqfsy .gt_font_italic {
+#mavgyjjptp .gt_font_italic {
   font-style: italic;
 }
 
-#rkcvukqfsy .gt_super {
+#mavgyjjptp .gt_super {
   font-size: 65%;
 }
 
-#rkcvukqfsy .gt_footnote_marks {
+#mavgyjjptp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rkcvukqfsy .gt_asterisk {
+#mavgyjjptp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rkcvukqfsy .gt_indent_1 {
+#mavgyjjptp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rkcvukqfsy .gt_indent_2 {
+#mavgyjjptp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rkcvukqfsy .gt_indent_3 {
+#mavgyjjptp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rkcvukqfsy .gt_indent_4 {
+#mavgyjjptp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rkcvukqfsy .gt_indent_5 {
+#mavgyjjptp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rkcvukqfsy .katex-display {
+#mavgyjjptp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rkcvukqfsy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mavgyjjptp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -891,14 +904,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">x1</td>
-<td class="gt_row gt_center" headers="estimate">2.05</td>
-<td class="gt_row gt_center" headers="conf.low">1.86, 2.27</td>
+<td class="gt_row gt_center" headers="estimate">2.34</td>
+<td class="gt_row gt_center" headers="conf.low">2.12, 2.59</td>
 <td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">treatment</td>
-<td class="gt_row gt_center" headers="estimate">0.48</td>
-<td class="gt_row gt_center" headers="conf.low">0.40, 0.58</td>
+<td class="gt_row gt_center" headers="estimate">0.47</td>
+<td class="gt_row gt_center" headers="conf.low">0.39, 0.56</td>
 <td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
 </tr>
 </tbody><tfoot class="gt_sourcenotes">
@@ -915,23 +928,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mod2<span class="sc">|&gt;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_regression</span>(<span class="at">exponentiate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="gtdsqsfvtx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gtdsqsfvtx table {
+<div id="nedpxnemnt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nedpxnemnt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gtdsqsfvtx thead, #gtdsqsfvtx tbody, #gtdsqsfvtx tfoot, #gtdsqsfvtx tr, #gtdsqsfvtx td, #gtdsqsfvtx th {
+#nedpxnemnt thead, #nedpxnemnt tbody, #nedpxnemnt tfoot, #nedpxnemnt tr, #nedpxnemnt td, #nedpxnemnt th {
   border-style: none;
 }
 
-#gtdsqsfvtx p {
+#nedpxnemnt p {
   margin: 0;
   padding: 0;
 }
 
-#gtdsqsfvtx .gt_table {
+#nedpxnemnt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -957,12 +970,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_caption {
+#nedpxnemnt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gtdsqsfvtx .gt_title {
+#nedpxnemnt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -974,7 +987,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#gtdsqsfvtx .gt_subtitle {
+#nedpxnemnt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -986,7 +999,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#gtdsqsfvtx .gt_heading {
+#nedpxnemnt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -998,13 +1011,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_bottom_border {
+#nedpxnemnt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_col_headings {
+#nedpxnemnt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1019,7 +1032,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_col_heading {
+#nedpxnemnt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1039,7 +1052,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#gtdsqsfvtx .gt_column_spanner_outer {
+#nedpxnemnt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1051,15 +1064,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#gtdsqsfvtx .gt_column_spanner_outer:first-child {
+#nedpxnemnt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gtdsqsfvtx .gt_column_spanner_outer:last-child {
+#nedpxnemnt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gtdsqsfvtx .gt_column_spanner {
+#nedpxnemnt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1071,11 +1084,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#gtdsqsfvtx .gt_spanner_row {
+#nedpxnemnt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gtdsqsfvtx .gt_group_heading {
+#nedpxnemnt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1101,7 +1114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#gtdsqsfvtx .gt_empty_group_heading {
+#nedpxnemnt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1116,15 +1129,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#gtdsqsfvtx .gt_from_md > :first-child {
+#nedpxnemnt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gtdsqsfvtx .gt_from_md > :last-child {
+#nedpxnemnt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gtdsqsfvtx .gt_row {
+#nedpxnemnt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1143,7 +1156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#gtdsqsfvtx .gt_stub {
+#nedpxnemnt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1156,7 +1169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gtdsqsfvtx .gt_stub_row_group {
+#nedpxnemnt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1170,15 +1183,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#gtdsqsfvtx .gt_row_group_first td {
+#nedpxnemnt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gtdsqsfvtx .gt_row_group_first th {
+#nedpxnemnt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gtdsqsfvtx .gt_summary_row {
+#nedpxnemnt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1188,16 +1201,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gtdsqsfvtx .gt_first_summary_row {
+#nedpxnemnt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_first_summary_row.thick {
+#nedpxnemnt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gtdsqsfvtx .gt_last_summary_row {
+#nedpxnemnt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1207,7 +1220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_grand_summary_row {
+#nedpxnemnt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1217,7 +1230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gtdsqsfvtx .gt_first_grand_summary_row {
+#nedpxnemnt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1227,7 +1240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_last_grand_summary_row_top {
+#nedpxnemnt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1237,11 +1250,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_striped {
+#nedpxnemnt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gtdsqsfvtx .gt_table_body {
+#nedpxnemnt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1250,7 +1263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_footnotes {
+#nedpxnemnt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1264,7 +1277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_footnote {
+#nedpxnemnt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1273,7 +1286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gtdsqsfvtx .gt_sourcenotes {
+#nedpxnemnt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1287,7 +1300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#gtdsqsfvtx .gt_sourcenote {
+#nedpxnemnt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1295,72 +1308,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#gtdsqsfvtx .gt_left {
+#nedpxnemnt .gt_left {
   text-align: left;
 }
 
-#gtdsqsfvtx .gt_center {
+#nedpxnemnt .gt_center {
   text-align: center;
 }
 
-#gtdsqsfvtx .gt_right {
+#nedpxnemnt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gtdsqsfvtx .gt_font_normal {
+#nedpxnemnt .gt_font_normal {
   font-weight: normal;
 }
 
-#gtdsqsfvtx .gt_font_bold {
+#nedpxnemnt .gt_font_bold {
   font-weight: bold;
 }
 
-#gtdsqsfvtx .gt_font_italic {
+#nedpxnemnt .gt_font_italic {
   font-style: italic;
 }
 
-#gtdsqsfvtx .gt_super {
+#nedpxnemnt .gt_super {
   font-size: 65%;
 }
 
-#gtdsqsfvtx .gt_footnote_marks {
+#nedpxnemnt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gtdsqsfvtx .gt_asterisk {
+#nedpxnemnt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gtdsqsfvtx .gt_indent_1 {
+#nedpxnemnt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gtdsqsfvtx .gt_indent_2 {
+#nedpxnemnt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gtdsqsfvtx .gt_indent_3 {
+#nedpxnemnt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gtdsqsfvtx .gt_indent_4 {
+#nedpxnemnt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gtdsqsfvtx .gt_indent_5 {
+#nedpxnemnt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gtdsqsfvtx .katex-display {
+#nedpxnemnt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gtdsqsfvtx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nedpxnemnt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1394,15 +1407,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The regression coefficients for x3 (binary treatment effect) differ. (The true OR is 0.5)</p>
 </section>
-<section id="now-lets-use-g-computation" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Now let’s use g-computation</h1>
+<section id="now-lets-use-g-computation" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Now let’s use g-computation</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variable logistic regression</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">avg_comparisons</span>(mod1,<span class="at">newdata=</span>dat,<span class="at">variables=</span><span class="st">"treatment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  Estimate Std. Error     z Pr(&gt;|z|)    S   2.5 %  97.5 %
-  -0.0677    0.00864 -7.84   &lt;0.001 47.7 -0.0847 -0.0508
+  -0.0706    0.00868 -8.14   &lt;0.001 51.2 -0.0877 -0.0536
 
 Term: treatment
 Type:  response 
@@ -1412,8 +1425,8 @@ Comparison: 1 - 0</code></pre>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">avg_comparisons</span>(mod2,<span class="at">newdata=</span>dat,<span class="at">variables=</span><span class="st">"treatment"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
- Estimate Std. Error     z Pr(&gt;|z|)    S   2.5 %  97.5 %
-  -0.0663    0.00886 -7.48   &lt;0.001 43.6 -0.0837 -0.0489
+ Estimate Std. Error     z Pr(&gt;|z|)    S   2.5 % 97.5 %
+  -0.0687    0.00903 -7.61   &lt;0.001 45.1 -0.0864 -0.051
 
 Term: treatment
 Type:  response 
@@ -1421,8 +1434,8 @@ Comparison: 1 - 0</code></pre>
 </div>
 </div>
 </section>
-<section id="lets-simulate-more-datasets-and-measure-the-or-and-probability-difference-ate" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> Let’s simulate more datasets and measure the OR and probability difference (ATE)</h1>
+<section id="lets-simulate-more-datasets-and-measure-the-or-and-probability-difference-ate" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Let’s simulate more datasets and measure the OR and probability difference (ATE)</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1481,23 +1494,23 @@ Comparison: 1 - 0</code></pre>
 <span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_gt</span>()</span>
 <span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>comptbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="junrcmqihz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#junrcmqihz table {
+<div id="klkdqydmee" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#klkdqydmee table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#junrcmqihz thead, #junrcmqihz tbody, #junrcmqihz tfoot, #junrcmqihz tr, #junrcmqihz td, #junrcmqihz th {
+#klkdqydmee thead, #klkdqydmee tbody, #klkdqydmee tfoot, #klkdqydmee tr, #klkdqydmee td, #klkdqydmee th {
   border-style: none;
 }
 
-#junrcmqihz p {
+#klkdqydmee p {
   margin: 0;
   padding: 0;
 }
 
-#junrcmqihz .gt_table {
+#klkdqydmee .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1523,12 +1536,12 @@ Comparison: 1 - 0</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_caption {
+#klkdqydmee .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#junrcmqihz .gt_title {
+#klkdqydmee .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1540,7 +1553,7 @@ Comparison: 1 - 0</code></pre>
   border-bottom-width: 0;
 }
 
-#junrcmqihz .gt_subtitle {
+#klkdqydmee .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1552,7 +1565,7 @@ Comparison: 1 - 0</code></pre>
   border-top-width: 0;
 }
 
-#junrcmqihz .gt_heading {
+#klkdqydmee .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1564,13 +1577,13 @@ Comparison: 1 - 0</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_bottom_border {
+#klkdqydmee .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_col_headings {
+#klkdqydmee .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1585,7 +1598,7 @@ Comparison: 1 - 0</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_col_heading {
+#klkdqydmee .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1605,7 +1618,7 @@ Comparison: 1 - 0</code></pre>
   overflow-x: hidden;
 }
 
-#junrcmqihz .gt_column_spanner_outer {
+#klkdqydmee .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1617,15 +1630,15 @@ Comparison: 1 - 0</code></pre>
   padding-right: 4px;
 }
 
-#junrcmqihz .gt_column_spanner_outer:first-child {
+#klkdqydmee .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#junrcmqihz .gt_column_spanner_outer:last-child {
+#klkdqydmee .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#junrcmqihz .gt_column_spanner {
+#klkdqydmee .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1637,11 +1650,11 @@ Comparison: 1 - 0</code></pre>
   width: 100%;
 }
 
-#junrcmqihz .gt_spanner_row {
+#klkdqydmee .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#junrcmqihz .gt_group_heading {
+#klkdqydmee .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1667,7 +1680,7 @@ Comparison: 1 - 0</code></pre>
   text-align: left;
 }
 
-#junrcmqihz .gt_empty_group_heading {
+#klkdqydmee .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1682,15 +1695,15 @@ Comparison: 1 - 0</code></pre>
   vertical-align: middle;
 }
 
-#junrcmqihz .gt_from_md > :first-child {
+#klkdqydmee .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#junrcmqihz .gt_from_md > :last-child {
+#klkdqydmee .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#junrcmqihz .gt_row {
+#klkdqydmee .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1709,7 +1722,7 @@ Comparison: 1 - 0</code></pre>
   overflow-x: hidden;
 }
 
-#junrcmqihz .gt_stub {
+#klkdqydmee .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1722,7 +1735,7 @@ Comparison: 1 - 0</code></pre>
   padding-right: 5px;
 }
 
-#junrcmqihz .gt_stub_row_group {
+#klkdqydmee .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1736,15 +1749,15 @@ Comparison: 1 - 0</code></pre>
   vertical-align: top;
 }
 
-#junrcmqihz .gt_row_group_first td {
+#klkdqydmee .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#junrcmqihz .gt_row_group_first th {
+#klkdqydmee .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#junrcmqihz .gt_summary_row {
+#klkdqydmee .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1754,16 +1767,16 @@ Comparison: 1 - 0</code></pre>
   padding-right: 5px;
 }
 
-#junrcmqihz .gt_first_summary_row {
+#klkdqydmee .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_first_summary_row.thick {
+#klkdqydmee .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#junrcmqihz .gt_last_summary_row {
+#klkdqydmee .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1773,7 +1786,7 @@ Comparison: 1 - 0</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_grand_summary_row {
+#klkdqydmee .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1783,7 +1796,7 @@ Comparison: 1 - 0</code></pre>
   padding-right: 5px;
 }
 
-#junrcmqihz .gt_first_grand_summary_row {
+#klkdqydmee .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1793,7 +1806,7 @@ Comparison: 1 - 0</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_last_grand_summary_row_top {
+#klkdqydmee .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1803,11 +1816,11 @@ Comparison: 1 - 0</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_striped {
+#klkdqydmee .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#junrcmqihz .gt_table_body {
+#klkdqydmee .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1816,7 +1829,7 @@ Comparison: 1 - 0</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_footnotes {
+#klkdqydmee .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1830,7 +1843,7 @@ Comparison: 1 - 0</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_footnote {
+#klkdqydmee .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1839,7 +1852,7 @@ Comparison: 1 - 0</code></pre>
   padding-right: 5px;
 }
 
-#junrcmqihz .gt_sourcenotes {
+#klkdqydmee .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1853,7 +1866,7 @@ Comparison: 1 - 0</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#junrcmqihz .gt_sourcenote {
+#klkdqydmee .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1861,72 +1874,72 @@ Comparison: 1 - 0</code></pre>
   padding-right: 5px;
 }
 
-#junrcmqihz .gt_left {
+#klkdqydmee .gt_left {
   text-align: left;
 }
 
-#junrcmqihz .gt_center {
+#klkdqydmee .gt_center {
   text-align: center;
 }
 
-#junrcmqihz .gt_right {
+#klkdqydmee .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#junrcmqihz .gt_font_normal {
+#klkdqydmee .gt_font_normal {
   font-weight: normal;
 }
 
-#junrcmqihz .gt_font_bold {
+#klkdqydmee .gt_font_bold {
   font-weight: bold;
 }
 
-#junrcmqihz .gt_font_italic {
+#klkdqydmee .gt_font_italic {
   font-style: italic;
 }
 
-#junrcmqihz .gt_super {
+#klkdqydmee .gt_super {
   font-size: 65%;
 }
 
-#junrcmqihz .gt_footnote_marks {
+#klkdqydmee .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#junrcmqihz .gt_asterisk {
+#klkdqydmee .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#junrcmqihz .gt_indent_1 {
+#klkdqydmee .gt_indent_1 {
   text-indent: 5px;
 }
 
-#junrcmqihz .gt_indent_2 {
+#klkdqydmee .gt_indent_2 {
   text-indent: 10px;
 }
 
-#junrcmqihz .gt_indent_3 {
+#klkdqydmee .gt_indent_3 {
   text-indent: 15px;
 }
 
-#junrcmqihz .gt_indent_4 {
+#klkdqydmee .gt_indent_4 {
   text-indent: 20px;
 }
 
-#junrcmqihz .gt_indent_5 {
+#klkdqydmee .gt_indent_5 {
   text-indent: 25px;
 }
 
-#junrcmqihz .katex-display {
+#klkdqydmee .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#junrcmqihz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#klkdqydmee div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1941,27 +1954,27 @@ Comparison: 1 - 0</code></pre>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Conditional OR</td>
-<td class="gt_row gt_center" headers="stat_0">0.49 (0.43, 0.58)</td>
+<td class="gt_row gt_center" headers="stat_0">0.49 (0.43, 0.57)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">Marginal OR</td>
-<td class="gt_row gt_center" headers="stat_0">0.51 (0.44, 0.60)</td>
+<td class="gt_row gt_center" headers="stat_0">0.51 (0.45, 0.59)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Condition-Marginal OR</td>
-<td class="gt_row gt_center" headers="stat_0">-0.022 (-0.042, -0.006)</td>
+<td class="gt_row gt_center" headers="stat_0">-0.021 (-0.040, -0.002)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">Conditional ATE</td>
-<td class="gt_row gt_center" headers="stat_0">-0.064 (-0.077, -0.051)</td>
+<td class="gt_row gt_center" headers="stat_0">-0.064 (-0.076, -0.051)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">Marginal ATE</td>
-<td class="gt_row gt_center" headers="stat_0">-0.063 (-0.077, -0.049)</td>
+<td class="gt_row gt_center" headers="stat_0">-0.064 (-0.077, -0.051)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">Condition-Marginal ATE</td>
-<td class="gt_row gt_center" headers="stat_0">0.000 (-0.003, 0.003)</td>
+<td class="gt_row gt_center" headers="stat_0">0.000 (-0.003, 0.004)</td>
 </tr>
 </tbody><tfoot class="gt_footnotes">
 <tr class="odd">
@@ -1979,8 +1992,8 @@ Comparison: 1 - 0</code></pre>
 </div>
 <p>Across 1,000 simulations, the OR differ between a conditional OR vs marginal OR, but ATE remains the same between models (multivariable vs marginal model).</p>
 </section>
-<section id="sessioninfo" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> Sessioninfo</h1>
+<section id="sessioninfo" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Sessioninfo</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -2436,13 +2449,13 @@ loaded via a namespace (and not attached):
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03_longitudinal_ordinal_modelling.html" class="pagination-link" aria-label="Longitudinal ordinal regression model simulations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Longitudinal ordinal regression model simulations</span></span>
+      <a href="./31_ordinal_regression_modeling.html" class="pagination-link" aria-label="Ordinal regression modeling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./Randomization_and_Power_analysis.html" class="pagination-link" aria-label="Randomization and sample size estimation">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -64,7 +64,7 @@ Example: $\phi$ is a normal CDF
 
 $$Pr(Y=2)=\phi(\tau_2) - \phi(\tau_1) = \phi(1)-\phi(-1)= 0.84 -0.16 = 0.68$$
 
-We need to incorporate and describe a regression model. So, the linear regression for $\hat{Y}$ with predictors is $\eta=b_1x_1+b_2x_2+..,$, so that $\hat{Y}= \eta + \epsilon$, where $\epsilon$ is the error term in the regression. Then, $\hat{Y$ can be split into these two parts. Note that there is no intercept in the predictor term because the thresholds $\tau_k$ replace the model's intercept as both are not identified at the same time. Thus, the probabilities of $Y$ being equal to category $k$ given the linear predictor $\eta$ is:
+We need to incorporate and describe a regression model. So, the linear regression for $\hat{Y}$ with predictors is $\eta=b_1x_1+b_2x_2+..,$, so that $\hat{Y}= \eta + \epsilon$, where $\epsilon$ is the error term in the regression. Then, $\hat{Y}$ can be split into these two parts. Note that there is no intercept in the predictor term because the thresholds $\tau_k$ replace the model's intercept as both are not identified at the same time. Thus, the probabilities of $Y$ being equal to category $k$ given the linear predictor $\eta$ is:
 
 $$Pr(Y=k|\eta)= F(\tau_k-\eta) - F(\tau_{k-1}-\eta)$$
 

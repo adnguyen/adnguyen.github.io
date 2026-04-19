@@ -1,0 +1,55 @@
+---
+title: "Monty hall problem"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+# Monty Hall problem
+
+You're on a game show and there are three doors with three prizes. Two of the doors has goats and the last remaining door has a car. Goats are not the desirable prize, but the car is. As a contestant, you pick one door. For the two other doors, the host opens the door that shows the goat. Should you, as a contestant, open the door you originally chose or switch to the other door you didn't originally pick? You should always switch.  
+
+We'll simulate this scenario and see how often we win when choosing the same original door or switching. 
+
+# Simulate Monty Hall problem 
+
+```{r}
+#load libraries
+library(tidyverse)
+
+## simulate 1000 examples of 3 doors 
+
+doors<-c("1","2","3") #3 doors
+win<-c("goat","goat","car")# what you can win
+experiments<-1:1000
+pick<-c(0,0,1)##picking a door
+
+df<-expand.grid(doors,experiments)
+
+df<-df|>
+  group_by(Var2)|>
+  mutate(winnings=sample(win,3))|>#randomly assign winnings (goats, cars)
+  mutate(contestantdoor=sample(pick,3))|>#randomly pick a door
+mutate(hostdoor=if_else(contestantdoor=="0" & winnings=="goat",Var1,"0"))#host chooses door with goat that is not the one contestant picked 
+knitr::kable(head(df,6))
+
+#check if any winnings == car from host door
+df|>
+  filter(hostdoor>0)|>
+  filter(winnings=="car")
+
+##ok now, calculate strategy for picking the original door vs switching
+dfpick<-df|>
+  dplyr::group_by(Var2)|>
+  dplyr::summarise(same=max(if_else(contestantdoor==1&winnings=="car",1,0)),switch=max(if_else(contestantdoor!=1&winnings=="car",1,0)))
+
+##calculate the proportion of winners 
+dfpick|>
+  dplyr::summarise(samewin=sum(same)/length(same),switchwin=sum(switch)/length(switch))
+
+```
+
+This simulation shows that by switching, you double your chances of winning!

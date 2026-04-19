@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Andrew D. Nguyen, PhD">
-<meta name="dcterms.date" content="2026-01-30">
 
-<title>11&nbsp; Ordinal regression modeling – My demo notebook</title>
+<title>12&nbsp; Ordinal regression modeling – My demo notebook</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./31_ordinal_regression_modeling.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20170601_ANOVA_vignette.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./31_ordinal_regression_modeling.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -182,7 +180,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Causal inference section</span></a>
+ <span class="menu-text">Causal Inference</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -217,7 +215,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Misc Bayesian statistics</span></a>
+ <span class="menu-text">Bayesian statistics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -266,20 +264,26 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./04.1_AFT_math_curves_params.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./31_ordinal_regression_modeling.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18_non-collapsibility_demo-odds_ratio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,7 +291,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Misc Frequentist statistics</span></a>
+ <span class="menu-text">Frequentist statistics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -296,13 +300,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Randomization_and_Power_analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./20170601_ANOVA_vignette.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">One-Way ANOVA vignette</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Randomization and sample size estimation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -331,8 +329,21 @@ window.Quarto = {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Function-valued traits</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Misc</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Monty_hall_problem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Monty hall problem</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
@@ -361,57 +372,45 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">12</span> Load libraries</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">13</span> Introduction</a>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link active" data-scroll-target="#load-libraries"><span class="header-section-number">13</span> Load libraries</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">14</span> Introduction</a>
   <ul class="collapse">
-  <li><a href="#notes-on-ordinal-regression-models" id="toc-notes-on-ordinal-regression-models" class="nav-link" data-scroll-target="#notes-on-ordinal-regression-models"><span class="header-section-number">13.1</span> Notes on ordinal regression models</a>
+  <li><a href="#notes-on-ordinal-regression-models" id="toc-notes-on-ordinal-regression-models" class="nav-link" data-scroll-target="#notes-on-ordinal-regression-models"><span class="header-section-number">14.1</span> Notes on ordinal regression models</a>
   <ul class="collapse">
-  <li><a href="#practical-application-notes" id="toc-practical-application-notes" class="nav-link" data-scroll-target="#practical-application-notes"><span class="header-section-number">13.1.1</span> Practical application notes</a></li>
+  <li><a href="#practical-application-notes" id="toc-practical-application-notes" class="nav-link" data-scroll-target="#practical-application-notes"><span class="header-section-number">14.1.1</span> Practical application notes</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#lets-first-simulate-a-dataset-for-proportional-ordinal-regression" id="toc-lets-first-simulate-a-dataset-for-proportional-ordinal-regression" class="nav-link" data-scroll-target="#lets-first-simulate-a-dataset-for-proportional-ordinal-regression"><span class="header-section-number">14</span> Let’s first simulate a dataset for proportional ordinal regression</a>
+  <li><a href="#lets-first-simulate-a-dataset-for-proportional-ordinal-regression" id="toc-lets-first-simulate-a-dataset-for-proportional-ordinal-regression" class="nav-link" data-scroll-target="#lets-first-simulate-a-dataset-for-proportional-ordinal-regression"><span class="header-section-number">15</span> Let’s first simulate a dataset for proportional ordinal regression</a>
   <ul class="collapse">
-  <li><a href="#now-lets-fit-a-proportion-ordinal-regression-model" id="toc-now-lets-fit-a-proportion-ordinal-regression-model" class="nav-link" data-scroll-target="#now-lets-fit-a-proportion-ordinal-regression-model"><span class="header-section-number">14.1</span> Now let’s fit a proportion ordinal regression model</a></li>
-  <li><a href="#extract-predicted-probabilities-for-each-category" id="toc-extract-predicted-probabilities-for-each-category" class="nav-link" data-scroll-target="#extract-predicted-probabilities-for-each-category"><span class="header-section-number">14.2</span> Extract predicted probabilities for each category</a>
+  <li><a href="#now-lets-fit-a-proportion-ordinal-regression-model" id="toc-now-lets-fit-a-proportion-ordinal-regression-model" class="nav-link" data-scroll-target="#now-lets-fit-a-proportion-ordinal-regression-model"><span class="header-section-number">15.1</span> Now let’s fit a proportion ordinal regression model</a></li>
+  <li><a href="#extract-predicted-probabilities-for-each-category" id="toc-extract-predicted-probabilities-for-each-category" class="nav-link" data-scroll-target="#extract-predicted-probabilities-for-each-category"><span class="header-section-number">15.2</span> Extract predicted probabilities for each category</a>
   <ul class="collapse">
-  <li><a href="#not-very-tidy-way-of-extraction" id="toc-not-very-tidy-way-of-extraction" class="nav-link" data-scroll-target="#not-very-tidy-way-of-extraction"><span class="header-section-number">14.2.1</span> Not very tidy way of extraction</a></li>
-  <li><a href="#using-marginaleffects-to-extract" id="toc-using-marginaleffects-to-extract" class="nav-link" data-scroll-target="#using-marginaleffects-to-extract"><span class="header-section-number">14.2.2</span> Using marginaleffects to extract</a></li>
+  <li><a href="#not-very-tidy-way-of-extraction" id="toc-not-very-tidy-way-of-extraction" class="nav-link" data-scroll-target="#not-very-tidy-way-of-extraction"><span class="header-section-number">15.2.1</span> Not very tidy way of extraction</a></li>
+  <li><a href="#using-marginaleffects-to-extract" id="toc-using-marginaleffects-to-extract" class="nav-link" data-scroll-target="#using-marginaleffects-to-extract"><span class="header-section-number">15.2.2</span> Using marginaleffects to extract</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#partial-proportional-ordinal-regression-model--simulate-data-first" id="toc-partial-proportional-ordinal-regression-model--simulate-data-first" class="nav-link" data-scroll-target="#partial-proportional-ordinal-regression-model--simulate-data-first"><span class="header-section-number">15</span> Partial proportional ordinal regression model- simulate data first</a>
+  <li><a href="#partial-proportional-ordinal-regression-model--simulate-data-first" id="toc-partial-proportional-ordinal-regression-model--simulate-data-first" class="nav-link" data-scroll-target="#partial-proportional-ordinal-regression-model--simulate-data-first"><span class="header-section-number">16</span> Partial proportional ordinal regression model- simulate data first</a>
   <ul class="collapse">
-  <li><a href="#fit-a-partial-proportional-ordinal-regression-model" id="toc-fit-a-partial-proportional-ordinal-regression-model" class="nav-link" data-scroll-target="#fit-a-partial-proportional-ordinal-regression-model"><span class="header-section-number">15.1</span> Fit a partial proportional ordinal regression model</a></li>
+  <li><a href="#fit-a-partial-proportional-ordinal-regression-model" id="toc-fit-a-partial-proportional-ordinal-regression-model" class="nav-link" data-scroll-target="#fit-a-partial-proportional-ordinal-regression-model"><span class="header-section-number">16.1</span> Fit a partial proportional ordinal regression model</a></li>
   </ul></li>
-  <li><a href="#now-analyzing-a-continuous-variable-with-ordinal-regression" id="toc-now-analyzing-a-continuous-variable-with-ordinal-regression" class="nav-link" data-scroll-target="#now-analyzing-a-continuous-variable-with-ordinal-regression"><span class="header-section-number">16</span> Now, analyzing a continuous variable with ordinal regression</a></li>
-  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">17</span> Session info</a></li>
+  <li><a href="#now-analyzing-a-continuous-variable-with-ordinal-regression" id="toc-now-analyzing-a-continuous-variable-with-ordinal-regression" class="nav-link" data-scroll-target="#now-analyzing-a-continuous-variable-with-ordinal-regression"><span class="header-section-number">17</span> Now, analyzing a continuous variable with ordinal regression</a></li>
+  <li><a href="#session-info" id="toc-session-info" class="nav-link" data-scroll-target="#session-info"><span class="header-section-number">18</span> Session info</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04.1_AFT_math_curves_params.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./31_ordinal_regression_modeling.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20170601_ANOVA_vignette.html">Notes on statistical models</a></li><li class="breadcrumb-item"><a href="./31_ordinal_regression_modeling.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ordinal regression modeling</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Andrew D. Nguyen, PhD </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">January 30, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -421,8 +420,8 @@ window.Quarto = {
 </header>
 
 
-<section id="load-libraries" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Load libraries</h1>
+<section id="load-libraries" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Load libraries</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co">#data parsing and visualization </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary) <span class="co">#this lets you create nice tables</span></span>
@@ -442,8 +441,8 @@ window.Quarto = {
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="introduction" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Introduction</h1>
+<section id="introduction" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Introduction</h1>
 <p>In this script, I’m going to simulate different ordinal outcomes to explore how the ordinal regression modelling works. Some ideas to explore-</p>
 <ul>
 <li>Simply analyzing a continuous outcome as ordinal - Frank Harrell says there is a lot of power by doing this.<br>
@@ -455,8 +454,8 @@ window.Quarto = {
 <li>Simulate proportional odds and non-proportional odds: evaluate models</li>
 <li>Explore longitudinal aspect</li>
 </ul>
-<section id="notes-on-ordinal-regression-models" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="notes-on-ordinal-regression-models"><span class="header-section-number">13.1</span> Notes on ordinal regression models</h2>
+<section id="notes-on-ordinal-regression-models" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="notes-on-ordinal-regression-models"><span class="header-section-number">14.1</span> Notes on ordinal regression models</h2>
 <p>Taking notes from ordinal regression in brms <a href="https://github.com/kalealex/ordinal-regression-demo">github</a>.</p>
 <p>Ordinal data are categories that show grades of an outcome. Ordinal regression models (cumulative models) assumes that the ordinal variable comes from a categorization of a latent (not observed) continuous <span class="math inline">\(\hat{Y}\)</span> variable.</p>
 <p>Example of ordinal data:</p>
@@ -505,14 +504,14 @@ window.Quarto = {
 <p><span class="math display">\[Pr(Y=k)= F(\tau_k)-F(\tau_{k-1})\]</span> The CDF of a threshold is subtracted from the CDF of the next lower level threshold to obtain the probability of Y being in a certain category.</p>
 <p>Example: <span class="math inline">\(\phi\)</span> is a normal CDF</p>
 <p><span class="math display">\[Pr(Y=2)=\phi(\tau_2) - \phi(\tau_1) = \phi(1)-\phi(-1)= 0.84 -0.16 = 0.68\]</span></p>
-<p>We need to incorporate and describe a regression model. So, the linear regression for <span class="math inline">\(\hat{Y}\)</span> with predictors is <span class="math inline">\(\eta=b_1x_1+b_2x_2+..,\)</span>, so that <span class="math inline">\(\hat{Y}= \eta + \epsilon\)</span>, where <span class="math inline">\(\epsilon\)</span> is the error term in the regression. Then, <span class="math inline">\(\hat{Y\)</span> can be split into these two parts. Note that there is no intercept in the predictor term because the thresholds <span class="math inline">\(\tau_k\)</span> replace the model’s intercept as both are not identified at the same time. Thus, the probabilities of <span class="math inline">\(Y\)</span> being equal to category <span class="math inline">\(k\)</span> given the linear predictor <span class="math inline">\(\eta\)</span> is:</p>
+<p>We need to incorporate and describe a regression model. So, the linear regression for <span class="math inline">\(\hat{Y}\)</span> with predictors is <span class="math inline">\(\eta=b_1x_1+b_2x_2+..,\)</span>, so that <span class="math inline">\(\hat{Y}= \eta + \epsilon\)</span>, where <span class="math inline">\(\epsilon\)</span> is the error term in the regression. Then, <span class="math inline">\(\hat{Y}\)</span> can be split into these two parts. Note that there is no intercept in the predictor term because the thresholds <span class="math inline">\(\tau_k\)</span> replace the model’s intercept as both are not identified at the same time. Thus, the probabilities of <span class="math inline">\(Y\)</span> being equal to category <span class="math inline">\(k\)</span> given the linear predictor <span class="math inline">\(\eta\)</span> is:</p>
 <p><span class="math display">\[Pr(Y=k|\eta)= F(\tau_k-\eta) - F(\tau_{k-1}-\eta)\]</span></p>
 <p>Thus..</p>
 <p><span class="math display">\[\hat{Y} = \eta + \epsilon = b_1 x_1 + b_2 x_2 + \epsilon\]</span> Assuming the latent variable <span class="math inline">\(\hat{Y}\)</span> is normally distributed, then the probabilities for each response cateogry <span class="math inline">\(k\)</span> can be computed as:</p>
 <p><span class="math display">\[Pr(Y=k) = \phi(\tau_k-(b_1x_1 + b_2x_2))-\phi(\tau_{k-1}-(b_1x_1 + b_2 x_2))\]</span></p>
 <p>There are also other models: sequential model (where movement across ordinal values depends on the last ordinal value), and the adjacent category model. Appendix A has more details.</p>
-<section id="practical-application-notes" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="practical-application-notes"><span class="header-section-number">13.1.1</span> Practical application notes</h3>
+<section id="practical-application-notes" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="practical-application-notes"><span class="header-section-number">14.1.1</span> Practical application notes</h3>
 <ul>
 <li>We can specify a few different models, all of which can be compared with leave-one-out cross validation (LOO).
 <ul>
@@ -527,8 +526,8 @@ window.Quarto = {
 </section>
 </section>
 </section>
-<section id="lets-first-simulate-a-dataset-for-proportional-ordinal-regression" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Let’s first simulate a dataset for proportional ordinal regression</h1>
+<section id="lets-first-simulate-a-dataset-for-proportional-ordinal-regression" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Let’s first simulate a dataset for proportional ordinal regression</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let's set up probabilities, then add in some simulate outcomes based on those probabilities </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ss<span class="ot">&lt;-</span><span class="dv">1000</span> <span class="co"># sample size</span></span>
@@ -554,12 +553,12 @@ window.Quarto = {
 <pre><code># A tibble: 6 × 2
       y treat  
   &lt;int&gt; &lt;chr&gt;  
-1     5 control
-2     4 control
-3     4 control
-4     2 control
-5     2 control
-6     4 control</code></pre>
+1     4 control
+2     5 control
+3     3 control
+4     3 control
+5     5 control
+6     3 control</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#levels(factor(d$treat))</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#let's plot the data </span></span>
@@ -576,8 +575,8 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="now-lets-fit-a-proportion-ordinal-regression-model" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="now-lets-fit-a-proportion-ordinal-regression-model"><span class="header-section-number">14.1</span> Now let’s fit a proportion ordinal regression model</h2>
+<section id="now-lets-fit-a-proportion-ordinal-regression-model" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="now-lets-fit-a-proportion-ordinal-regression-model"><span class="header-section-number">15.1</span> Now let’s fit a proportion ordinal regression model</h2>
 <p>Let’s use skeptical prior - normal(0,log(5)/1.96)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set Priors:</span></span>
@@ -776,10 +775,10 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <p>if |elpd_diff| &gt; 2 × se_diff, there is strong evidence the top model predicts better.</p>
 <p>Here, 2.5/1.0=2.52.5 / 1.0 = 2.52.5/1.0=2.5 ⇒ strong evidence in favor of pomod1.</p>
 </section>
-<section id="extract-predicted-probabilities-for-each-category" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="extract-predicted-probabilities-for-each-category"><span class="header-section-number">14.2</span> Extract predicted probabilities for each category</h2>
-<section id="not-very-tidy-way-of-extraction" class="level3" data-number="14.2.1">
-<h3 data-number="14.2.1" class="anchored" data-anchor-id="not-very-tidy-way-of-extraction"><span class="header-section-number">14.2.1</span> Not very tidy way of extraction</h3>
+<section id="extract-predicted-probabilities-for-each-category" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="extract-predicted-probabilities-for-each-category"><span class="header-section-number">15.2</span> Extract predicted probabilities for each category</h2>
+<section id="not-very-tidy-way-of-extraction" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="not-very-tidy-way-of-extraction"><span class="header-section-number">15.2.1</span> Not very tidy way of extraction</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># predict cateogry probabilities</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p_cat <span class="ot">&lt;-</span> <span class="fu">posterior_epred</span>(pomod1, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">treat=</span><span class="fu">c</span>(<span class="st">"control"</span>,<span class="st">"treated"</span>)))  <span class="co"># draws x rows x K</span></span>
@@ -790,8 +789,8 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#not very tidy...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="using-marginaleffects-to-extract" class="level3" data-number="14.2.2">
-<h3 data-number="14.2.2" class="anchored" data-anchor-id="using-marginaleffects-to-extract"><span class="header-section-number">14.2.2</span> Using marginaleffects to extract</h3>
+<section id="using-marginaleffects-to-extract" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="using-marginaleffects-to-extract"><span class="header-section-number">15.2.2</span> Using marginaleffects to extract</h3>
 <p>This is much cleaner</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set up new data</span></span>
@@ -849,8 +848,8 @@ Comparison: treated - control</code></pre>
 </section>
 </section>
 </section>
-<section id="partial-proportional-ordinal-regression-model--simulate-data-first" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Partial proportional ordinal regression model- simulate data first</h1>
+<section id="partial-proportional-ordinal-regression-model--simulate-data-first" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Partial proportional ordinal regression model- simulate data first</h1>
 <p>Let’s say the control mostly die (category 5) compared to treated. So I’ll set the control and treatment to have their own probabilities</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let's set up probabilities, then add in some simulate outcomes based on those probabilities </span></span>
@@ -871,12 +870,12 @@ Comparison: treated - control</code></pre>
 <pre><code># A tibble: 6 × 2
       y treat  
   &lt;int&gt; &lt;chr&gt;  
-1     3 control
+1     2 control
 2     5 control
-3     3 control
-4     3 control
+3     4 control
+4     5 control
 5     4 control
-6     4 control</code></pre>
+6     5 control</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#levels(factor(d$treat))</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#let's plot the data </span></span>
@@ -893,8 +892,8 @@ Comparison: treated - control</code></pre>
 </div>
 </div>
 </div>
-<section id="fit-a-partial-proportional-ordinal-regression-model" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="fit-a-partial-proportional-ordinal-regression-model"><span class="header-section-number">15.1</span> Fit a partial proportional ordinal regression model</h2>
+<section id="fit-a-partial-proportional-ordinal-regression-model" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="fit-a-partial-proportional-ordinal-regression-model"><span class="header-section-number">16.1</span> Fit a partial proportional ordinal regression model</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set Priors:</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>priors2 <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
@@ -1196,8 +1195,8 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <p>The case specific effects models are more favorable models. Out of the case specific effects models, specifying with the model is ACM (acat) or CM yield similar models.</p>
 </section>
 </section>
-<section id="now-analyzing-a-continuous-variable-with-ordinal-regression" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> Now, analyzing a continuous variable with ordinal regression</h1>
+<section id="now-analyzing-a-continuous-variable-with-ordinal-regression" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Now, analyzing a continuous variable with ordinal regression</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>co<span class="ot">&lt;-</span><span class="fu">rnorm</span>(<span class="at">n=</span>ss,<span class="dv">50</span>,<span class="dv">5</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>t<span class="ot">&lt;-</span>co<span class="sc">+</span><span class="fu">rnorm</span>(<span class="at">n=</span>ss,<span class="dv">5</span>,<span class="dv">1</span>)</span>
@@ -1324,8 +1323,8 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <p>Notes- ordinal regression can work on continuous data, which means that you can break a continuous scale into ordinal values. This may be important for cases where you want to merge a continuous outcome with a terminal, absorbing state (death). In our case, 71 was highest continuous scale, and if we wanted to include death, then 72 could be representing death.</p>
 <p>To better obtain convergence of chains, the adapt_delta was set to 0.98. At adapt_delta set to 0.95, there were divergent chains.</p>
 </section>
-<section id="session-info" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> Session info</h1>
+<section id="session-info" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Session info</h1>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1372,19 +1371,19 @@ loaded via a namespace (and not attached):
 [31] grid_4.5.0           stats4_4.5.0         colorspace_2.1-1    
 [34] inline_0.3.21        scales_1.3.0         insight_1.1.0       
 [37] cli_3.6.4            mvtnorm_1.3-3        rmarkdown_2.29      
-[40] generics_0.1.3       RcppParallel_5.1.10  rstudioapi_0.17.1   
-[43] reshape2_1.4.4       tzdb_0.5.0           rstan_2.32.7        
-[46] bayesplot_1.12.0     parallel_4.5.0       matrixStats_1.5.0   
-[49] vctrs_0.6.5          V8_6.0.3             Matrix_1.7-3        
-[52] jsonlite_2.0.0       hms_1.1.3            arrayhelpers_1.1-0  
-[55] beeswarm_0.4.0       ggdist_3.3.2         glue_1.8.0          
-[58] codetools_0.2-20     distributional_0.5.0 stringi_1.8.7       
-[61] gtable_0.3.6         QuickJSR_1.7.0       munsell_0.5.1       
-[64] pillar_1.10.2        htmltools_0.5.8.1    Brobdingnag_1.2-9   
-[67] R6_2.6.1             evaluate_1.0.3       lattice_0.22-6      
-[70] backports_1.5.0      rstantools_2.4.0     coda_0.19-4.1       
-[73] gridExtra_2.3        nlme_3.1-168         checkmate_2.3.2     
-[76] xfun_0.52            pkgconfig_2.0.3     </code></pre>
+[40] generics_0.1.3       RcppParallel_5.1.10  reshape2_1.4.4      
+[43] tzdb_0.5.0           rstan_2.32.7         bayesplot_1.12.0    
+[46] parallel_4.5.0       matrixStats_1.5.0    vctrs_0.6.5         
+[49] V8_6.0.3             Matrix_1.7-3         jsonlite_2.0.0      
+[52] hms_1.1.3            arrayhelpers_1.1-0   beeswarm_0.4.0      
+[55] ggdist_3.3.2         glue_1.8.0           codetools_0.2-20    
+[58] distributional_0.5.0 stringi_1.8.7        gtable_0.3.6        
+[61] QuickJSR_1.7.0       munsell_0.5.1        pillar_1.10.2       
+[64] htmltools_0.5.8.1    Brobdingnag_1.2-9    R6_2.6.1            
+[67] evaluate_1.0.3       lattice_0.22-6       backports_1.5.0     
+[70] rstantools_2.4.0     coda_0.19-4.1        gridExtra_2.3       
+[73] nlme_3.1-168         checkmate_2.3.2      xfun_0.52           
+[76] pkgconfig_2.0.3     </code></pre>
 </div>
 </div>
 
@@ -1794,12 +1793,12 @@ loaded via a namespace (and not attached):
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./04.1_AFT_math_curves_params.html" class="pagination-link" aria-label="Accelerated Failure time models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Accelerated Failure time models</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./18_non-collapsibility_demo-odds_ratio.html" class="pagination-link" aria-label="Demo on non-collapsibility">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Demo on non-collapsibility</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
